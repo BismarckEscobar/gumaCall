@@ -19,14 +19,17 @@ $(document).ready(function() {
     });
     $("#agregarNuevo").click(function() { $("#nuevoGrupoModal").openModal(); });
 });
-    var idGlobal;
-    $("#guardarGrupo").click(function(){
-        if ($('#nombreGrupo').val()=="") {
-            mensaje("DIGITE UN NOMBRE VALIDO","error");$('#nombreGrupo').focus();return false;
-        }else if ($("#agente").val()==null) {
-            mensaje("SELECCIONE UN RESPONSABLE DE GRUPO","error");$('#agente').focus();return false;
-        }else{
-            document.getElementById("nuevoGrupoModal").submit();
-        }
-    });
+$("#guardarGrupo").click(function(){
+    if ($('#nombreGrupo').val()=="") {
+        mensaje("DIGITE UN NOMBRE VALIDO","error");$('#nombreGrupo').focus();return false;
+    }else if ($("#agente").val()==null) {
+        mensaje("SELECCIONE UN RESPONSABLE DE GRUPO","error");$('#agente').focus();return false;
+    }else{
+        document.getElementById("formNuevoGrupo").submit();
+    }
+});
+
+function editarGrupo(idGrupo) {
+    $("#editarGrupoModal").openModal();
+}
 </script>

@@ -1,4 +1,9 @@
+<div>         
+    <center style="font-family:arial;  text-align: center; margin-left: 200px; padding: 10px 10px;">©<?php echo date('Y')?> Copyright GCIT-GUMA</center>
 </div>
+
+</div>
+
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/js/jquery-2.1.1.min.js"></script>
@@ -23,6 +28,9 @@
 <script src="<?PHP echo base_url();?>assets/js/highcharts.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/highcharts-3d.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/exporting.js"></script>
+
+<!--Script para el reloj superior-->
+<script src="<?PHP echo base_url();?>assets/js/reloj.js"></script>
 
 <script>
     $('.datepicker1').pickadate({
