@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/chosen.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/dataTables.tableTools.css">
     <link href="<?php echo base_url();?>assets/css/sweetalert2.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="<?php echo base_url();?>assets/plugins/fullcalendar/fullcalendar.css" type="text/css" rel="stylesheet">
     <style>
         #view-source {
             position: fixed;

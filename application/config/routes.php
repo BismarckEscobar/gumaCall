@@ -17,7 +17,9 @@ $route['Main'] = 'main_controller';
 // FIN RUTAS MENU
 
 //RUTAS CAMPAÑAS
-$route['Campania'] = 'campania_controller';
+$route['campanias'] = 'campania_controller';
+$route['detalles'] = 'campania_controller/detalles_camp';
+$route['cliente'] = 'campania_controller/get_info_cliente';
 //FIN RUTAS CAMPAÑAS
 
 //RUTAS USUARIOS
