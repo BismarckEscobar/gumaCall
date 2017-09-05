@@ -13,13 +13,13 @@
     </div>
 </header>
 <main class="mdl-layout__content mdl-color--grey-100">
-	<div class="contenedor">        
-	    <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">USUARIOS DEL SISTEMA</div></div>	    
+	<div class="contenedor">
+	    <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">USUARIOS DEL SISTEMA</div></div>
 	    <div class="noMargen Buscar row column">
 	        <div id="agregarUsuario" class="col offset-s2 s2 right">
 	            <a href="#modalNuevoUsuario" class="BtnBlue waves-effect btn modal-trigger">AGREGAR</a>
 	        </div>
-	    </div>            
+	    </div>
 	    <div class="row" id="monitoreo1">
 	        <table id="tblUsuario" class="TblData">
 	            <thead>
@@ -32,7 +32,7 @@
 	                </tr>
 	            </thead>
 	            <tbody class="center">
-	                <?php 
+	                <?php
 	                    if ($dataUsuario) {
 	                        foreach ($dataUsuario as $key ) {
 	                        	if ($key['Activo']==1) {
@@ -49,9 +49,9 @@
 	                                    <td>".$key['IdUser']."</td>
 	                                    <td>".$key['Nombre']."</td>
 	                                    <td>".$key['Usuario']."</td>
-	                                    <td>".$estado."</td>                                    
+	                                    <td>".$estado."</td>
 	                                    <td class='center'>
-	                                    ".$texto."              
+	                                    ".$texto."
 	                                    </td>
 		                            </tr>";
 		                        }
@@ -93,13 +93,13 @@
 	    	    <div class="input-field offset-l1 col s12 m12 l10 ">
 	                <select class="chosen-select browser-default" name="tipoUsuario" id="tipoUsuario">
 	                    <option value="" disabled selected><span>Permisos</span></option>
-	                    <?php 
+	                    <?php
 		                    if ($roles) {
 		                    	foreach ($roles as $key) {
 			                    	echo "
 					                    <option value=".$key['tipo']."><span>".$key['descripcion']."</span></option>
 					                    ";
-				                }	
+				                }
 		                    }
 			            ?>
 	                </select>

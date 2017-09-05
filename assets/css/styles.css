@@ -504,6 +504,15 @@ table th {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #aaa;
 }
+.Cont_hrs_trabajo{
+    background-color: #3B66B0;
+    color: #208CC3;
+    opacity: 0.5;
+    font-family: 'robotoblack';
+    font-size: 40px;
+}
+
+
 .TextColor p {
   font-size: 22px;
   margin-left: 10%;
