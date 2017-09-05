@@ -37,7 +37,7 @@ class Usuario_model extends CI_Model
             $dataUsuario = array(
             'Nombre' => $nombreCompleto,
             'Usuario' => $nombreUsuario,
-            'Password' => MD5($contrasenia),
+            'contrasenia' => MD5($contrasenia),
             'Rol' => $rolTipo,
             'Activo' => 1
             );
@@ -56,7 +56,7 @@ class Usuario_model extends CI_Model
 
     public function verificarUsuario($usuario,$contrasenia) {
         $this->db->where('usuario',$usuario);
-        $this->db->where('Password',MD5($contrasenia));
+        $this->db->where('contrasenia',MD5($contrasenia));
         $query = $this->db->get('usuario');
         if ($query->num_rows()>0) {
             return 0;

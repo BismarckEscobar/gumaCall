@@ -431,6 +431,7 @@ table th {
     color: #fff;
     margin-top: 20px;
     text-align: center;
+    font-family: 'robotoregular'
 }
 /*FIN DE TITULOS_SUPERIORES*/
 
@@ -440,16 +441,16 @@ table th {
     border-spacing: 1px;
 }
 .TblData th{
-    background: #3f5aa5;
+    background: #1F3C8F;
     color: #fff;
-    font-size: 14px;
-    font-family: 'robotobold';
+    font-size: 17px;
+    font-family: 'robotoregular';
 }
 .TblData td
 {
     font-family: 'robotoregular';
     color: #1F0A71;
-    font-size: 12px;
+    font-size: 16px;
 }
 .dataTables_filter{
   display: none!important;
@@ -459,7 +460,16 @@ table th {
 .BtnBlue
 {
     border-radius: 4px;
-    background: #263369;
+    background: #1E824C;
+    font-family: 'robotomedium';
+    font-weight: 500;
+    font-size: 12px;
+    transition: 0.5s;
+}
+
+.BtnCancelar {
+    border-radius: 4px;
+    background: #C72828;
     font-family: 'robotomedium';
     font-weight: 500;
     font-size: 12px;
@@ -487,11 +497,12 @@ table th {
     font-size: 22px;
 }
 .TextColor {
-  color: #1F0A71;
-  font-family: 'robotoblack';
-  font-size: 22px;
+  color: #000000;
+  font-family: 'robotoregular';
+  font-size: 25px;
   margin-top: 30px;
   text-transform: uppercase;
+  text-shadow: 2px 2px 2px #aaa;
 }
 .TextColor p {
   font-size: 22px;
@@ -557,4 +568,49 @@ label>select {
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
+}
+
+/*ESTILOS PARA EL RELOJ*/
+.row1 {
+  width: 100%;
+}
+.container_reloj {
+  width: 20%;
+  float: right;
+}
+.clock {
+  width:70%; 
+  margin:0 auto; 
+  color:#fff;
+}
+.ul_r { 
+  margin:0 auto; 
+  padding:0px;
+  list-style:none; 
+  text-align:center;  
+}
+.ul_r li { 
+  display:inline; 
+  font-size:25px;  
+  font-family:'robotoregular';
+  padding: 0px;
+}
+#point {
+  padding: 0px;
+  position:relative;
+}
+@media only screen and (max-width: 1020px) {
+.container_reloj {
+  width: 100%;
+  }
+}
+/*FIN DE ESTILOS PARA RELOJ*/
+.usuario_activo {
+  color: green;
+}
+
+
+
+.footer_load  {
+
 }

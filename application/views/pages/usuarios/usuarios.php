@@ -1,7 +1,17 @@
 <header class="demo-header mdl-layout__header ">
-	<div class="row center ColorHeader"><span class=" title">Usuarios<i class="material-icons right">view_quilt</i></span></div>
+    <div class="row center ColorHeader">        
+        <div class="container_reloj">
+            <div class="clock">
+                <ul class="ul_r">
+                    <li id="hours"></li>
+                    <li id="point">:</li>
+                    <li id="min"></li>
+                    <li id="type"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </header>
-
 <main class="mdl-layout__content mdl-color--grey-100">
 	<div class="contenedor">        
 	    <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">USUARIOS DEL SISTEMA</div></div>	    
@@ -27,12 +37,13 @@
 	                        foreach ($dataUsuario as $key ) {
 	                        	if ($key['Activo']==1) {
 	                        		$estado="Activo";
+	                        		$clase_estado="usuario_activo";
 	                        		$val=0;
-	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating red'><i class='small material-icons'>close</i></a>";
+	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating blue'><i class='small material-icons'>create</i></a>";
 	                        	}else {
 	                        		$estado="Inactivo";
 	                        		$val=1;
-	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating green'><i class='small material-icons'>done</i></a>";
+	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating blue'><i class='small material-icons'>create</i></a>";
 	                        	}
 		                        echo"<tr>
 	                                    <td>".$key['IdUser']."</td>
@@ -100,6 +111,4 @@
             <a id="cancelarProceso" class="modal-action modal-close BtnBlue waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
-</div>
-</div>
 </div>

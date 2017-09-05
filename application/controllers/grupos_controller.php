@@ -10,7 +10,8 @@ class Grupos_controller extends CI_Controller {
         }
     }
     public function index() {    
-        $data['agentes'] = $this->grupo_model->listarAgentes();      
+        $data['agentes'] = $this->grupo_model->listarAgentes();
+        $data['grupos'] = $this->grupo_model->listarGrupos();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/grupos/grupos', $data);
@@ -18,16 +19,10 @@ class Grupos_controller extends CI_Controller {
         $this->load->view('jsview/js_grupos');
     }
     public function nuevoGrupo() {
-        $nombreGrupo = $_POST['nombreGrupo'];
-        $agenteResponsable = $_POST['agente'];
-        $this->grupos_model->guardarGrupos($nombreGrupo, $agenteResponsable);
+        $nombreGrupo = $this->input->post('nombreGrupo');
+        $agenteResponsable = $this->input->post('agente');
+        $this->grupo_model->guardarGrupos($nombreGrupo, $agenteResponsable);
         redirect('grupos','refresh');
-    }
-    public function getVendedoresGrupoAct($idGrupo) {
-        //$this->grupos_model->getVendedoresGrupoAct($idGrupo);
-    }
-    public function getVendedoresGrupo($idGrupo) {
-        //$this->grupos_model->getVendedoresGrupo($idGrupo);
     }
     public function editarGrupo() {
         //$this->grupos_model->editarGrupo($this->input->post('grupo'));

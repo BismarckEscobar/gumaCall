@@ -28,4 +28,5 @@ $route['cambiarEstado/(:any)/(:any)'] = 'Usuario_controller/cambiarEstado/$1/$2'
 
 //RUTAS GRUPOS
 $route['grupos'] = 'grupos_controller';
+$route['nuevoGrupo'] = 'grupos_controller/nuevoGrupo';
 //FIN DE RUTAS GRUPOS
