@@ -1,12 +1,26 @@
-<header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class=" title">N° 0503 - PROMOCIÓN RAMOS OCTUBRE 2017</span></div>
-</header>
 
+<header class="demo-header mdl-layout__header ">
+    <div class="row center ColorHeader"><span class=" title">N° 0503 - PROMOCIÓN RAMOS OCTUBRE 2017</span>
+        <div class="container_reloj">
+            <div class="clock">
+                <ul class="ul_r">
+                    <li id="hours"></li>
+                    <li id="point">:</li>
+                    <li id="min"></li>
+                    <li id="type"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
+        <span id="USI"><?php echo $this->session->userdata('UserN');?></span>
+        <span id="USN"><?php echo $this->session->userdata('UserName');?></span>
+
         <div class="row">
             <div class="col s12 m12" >
-                <div class="card" ><br>
+                <div class="card hoverable " ><br>
                     <div class="row">
                         <div class="input-field col s3">
                             <input value="01/08/2017" id="icon_DateInit" type="text" class="center validate">
@@ -26,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" >
+                <div class="card hoverable" >
                     <div class="card-content">
                         <span class="card-title left">MENSAJE</span><br><br><br>
                         <div class="row" style="text-align: left">
@@ -42,37 +56,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style="display: none">
+                <div class="card hoverable">
                 <div class="card-content">
-                    <span class="card-title left">N° 0503 - PROMOCIÓN RAMOS OCTUBRE 2017</span><br><br><br>
+                        <span class="card-title center">00350 - FARMACIA NUESTRA SEÑORA DE LA LUZ</span><br><br><br>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input value="01/08/2017" id="icon_DateInit" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">FECHA DE INICIO</label>
+                            <input value="22553689" id="icon_DateInit" type="text" class="center validate">
+                            <label for="icon_DateInit" class="left">TELEFONO 1</label>
                         </div>
                         <div class="input-field col s3">
-                            <input value="15/08/2017" id="icon_DateEnd" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">FECHA FINAL</label>
+                            <input value="22553689" id="icon_DateEnd" type="text" class="center validate">
+                            <label for="icon_DateInit" class="left">TELEFONO 2</label>
                         </div>
-                        <div class="input-field col s3">
-                            <input id="icon_DateEnd" value="C$ 100,00" type="text" class=" right validate">
-                            <label for="icon_DateInit" class="left">META ESTIMADAL</label>
+                        <div class="input-field col s2">
+                            <input id="icon_DateEnd" value="22553689" type="text" class=" right validate">
+                            <label for="icon_DateInit" class="left">TELEFONO 3</label>
                         </div>
-                        <div class="input-field col s3">
+                        <div class="input-field col s2">
                             <input id="icon_DateEnd" value="C$ 3,000" type="text" class="right validate">
-                            <label for="icon_DateInit class="left"">REAL</label>
+                            <label for="icon_DateInit" class="left"">META</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <input id="icon_DateEnd" value="C$ 3,000" type="text" class="right validate">
+                            <label for="icon_DateInit" class="left"">REAL</label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card hoverable ">
                 <div class="card-content">
-                    <div class="row">
-                        <div class="col s6">
+                    <div class="row valign-wrapper">
+                        <div class="col s6" >
                             <a href="#" id="cModal" class="BtnBlue waves-effect btn modal-trigger">INICIAR</a>
                         </div>
-                        <div class=" col s6">
-                            <label  class="TextColor center">00:00:00</label>
+                        <div class="col s6 " >
+                               <label class="sKronos center-align">00:00:00:00</label>
                         </div>
 
                     </div>

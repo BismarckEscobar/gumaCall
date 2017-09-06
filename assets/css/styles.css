@@ -500,7 +500,9 @@ table th {
 .row{
   width: 100%!important;
 }
-
+.card-small{
+    height: 70px;
+}
 .titulosModales
 {
     color: #263369;    
@@ -694,4 +696,14 @@ label>select {
 }
 .left {
   text-align: left;
+}
+
+.footer_load  {
+
+}
+
+.sKronos{
+    font-size: 33px;
+    font-family:'robotoregular';
+    color: #363431;
 }
