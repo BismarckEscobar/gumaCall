@@ -62,6 +62,7 @@
 	    </div>
 	</div>
 </main>
+
 <!--MODAL: INGRESO NUEVO USUARIO-->
 <div id="modalNuevoUsuario" class="modal">
     <div class="modal-content"><br>

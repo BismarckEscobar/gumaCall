@@ -41,6 +41,7 @@ class Login_controller extends CI_Controller
                 $sessiondata = array(
                     'id' => $data['user'][0]['IdUser'],
                     'UserN' => $data['user'][0]['Usuario'],
+                    'UserName' => $data['user'][0]['Nombre'],
                     'RolUser'=>$data['user'][0]['Rol'],
                     'Zona'=>$data['user'][0]['vendedor'],
                     'logged' => 1

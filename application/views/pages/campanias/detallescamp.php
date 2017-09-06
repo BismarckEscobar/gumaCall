@@ -1,7 +1,18 @@
-<header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class=" title">campaña detalles</span></div>
-</header>
 
+<header class="demo-header mdl-layout__header ">
+    <div class="row center ColorHeader"><span class=" title">campaña detalles</span>
+        <div class="container_reloj">
+            <div class="clock">
+                <ul class="ul_r">
+                    <li id="hours"></li>
+                    <li id="point">:</li>
+                    <li id="min"></li>
+                    <li id="type"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
         <div class="row">

@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function() {
+        $("#USN,#USI").hide();
+        var uName=$("#USN").text();
+        var uID=$("#USI").text();
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
@@ -17,10 +20,83 @@
                 "search":     "BUSCAR"
             }
         });
-        $("#cModal").click(function() { $("#outCall").openModal(); });
+
+        $("#cModal").click(function() {
+            $("#outCall").openModal();
+        });
+        if (localStorage.getItem("isInit")=== "true") {
+            localStorage.setItem("InitCronos", getDate());
+            localStorage.setItem("isInit", false);
+            live()
+        }else{
+            live();
+        }
+        function live(){
+            control = setInterval(function(){
+
+                $('#ttCall').text(calDate(localStorage.getItem("InitCronos"),getDate()));
+                EyesOfGod(
+                    localStorage.getItem("InitCronos"),
+                    getDate(),
+                    $('#ttCall').text(),
+                    uID,
+                    uName
+                );
+            },10);
+        }
+
     });
+    function EyesOfGod(Init,End,isTime,id,name) {
+        firebase.database().ref("USUARIOS").child("SAC1").update({
+            agent: id,
+            dInit: Init,
+            dEnd: End,
+            ttConnect:isTime,
+            isConect : 1,
+            name:name,
+            Camp:"camp"
+        });
 
 
+    }
+
+    function Death() {
+        clearInterval(control);
+        //localStorage.setItem("InitCronos", "00-00-0000 00:00:00");
+        localStorage.setItem("isInit", true);
+        $('#ttCall').text("00:00:00");
+    }
+
+    function getDate(){
+        var hoy = new Date();
+        var dd = hoy.getDate(),mm = hoy.getMonth()+1,yyyy = hoy.getFullYear();
+        var h = hoy.getHours(),i = hoy.getMinutes(),s=hoy.getSeconds();
+        if(dd<10) {dd='0'+dd}
+        if(mm<10) {mm='0'+mm}
+        if(h<10) {h='0'+h}
+        if(i<10) {i='0'+i}
+        if(s<10) {s='0'+s}
+        hoy = dd+'-'+mm+'-'+yyyy+ ' ' + h +':'+i+':'+s;
+        return hoy;
+    }
+    function calDate(DateInit,DateNow){
+        return(moment.utc(moment(DateNow,"DD-MM-YYYY HH:mm:ss").diff(moment(DateInit,"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"))
+    }
+    function cOut(){
+        swal({
+            title: '¿Desea Salir del sistema?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+        }).then(function () {
+            Death();
+            window.location.href = "salir"
+        })
+
+    }
 
 
 </script>
