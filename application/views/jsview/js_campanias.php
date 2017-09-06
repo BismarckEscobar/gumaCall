@@ -1,8 +1,13 @@
 <script>
     $(document).ready(function() {
-        $("#USN,#USI").hide();
-        var uName=$("#USN").text();
-        var uID=$("#USI").text();
+        //$("#USN,#USI").hide();
+        localStorage.setItem("USN", $("#USI").text());
+        localStorage.setItem("USI", $("#USN").text());
+
+        firebase.database().ref("USUARIOS").child(localStorage.getItem("USN")).update({
+            isConect : 1
+        });
+
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
@@ -21,6 +26,7 @@
             }
         });
 
+
         $("#cModal").click(function() {
             $("#outCall").openModal();
         });
@@ -35,36 +41,41 @@
             control = setInterval(function(){
 
                 $('#ttCall').text(calDate(localStorage.getItem("InitCronos"),getDate()));
-                EyesOfGod(
+                EarEyesOfGod(
                     localStorage.getItem("InitCronos"),
                     getDate(),
                     $('#ttCall').text(),
-                    uID,
-                    uName
+                    localStorage.getItem("USN"),
+                    localStorage.getItem("USI")
                 );
             },10);
         }
 
     });
-    function EyesOfGod(Init,End,isTime,id,name) {
-        firebase.database().ref("USUARIOS").child("SAC1").update({
+
+    function EarEyesOfGod(Init,End,isTime,id,name) {
+        firebase.database().ref("USUARIOS").child(id).update({
             agent: id,
             dInit: Init,
             dEnd: End,
             ttConnect:isTime,
-            isConect : 1,
             name:name,
             Camp:"camp"
         });
-
-
+    }
+    function CloseEyesOfGod(id) {
+        firebase.database().ref("USUARIOS").child(id).update({
+            isConect : 0
+        });
     }
 
     function Death() {
         clearInterval(control);
         //localStorage.setItem("InitCronos", "00-00-0000 00:00:00");
         localStorage.setItem("isInit", true);
+        CloseEyesOfGod(localStorage.getItem("USN"));
         $('#ttCall').text("00:00:00");
+        window.location.href = "salir"
     }
 
     function getDate(){
@@ -93,7 +104,7 @@
             cancelButtonText: 'No'
         }).then(function () {
             Death();
-            window.location.href = "salir"
+
         })
 
     }

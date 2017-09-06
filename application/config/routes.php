@@ -33,3 +33,7 @@ $route['grupos'] = 'grupos_controller';
 $route['nuevoGrupo'] = 'grupos_controller/nuevoGrupo';
 //FIN DE RUTAS GRUPOS
 
+
+//RUTAS GRUPOS
+$route['Monitoreo'] = 'Monitoreo_controller';
+//FIN DE RUTAS GRUPOS

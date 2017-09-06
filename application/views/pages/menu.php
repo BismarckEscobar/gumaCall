@@ -26,7 +26,7 @@
               switch ($this->session->userdata('RolUser')) {
                 case '0':
                   $menu = '<a href="Campania"><li href="Campania"><i class="material-icons">shopping_cart</i> campañas</li></a>
-                           <a href="Main"><li href="#"><i class="material-icons">desktop_windows</i> Monitoreo</li></a>
+                           <a href="Monitoreo"><li href="#"><i class="material-icons">desktop_windows</i> Monitoreo</li></a>
                            <a href="#"><li href="#"><i class="material-icons">pie_chart</i> Reportes</li></a>
                            <a href="usuarios"><li href="usuarios"><i class="material-icons">group</i> Usuarios</li></a>
                            <a href="#"><li href="#"><i class="material-icons">group</i> Clientes</li></a>
