@@ -35,5 +35,31 @@ class Campania_controller extends CI_Controller
         $this->load->view('jsview/js_campanias');
 
     }
+
+    /*FUNCIONES PARA CAMPAÑAS VISTA ADMINISTRADOR*/
+    public function listadoCampanias() {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/campanias/campaniasVA');
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_campanias');
+    }
+
+    public function detalle_vista_admin() {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/campanias/detallescampVA');
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_campanias');
+    }
+
+    public function nuevaCampania() {
+        $this->load->view('header/header');
+        $this->load->view('pages/menu');
+        $this->load->view('pages/campanias/nuevaCampania');
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/js_campanias');
+    }
+    /*FIN METODO LISTAR CAMPAÑAS VISTA ADMINISTRADOR*/
 }
 ?>

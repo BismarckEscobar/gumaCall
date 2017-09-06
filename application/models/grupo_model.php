@@ -20,7 +20,19 @@ class Grupo_model extends CI_Model {
             return 0;
         }
     }
-    
+
+    public function editarGrupo($idGrupo) {
+        $this->db->where('IdGrupo', $idGrupo);
+        $this->db->from('grupos');
+        $query=$this->db->get();
+
+        if ($query->num_rows()>0) {
+            echo json_encode($query->result_array());
+        }else {
+            echo "0";
+        }
+    }
+
     public function listarGrupos() {
         $this->db->where('Estado', 1);
         $this->db->from('grupos');
@@ -34,18 +46,18 @@ class Grupo_model extends CI_Model {
         }
     }
 
-    public function guardarGrupos($nombreGrupo, $agenteResponsable) {
-    	$q = $this->verificarGrupo($nombreGrupo,$agenteResponsable);
+    public function guardarGrupos($idGrupo, $nombreGrupo, $agenteResponsable,$estado) {
+    	$q = $this->verificarGrupo($idGrupo, $nombreGrupo, $agenteResponsable);
         if ($q == 1) {
             $dataGrupo = array(
             'NombreGrupo' => $nombreGrupo,
             'IdResponsable' => $agenteResponsable,
-            'Estado' => 1,
+            'Estado' => $estado,
             'FechaCreada' => date('Y-m-d')
             );
             $query = $this->db->insert('grupos', $dataGrupo);
             if ($query) {
-                redirect('grupos','refresh');
+                //redirect('grupos','refresh');
                 echo  "1";
             }
         }
@@ -56,7 +68,8 @@ class Grupo_model extends CI_Model {
         }
     }
 
-    public function verificarGrupo($nombreGrupo,$agenteResponsable) {
+    public function verificarGrupo($idGrupo, $nombreGrupo,$agenteResponsable) {
+        $this->db->where('IdGrupo',$idGrupo);
         $this->db->where('NombreGrupo',$nombreGrupo);
         $this->db->where('IdResponsable',$agenteResponsable);
         $query = $this->db->get('grupos');

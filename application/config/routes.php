@@ -18,6 +18,10 @@ $route['Main'] = 'main_controller';
 
 //RUTAS CAMPAÑAS
 $route['campanias'] = 'campania_controller';
+$route['campaniasVA'] = 'campania_controller/listadoCampanias';
+$route['detallesVA'] = 'campania_controller/detalle_vista_admin';
+$route['crearCampania'] = 'campania_controller/nuevaCampania';
+
 $route['detalles'] = 'campania_controller/detalles_camp';
 $route['cliente'] = 'campania_controller/get_info_cliente';
 //FIN RUTAS CAMPAÑAS
@@ -30,7 +34,8 @@ $route['cambiarEstado/(:any)/(:any)'] = 'Usuario_controller/cambiarEstado/$1/$2'
 
 //RUTAS GRUPOS
 $route['grupos'] = 'grupos_controller';
-$route['nuevoGrupo'] = 'grupos_controller/nuevoGrupo';
+$route['gestionarGrupo'] = 'grupos_controller/gestionandoGrupo';
+$route['buscarGrupo/(:any)'] = 'grupos_controller/buscandoGrupo/$1';
 //FIN DE RUTAS GRUPOS
 
 

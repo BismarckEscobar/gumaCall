@@ -59,7 +59,8 @@
         <div class="row center">
             <span id="titulM" class="titulosModales">NUEVO GRUPO</span>
         </div>
-        <form id="formNuevoGrupo" action="<?PHP echo base_url('index.php/nuevoGrupo');?>" method="post" name="formNuevoGrupo">
+        <form id="formNuevoGrupo" action="<?PHP echo base_url('index.php/gestionarGrupo');?>" method="post" name="formNuevoGrupo">
+            <input name="idGrupo" id="idGrupo" value="0" type="hidden">
             <div class="row">
                 <div class="input-field offset-l1 col s12 m12 l10">
                     <input name="nombreGrupo" id="nombreGrupo" type="text" class="validate mayuscula" placeholder="INGRESE UN NOMBRE">
@@ -81,6 +82,11 @@
                         ?>
                     </select>
                 </div>
+            </div>
+            <div class="row">
+                <div class="input-field offset-l1 col s12 m12 l10">
+                    <input type="hidden" id="grupoEstado" name="grupoEstado" value="1" />
+                </div>                
             </div>
         </form><br><br>
         <div class="row center">
@@ -95,16 +101,17 @@
         <div class="row center">
             <span id="titulM" class="titulosModales">EDITAR GRUPO</span>
         </div>
-        <form id="formNuevoGrupo" action="<?PHP echo base_url('index.php/nuevoGrupo');?>" method="post" name="formNuevoGrupo">
+        <form id="formEditarGrupo" action="<?PHP echo base_url('index.php/gestionarGrupo');?>" method="post" name="formEditarGrupo">
+            <input type="hidden" id="idGrupoBD1" name="idGrupoBD">
             <div class="row">
                 <div class="input-field offset-l1 col s12 m12 l10">
-                    <input name="nombreGrupo" id="nombreGrupo" type="text" class="validate mayuscula" placeholder="INGRESE UN NOMBRE">
-                    <label for="nombreGrupo">NOMBRE</label>
+                    <input name="nombreGrupoBD" id="nombreGrupoBD" type="text" placeholder="INGRESE UN NOMBRE">
+                    <label for="nombreGrupoBD">NOMBRE</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field offset-l1 col s12 m12 l10">
-                    <select class="chosen-select browser-default" name="agente" id="agente">
+                    <select class="chosen-select browser-default" name="agenteBD" id="agenteBD">
                         <option value="" disabled selected><span>SELECCIONAR RESPONSABLE DEL GRUPO</span></option>
                         <?php 
                             if ($agentes) {
@@ -118,9 +125,15 @@
                     </select>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field offset-l1 col s12 m12 l10">
+                    <input type="checkbox" id="grupoEstadoBD" name="grupoEstadoBD" value=""/>
+                    <label for="grupoEstadoBD">Activo</label>
+                </div>                
+            </div>
         </form><br><br>
         <div class="row center">
-            <a id="guardarGrupo" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
+            <a id="editarGrupo" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
             <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>

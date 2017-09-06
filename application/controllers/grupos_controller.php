@@ -18,14 +18,16 @@ class Grupos_controller extends CI_Controller {
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_grupos');
     }
-    public function nuevoGrupo() {
+    public function gestionandoGrupo() {
+        $idGrupo = $this->input->post('idGrupo');
         $nombreGrupo = $this->input->post('nombreGrupo');
         $agenteResponsable = $this->input->post('agente');
-        $this->grupo_model->guardarGrupos($nombreGrupo, $agenteResponsable);
-        redirect('grupos','refresh');
+        $estado = $this->input->post('grupoEstado');
+        $this->grupo_model->guardarGrupos($idGrupo, $nombreGrupo, $agenteResponsable, $estado);
+        //redirect('grupos','refresh');
     }
-    public function editarGrupo() {
-        //$this->grupos_model->editarGrupo($this->input->post('grupo'));
+    public function buscandoGrupo($idGrupo) {
+        $this->grupo_model->editarGrupo($idGrupo);
     }
 
 }
