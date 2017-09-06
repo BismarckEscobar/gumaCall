@@ -7,17 +7,20 @@ class Main_controller extends CI_Controller
         parent::__construct();
         $this->load->library('session');
 
-        if($this->session->userdata('logged')==0){ //No aceptar a usuarios sin loguearse
+        if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');
         }
     }
 
-    public function index()
-    {    	
-    	$this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/main');
-        $this->load->view('footer/footer');
+    public function index() {
+        switch ($this->session->userdata('RolUser')) {
+            case '0':
+                redirect('campaniasVA');
+            break;
+            case '1':
+                redirect('campanias');
+            break;
+        }
     }
 }
 ?>

@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('select').material_select();
     $(function() {
         var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
-        $("ul a li").each(function(){
+        $("ul li").each(function(){
             if($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("href")+"#" == pgurl)
             $(this).addClass("urlActual");
          })
@@ -18,7 +18,31 @@ $(document).ready(function() {
     if(!activo){
         $('.nav li a:first').addClass("active");
     }
-} );
+    /*FORMATO PARA TABLAS SIN PAGINACION*/
+    $("#tblAgentes, #tblDetalleCamp, #tblUsuario").DataTable({
+        "ordering": true,
+        "info": false,
+        "bPaginate": false,
+        "bfilter": false,
+        "pagingType": "full_numbers",
+        "aaSorting": [
+            [0, "asc"]
+        ],
+        "lengthMenu": [
+            [20, 10, -1],
+            [20, 30, "Todo"]
+        ],
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS",
+            "paginate": {
+                "first":      "Primera",
+                "last":       "Última ",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            }
+        }
+    });
+});
 
 
 function mensaje (mensaje,clase) {

@@ -19,8 +19,8 @@
 	        <div id="agregarUsuario" class="col offset-s2 s2 right">
 	            <a href="#modalNuevoUsuario" class="BtnBlue waves-effect btn modal-trigger">AGREGAR</a>
 	        </div>
-	    </div>
-	    <div class="row" id="monitoreo1">
+	    </div><br>
+	    <div class="row">
 	        <table id="tblUsuario" class="TblData">
 	            <thead>
 	                <tr>
@@ -43,13 +43,14 @@
 	                        	}else {
 	                        		$estado="Inactivo";
 	                        		$val=1;
+	                        		$clase_estado="usuario_inactivo";
 	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating blue'><i class='small material-icons'>create</i></a>";
 	                        	}
 		                        echo"<tr>
 	                                    <td>".$key['IdUser']."</td>
 	                                    <td>".$key['Nombre']."</td>
 	                                    <td>".$key['Usuario']."</td>
-	                                    <td>".$estado."</td>
+	                                    <td><span class='".$clase_estado."'>".$estado."</span></td>
 	                                    <td class='center'>
 	                                    ".$texto."
 	                                    </td>
@@ -72,27 +73,27 @@
             <div class="row">
                 <div class="input-field offset-l1 col s12 m12 l6">
                     <input name="nombreUsuario" id="nombreUsuario" type="text" class="validate mayuscula">
-                    <label for="nombreUsuario">Nombre completo</label>
+                    <label for="nombreUsuario">NOMBRE COMPLETO</label>
                 </div>
                 <div class="input-field col s12 m12 l4">
                     <input name="usuario" id="usuario" type="text" class="validate mayuscula">
-                    <label for="usuario">Nombre usuario</label>
+                    <label for="usuario">NOMBRE DE USUARIO</label>
                 </div>
             </div>
             <div class="row">
             	<div class="input-field offset-l1 col s12 m6 l5">
-                    <input name="contrasenia" id="contrasenia" type="text" class="validate mayuscula">
-                    <label for="contrasenia">Contraseña</label>
+                    <input name="contrasenia" id="contrasenia" type="text" class="validate">
+                    <label for="contrasenia">CONTRASEÑA</label>
                 </div>
                 <div class="input-field col s12 m6 l5">
-                    <input name="rpContrasenia" id="rpContrasenia" type="text" class="validate mayuscula">
-                    <label for="rpContrasenia">Repita la contraseña</label>
+                    <input name="rpContrasenia" id="rpContrasenia" type="text" class="validate">
+                    <label for="rpContrasenia">REPITA LA CONTRASEÑA</label>
                 </div>
             </div>
             <div class="row">
 	    	    <div class="input-field offset-l1 col s12 m12 l10 ">
 	                <select class="chosen-select browser-default" name="tipoUsuario" id="tipoUsuario">
-	                    <option value="" disabled selected><span>Permisos</span></option>
+	                    <option value="" disabled selected><span>PERMISOS</span></option>
 	                    <?php
 		                    if ($roles) {
 		                    	foreach ($roles as $key) {
@@ -108,7 +109,7 @@
         </form><br><br><br>
         <div class="row center">
             <a id="guardarUsuario" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>
-            <a id="cancelarProceso" class="modal-action modal-close BtnBlue waves-effect btn modal-trigger">CANCELAR</a>
+            <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
 </div>

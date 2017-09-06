@@ -12,6 +12,11 @@ setInterval( function() {
 	}else {
 		type="AM";
 	}
+	if(hours==12) {
+		type="PM";
+	}else if (hours==24){
+		type="AM";
+	}
 	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
 	$("#type").html(type);
     }, 1000);	
