@@ -110,6 +110,21 @@
 
     }
 
+
+    function Cal_Date(DateInit,DateNow){
+        return(moment.utc(moment(DateNow,"DD-MM-YYYY HH:mm:ss").diff(moment(DateInit,"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"));
+    }
+
+
+    });
+    function Death() {
+        clearInterval(control);
+        clearInterval(intFirebase);
+        localStorage.setItem("EnLinea", true);
+        Close_Eyes_Of_God(localStorage.getItem("uNombre"));
+        $('#ttCall').text("00:00:00");
+        window.location.href = "salir"
+    }
     function Close_Eyes_Of_God(id) {
         firebase.database().ref("USUARIOS").child(id).update({
             EnLinea : 0,
@@ -119,16 +134,6 @@
 
         });
     }
-
-    function Death() {
-        clearInterval(control);
-        clearInterval(intFirebase);
-        localStorage.setItem("EnLinea", true);
-        Close_Eyes_Of_God(localStorage.getItem("uNombre"));
-        $('#ttCall').text("00:00:00");
-        window.location.href = "salir"
-    }
-
     function getDate(){
         var hoy = new Date();
         var dd = hoy.getDate(),mm = hoy.getMonth()+1,yyyy = hoy.getFullYear();
@@ -141,11 +146,6 @@
         hoy = dd+'-'+mm+'-'+yyyy+ ' ' + h +':'+i+':'+s;
         return hoy;
     }
-
-    function Cal_Date(DateInit,DateNow){
-        return(moment.utc(moment(DateNow,"DD-MM-YYYY HH:mm:ss").diff(moment(DateInit,"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"));
-    }
-
     function cOut(){
         swal({
             title: '¿Desea Salir del sistema?',
@@ -159,7 +159,6 @@
             Death();
         })
     }
-    });
         $("#cModal").click(function() { $("#outCall").openModal(); });
 
 </script>
