@@ -1,22 +1,43 @@
 <script>
     $(document).ready(function() {
         Eyes();
-
     });
-
     function Eyes(){
         var sac=1;
         firebase.database().ref("USUARIOS").once('value', function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childKey = childSnapshot.key;
                 var childData = childSnapshot.val();
-                if (parseInt(childData.isConect)==0){
-                    color = "red";
-                    estado="RETOMAR";
-                }else{
-                    color = "green";
-                    estado="PAUSAR";
+
+
+
+                switch(childData.EnLinea)
+                {
+                    case 2:
+                        color = "red";
+                        estado="RETOMAR";
+                        EsPausa=1;
+                        break;
+                    case 1:
+                        color = "green";
+                        estado="PAUSAR";
+                        EsPausa=2;
+                        break;
+                    case 0:
+                        color = "grey";
+                        estado="-";
+                        EsPausa=0;
+                        EsPausa=0;
+                        break;
                 }
+
+                if (childData.EnLinea===0) {
+                    btn = "";
+                }else{
+                    btn = "<a class='waves-effect waves-light btn' onclick='updateEyes("+'"'+childKey+'"'+','+EsPausa+")'>"+estado+"</a>";
+                }
+
+
                 $("#monitoreo").append('' +
                     '<div class="col s12 m3">'+
                     '<div class="card hoverable '+color+'">'+
@@ -24,9 +45,7 @@
                     '<span class="card-title">AGENTE: </span>'+
                     '<h1 class="center">'+childKey+'</h1>'+
                     '</div>'+
-                    '<div class="card-action">'+
-                    "<a class='waves-effect waves-light btn' onclick='updateEyes("+'"'+childKey+'"'+")'>"+estado+"</a>"+
-                    '<div>'+
+                    '<div class="card-action">'+btn+'<div>'+
                     '</div>'+
                     '</div>');
                 sac++;
@@ -34,7 +53,7 @@
             });
         });
     }
-    function updateEyes(ID){
+    function updateEyes(ID,Estado){
 
         swal({
             title: '¿Desea pausar a este Agente?',
@@ -45,7 +64,7 @@
             confirmButtonText: 'Si',
             cancelButtonText: 'No'
         }).then(function () {
-            firebase.database().ref("USUARIOS").child(ID).update({isConect : 0});
+            firebase.database().ref("USUARIOS").child(ID).update({EnLinea : Estado});
             window.location.href = "Monitoreo";
         })
 

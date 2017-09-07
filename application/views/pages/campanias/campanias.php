@@ -49,3 +49,9 @@
 </main>
 </div>
 </div>
+
+<div id="mTiempoFuera" class="modal">
+    <div class="modal-content">
+        <h2 class="center sKronos"  id="ttPausa">00:00:00</h2>
+    </div>
+</div>
