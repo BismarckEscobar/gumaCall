@@ -159,7 +159,7 @@
             Death();
         })
     }
-
+    });
         $("#cModal").click(function() { $("#outCall").openModal(); });
 
 </script>
