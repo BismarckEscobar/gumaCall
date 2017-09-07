@@ -79,5 +79,20 @@ class Grupo_model extends CI_Model {
             return 1;
         }
     }
+
+    public function listandoVendedoresAct($idGrupo) {
+        $i = 0;
+        $json = array();
+        $query = $this->db->query('SELECT * FROM usuario WHERE Rol ="1" AND ACTIVO = 1');
+            if ($query->num_rows()>0) {
+                foreach ($query->result_array() as $key) {
+                    $json['data'][$i]['IDUSUARIO'] = $key['IdUser'];
+                    $json['data'][$i]['RUTA'] = $key['Usuario'];
+                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                    $i++;
+                }
+            }
+        echo json_encode($json);
+    }
 }
 ?>

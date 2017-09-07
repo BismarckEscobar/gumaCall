@@ -99,39 +99,105 @@
 <div id="editarGrupoModal" class="modal">
     <div class="modal-content"><br>
         <div class="row center">
-            <span id="titulM" class="titulosModales">EDITAR GRUPO</span>
+            <span id="titulM" class="titulosModales">GRUPO: grupo ventas</span>
+        </div><br>
+        <div class="card">
+            <div class="card-content">
+                <div class="row center">
+                    <span class="title">Editar grupo</span>
+                </div>
+                <form id="formEditarGrupo" action="<?PHP echo base_url('index.php/gestionarGrupo');?>" method="post" name="formEditarGrupo">
+                    <input type="hidden" id="idGrupoBD1" name="idGrupoBD">
+                    <div class="row">
+                        <div class="input-field col s4 m4">
+                            <input name="nombreGrupoBD" id="nombreGrupoBD" type="text" placeholder="INGRESE UN NOMBRE">
+                            <label for="nombreGrupoBD">NOMBRE</label>
+                        </div>
+                        <div class="input-field col s5 m5">
+                            <select class="chosen-select browser-default" name="agenteBD" id="agenteBD">
+                                <option value="" disabled selected><span>SELECCIONAR RESPONSABLE DEL GRUPO</span></option>
+                                <?php 
+                                    if ($agentes) {
+                                        foreach ($agentes as $key) {
+                                            echo "
+                                                <option value=".$key['IdUser']."><span>".$key['Nombre']." / ".$key['Usuario']."</span></option>
+                                                ";
+                                        }   
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="input-field col s3 m3 center">
+                            <input type="checkbox" id="grupoEstadoBD" name="grupoEstadoBD" value=""/>
+                            <label for="grupoEstadoBD">Activo</label>
+                        </div>                        
+                    </div>
+                </form>
+                <div class="row right">
+                    <a id="editarGrupo" class="BtnBlue waves-effect btn modal-trigger">actualizar</a>
+                </div><br><br>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="row center">
+                <span class="titulosModales">administrar grupo</span>
+            </div>            
+            <div class="col s5 m5 l5">                
+                <div class="row center">
+                    <div><span class="titulos-tablas-sup">VENDEDORES NO AGREGADOS</span></div>
+                    <table id="tblVNA" class="TblData">
+                        <thead>
+                            <tr>
+                                <th>UID</th>
+                                <th>RUTA</th>
+                                <th>NOMBRE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="center">
+                        </tbody>
+                    </table>
+                    <div id="loadTabla1" style="display:none" class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left"><div class="circle"></div></div>
+                            <div class="gap-patch"><div class="circle"></div></div>
+                            <div class="circle-clipper right"><div class="circle"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s2 m2 l2">
+                <br><br><br><br>
+                <div class="row center">
+                    <a id="addRight" class="redondo waves-effect waves-light btn"><i class="material-icons center">chevron_right</i></a>
+                </div>
+                <div class="row center">
+                    <a id="addLeft" class="redondo waves-effect waves-light btn"><i class="material-icons center">chevron_left</i></a>
+                </div>
+            </div>
+            <div class="col s5 m5 l5">                
+                <div class="row center">
+                    <div><span class="titulos-tablas-sup">VENDEDORES AGREGADOS</span></div>
+                    <table id="tblVA" class="TblData">
+                        <thead>
+                            <tr>
+                                <th>UID</th>
+                                <th>RUTA</th>
+                                <th>NOMBRE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="center">
+                        </tbody>
+                    </table>
+                    <div id="loadTabla" style="display:none" class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left"><div class="circle"></div></div>
+                            <div class="gap-patch"><div class="circle"></div></div>
+                            <div class="circle-clipper right"><div class="circle"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form id="formEditarGrupo" action="<?PHP echo base_url('index.php/gestionarGrupo');?>" method="post" name="formEditarGrupo">
-            <input type="hidden" id="idGrupoBD1" name="idGrupoBD">
-            <div class="row">
-                <div class="input-field offset-l1 col s12 m12 l10">
-                    <input name="nombreGrupoBD" id="nombreGrupoBD" type="text" placeholder="INGRESE UN NOMBRE">
-                    <label for="nombreGrupoBD">NOMBRE</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field offset-l1 col s12 m12 l10">
-                    <select class="chosen-select browser-default" name="agenteBD" id="agenteBD">
-                        <option value="" disabled selected><span>SELECCIONAR RESPONSABLE DEL GRUPO</span></option>
-                        <?php 
-                            if ($agentes) {
-                                foreach ($agentes as $key) {
-                                    echo "
-                                        <option value=".$key['IdUser']."><span>".$key['Nombre']." / ".$key['Usuario']."</span></option>
-                                        ";
-                                }   
-                            }
-                        ?>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field offset-l1 col s12 m12 l10">
-                    <input type="checkbox" id="grupoEstadoBD" name="grupoEstadoBD" value=""/>
-                    <label for="grupoEstadoBD">Activo</label>
-                </div>                
-            </div>
-        </form><br><br>
         <div class="row center">
             <a id="editarGrupo" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
             <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>

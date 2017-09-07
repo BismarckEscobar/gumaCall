@@ -42,7 +42,7 @@ class Campania_controller extends CI_Controller
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/campaniasVA');
         $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campanias');
+        $this->load->view('jsview/js_campaniasVA');
     }
 
     public function detalle_vista_admin() {
@@ -50,7 +50,7 @@ class Campania_controller extends CI_Controller
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/detallescampVA');
         $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campanias');
+        $this->load->view('jsview/js_campaniasVA');
     }
 
     public function nuevaCampania() {
@@ -58,7 +58,7 @@ class Campania_controller extends CI_Controller
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/nuevaCampania');
         $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campanias');
+        $this->load->view('jsview/js_campaniasVA');
     }
     /*FIN METODO LISTAR CAMPAÑAS VISTA ADMINISTRADOR*/
 }

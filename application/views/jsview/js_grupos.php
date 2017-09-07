@@ -17,6 +17,46 @@ $(document).ready(function() {
             "search":     "BUSCAR"
         }
     });
+
+    $('#tblVNA').DataTable({
+        ajax: "listarVendedoresAct/"+ 1,
+        "destroy": true,
+        "info":    false,
+        "bPaginate": false,
+        "paging": false,
+        "ordering": false,
+        "pagingType": "full_numbers",
+        "emptyTable": "No hay datos disponibles en la tabla",
+            columns: [
+                { "data": "IDUSUARIO" },
+                { "data": "RUTA" },
+                { "data": "NOMBRE" }
+            ]
+    });
+
+    $('#tblVA').DataTable({
+        /*ajax: "listarVendedores/"+ id,*/
+        "destroy": true,
+        "info":    false,
+        "bPaginate": false,
+        "paging": false,
+        "ordering": false,
+        "pagingType": "full_numbers",
+        "emptyTable": "No hay datos disponibles en la tabla",
+            columns: [
+                { "data": "IDUSUARIO" },
+                { "data": "IDVENDEDOR" },
+                { "data": "NOMBRE" }
+            ]
+    });
+
+
+    $('#tblVNA tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
+    $('#tblVA tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
     $("#agregarNuevo").click(function() { $("#nuevoGrupoModal").openModal(); });
 
 });
@@ -42,6 +82,33 @@ $("#guardarGrupo").click(function(){
     }else{
         document.getElementById("formNuevoGrupo").submit();
     }
+});
+
+$('#addRight').click( function (){
+    var table = $('#tblVNA').DataTable();
+    var table2 = $('#tblVA').DataTable();
+    var data = table.rows('.selected').data();
+    for (var i=0; i < data.length ;i++){
+        table2.row.add( {
+            "IDUSUARIO":      data[i]['IDUSUARIO'],
+            "IDVENDEDOR":   data[i]['RUTA'],
+            "NOMBRE":       data[i]['NOMBRE']
+        } ).draw();
+    }
+    var rows = table.rows( '.selected' ).remove().draw();
+});
+$('#addLeft').click( function (){
+    var table = $('#tblVNA').DataTable();
+    var table2 = $('#tblVA').DataTable();
+    var data = table.rows('.selected').data();
+    for (var i=0; i < data.length ;i++){
+        table2.row.add( {
+            "IDUSUARIO":      data[i]['IDUSUARIO'],
+            "RUTA":     data[i]['IDVENDEDOR'],
+            "NOMBRE":       data[i]['NOMBRE']
+        } ).draw();           
+    }
+    var rows = table.rows( '.selected' ).remove().draw();
 });
 
 function editarGrupo(idGrupo) {
