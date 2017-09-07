@@ -431,8 +431,9 @@ table th {
   margin-top: 80px;
 }
 .title{
-    font-family: 'robotoblack';
-    color: #fff;
+    font-family: 'robotoregular';
+    text-shadow: 2px 2px 2px #aaa;
+    color: #000000;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 500;
@@ -503,11 +504,12 @@ table th {
 .card-small{
     height: 70px;
 }
-.titulosModales
-{
-    color: #263369;    
-    font-family: 'robotoblack';
-    font-size: 22px;
+.titulosModales {
+    color: #00000;    
+    font-family: 'robotoregular';
+    font-size: 25px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px #aaa;
 }
 .TextColor {
   color: #000000;
@@ -545,6 +547,26 @@ table th {
 .contenedor{
     margin: 20px;
     width: auto;
+}
+
+.iconos {
+  color: #000000;
+  font-size: 20px;
+  padding: 5px 5px;
+}
+.iconos:hover {
+  color: green;
+}
+
+#editarGrupoModal{
+  width: 90%;
+  min-height: 85%;
+}
+.titulos-tablas-sup {
+  font-family: 'robotoregular';
+  font-size: 18px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px #aaa;
 }
 
 li{

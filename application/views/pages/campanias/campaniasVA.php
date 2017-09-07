@@ -20,8 +20,8 @@
                 <a href="crearCampania" class="BtnBlue waves-effect btn modal-trigger"><i class="material-icons left">add</i>CREAR CAMPAÑA</a>
             </div>
         </div>
-        <div class="row" id="monitoreo1">
-            <table id="tblcampanias" class="TblData">
+        <div class="row">
+            <table id="tblcampaniasVA" class="TblData">
                 <thead>
                 <tr>
                     <th>Nº CAMPAÑA</th>

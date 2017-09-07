@@ -42,3 +42,7 @@ $route['buscarGrupo/(:any)'] = 'grupos_controller/buscandoGrupo/$1';
 //RUTAS GRUPOS
 $route['Monitoreo'] = 'Monitoreo_controller';
 //FIN DE RUTAS GRUPOS
+
+//RUTAS GRUPOS VISTA ADMINISTRADOR
+$route['listarVendedoresAct/(:any)'] = 'grupos_controller/listarVendedoresAct/$1';
+//FIN DE RUTAS GRUPOS

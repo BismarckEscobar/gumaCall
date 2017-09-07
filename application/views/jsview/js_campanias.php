@@ -6,6 +6,7 @@
 
         if (localStorage.getItem("EnLinea")=== "true"){firebase.database().ref("USUARIOS").child(localStorage.getItem("uNombre")).update({EnLinea : 1});}
 
+
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
@@ -39,6 +40,7 @@
         }
 
 
+
         intFirebase = setInterval(function(){
             Ear_Eyes_Of_God(
                 localStorage.getItem("FechaInicio"),
@@ -70,28 +72,6 @@
             }
         });
 
-
-        Highcharts.chart('container-grafica', {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: ''
-            },
-            xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            series: [{
-                name: 'META',
-                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            },
-                {
-                    name: 'REAL',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-                }]
-        });
-
-    });
 
 
     Ear_Eyes_Of_God(
@@ -177,15 +157,9 @@
             cancelButtonText: 'No'
         }).then(function () {
             Death();
-
         })
     }
 
-    $("#cModal").click(function() { $("#outCall").openModal(); });
-
-
-
-
-
+        $("#cModal").click(function() { $("#outCall").openModal(); });
 
 </script>

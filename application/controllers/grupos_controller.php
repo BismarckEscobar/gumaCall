@@ -24,10 +24,14 @@ class Grupos_controller extends CI_Controller {
         $agenteResponsable = $this->input->post('agente');
         $estado = $this->input->post('grupoEstado');
         $this->grupo_model->guardarGrupos($idGrupo, $nombreGrupo, $agenteResponsable, $estado);
-        //redirect('grupos','refresh');
+        redirect('grupos','refresh');
     }
     public function buscandoGrupo($idGrupo) {
         $this->grupo_model->editarGrupo($idGrupo);
+    }
+
+    public function listarVendedoresAct($idGrupo) {
+        $this->grupo_model->listandoVendedoresAct($idGrupo);
     }
 
 }
