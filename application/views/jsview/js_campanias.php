@@ -1,12 +1,11 @@
 <script>
     $(document).ready(function() {
-        //$("#USN,#USI").hide();
-        /*localStorage.setItem("USN", $("#USI").text());
-        localStorage.setItem("USI", $("#USN").text());
+        $("#USN,#USI").hide();
+        localStorage.setItem("uNombre", $("#USI").text());
+        localStorage.setItem("uId", $("#USN").text());
 
-        firebase.database().ref("USUARIOS").child(localStorage.getItem("USN")).update({
-            isConect : 1
-        });*/
+        if (localStorage.getItem("EnLinea")=== "true"){firebase.database().ref("USUARIOS").child(localStorage.getItem("uNombre")).update({EnLinea : 1});}
+
 
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
@@ -25,52 +24,107 @@
                 "search":     "BUSCAR"
             }
         });
-        $("#cModal").click(function() {
-            $("#outCall").openModal();
-        });
-        if (localStorage.getItem("isInit")=== "true") {
-            localStorage.setItem("InitCronos", getDate());
-            localStorage.setItem("isInit", false);
+
+        $("#cModal").click(function() {$("#outCall").openModal();});
+        if (localStorage.getItem("EnLinea")=== "true" || localStorage.getItem("EnLinea")=== null) {
+            localStorage.setItem("FechaInicio", getDate());
+            localStorage.setItem("EnLinea", false);
             live()
         }else{
             live();
         }
         function live(){
             control = setInterval(function(){
-
-                $('#ttCall').text(calDate(localStorage.getItem("InitCronos"),getDate()));
-                EarEyesOfGod(
-                    localStorage.getItem("InitCronos"),
-                    getDate(),
-                    $('#ttCall').text(),
-                    localStorage.getItem("USN"),
-                    localStorage.getItem("USI")
-                );
+                $('#ttCall').text(Cal_Date(localStorage.getItem("FechaInicio"),getDate()));
             },10);
         }
-    });
 
-    function EarEyesOfGod(Init,End,isTime,id,name) {
+
+
+        intFirebase = setInterval(function(){
+            Ear_Eyes_Of_God(
+                localStorage.getItem("FechaInicio"),
+                getDate(),
+                Cal_Date(localStorage.getItem("FechaInicio"),getDate()),
+                localStorage.getItem("uNombre"),
+                localStorage.getItem("uId")
+            );
+        },30000);
+
+
+
+        firebase.database().ref("USUARIOS").on('child_changed', function(data) {
+            if (data.key==localStorage.getItem("uNombre")){
+                clearInterval(control);
+                clearInterval(intFirebase);
+
+                if (data.val().EnLinea==2){
+                    $('#mTiempoFuera').openModal({dismissible:false});
+                    localStorage.setItem("Incio_Descanso",getDate());
+                }else{
+                    $('#mTiempoFuera').closeModal();
+                    location.reload();
+                }
+
+                Interval_pausa = setInterval(function(){
+                    $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
+                },10);
+            }
+        });
+
+
+
+    Ear_Eyes_Of_God(
+        localStorage.getItem("FechaInicio"),
+        getDate(),
+        Cal_Date(localStorage.getItem("FechaInicio"),getDate()),
+        localStorage.getItem("uNombre"),
+        localStorage.getItem("uId")
+    );
+
+
+
+    function Ear_Eyes_Of_God(Init,End,isTime,id,name) {
         firebase.database().ref("USUARIOS").child(id).update({
-            agent: id,
-            dInit: Init,
-            dEnd: End,
-            ttConnect:isTime,
-            name:name,
+            Agente: id,
+            FechaInicio: Init,
+            FechaFin: End,
+            ttTrabajo:isTime,
+            ttEnPausa:"",
+            Nombre:name,
             Camp:"camp"
         });
+        firebase.database().ref("USUARIOS").child(id).once('value', function(snapshot) {
+            if (snapshot.val().EnLinea==2){
+                $('#mTiempoFuera').openModal({
+                    dismissible:false
+                });
+                Interval_pausa = setInterval(function(){
+                    $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
+                },10);
+            }else{
+                $('#mTiempoFuera').closeModal();
+            }
+        });
+
+
     }
-    function CloseEyesOfGod(id) {
+
+    function Close_Eyes_Of_God(id) {
         firebase.database().ref("USUARIOS").child(id).update({
-            isConect : 0
+            EnLinea : 0,
+            FechaInicio: localStorage.getItem("FechaInicio"),
+            FechaFin: getDate(),
+            ttTrabajo:$('#ttCall').text()
+
         });
     }
 
     function Death() {
         clearInterval(control);
-        //localStorage.setItem("InitCronos", "00-00-0000 00:00:00");
-        localStorage.setItem("isInit", true);
-        CloseEyesOfGod(localStorage.getItem("USN"));
+        clearInterval(intFirebase);
+        localStorage.setItem("EnLinea", true);
+        Close_Eyes_Of_God(localStorage.getItem("uNombre"));
         $('#ttCall').text("00:00:00");
         window.location.href = "salir"
     }
@@ -87,9 +141,11 @@
         hoy = dd+'-'+mm+'-'+yyyy+ ' ' + h +':'+i+':'+s;
         return hoy;
     }
-    function calDate(DateInit,DateNow){
-        return(moment.utc(moment(DateNow,"DD-MM-YYYY HH:mm:ss").diff(moment(DateInit,"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"))
+
+    function Cal_Date(DateInit,DateNow){
+        return(moment.utc(moment(DateNow,"DD-MM-YYYY HH:mm:ss").diff(moment(DateInit,"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"));
     }
+
     function cOut(){
         swal({
             title: '¿Desea Salir del sistema?',
@@ -105,4 +161,5 @@
     }
 
         $("#cModal").click(function() { $("#outCall").openModal(); });
+
 </script>
