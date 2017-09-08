@@ -92,7 +92,7 @@
             ttTrabajo:isTime,
             ttEnPausa:"",
             Nombre:name,
-            Camp:"camp"
+            Camp:"PROMOCION RAMOS ADOSTO 2017"
         });
         firebase.database().ref("USUARIOS").child(id).once('value', function(snapshot) {
             if (snapshot.val().EnLinea==2){

@@ -8,9 +8,6 @@
             snapshot.forEach(function(childSnapshot) {
                 var childKey = childSnapshot.key;
                 var childData = childSnapshot.val();
-
-
-
                 switch(childData.EnLinea)
                 {
                     case 2:
@@ -33,7 +30,11 @@
 
                 if (childData.EnLinea===0) {
                     btn = "";
+                    tTrabajo ="";
+                    tCamp ="";
                 }else{
+                    tTrabajo =childData.ttTrabajo
+                    tCamp =childData.Camp
                     btn = "<a class='waves-effect waves-light btn' onclick='updateEyes("+'"'+childKey+'"'+','+EsPausa+")'>"+estado+"</a>";
                 }
 
@@ -42,8 +43,11 @@
                     '<div class="col s12 m3">'+
                     '<div class="card hoverable '+color+'">'+
                     '<div class="card-content white-text">' +
-                    '<span class="card-title">AGENTE: </span>'+
-                    '<h1 class="center">'+childKey+'</h1>'+
+                    '<span class="card-title">AGENTE: '+childKey+'</span>'+
+                    '<h1 class="center">'+sac+'</h1>'+
+                    '<h5 class="center">Nº 0051</h5>'+
+                    '<h5 class="center">'+tCamp+'</h5>'+
+                    '<h4 class="center">'+tTrabajo+'</h4>'+
                     '</div>'+
                     '<div class="card-action">'+btn+'<div>'+
                     '</div>'+

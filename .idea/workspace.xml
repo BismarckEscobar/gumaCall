@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfa0d264-79ba-42da-bd32-a863381dd5c8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jsview/js_campanias.php" afterPath="$PROJECT_DIR$/application/views/jsview/js_campanias.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pages/menu.php" afterPath="$PROJECT_DIR$/application/views/pages/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jsview/js_monitoreo.php" afterPath="$PROJECT_DIR$/application/views/jsview/js_monitoreo.php" />
     </list>
     <ignored path="gumaCall.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,24 +26,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="js_campanias.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="js_campanias.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/jsview/js_campanias.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0816045">
-              <caret line="147" column="5" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+            <state vertical-scroll-proportion="-4.2">
+              <caret line="94" column="16" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
+      <file leaf-file-name="js_monitoreo.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/jsview/js_monitoreo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.692308">
-              <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.84647304">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
-                <marker date="1504800312614" expanded="true" signature="567:683" placeholder="..." />
-                <marker date="1504800312614" expanded="true" signature="589:608" placeholder="..." />
+                <marker date="1504825955568" expanded="true" signature="1482:2060" placeholder="..." />
+                <marker date="1504825955568" expanded="true" signature="1544:2060" placeholder="..." />
+                <marker date="1504825955568" expanded="true" signature="1605:1939" placeholder="..." />
+                <marker date="1504825955568" expanded="true" signature="1988:2060" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -72,9 +75,9 @@
         <option value="$PROJECT_DIR$/application/views/pages/campanias/campanias.php" />
         <option value="$PROJECT_DIR$/application/views/pages/campanias/detallescamp.php" />
         <option value="$PROJECT_DIR$/application/views/pages/campanias/infocliente.php" />
-        <option value="$PROJECT_DIR$/application/views/jsview/js_monitoreo.php" />
         <option value="$PROJECT_DIR$/application/views/pages/menu.php" />
         <option value="$PROJECT_DIR$/application/views/jsview/js_campanias.php" />
+        <option value="$PROJECT_DIR$/application/views/jsview/js_monitoreo.php" />
       </list>
     </option>
   </component>
@@ -119,7 +122,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,6 +356,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,126 +372,6 @@
       <recent name="D:\xampp\htdocs\gumaCall\application\controllers" />
       <recent name="D:\xampp\htdocs\gumaCall\application\views\pages\campanias" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/config/routes.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/controllers/campania_controller.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/controllers/grupos_controller.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/models/grupo_model.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/header/header.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/jsview/js_campanias.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/jsview/js_grupos.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/pages/campanias/campaniasVA.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/pages/grupos/grupos.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/css/styles.css</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/jsview/js_campaniasVA.php</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -580,14 +463,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+          <folding>
+            <marker date="1504800312614" expanded="true" signature="567:683" placeholder="..." />
+            <marker date="1504800312614" expanded="true" signature="589:608" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/jsview/js_campanias.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jsview/js_monitoreo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="55" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="55" />
           <folding>
-            <marker date="1504822417252" expanded="true" signature="1328:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1390:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1655:1727" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1482:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1544:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1605:1939" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1988:2060" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -626,9 +529,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
           <folding>
-            <marker date="1504822417252" expanded="true" signature="1328:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1390:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1655:1727" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1482:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1544:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1605:1939" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1988:2060" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -678,9 +582,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
           <folding>
-            <marker date="1504822417252" expanded="true" signature="1328:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1390:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1655:1727" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1482:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1544:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1605:1939" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1988:2060" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -896,11 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.923077">
           <caret line="64" column="6" selection-start-line="64" selection-start-column="2" selection-end-line="64" selection-end-column="6" />
-          <folding>
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <marker date="1504742186455" expanded="true" signature="2186:2663" placeholder="..." />
-            <marker date="1504742186455" expanded="true" signature="2536:2627" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,7 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.26923">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="56" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,9 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.769231">
           <caret line="87" column="6" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
-          <folding>
-            <marker date="1504819893945" expanded="true" signature="3149:3388" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,27 +822,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.038462">
           <caret line="167" column="6" selection-start-line="167" selection-start-column="6" selection-end-line="167" selection-end-column="6" />
-          <folding>
-            <marker date="1504819893956" expanded="true" signature="6608:6873" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/jsview/js_monitoreo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5172891">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <marker date="1504822417252" expanded="true" signature="1328:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1390:1727" placeholder="..." />
-            <marker date="1504822417252" expanded="true" signature="1655:1727" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.692308">
+        <state vertical-scroll-proportion="0.60027665">
           <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
           <folding>
             <marker date="1504800312614" expanded="true" signature="567:683" placeholder="..." />
@@ -957,9 +838,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jsview/js_campanias.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0816045">
-          <caret line="147" column="5" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+        <state vertical-scroll-proportion="-4.2">
+          <caret line="94" column="16" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/jsview/js_monitoreo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84647304">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <marker date="1504825955568" expanded="true" signature="1482:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1544:2060" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1605:1939" placeholder="..." />
+            <marker date="1504825955568" expanded="true" signature="1988:2060" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
