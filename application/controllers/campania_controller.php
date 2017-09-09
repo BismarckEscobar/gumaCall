@@ -28,9 +28,11 @@ class Campania_controller extends CI_Controller
 
     }
     public function get_info_cliente(){
+
+        $data['lst_TPF'] = $this->campanna_model->getTPF();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/infocliente');
+        $this->load->view('pages/campanias/infocliente',$data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_campanias');
 
