@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2017 a las 17:49:33
+-- Tiempo de generación: 10-09-2017 a las 01:00:05
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -90,6 +90,35 @@ CREATE TABLE `campanna_registros` (
   `Comentarios` varchar(500) DEFAULT NULL,
   `ID_TPF` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campanna_tipificacion`
+--
+
+CREATE TABLE `campanna_tipificacion` (
+  `ID_TPF` int(11) NOT NULL,
+  `Tipificacion` varchar(100) DEFAULT NULL,
+  `Fecha_TPF` datetime DEFAULT NULL,
+  `Activa` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `campanna_tipificacion`
+--
+
+INSERT INTO `campanna_tipificacion` (`ID_TPF`, `Tipificacion`, `Fecha_TPF`, `Activa`) VALUES
+(1, 'Razon 1', '2017-09-09 16:04:54', 1),
+(2, 'Razon 2', '2017-09-09 16:04:54', 1),
+(3, 'Razon 3', '2017-09-09 16:04:54', 1),
+(4, 'Razon 4', '2017-09-09 16:04:54', 1),
+(5, 'Razon 5', '2017-09-09 16:04:54', 1),
+(6, 'Razon 6', '2017-09-09 16:04:54', 1),
+(7, 'Razon 7', '2017-09-09 16:04:54', 1),
+(8, 'Razon 8', '2017-09-09 16:04:54', 1),
+(9, 'Razon 9', '2017-09-09 16:04:54', 1),
+(10, 'Razon 10', '2017-09-09 16:04:54', 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +215,12 @@ INSERT INTO `usuario` (`IdUser`, `Usuario`, `Nombre`, `contrasenia`, `Rol`, `Act
 --
 
 --
+-- Indices de la tabla `campanna_tipificacion`
+--
+ALTER TABLE `campanna_tipificacion`
+  ADD PRIMARY KEY (`ID_TPF`);
+
+--
 -- Indices de la tabla `grupos`
 --
 ALTER TABLE `grupos`
@@ -207,6 +242,11 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `campanna_tipificacion`
+--
+ALTER TABLE `campanna_tipificacion`
+  MODIFY `ID_TPF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `grupos`
 --

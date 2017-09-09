@@ -15,6 +15,7 @@
 </header>
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
+
         <span id="USI"><?php echo $this->session->userdata('UserN');?></span>
         <span id="USN"><?php echo $this->session->userdata('UserName');?></span>
 
@@ -87,10 +88,10 @@
                 <div class="card-content">
                     <div class="row valign-wrapper">
                         <div class="col s6" >
-                            <a href="#" id="cModal" class="BtnBlue waves-effect btn modal-trigger">INICIAR</a>
+                            <a href="#" id="btn-comenzar" class="BtnBlue waves-effect btn modal-trigger">INICIAR</a>
                         </div>
                         <div class="col s6 " >
-                               <label class="sKronos center-align">00:00:00:00</label>
+                               <label id="Kronos" class="sKronos center-align">00:00:00:00</label>
                         </div>
 
                     </div>
@@ -175,26 +176,34 @@
             <div class="row">
                 <div class="row">
                     <div class="input-field offset-l1 col s12 m12 l10 ">
-                        <select class="chosen-select browser-default" name="tipoUsuario" id="tipoUsuario">
+                        <select class="chosen-select browser-default" id="frm_TPF">
                             <option value="" disabled selected><span>SELECCIONAR UN RESULTADO</span></option>
+                            <?php
+                                if(!$lst_TPF){}
+                                else{
+                                        foreach($lst_TPF as $lst){
+                                            echo '<option value="'.$lst['ID_TPF'].'">'.$lst['Tipificacion'].'</option>';                                
+                                    }
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field offset-l1 col s12 m12 l10 ">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">MONTO VENDIDO</label>
+                        <input id="frm_Monto" type="text" class="validate">
+                        <label for="frm_Monto">MONTO VENDIDO</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field offset-l1 col s12 m12 l10 ">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">COMENTARIOS</label>
+                        <textarea id="frm_comentario" class="materialize-textarea"></textarea>
+                        <label for="frm_comentario">COMENTARIOS</label>
                 </div>
             </div>
         </form><br><br><br>
         <div class="row center">
-            <a id="guardarUsuario" class="BtnBlue waves-effect btn modal-trigger">OK</a>
+            <a id="id_Guardar_llamada" class="BtnBlue waves-effect btn modal-trigger">OK</a>
             <a id="cancelarProceso" class="modal-action modal-close BtnBlue waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
