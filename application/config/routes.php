@@ -21,8 +21,9 @@ $route['campanias'] = 'campania_controller';
 $route['campaniasVA'] = 'campania_controller/listadoCampanias';
 $route['detallesVA'] = 'campania_controller/detalle_vista_admin';
 $route['crearCampania'] = 'campania_controller/nuevaCampania';
+$route['Guardar_llamada'] = 'campania_controller/guardar_llamada';
 
-$route['detalles'] = 'campania_controller/detalles_camp';
+$route['detalles/(:any)'] = 'campania_controller/detalles_camp/$1';
 $route['cliente'] = 'campania_controller/get_info_cliente';
 //FIN RUTAS CAMPAÑAS
 

@@ -1,6 +1,5 @@
 <script>
     $(document).ready(function() {
-       // $('#outCall').openModal();
         $("#USN,#USI").hide();
 
         var frm_Kronos =$("#Kronos");
@@ -8,12 +7,15 @@
         localStorage.setItem("uNombre", $("#USI").text());
         localStorage.setItem("uId", $("#USN").text());
 
-        if (localStorage.getItem("EnLinea")=== "true"){firebase.database().ref("USUARIOS").child(localStorage.getItem("uNombre")).update({EnLinea : 1});}
+        if (localStorage.getItem("EnLinea")=== "true"){
+            firebase.database().ref("USUARIOS").child(localStorage.getItem("uNombre")).update({
+                EnLinea : 1
+            });
+        }
 
         /*INICIO DE CRONOMETRO DE LLAMADA*/
         var Kronos_Run = null;
         $("#btn-comenzar").click(function(){
-           
             var tiempo = {hora: 0,minuto: 0,segundo: 0,centesimas:0};
             if ( $(this).text() == 'INICIAR' ){
                 $(this).text('FINALIZAR'); 
@@ -58,10 +60,36 @@
                 Coment:  $("#frm_comentario").val(),
                 TimeInCall:frm_Kronos.text()
             };
-            
 
-           
-            
+            $.ajax({
+                url: "Guardar_llamada",
+                type: "post",
+                async:true,
+                data: Frm_Datos,
+                success:
+                    function(WTF){
+                        if(WTF > 0){
+                            swal({
+                                title: 'Informacion Guardada',
+                                timer: 2000
+                            }).then(
+                                function () {},
+                                // handling the promise rejection
+                                function (dismiss) {
+                                    window.location.href = "detalles";
+                                }
+                            )
+
+                        }else{
+                            swal({
+                                title: 'Ooopp!!',
+                                text: "Algo salio mal, Contacte al Administrado.",
+                                type: 'warning',
+                                showCancelButton: false
+                            });
+                        }
+                    }
+            });
         });
         /*FIN DE CRONOMETRO DE LLAMADA*/
 
@@ -100,7 +128,7 @@
 
 
 
-        /*intFirebase = setInterval(function(){
+        intFirebase = setInterval(function(){
             Ear_Eyes_Of_God(
                 localStorage.getItem("FechaInicio"),
                 getDate(),
@@ -108,7 +136,7 @@
                 localStorage.getItem("uNombre"),
                 localStorage.getItem("uId")
             );
-        },30000);*/
+        },30000);
 
 
 
@@ -218,6 +246,16 @@
             Death();
         })
     }
-        $("#cModal").click(function() { $("#outCall").openModal(); });
+    $("#cModal").click(function() { $("#outCall").openModal(); });
+
+    /*INICIO DE LOS DETALLES DE LA CAMPAÑA*/
+    function getDetalles(id){
+        window.location.href = "detalles/"+id
+
+
+    };
+    /*FINDE LOS DETALLES DE LA CAMPAÑA*/
+
+
 
 </script>

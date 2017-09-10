@@ -32,15 +32,25 @@
                 </tr>
                 </thead>
                 <tbody class="center">
-                <tr>
-                    <td><a href="detalles">0503</a></td>
-                    <td>01/08/2017</td>
-                    <td>15/08/2017</td>
-                    <td>PROMOCION</td>
-                    <td>C$ 100,00</td>
-                    <td>C$ 3,00</td>
-                    <td>OBSERVACIONES</td>
-                </tr>
+                <?php
+                if(!$My_camp){}
+                else{
+                    foreach($My_camp as $lst){
+                        echo '
+                        <tr>
+                            <td><a href="#" onclick="getDetalles('."'".$lst['ID_Campannas']."'".')">'.$lst['ID_Campannas'].'</a></td>
+                            <td>'.$lst['Fecha_Inicio'].'</td>
+                            <td>'.$lst['Fecha_Cierre'].'</td>
+                            <td>'.$lst['Nombre'].'</td>
+                            <td>C$: '.number_format($lst['Meta'],2).'</td>
+                            <td>C$: '.number_format($lst['Real'],2).'</td>
+                            <td>'.$lst['Observaciones'].'</td>
+                        </tr>
+                        ';
+                    }
+                }
+                ?>
+
 
                 </tbody>
             </table>
