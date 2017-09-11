@@ -36,7 +36,7 @@
                 break;
                 case '1':
                   $menu = '
-                           <a href="../campanias"><li href="miscampanas"><i class="material-icons">insert_chart</i> Mis Campañas</li></a>
+                           <a href="campanias"><li href="miscampanas"><i class="material-icons">insert_chart</i> Mis Campañas</li></a>
                            <a href="#"><li href="#"><i class="material-icons">insert_chart</i> acerca de</li></a>
                            <a href="#" onclick="cOut()"><li href="#"><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</li></a>';
                 break;

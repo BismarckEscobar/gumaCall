@@ -1,6 +1,22 @@
+<?php
+$ID =(!$My_camp_Header[0]['ID_Campannas']) ? 0 :$My_camp_Header[0]['ID_Campannas'];
+$Nombre =(!$My_camp_Header[0]['Nombre']) ? 0 :$My_camp_Header[0]['Nombre'];
+$Monto =(!$My_camp_Header[0]['MONTO_REAL']) ? 0 :$My_camp_Header[0]['MONTO_REAL'];
+$Fecha_Inicio =(!$My_camp_Header[0]['Fecha_Inicio']) ? 0 :$My_camp_Header[0]['Fecha_Inicio'];
+$Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fecha_Cierre'];
+$Mensaje =(!$My_camp_Header[0]['Mensaje']) ? 0 :$My_camp_Header[0]['Mensaje'];
+$Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
 
+$Real_Cliente =(!$My_camp_Clientes[0]['Real']) ? 0 :$My_camp_Clientes[0]['Real'];
+$Meta_Cliente =(!$My_camp_Clientes[0]['Meta']) ? 0 :$My_camp_Clientes[0]['Meta'];
+$T1 =(!$My_camp_Clientes[0]['Telefono1']) ? 0 :$My_camp_Clientes[0]['Telefono1'];
+$T2 =(!$My_camp_Clientes[0]['Telefono2']) ? 0 :$My_camp_Clientes[0]['Telefono2'];
+$T3 =(!$My_camp_Clientes[0]['Telefono3']) ? 0 :$My_camp_Clientes[0]['Telefono2'];
+$UID =(!$My_camp_Clientes[0]['ID_Cliente']) ? 0 :$My_camp_Clientes[0]['ID_Cliente'];
+$UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
+?>
 <header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class=" title">N° 0503 - PROMOCIÓN RAMOS OCTUBRE 2017</span>
+    <div class="row center ColorHeader"><span class=" title">N° <span id="spCamp"><?php echo $ID ?></span> - <?php echo $Nombre ?></span>
         <div class="container_reloj">
             <div class="clock">
                 <ul class="ul_r">
@@ -24,61 +40,56 @@
                 <div class="card hoverable " ><br>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input value="01/08/2017" id="icon_DateInit" type="text" class="center validate">
+                            <input value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate">
                             <label for="icon_DateInit" class="left">FECHA DE INICIO</label>
                         </div>
                         <div class="input-field col s3">
-                            <input value="15/08/2017" id="icon_DateEnd" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">FECHA FINAL</label>
+                            <input value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
+                            <label for="icon_DateInit" class="left">FECHA CIERRE</label>
                         </div>
                         <div class="input-field col s3">
-                            <input id="icon_DateEnd" value="C$ 100,00" type="text" class=" right validate">
-                            <label for="icon_DateInit" class="left">META ESTIMADAL</label>
+                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Meta,2);?>" type="text" class=" center validate">
+                            <label for="icon_DateInit" class="left">META ESTIMADA</label>
                         </div>
                         <div class="input-field col s3">
-                            <input id="icon_DateEnd" value="C$ 3,000" type="text" class="right validate">
-                            <label for="icon_DateInit class="left"">REAL</label>
+                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Monto,2);?>" type="text" class="center validate">
+                            <label for="icon_DateInit" class="left">REAL</label>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="card hoverable" >
                     <div class="card-content">
                         <span class="card-title left">MENSAJE</span><br><br><br>
                         <div class="row" style="text-align: left">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-
-                                Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-
-                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
-
-                                Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                <?php echo $Mensaje?>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="card hoverable">
                 <div class="card-content">
-                        <span class="card-title center">00350 - FARMACIA NUESTRA SEÑORA DE LA LUZ</span><br><br><br>
+                        <span class="card-title center"><span id="clienteLlamado"><?php echo $UID ?></span> - <?php echo $UNA ?></span><br><br><br>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input value="22553689" id="icon_DateInit" type="text" class="center validate">
+                            <input value="<?php echo $T1?>" id="icon_DateInit" type="text" class="center validate">
                             <label for="icon_DateInit" class="left">TELEFONO 1</label>
                         </div>
                         <div class="input-field col s3">
-                            <input value="22553689" id="icon_DateEnd" type="text" class="center validate">
+                            <input value="<?php echo $T3?>" id="icon_DateEnd" type="text" class="center validate">
                             <label for="icon_DateInit" class="left">TELEFONO 2</label>
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="22553689" type="text" class=" right validate">
+                            <input id="icon_DateEnd" value="<?php echo $T3?>" type="text" class=" right validate">
                             <label for="icon_DateInit" class="left">TELEFONO 3</label>
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="C$ 3,000" type="text" class="right validate">
+                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Meta_Cliente,2);?>" type="text" class="right validate">
                             <label for="icon_DateInit" class="left"">META</label>
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="C$ 3,000" type="text" class="right validate">
+                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Real_Cliente,2);?>" type="text" class="right validate">
                             <label for="icon_DateInit" class="left"">REAL</label>
                         </div>
                     </div>

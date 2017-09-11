@@ -53,8 +53,11 @@
         });
         /*FIN DE CRONOMETRO DE LLAMADA*/
         /*INICIO DE GUARDADO DE LLAMADA*/
-        $("#id_Guardar_llamada").click(function(){ 
+        $("#id_Guardar_llamada").click(function(){
+            var cmp = $("#spCamp").html();
             var Frm_Datos = {
+                Cliente:$("#clienteLlamado").html(),
+                Camp:cmp,
                 TPF: $("#frm_TPF").val(),
                 Monto:  $("#frm_Monto").val(),
                 Coment:  $("#frm_comentario").val(),
@@ -76,7 +79,7 @@
                                 function () {},
                                 // handling the promise rejection
                                 function (dismiss) {
-                                    window.location.href = "detalles";
+                                    window.location.href = "detalles?C="+cmp;
                                 }
                             )
 
@@ -128,7 +131,7 @@
 
 
 
-        intFirebase = setInterval(function(){
+       /* intFirebase = setInterval(function(){
             Ear_Eyes_Of_God(
                 localStorage.getItem("FechaInicio"),
                 getDate(),
@@ -136,14 +139,14 @@
                 localStorage.getItem("uNombre"),
                 localStorage.getItem("uId")
             );
-        },30000);
+        },30000);*/
 
 
 
         firebase.database().ref("USUARIOS").on('child_changed', function(data) {
             if (data.key==localStorage.getItem("uNombre")){
                 clearInterval(control);
-                clearInterval(intFirebase);
+                //clearInterval(intFirebase);
 
                 if (data.val().EnLinea==2){
                     $('#mTiempoFuera').openModal({dismissible:false});
@@ -206,7 +209,7 @@
     });
     function Death() {
         clearInterval(control);
-        clearInterval(intFirebase);
+        //clearInterval(intFirebase);
         localStorage.setItem("EnLinea", true);
         Close_Eyes_Of_God(localStorage.getItem("uNombre"));
         $('#ttCall').text("00:00:00");
@@ -250,11 +253,15 @@
 
     /*INICIO DE LOS DETALLES DE LA CAMPAÑA*/
     function getDetalles(id){
-        window.location.href = "detalles/"+id
-
-
+        window.location.href = "detalles?C="+id
     };
     /*FINDE LOS DETALLES DE LA CAMPAÑA*/
+
+    /*INICIO DE INFORMACION DEL CLIENTE EN LA CAMPAÑA*/
+    function getInfoCliente(CP,CL) {
+        window.location.href = "cCliente?CP="+CP+"&CL="+CL
+    }
+    /*DIN DE INFORMACION DEL CLIENTE EN LA CAMPAÑA*/
 
 
 

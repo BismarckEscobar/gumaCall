@@ -15,6 +15,7 @@
 
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
+        <div id="idSndCamp"></div>
         <span id="USI"><?php echo $this->session->userdata('UserN');?></span>
         <span id="USN"><?php echo $this->session->userdata('UserName');?></span>
         <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">mis campañas asignadas</div></div>

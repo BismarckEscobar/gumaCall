@@ -53,6 +53,8 @@ class Campanna_model extends CI_Model
                 $array_Clientes_camp[$c]['ID_Cliente'] = $Cmp['ID_Cliente'];
                 $array_Clientes_camp[$c]['Nombre'] = $Cmp['Nombre'];
                 $array_Clientes_camp[$c]['Telefono1'] = $Cmp['Telefono1'];
+                $array_Clientes_camp[$c]['Telefono2'] = $Cmp['Telefono2'];
+                $array_Clientes_camp[$c]['Telefono3'] = $Cmp['Telefono3'];
                 $array_Clientes_camp[$c]['Meta'] = $Cmp['Meta'];
                 $array_Clientes_camp[$c]['Real'] = $this->getRealCliente($Cmp['ID_Campannas'],$Cmp['ID_Cliente']);
                 $c++;
@@ -95,11 +97,12 @@ class Campanna_model extends CI_Model
         return 0;
 
     }
-    public function guardar_llamada($Monto,$Duracion,$Comentario,$TPF)
+    public function guardar_llamada($Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF)
     {
         $this->db->insert('campanna_registros',array(
             'ID_Usuario' => $this->session->userdata('id'),
-            'ID_Campannas' => "CP-00000",
+            'ID_Campannas' => $Camp,
+            'ID_CLIENTE' => $Cliente,
             'Monto' => $Monto,
             'Tiempo' => $Duracion,
             'Comentarios' => $Comentario,

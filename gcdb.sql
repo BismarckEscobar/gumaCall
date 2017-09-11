@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-09-2017 a las 04:50:07
+-- Tiempo de generación: 11-09-2017 a las 02:53:26
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gcdb`
 --
-CREATE DATABASE IF NOT EXISTS `gcdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gcdb`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `gcdb`;
 -- Estructura de tabla para la tabla `campanna`
 --
 
-DROP TABLE IF EXISTS `campanna`;
 CREATE TABLE `campanna` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -59,7 +56,7 @@ INSERT INTO `campanna` (`ID_Campannas`, `Nombre`, `Fecha_Inicio`, `Fecha_Cierre`
 ('CP-00008', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
 ('CP-00009', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
 ('CP-00010', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00000', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1);
+('CP-00000', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1);
 
 -- --------------------------------------------------------
 
@@ -67,7 +64,6 @@ INSERT INTO `campanna` (`ID_Campannas`, `Nombre`, `Fecha_Inicio`, `Fecha_Cierre`
 -- Estructura de tabla para la tabla `campanna_asignacion`
 --
 
-DROP TABLE IF EXISTS `campanna_asignacion`;
 CREATE TABLE `campanna_asignacion` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `ID_Usuario` int(11) DEFAULT NULL,
@@ -89,7 +85,6 @@ INSERT INTO `campanna_asignacion` (`ID_Campannas`, `ID_Usuario`, `Fecha_asignaci
 -- Estructura de tabla para la tabla `campanna_cliente`
 --
 
-DROP TABLE IF EXISTS `campanna_cliente`;
 CREATE TABLE `campanna_cliente` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `ID_Cliente` varchar(10) DEFAULT NULL,
@@ -109,7 +104,6 @@ INSERT INTO `campanna_cliente` (`ID_Campannas`, `ID_Cliente`, `Meta`) VALUES
 -- Estructura de tabla para la tabla `campanna_estados`
 --
 
-DROP TABLE IF EXISTS `campanna_estados`;
 CREATE TABLE `campanna_estados` (
   `ID_Estado` int(11) NOT NULL,
   `Nombre` varchar(10) DEFAULT NULL
@@ -130,7 +124,6 @@ INSERT INTO `campanna_estados` (`ID_Estado`, `Nombre`) VALUES
 -- Estructura de tabla para la tabla `campanna_registros`
 --
 
-DROP TABLE IF EXISTS `campanna_registros`;
 CREATE TABLE `campanna_registros` (
   `ID_Usuario` int(11) DEFAULT NULL,
   `ID_Campannas` varchar(10) DEFAULT NULL,
@@ -146,17 +139,28 @@ CREATE TABLE `campanna_registros` (
 --
 
 INSERT INTO `campanna_registros` (`ID_Usuario`, `ID_Campannas`, `Monto`, `Tiempo`, `Comentarios`, `ID_TPF`, `ID_CLIENTE`) VALUES
-(2, 'CP-00000', '100.0000', '00:00:05', 'mi segundo comentario', 0, '0234'),
-(2, 'CP-00000', '100.0000', '00:00:08', 'mi tercer comentario', 5, '0125'),
-(2, 'CP-00000', '8.0000', '00:00:03', '8', 4, '01264'),
-(2, 'CP-00000', '0.0000', '00:00:03', 't', 2, '0'),
-(2, 'CP-00000', '0.0000', '00:00:01', 'j', 1, '0'),
-(2, 'CP-00000', '0.0000', '00:00:03', 'd', 5, '0'),
-(2, 'CP-00000', '0.0000', '00:00:01', 'd', 2, '222'),
-(2, 'CP-00000', '0.0000', '00:00:02', 'f', 3, '1111'),
-(2, 'CP-00000', '151.2500', '00:00:29', 'Comentario Final', 2, '00666'),
-(2, 'CP-00000', '175.5000', '00:00:03', 'llamada final', 2, '66665'),
-(2, 'CP-00000', '2235.2500', '00:00:03', 'saldo', 4, '0');
+(2, 'CP-00000', '100.0000', '01:23:05', 'mi segundo comentario', 0, '0234'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'mi tercer comentario', 5, '0125'),
+(2, 'CP-00000', '8.0000', '01:23:05', '8', 4, '01264'),
+(2, 'CP-00000', '0.0000', '01:23:05', 't', 2, '0'),
+(2, 'CP-00000', '0.0000', '01:23:05', 'j', 1, '0'),
+(2, 'CP-00000', '0.0000', '01:23:05', 'd', 5, '0'),
+(2, 'CP-00000', '0.0000', '01:23:05', 'd', 2, '222'),
+(2, 'CP-00000', '0.0000', '01:23:05', 'f', 3, '1111'),
+(2, 'CP-00000', '151.2500', '01:23:05', 'Comentario Final', 2, '00666'),
+(2, 'CP-00000', '175.5000', '01:23:05', 'llamada final', 2, '66665'),
+(2, 'CP-00000', '2235.2500', '01:15:05', 'saldo', 4, '0'),
+(2, 'CP-00000', '450.0000', '01:23:05', 'kjhkjhkj', 4, '00666'),
+(2, 'CP-00000', '1500.0000', '01:23:05', 'mi primer comentario', 5, '00666'),
+(2, 'CP-00000', '1500.0000', '01:23:05', 'mi primer comentario', 5, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'comentarios', 2, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'comentarios', 2, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'comentarios', 2, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'comentairo', 7, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', 'ggg', 3, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', '200', 5, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', '1111', 7, '00666'),
+(2, 'CP-00000', '100.0000', '01:23:05', '111', 4, '00666');
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,6 @@ INSERT INTO `campanna_registros` (`ID_Usuario`, `ID_Campannas`, `Monto`, `Tiempo
 -- Estructura de tabla para la tabla `campanna_tipificacion`
 --
 
-DROP TABLE IF EXISTS `campanna_tipificacion`;
 CREATE TABLE `campanna_tipificacion` (
   `ID_TPF` int(11) NOT NULL,
   `Tipificacion` varchar(100) DEFAULT NULL,
@@ -194,7 +197,6 @@ INSERT INTO `campanna_tipificacion` (`ID_TPF`, `Tipificacion`, `Fecha_TPF`, `Act
 -- Estructura de tabla para la tabla `clientes`
 --
 
-DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `ID_Cliente` varchar(10) DEFAULT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
@@ -217,7 +219,6 @@ INSERT INTO `clientes` (`ID_Cliente`, `Nombre`, `Direccion`, `Telefono1`, `Telef
 -- Estructura de tabla para la tabla `grupos`
 --
 
-DROP TABLE IF EXISTS `grupos`;
 CREATE TABLE `grupos` (
   `IdGrupo` int(11) NOT NULL,
   `NombreGrupo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -240,7 +241,6 @@ INSERT INTO `grupos` (`IdGrupo`, `NombreGrupo`, `IdResponsable`, `Estado`, `Fech
 -- Estructura de tabla para la tabla `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
   `descripcion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
@@ -263,7 +263,6 @@ INSERT INTO `roles` (`idRol`, `descripcion`, `tipo`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `IdUser` int(11) NOT NULL,
   `Usuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -294,12 +293,13 @@ INSERT INTO `usuario` (`IdUser`, `Usuario`, `Nombre`, `contrasenia`, `Rol`, `Act
 --
 -- Estructura Stand-in para la vista `view_campannas_clientes`
 --
-DROP VIEW IF EXISTS `view_campannas_clientes`;
 CREATE TABLE `view_campannas_clientes` (
 `ID_Campannas` varchar(10)
 ,`ID_Cliente` varchar(10)
 ,`Nombre` varchar(255)
 ,`Telefono1` varchar(10)
+,`Telefono2` varchar(10)
+,`Telefono3` varchar(10)
 ,`Meta` decimal(10,0)
 );
 
@@ -308,7 +308,6 @@ CREATE TABLE `view_campannas_clientes` (
 --
 -- Estructura Stand-in para la vista `view_campannas_info`
 --
-DROP VIEW IF EXISTS `view_campannas_info`;
 CREATE TABLE `view_campannas_info` (
 `ID_Campannas` varchar(10)
 ,`Nombre` varchar(100)
@@ -320,6 +319,7 @@ CREATE TABLE `view_campannas_info` (
 ,`Meta` decimal(10,2)
 ,`MONTO_REAL` decimal(32,4)
 ,`Observaciones` varchar(500)
+,`Mensaje` varchar(500)
 ,`Estado` int(5)
 );
 
@@ -328,7 +328,6 @@ CREATE TABLE `view_campannas_info` (
 --
 -- Estructura Stand-in para la vista `view_monto_clientes`
 --
-DROP VIEW IF EXISTS `view_monto_clientes`;
 CREATE TABLE `view_monto_clientes` (
 `ID_Campannas` varchar(10)
 ,`ID_CLIENTE` varchar(10)
@@ -342,7 +341,7 @@ CREATE TABLE `view_monto_clientes` (
 --
 DROP TABLE IF EXISTS `view_campannas_clientes`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_clientes`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_clientes`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t1`.`Telefono2` AS `Telefono2`,`t1`.`Telefono3` AS `Telefono3`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
 
 -- --------------------------------------------------------
 
@@ -351,7 +350,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_campannas_info`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_info`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_info`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
 
 -- --------------------------------------------------------
 
@@ -409,7 +408,7 @@ ALTER TABLE `campanna_estados`
 -- AUTO_INCREMENT de la tabla `campanna_tipificacion`
 --
 ALTER TABLE `campanna_tipificacion`
-  MODIFY `ID_TPF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_TPF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `grupos`
 --

@@ -20,7 +20,8 @@ class Campania_controller extends CI_Controller
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_campanias');
     }
-    public function detalles_camp($id){
+    public function detalles_camp(){
+        $id = $this->input->get('C');
         $data['My_camp_Header'] = $this->campanna_model->My_Campannas_Header($id);
         $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($id);
         $this->load->view('header/header');
@@ -31,7 +32,11 @@ class Campania_controller extends CI_Controller
 
     }
     public function get_info_cliente(){
+        $CP = $this->input->get('CP');
+        $CL = $this->input->get('CL');
 
+        $data['My_camp_Header'] = $this->campanna_model->My_Campannas_Header($CP);
+        $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($CP);
         $data['lst_TPF'] = $this->campanna_model->getTPF();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
@@ -44,6 +49,9 @@ class Campania_controller extends CI_Controller
     public function guardar_llamada()
     {
         $this->campanna_model->guardar_llamada(
+
+            $this->input->post('Cliente'),
+            $this->input->post('Camp'),
             $this->input->post('Monto'),
             $this->input->post('TimeInCall'),
             $this->input->post('Coment'),
