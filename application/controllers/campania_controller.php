@@ -18,6 +18,7 @@ class Campania_controller extends CI_Controller
         $this->load->view('pages/campanias/campanias');
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_campanias');
+
     }
     public function detalles_camp(){
         $this->load->view('header/header');
