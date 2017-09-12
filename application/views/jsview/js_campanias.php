@@ -116,6 +116,7 @@
         });
 
         $("#cModal").click(function() {$("#outCall").openModal();});
+        console.log("Inicia validacion: ");
         if (localStorage.getItem("EnLinea")=== "true" || localStorage.getItem("EnLinea")=== null) {
             localStorage.setItem("FechaInicio", getDate());
             localStorage.setItem("EnLinea", false);
@@ -128,6 +129,35 @@
                 $('#ttCall').text(Cal_Date(localStorage.getItem("FechaInicio"),getDate()));
             },10);
         }
+
+        $("#ID_Cerrar").click(function(){
+
+            var ttFinal= (moment.utc(moment(getDate(),"DD-MM-YYYY HH:mm:ss").diff(moment(localStorage.getItem("FechaInicio"),"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"));
+             var Frm_Datos = {
+             FINI:localStorage.getItem("FechaInicio"),
+             FECHAF:getDate(),
+             Tiempo_Total:ttFinal
+             };
+
+             $.ajax({
+                 url: "Guardar_a_Libro",
+                 type: "post",
+                 async:true,
+                 data: Frm_Datos,
+             success:
+                 function(){
+                     clearInterval(control);
+                     //clearInterval(intFirebase);
+                     localStorage.setItem("EnLinea", true);
+                     Close_Eyes_Of_God(localStorage.getItem("uNombre"));
+                     $('#ttCall').text("00:00:00");
+
+                    window.location.href = "salir"
+                 }
+             });
+
+
+        });
 
 
 
@@ -148,13 +178,42 @@
                 clearInterval(control);
                 //clearInterval(intFirebase);
 
+
                 if (data.val().EnLinea==2){
                     $('#mTiempoFuera').openModal({dismissible:false});
                     localStorage.setItem("Incio_Descanso",getDate());
+                   /* var Frm_Datos = {
+                        FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
+                        FECHA_FIN:getDate(),
+                        tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
+                    };
+                    $.ajax({
+                        url: "GUARDAR_PAUSA",
+                        type: "post",
+                        async:true,
+                        data: Frm_Datos
+                    });*/
                 }else{
+                   /* var Frm_Datos = {
+                        FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
+                        FECHA_FIN:getDate(),
+                        tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
+                    };
+                    $.ajax({
+                        url: "GUARDAR_PAUSA",
+                        type: "post",
+                        async:true,
+                        data: Frm_Datos
+                    });*/
                     $('#mTiempoFuera').closeModal();
+                    //setTimeout("", 3000);
                     location.reload();
                 }
+
+                //TODO: EL PROBLEMA ES QUE CUANDO FIREBASE DETACTA UN CAMBIO EN LA BASE MANDA A EJECUTAR ESTE FRAGMENTO DE CODIGO
+
+
+
 
                 Interval_pausa = setInterval(function(){
                     $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
@@ -211,10 +270,14 @@
         clearInterval(control);
         //clearInterval(intFirebase);
         localStorage.setItem("EnLinea", true);
+        console.log(localStorage.getItem("EnLinea"));
         Close_Eyes_Of_God(localStorage.getItem("uNombre"));
         $('#ttCall').text("00:00:00");
-        window.location.href = "salir"
+
+
+
     }
+
     function Close_Eyes_Of_God(id) {
         firebase.database().ref("USUARIOS").child(id).update({
             EnLinea : 0,
@@ -237,17 +300,7 @@
         return hoy;
     }
     function cOut(){
-        swal({
-            title: '¿Desea Salir del sistema?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: 'No'
-        }).then(function () {
-            Death();
-        })
+        Death();
     }
     $("#cModal").click(function() { $("#outCall").openModal(); });
 
