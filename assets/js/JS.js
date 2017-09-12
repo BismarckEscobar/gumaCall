@@ -1,6 +1,12 @@
 var activo = false;
 $(document).ready(function() {
     $('select').material_select();
+
+    var pathname = window.location.pathname;
+    if (pathname.match(/detallesVA.*/)) {
+        graficas();
+    };
+
     $(function() {
         var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
         $("ul li").each(function(){
@@ -44,7 +50,7 @@ $(document).ready(function() {
     });
 });
 
-
+/*FUNCION PARA MENSAJE DE CONFIRMACIONES*/
 function mensaje (mensaje,clase) {
     var $toastContent = $('<span class="center">'+mensaje+'</span>');
     if (clase == 'error'){

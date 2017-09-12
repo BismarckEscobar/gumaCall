@@ -18,9 +18,11 @@ $route['Main'] = 'main_controller';
 
 //RUTAS CAMPAÑAS
 $route['campanias'] = 'campania_controller';
-$route['campaniasVA'] = 'campania_controller/listadoCampanias';
-$route['detallesVA'] = 'campania_controller/detalle_vista_admin';
-$route['crearCampania'] = 'campania_controller/nuevaCampania';
+$route['campaniasVA'] = 'campaniaVistaAdmin_controller/listadoCampanias';
+$route['detallesVA'] = 'campaniaVistaAdmin_controller/detalle_vista_admin';
+$route['crearCampania'] = 'campaniaVistaAdmin_controller/nuevaCampania';
+$route['guardarClienteCampania'] = 'campaniaVistaAdmin_controller/subirExcelCampanias';
+$route['guardarDataCampania'] = 'campaniaVistaAdmin_controller/guardandoData';
 $route['Guardar_llamada'] = 'campania_controller/guardar_llamada';
 
 $route['detalles'] = 'campania_controller/detalles_camp/';
@@ -46,4 +48,5 @@ $route['Monitoreo'] = 'Monitoreo_controller';
 
 //RUTAS GRUPOS VISTA ADMINISTRADOR
 $route['listarVendedoresAct/(:any)'] = 'grupos_controller/listarVendedoresAct/$1';
+$route['dataCampaniaNueva'] = 'campania_controller/subirExcelCampanias';
 //FIN DE RUTAS GRUPOS

@@ -18,11 +18,16 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <form id="formNuevoUsuario" action="<?PHP echo base_url('index.php/agregarUsuario');?>" method="post" name="formNuevoUsuario">
+                        <form id="formNuevaCampania" enctype="multipart/form-data" action="<?PHP echo base_url('index.php/guardarClienteCampania');?>" method="post" name="formNuevaCampania">
                             <div class="row">
                                 <div class="input-field col s12 m12">
-                                  <input id="codigoCampania" type="text" class="validate mayuscula">
-                                  <label for="codigoCampania"></label>
+                                  <input id="idUser" type="hidden" value="<?php echo $this->session->userdata('id');?>" class="validate mayuscula">
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m12">
+                                  <?php echo '<input id="codigoCampania" type="text" class="validate mayuscula" value="'.$ultNoCampania.'">' ?>                                  
+                                  <label for="codigoCampania">N° DE CAMPAÑA</label>
                                 </div>                                
                             </div>
                             <div class="row">
@@ -49,7 +54,7 @@
                                 <div class="file-field input-field">
                                     <div class="BtnBlue waves-effect btn modal-trigger">
                                         <span>ARCHIVO</span>
-                                    <input type="file">
+                                    <input type="file" id="dataExcel" name="dataExcel">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text">
@@ -58,8 +63,14 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                  <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                  <label for="textarea1">OBSERVACIONES</label>
+                                  <textarea id="observacionesCamp" class="materialize-textarea"></textarea>
+                                  <label for="observacionesCamp">OBSERVACIONES</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <textarea id="mensajeCamp" class="materialize-textarea"></textarea>
+                                  <label for="mensajeCamp">MENSAJE</label>
                                 </div>
                             </div>
                         </form>      
@@ -69,58 +80,35 @@
                     <table id="tblAgentes" class="TblData">
                         <thead>
                             <tr>
+                                <th style="display:none;">IdUsuario</th>
                                 <th>SELECCIONAR</th>
                                 <th style="text-align:left;">NOMBRE AGENTE SAC</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="width:10px"> 
-                                    <input type="checkbox" class="filled-in" id="chk1" checked="checked" />
-                                    <label for="chk1"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 1</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="chk2" checked="checked" />
-                                    <label for="chk2"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 2</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="chk3" checked="checked" />
-                                    <label for="chk3"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 3</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="chk4" checked="checked" />
-                                    <label for="chk4"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 4</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="chk5" checked="checked" />
-                                    <label for="chk5"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 5</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="chk6" checked="checked" />
-                                    <label for="chk6"></label>
-                                </td>
-                                <td style="text-align: left;"><span>AGENTE SAC 6</span></td>
-                            </tr>
+                        <?php
+                            if ($agentes) {
+                                foreach ($agentes as $key) {
+                                    echo '
+                                    <tr>
+                                        <td style="display:none;">'.$key['IdUser'].'</td>
+                                        <td style="width:10px">                                                    
+                                            <input type="checkbox" checked="checked" class="filled-in" name="chkUser'.$key['IdUser'].'" id="chkUser'.$key['IdUser'].'" value="'.$key['IdUser'].'"/>
+                                            <label for="chkUser'.$key['IdUser'].'"></label>
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <span>'.$key['Usuario'].'</span>
+                                        </td>
+                                    </tr>';
+                                }
+                            }
+
+                        ?>                            
                         </tbody>
                     </table>
                 </div>
                 <div class="row center">
-                    <a id="guardarUsuario" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>
+                    <a id="guardarCampania" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>
                     <a id="cancelarProceso" href="campaniasVA" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
                 </div><br><br> 
             </div>
