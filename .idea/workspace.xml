@@ -4,19 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/application/views/pages/campanias/campanias.php" line="41" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa0d264-79ba-42da-bd32-a863381dd5c8" name="Default" comment="10-09-2017&#10;&#10;- Re-enrutado de menu de usuarios.&#10;- Extracion de informacion de las vistas.&#10;- Modificaciones a la base de datos.">
+    <list default="true" id="bfa0d264-79ba-42da-bd32-a863381dd5c8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/autoload.php" afterPath="$PROJECT_DIR$/application/config/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/campania_controller.php" afterPath="$PROJECT_DIR$/application/controllers/campania_controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/login_controller.php" afterPath="$PROJECT_DIR$/application/controllers/login_controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/campanna_model.php" afterPath="$PROJECT_DIR$/application/models/campanna_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/login_model.php" afterPath="$PROJECT_DIR$/application/models/login_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jsview/js_campanias.php" afterPath="$PROJECT_DIR$/application/views/jsview/js_campanias.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pages/campanias/campanias.php" afterPath="$PROJECT_DIR$/application/views/pages/campanias/campanias.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pages/campanias/infocliente.php" afterPath="$PROJECT_DIR$/application/views/pages/campanias/infocliente.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pages/menu.php" afterPath="$PROJECT_DIR$/application/views/pages/menu.php" />
     </list>
     <ignored path="gumaCall.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,11 +38,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="js_campanias.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login_model.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/models/login_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login_controller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="js_campanias.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/jsview/js_campanias.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="109" column="9" lean-forward="true" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
+            <state relative-caret-position="2805">
+              <caret line="171" column="28" lean-forward="true" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="25" column="57" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="57" />
+              <folding>
+                <marker date="1505224820800" expanded="true" signature="567:683" ph="..." />
+                <marker date="1505224820800" expanded="true" signature="589:608" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usuario_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/usuario_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="42" column="13" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="42" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -60,8 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Head</find>
-      <find>View_Campannas</find>
       <find>detalles_camp</find>
       <find>getDetalles</find>
       <find>cliente</find>
@@ -90,6 +123,8 @@
       <find>infocl</find>
       <find>My_camp_Clientes</find>
       <find>My_Campannas_Header</find>
+      <find>ID_CER</find>
+      <find>Guardar_a_Libro</find>
     </findStrings>
     <replaceStrings>
       <replace>View_campannas_info</replace>
@@ -116,15 +151,15 @@
         <option value="$PROJECT_DIR$/application/views/pages/campanias/detallescamp.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/views/jsview/js_campanias.php" />
-        <option value="$PROJECT_DIR$/application/models/login_model.php" />
-        <option value="$PROJECT_DIR$/application/controllers/login_controller.php" />
         <option value="$PROJECT_DIR$/application/views/pages/menu.php" />
         <option value="$PROJECT_DIR$/application/views/pages/campanias/campanias.php" />
         <option value="$PROJECT_DIR$/application/config/autoload.php" />
         <option value="$PROJECT_DIR$/application/controllers/campania_controller.php" />
         <option value="$PROJECT_DIR$/application/models/campanna_model.php" />
         <option value="$PROJECT_DIR$/application/views/pages/campanias/infocliente.php" />
+        <option value="$PROJECT_DIR$/application/views/jsview/js_campanias.php" />
+        <option value="$PROJECT_DIR$/application/controllers/login_controller.php" />
+        <option value="$PROJECT_DIR$/application/models/login_model.php" />
       </list>
     </option>
   </component>
@@ -225,7 +260,61 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jsview" />
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gumaCall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -346,7 +435,7 @@
       <workItem from="1504998570547" duration="12771000" />
       <workItem from="1505084304210" duration="6989000" />
       <workItem from="1505138271797" duration="21230000" />
-      <workItem from="1505223204415" duration="7918000" />
+      <workItem from="1505223204415" duration="16011000" />
     </task>
     <task id="LOCAL-00001" summary="09-09-2017&#10;&#10;- LLenado de Campañas asignadas.&#10;- LLenado de detalles de Campaña.&#10;- Modificaciones a la base de datos.">
       <created>1505011752681</created>
@@ -362,11 +451,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505091289051</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="12-09-2017&#10;&#10;- Muestra el Historial de Compra.&#10;- Extre la informacion SALDO/DISP del cliente desde SQL.">
+      <created>1505233380225</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1505233380225</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50116000" />
+    <option name="totallyTimeSpent" value="58209000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -385,9 +481,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -418,7 +514,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="09-09-2017&#10;&#10;- LLenado de Campañas asignadas.&#10;- LLenado de detalles de Campaña.&#10;- Modificaciones a la base de datos." />
     <MESSAGE value="10-09-2017&#10;&#10;- Re-enrutado de menu de usuarios.&#10;- Extracion de informacion de las vistas.&#10;- Modificaciones a la base de datos." />
-    <option name="LAST_COMMIT_MESSAGE" value="10-09-2017&#10;&#10;- Re-enrutado de menu de usuarios.&#10;- Extracion de informacion de las vistas.&#10;- Modificaciones a la base de datos." />
+    <MESSAGE value="12-09-2017&#10;&#10;- Muestra el Historial de Compra.&#10;- Extre la informacion SALDO/DISP del cliente desde SQL." />
+    <option name="LAST_COMMIT_MESSAGE" value="12-09-2017&#10;&#10;- Muestra el Historial de Compra.&#10;- Extre la informacion SALDO/DISP del cliente desde SQL." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -659,14 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/usuario_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="43" column="64" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/pages/monitoreo/monitoreo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -710,41 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="57" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/login_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="34" column="58" lean-forward="false" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
-          <folding>
-            <marker date="1505224820800" expanded="true" signature="567:683" ph="..." />
-            <marker date="1505224820800" expanded="true" signature="589:608" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="72" column="19" lean-forward="false" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -874,10 +928,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pages/menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="25" column="57" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="57" />
+          <folding>
+            <marker date="1505224820800" expanded="true" signature="567:683" ph="..." />
+            <marker date="1505224820800" expanded="true" signature="589:608" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="61" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/usuario_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="42" column="13" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jsview/js_campanias.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="109" column="9" lean-forward="true" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
+        <state relative-caret-position="2805">
+          <caret line="171" column="28" lean-forward="true" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/login_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
         </state>
       </provider>

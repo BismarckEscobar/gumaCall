@@ -18,24 +18,31 @@ class Login_controller extends CI_Controller
     }
 
     public function Salir(){
+        $this->login_model->libro_de_registro(
+            $this->session->userdata('id'),
+            $this->session->userdata('UserN'),
+            $this->session->userdata('UserName'),
+            $this->session->userdata('FechaAcceso'),
+            date('Y-m-d h:i:s'),
+            'OFF');
+
+
+
         $this->session->sess_destroy();
         $sessiondata = array('logged' => 0);
         $this->session->unset_userdata($sessiondata);
         $this->index();
     }
-    public function Guardar_a_Libro()
-    {
-        $this->login_model->libro_de_registro($this->session->userdata('id'),$this->session->userdata('UserN'),$this->session->userdata('UserName'),$this->input->post('Tiempo_Total'),$this->input->post('FINI'),$this->input->post('FECHAF'));
-    }
+
     public function Guardar_pausa()
     {
         $this->login_model->Guardar_pausa(
             $this->input->post('FECHA_INICIO'),
             $this->input->post('FECHA_FIN'),
-            $this->input->post('tTotal'),
             $this->session->userdata('id'),
             $this->session->userdata('UserN'),
-            $this->session->userdata('UserName')
+            $this->session->userdata('UserName'),
+            $this->input->post('TIPO')
         );
     }
 
@@ -58,16 +65,19 @@ class Login_controller extends CI_Controller
                     'UserN' => $data['user'][0]['Usuario'],
                     'UserName' => $data['user'][0]['Nombre'],
                     'RolUser'=>$data['user'][0]['Rol'],
+                    'FechaAcceso'=>date('Y-m-d h:i:s'),
                     'logged' => 1
                 );
                 $this->session->set_userdata($sessiondata);
+
                 $this->login_model->libro_de_registro(
-                    $data['user'][0]['IdUser'],
-                    $data['user'][0]['Usuario'],
-                    $data['user'][0]['Nombre'],
-                    "",
+                    $this->session->userdata('id'),
+                    $this->session->userdata('UserN'),
+                    $this->session->userdata('UserName'),
+
+                    $this->session->userdata('FechaAcceso'),
                     date('Y-m-d h:i:s'),
-                    date('Y-m-d h:i:s'));
+                'IN');
 
                 if($this->session->userdata){
                     redirect('Main');

@@ -1,9 +1,8 @@
 <script>
     $(document).ready(function() {
+        var control;
         $("#USN,#USI").hide();
-
         var frm_Kronos =$("#Kronos");
-
         localStorage.setItem("uNombre", $("#USI").text());
         localStorage.setItem("uId", $("#USN").text());
 
@@ -18,17 +17,17 @@
         $("#btn-comenzar").click(function(){
             var tiempo = {hora: 0,minuto: 0,segundo: 0,centesimas:0};
             if ( $(this).text() == 'INICIAR' ){
-                $(this).text('FINALIZAR'); 
+                $(this).text('FINALIZAR');
                     Kronos_Run = setInterval(function(){
                     tiempo.centesimas++;
                      if(tiempo.centesimas >= 100){
                         tiempo.centesimas = 0;
                         tiempo.segundo++;
-                    } 
+                    }
                     if(tiempo.segundo >= 60){
                         tiempo.segundo = 0;
                         tiempo.minuto++;
-                    }      
+                    }
 
                     if(tiempo.minuto >= 60){
                         tiempo.minuto = 0;
@@ -44,7 +43,7 @@
              },10);
             }else{
                 $(this).text('INICIAR');
-                clearInterval(Kronos_Run);               
+                clearInterval(Kronos_Run);
                 $('#outCall').openModal({
                     dismissible:false
                 });
@@ -131,30 +130,13 @@
         }
 
         $("#ID_Cerrar").click(function(){
+            clearInterval(control);
+            //clearInterval(intFirebase);
+            localStorage.setItem("EnLinea", true);
+            Close_Eyes_Of_God(localStorage.getItem("uNombre"));
+            $('#ttCall').text("00:00:00");
 
-            var ttFinal= (moment.utc(moment(getDate(),"DD-MM-YYYY HH:mm:ss").diff(moment(localStorage.getItem("FechaInicio"),"DD-MM-YYYY HH:mm:ss"))).format("HH:mm:ss"));
-             var Frm_Datos = {
-             FINI:localStorage.getItem("FechaInicio"),
-             FECHAF:getDate(),
-             Tiempo_Total:ttFinal
-             };
-
-             $.ajax({
-                 url: "Guardar_a_Libro",
-                 type: "post",
-                 async:true,
-                 data: Frm_Datos,
-             success:
-                 function(){
-                     clearInterval(control);
-                     //clearInterval(intFirebase);
-                     localStorage.setItem("EnLinea", true);
-                     Close_Eyes_Of_God(localStorage.getItem("uNombre"));
-                     $('#ttCall').text("00:00:00");
-
-                    window.location.href = "salir"
-                 }
-             });
+           window.location.href = "salir"
 
 
         });
@@ -178,11 +160,11 @@
                 clearInterval(control);
                 //clearInterval(intFirebase);
 
-
                 if (data.val().EnLinea==2){
                     $('#mTiempoFuera').openModal({dismissible:false});
                     localStorage.setItem("Incio_Descanso",getDate());
-                   /* var Frm_Datos = {
+                   var Frm_Datos = {
+                        TIPO:'PAUSA',
                         FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
                         FECHA_FIN:getDate(),
                         tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
@@ -192,9 +174,10 @@
                         type: "post",
                         async:true,
                         data: Frm_Datos
-                    });*/
+                    });
                 }else{
-                   /* var Frm_Datos = {
+                    var Frm_Datos = {
+                        TIPO:'PAUSA_OFF',
                         FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
                         FECHA_FIN:getDate(),
                         tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
@@ -204,13 +187,12 @@
                         type: "post",
                         async:true,
                         data: Frm_Datos
-                    });*/
+                    });
                     $('#mTiempoFuera').closeModal();
                     //setTimeout("", 3000);
                     location.reload();
                 }
 
-                //TODO: EL PROBLEMA ES QUE CUANDO FIREBASE DETACTA UN CAMBIO EN LA BASE MANDA A EJECUTAR ESTE FRAGMENTO DE CODIGO
 
 
 
