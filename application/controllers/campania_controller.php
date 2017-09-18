@@ -7,6 +7,9 @@ class Campania_controller extends CI_Controller
         parent::__construct();
         $this->load->library('session');
 
+        require_once(APPPATH.'libraries/Excel/reader.php');
+        require_once(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php'); 
+
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');
         }
@@ -65,31 +68,5 @@ class Campania_controller extends CI_Controller
         );
 
     }
-
-    /*FUNCIONES PARA CAMPAÑAS VISTA ADMINISTRADOR*/
-    public function listadoCampanias() {
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/campaniasVA');
-        $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campaniasVA');
-    }
-
-    public function detalle_vista_admin() {
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/detallescampVA');
-        $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campaniasVA');
-    }
-
-    public function nuevaCampania() {
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/nuevaCampania');
-        $this->load->view('footer/footer');
-        $this->load->view('jsview/js_campaniasVA');
-    }
-    /*FIN METODO LISTAR CAMPAÑAS VISTA ADMINISTRADOR*/
 }
 ?>

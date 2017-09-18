@@ -53,7 +53,7 @@ class Grupo_model extends CI_Model {
             'NombreGrupo' => $nombreGrupo,
             'IdResponsable' => $agenteResponsable,
             'Estado' => $estado,
-            'FechaCreada' => date('Y-m-d')
+            'FechaCreada' => date('Y-m-d H:i:s')
             );
             $query = $this->db->insert('grupos', $dataGrupo);
             if ($query) {
