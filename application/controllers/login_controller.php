@@ -18,10 +18,32 @@ class Login_controller extends CI_Controller
     }
 
     public function Salir(){
+        $this->login_model->libro_de_registro(
+            $this->session->userdata('id'),
+            $this->session->userdata('UserN'),
+            $this->session->userdata('UserName'),
+            $this->session->userdata('FechaAcceso'),
+            date('Y-m-d h:i:s'),
+            'OFF');
+
+
+
         $this->session->sess_destroy();
         $sessiondata = array('logged' => 0);
         $this->session->unset_userdata($sessiondata);
         $this->index();
+    }
+
+    public function Guardar_pausa()
+    {
+        $this->login_model->Guardar_pausa(
+            $this->input->post('FECHA_INICIO'),
+            $this->input->post('FECHA_FIN'),
+            $this->session->userdata('id'),
+            $this->session->userdata('UserN'),
+            $this->session->userdata('UserName'),
+            $this->input->post('TIPO')
+        );
     }
 
     public function Acreditar(){
@@ -43,10 +65,19 @@ class Login_controller extends CI_Controller
                     'UserN' => $data['user'][0]['Usuario'],
                     'UserName' => $data['user'][0]['Nombre'],
                     'RolUser'=>$data['user'][0]['Rol'],
-                    'Zona'=>$data['user'][0]['vendedor'],
+                    'FechaAcceso'=>date('Y-m-d h:i:s'),
                     'logged' => 1
                 );
                 $this->session->set_userdata($sessiondata);
+
+                $this->login_model->libro_de_registro(
+                    $this->session->userdata('id'),
+                    $this->session->userdata('UserN'),
+                    $this->session->userdata('UserName'),
+
+                    $this->session->userdata('FechaAcceso'),
+                    date('Y-m-d h:i:s'),
+                'IN');
 
                 if($this->session->userdata){
                     redirect('Main');

@@ -1,9 +1,8 @@
 <script>
     $(document).ready(function() {
+        var control;
         $("#USN,#USI").hide();
-
         var frm_Kronos =$("#Kronos");
-
         localStorage.setItem("uNombre", $("#USI").text());
         localStorage.setItem("uId", $("#USN").text());
 
@@ -18,17 +17,17 @@
         $("#btn-comenzar").click(function(){
             var tiempo = {hora: 0,minuto: 0,segundo: 0,centesimas:0};
             if ( $(this).text() == 'INICIAR' ){
-                $(this).text('FINALIZAR'); 
+                $(this).text('FINALIZAR');
                     Kronos_Run = setInterval(function(){
                     tiempo.centesimas++;
                      if(tiempo.centesimas >= 100){
                         tiempo.centesimas = 0;
                         tiempo.segundo++;
-                    } 
+                    }
                     if(tiempo.segundo >= 60){
                         tiempo.segundo = 0;
                         tiempo.minuto++;
-                    }      
+                    }
 
                     if(tiempo.minuto >= 60){
                         tiempo.minuto = 0;
@@ -44,7 +43,7 @@
              },10);
             }else{
                 $(this).text('INICIAR');
-                clearInterval(Kronos_Run);               
+                clearInterval(Kronos_Run);
                 $('#outCall').openModal({
                     dismissible:false
                 });
@@ -116,6 +115,7 @@
         });
 
         $("#cModal").click(function() {$("#outCall").openModal();});
+        console.log("Inicia validacion: ");
         if (localStorage.getItem("EnLinea")=== "true" || localStorage.getItem("EnLinea")=== null) {
             localStorage.setItem("FechaInicio", getDate());
             localStorage.setItem("EnLinea", false);
@@ -128,6 +128,18 @@
                 $('#ttCall').text(Cal_Date(localStorage.getItem("FechaInicio"),getDate()));
             },10);
         }
+
+        $("#ID_Cerrar").click(function(){
+            clearInterval(control);
+            //clearInterval(intFirebase);
+            localStorage.setItem("EnLinea", true);
+            Close_Eyes_Of_God(localStorage.getItem("uNombre"));
+            $('#ttCall').text("00:00:00");
+
+           window.location.href = "salir"
+
+
+        });
 
 
 
@@ -151,10 +163,39 @@
                 if (data.val().EnLinea==2){
                     $('#mTiempoFuera').openModal({dismissible:false});
                     localStorage.setItem("Incio_Descanso",getDate());
+                   var Frm_Datos = {
+                        TIPO:'PAUSA',
+                        FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
+                        FECHA_FIN:getDate(),
+                        tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
+                    };
+                    $.ajax({
+                        url: "GUARDAR_PAUSA",
+                        type: "post",
+                        async:true,
+                        data: Frm_Datos
+                    });
                 }else{
+                    var Frm_Datos = {
+                        TIPO:'PAUSA_OFF',
+                        FECHA_INICIO:localStorage.getItem("Incio_Descanso"),
+                        FECHA_FIN:getDate(),
+                        tTotal:Cal_Date(localStorage.getItem("Incio_Descanso"),getDate())
+                    };
+                    $.ajax({
+                        url: "GUARDAR_PAUSA",
+                        type: "post",
+                        async:true,
+                        data: Frm_Datos
+                    });
                     $('#mTiempoFuera').closeModal();
+                    //setTimeout("", 3000);
                     location.reload();
                 }
+
+
+
+
 
                 Interval_pausa = setInterval(function(){
                     $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
@@ -211,10 +252,14 @@
         clearInterval(control);
         //clearInterval(intFirebase);
         localStorage.setItem("EnLinea", true);
+        console.log(localStorage.getItem("EnLinea"));
         Close_Eyes_Of_God(localStorage.getItem("uNombre"));
         $('#ttCall').text("00:00:00");
-        window.location.href = "salir"
+
+
+
     }
+
     function Close_Eyes_Of_God(id) {
         firebase.database().ref("USUARIOS").child(id).update({
             EnLinea : 0,
@@ -237,17 +282,7 @@
         return hoy;
     }
     function cOut(){
-        swal({
-            title: '¿Desea Salir del sistema?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: 'No'
-        }).then(function () {
-            Death();
-        })
+        Death();
     }
     $("#cModal").click(function() { $("#outCall").openModal(); });
 

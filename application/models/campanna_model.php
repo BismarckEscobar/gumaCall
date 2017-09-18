@@ -64,6 +64,38 @@ class Campanna_model extends CI_Model
         return 0;
 
     }
+
+    public function HstCompra_3M($CL){
+        $i=0;
+        $json = array();
+        $iCliente = $this->sqlsrv->fetchArray("SELECT * FROM GMV_hstCompra_3M WHERE Cliente='".$CL."' ",SQLSRV_FETCH_ASSOC);
+        foreach($iCliente as $key){
+            $json[$i]['ARTICULO']      = $key['ARTICULO'];
+            $json[$i]['DESCRIPCION']       = $key['DESCRIPCION'];
+            $json[$i]['FECHA']       = $key['Dia'];
+            $json[$i]['CANTIDAD']    = number_format($key['CANTIDAD'],0);
+            $i++;
+        }
+        return $json;
+        $this->sqlsrv->close();
+
+    }
+    public function Info_Cliente($CL){
+        $i=0;
+        $json = array();
+        $HstCompra = $this->sqlsrv->fetchArray("SELECT * FROM vtCC_CLIENTES WHERE Cliente='".$CL."' ",SQLSRV_FETCH_ASSOC);
+        foreach($HstCompra as $key){
+            $json[$i]['DIRECCION']      = $key['DIRECCION'];
+            $json[$i]['RUC']      = $key['RUC'];
+            $json[$i]['CREDITO']      = $key['LIMITE_CREDITO'];
+            $json[$i]['SALDO']       = $key['SALDO'];
+            $json[$i]['DISPONIBLE']       = $key['CREDITODISP'];
+            $i++;
+        }
+        return $json;
+        $this->sqlsrv->close();
+
+    }
     public function My_Campannas(){
         $i=0;
         $c=0;

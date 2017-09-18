@@ -32,17 +32,15 @@
                            <li href="#"><a href="#"><i class="material-icons">group</i> Clientes</a></li>
                            <li href="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>                         
                            <li href="#"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
-                           <li href="salir"><a href="salir"><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
+                           <li href="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
                 break;
                 case '1':
-                  $menu = '
-                           <a href="campanias"><li href="miscampanas"><i class="material-icons">insert_chart</i> Mis Campañas</li></a>
-                           <a href="#"><li href="#"><i class="material-icons">insert_chart</i> acerca de</li></a>
-                           <a href="#" onclick="cOut()"><li href="#"><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</li></a>';
+                  $menu = '<li><a href="campanias" ><i class="material-icons">exit_to_app</i> mis campañas</a></li>
+                           <li><a href="#" id="ID_Cerrar" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>
+                           <li><a href="#" ><i class="material-icons">exit_to_app</i> Acerca de</a></li>';
+
                 break;
-                default:
-                  $menu = '<a href="#"> <i class="material-icons">exit_to_app</i> cerrar sesión</a>';
-                  break;
+
               }
               echo $menu;
             ?>

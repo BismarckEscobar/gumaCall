@@ -1,4 +1,5 @@
 <?php
+
 $ID =(!$My_camp_Header[0]['ID_Campannas']) ? 0 :$My_camp_Header[0]['ID_Campannas'];
 $Nombre =(!$My_camp_Header[0]['Nombre']) ? 0 :$My_camp_Header[0]['Nombre'];
 $Monto =(!$My_camp_Header[0]['MONTO_REAL']) ? 0 :$My_camp_Header[0]['MONTO_REAL'];
@@ -34,6 +35,8 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
 
         <span id="USI"><?php echo $this->session->userdata('UserN');?></span>
         <span id="USN"><?php echo $this->session->userdata('UserName');?></span>
+
+
 
         <div class="row">
             <div class="col s12 m12" >
@@ -122,17 +125,27 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                                 <tr>
                                     <th>ARTICULO</th>
                                     <th>DESCRIPCION</th>
+                                    <th>FECHA</th>
                                     <th>CANTIDAD</th>
                                 </tr>
                                 </thead>
                                 <tbody class="center">
                                 <?php
-                                for($i=0;$i<=1;$i++){
-                                    echo "<tr>
-                                            <td>10118022 </td>
-                                            <td>ANASTROSOL 1 MG TAB RECUBIERTA 28/CAJA (NAPROD)</td>
-                                            <td>2</td>
+
+                                if(!$query){
+                                }else{
+                                    $i=0;
+                                    foreach ($query as $Hst){
+                                        echo "<tr>
+                                            <td>".$query[$i]["ARTICULO"]."</td>
+                                            <td>".$query[$i]["DESCRIPCION"]."</td>
+                                            <td>".$query[$i]["FECHA"]."</td>
+                                            <td>".$query[$i]["CANTIDAD"]."</td>
                                         </tr>";
+                                        $i++;
+
+                                    }
+
                                 }
                                 ?>
 
@@ -142,26 +155,26 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                         <div id="tb2">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input class="left" value="DE LA ALCALDIA 1C AL SUR, CHONTALES" id="icon_DateInit" type="text" class="center validate">
+                                    <input class="left" value="<?php echo $query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
                                     <label for="icon_DIR" class="left">DIRECCION</label>
                                 </div>
 
                                 <div class="input-field col s6">
-                                    <input id="icon_RUC" class="left" value="1262108420000Q" type="text" class=" right validate">
+                                    <input id="icon_RUC" class="left" value="<?php echo $query2[0]['RUC']?>" type="text" class=" right validate">
                                     <label for="icon_RUC" class="left">RUC</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s3">
-                                    <input value="C$ 2,000" id="icon_DateInit" type="text" class="right validate">
+                                    <input value="C$ <?php echo number_format($query2[0]['CREDITO'],2);?>" id="icon_DateInit" type="text" class="right validate">
                                     <label for="icon_CREDITO" class="left">CREDITO</label>
                                 </div>
                                 <div class="input-field col s3">
-                                    <input value="C$ 0.00" id="icon_DateEnd" type="text" class="right validate">
+                                    <input value="C$ <?php echo number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
                                     <label for="icon_SALDO" class="left">SALDO</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="icon_DISPONIBLE" value="C$ 2,000" type="text" class=" right validate">
+                                    <input id="icon_DISPONIBLE" value="C$ <?php echo number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
                                     <label for="icon_DISPONIBLE" class="left">DISPONIBLE</label>
                                 </div>
 

@@ -10,6 +10,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'login_controller/Acreditar';
 $route['salir'] = 'login_controller/Salir';
 $route['cambiarPass'] = 'login_controller/cambiarPass';
+$route['Guardar_a_Libro'] = 'login_controller/Guardar_a_Libro';
+$route['GUARDAR_PAUSA'] = 'login_controller/Guardar_pausa';
 // FIN LOGIN
 
 // RUTAS MENU
