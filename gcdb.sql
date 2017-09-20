@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2017 a las 16:33:01
+-- Tiempo de generación: 20-09-2017 a las 15:55:14
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -29,7 +29,7 @@ USE `gcdb`;
 --
 
 DROP TABLE IF EXISTS `campanna`;
-CREATE TABLE `campanna` (
+CREATE TABLE IF NOT EXISTS `campanna` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
   `Fecha_Inicio` datetime DEFAULT NULL,
@@ -49,17 +49,7 @@ CREATE TABLE `campanna` (
 --
 
 INSERT INTO `campanna` (`ID_Campannas`, `Nombre`, `Fecha_Inicio`, `Fecha_Cierre`, `Estado`, `Activo`, `Meta`, `Observaciones`, `Mensaje`, `Fecha_Creacion`, `Fecha_ultima_actualizado`, `ID_Usuario`) VALUES
-('CP-00001', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00002', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00003', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00004', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00005', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00006', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00007', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00008', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00009', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00010', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'MENSAJE PATRIO', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1),
-('CP-00000', 'PROMOCION MES PATRIO 2017', '2017-09-01 18:28:04', '2017-09-30 18:28:10', 1, 1, '100000.00', 'OBERVACIONES', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.', '2017-09-01 18:28:40', '2017-09-09 18:28:36', 1);
+('CP-00004', 'campaña prueba', '2017-09-01 12:07:47', '2017-09-30 12:07:52', 1, 1, '100000.00', 'observaciones', 'mensaje', '2017-09-19 12:08:18', '2017-09-19 12:08:21', 1);
 
 -- --------------------------------------------------------
 
@@ -68,7 +58,7 @@ INSERT INTO `campanna` (`ID_Campannas`, `Nombre`, `Fecha_Inicio`, `Fecha_Cierre`
 --
 
 DROP TABLE IF EXISTS `campanna_asignacion`;
-CREATE TABLE `campanna_asignacion` (
+CREATE TABLE IF NOT EXISTS `campanna_asignacion` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `ID_Usuario` int(11) DEFAULT NULL,
   `Fecha_asignacion` datetime DEFAULT NULL
@@ -79,10 +69,7 @@ CREATE TABLE `campanna_asignacion` (
 --
 
 INSERT INTO `campanna_asignacion` (`ID_Campannas`, `ID_Usuario`, `Fecha_asignacion`) VALUES
-('CP-00004', 2, '2017-09-09 18:34:35'),
-('CP-00007', 2, '2017-09-09 18:34:35'),
-('CP-00000', 3, '2017-09-09 18:34:35'),
-('CP-00000', 2, '2017-09-09 18:34:35');
+('CP-00004', 2, '2017-09-19 12:08:43');
 
 -- --------------------------------------------------------
 
@@ -91,7 +78,7 @@ INSERT INTO `campanna_asignacion` (`ID_Campannas`, `ID_Usuario`, `Fecha_asignaci
 --
 
 DROP TABLE IF EXISTS `campanna_cliente`;
-CREATE TABLE `campanna_cliente` (
+CREATE TABLE IF NOT EXISTS `campanna_cliente` (
   `ID_Campannas` varchar(10) DEFAULT NULL,
   `ID_Cliente` varchar(10) DEFAULT NULL,
   `Meta` decimal(10,0) DEFAULT NULL
@@ -102,7 +89,7 @@ CREATE TABLE `campanna_cliente` (
 --
 
 INSERT INTO `campanna_cliente` (`ID_Campannas`, `ID_Cliente`, `Meta`) VALUES
-('CP-00000', '03164', '50000');
+('CP-00004', '03000', '20000');
 
 -- --------------------------------------------------------
 
@@ -111,10 +98,11 @@ INSERT INTO `campanna_cliente` (`ID_Campannas`, `ID_Cliente`, `Meta`) VALUES
 --
 
 DROP TABLE IF EXISTS `campanna_estados`;
-CREATE TABLE `campanna_estados` (
-  `ID_Estado` int(11) NOT NULL,
-  `Nombre` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `campanna_estados` (
+  `ID_Estado` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID_Estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `campanna_estados`
@@ -132,44 +120,18 @@ INSERT INTO `campanna_estados` (`ID_Estado`, `Nombre`) VALUES
 --
 
 DROP TABLE IF EXISTS `campanna_registros`;
-CREATE TABLE `campanna_registros` (
+CREATE TABLE IF NOT EXISTS `campanna_registros` (
   `ID_Usuario` int(11) DEFAULT NULL,
   `ID_Campannas` varchar(10) DEFAULT NULL,
+  `Num_CLI` varchar(10) DEFAULT NULL,
+  `ID_CLIENTE` varchar(10) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `Hora` time DEFAULT NULL,
+  `Duracion` time DEFAULT NULL,
   `Monto` decimal(10,4) DEFAULT NULL,
-  `Tiempo` time DEFAULT NULL,
   `Comentarios` varchar(500) DEFAULT NULL,
-  `ID_TPF` int(11) DEFAULT NULL,
-  `ID_CLIENTE` varchar(10) DEFAULT NULL
+  `ID_TPF` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `campanna_registros`
---
-
-INSERT INTO `campanna_registros` (`ID_Usuario`, `ID_Campannas`, `Monto`, `Tiempo`, `Comentarios`, `ID_TPF`, `ID_CLIENTE`) VALUES
-(2, 'CP-00000', '100.0000', '00:23:05', 'mi segundo comentario', 0, '0234'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'mi tercer comentario', 5, '0125'),
-(2, 'CP-00000', '8.0000', '00:23:05', '8', 4, '01264'),
-(2, 'CP-00000', '0.0000', '00:23:05', 't', 2, '0'),
-(2, 'CP-00000', '0.0000', '00:23:05', 'j', 1, '0'),
-(2, 'CP-00000', '0.0000', '00:23:05', 'd', 5, '0'),
-(2, 'CP-00000', '0.0000', '00:23:05', 'd', 2, '222'),
-(2, 'CP-00000', '0.0000', '00:23:05', 'f', 3, '1111'),
-(2, 'CP-00000', '151.2500', '00:23:05', 'Comentario Final', 2, '03164'),
-(2, 'CP-00000', '175.5000', '00:23:05', 'llamada final', 2, '66665'),
-(2, 'CP-00000', '2235.2500', '00:23:05', 'saldo', 4, '0'),
-(2, 'CP-00000', '450.0000', '00:23:05', 'kjhkjhkj', 4, '03164'),
-(2, 'CP-00000', '1500.0000', '00:23:05', 'mi primer comentario', 5, '03164'),
-(2, 'CP-00000', '1500.0000', '00:23:05', 'mi primer comentario', 5, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'comentarios', 2, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'comentarios', 2, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'comentarios', 2, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'comentairo', 7, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', 'ggg', 3, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', '200', 5, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', '1111', 7, '03164'),
-(2, 'CP-00000', '100.0000', '00:23:05', '111', 4, '03164'),
-(2, 'CP-00000', '100.0000', '00:00:09', 'gdfgdfgdfgdfgdf', 2, '03164');
 
 -- --------------------------------------------------------
 
@@ -178,12 +140,13 @@ INSERT INTO `campanna_registros` (`ID_Usuario`, `ID_Campannas`, `Monto`, `Tiempo
 --
 
 DROP TABLE IF EXISTS `campanna_tipificacion`;
-CREATE TABLE `campanna_tipificacion` (
-  `ID_TPF` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `campanna_tipificacion` (
+  `ID_TPF` int(11) NOT NULL AUTO_INCREMENT,
   `Tipificacion` varchar(100) DEFAULT NULL,
   `Fecha_TPF` datetime DEFAULT NULL,
-  `Activa` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Activa` int(1) DEFAULT NULL,
+  PRIMARY KEY (`ID_TPF`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `campanna_tipificacion`
@@ -208,7 +171,7 @@ INSERT INTO `campanna_tipificacion` (`ID_TPF`, `Tipificacion`, `Fecha_TPF`, `Act
 --
 
 DROP TABLE IF EXISTS `clientes`;
-CREATE TABLE `clientes` (
+CREATE TABLE IF NOT EXISTS `clientes` (
   `ID_Cliente` varchar(10) DEFAULT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
   `Direccion` varchar(255) DEFAULT NULL,
@@ -222,7 +185,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`ID_Cliente`, `Nombre`, `Direccion`, `Telefono1`, `Telefono2`, `Telefono3`) VALUES
-('03164', 'CLIENTE DE PRUEBA', 'INFIERNO', '82449100', '82449100', '82449100');
+('03000', 'CLIENTE DE PRUEBA', 'INFIERNO', '82449100', '82449100', '82449100');
 
 -- --------------------------------------------------------
 
@@ -231,13 +194,14 @@ INSERT INTO `clientes` (`ID_Cliente`, `Nombre`, `Direccion`, `Telefono1`, `Telef
 --
 
 DROP TABLE IF EXISTS `grupos`;
-CREATE TABLE `grupos` (
-  `IdGrupo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `grupos` (
+  `IdGrupo` int(11) NOT NULL AUTO_INCREMENT,
   `NombreGrupo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `IdResponsable` int(11) NOT NULL,
   `Estado` int(11) NOT NULL,
-  `FechaCreada` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `FechaCreada` datetime NOT NULL,
+  PRIMARY KEY (`IdGrupo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `grupos`
@@ -254,11 +218,12 @@ INSERT INTO `grupos` (`IdGrupo`, `NombreGrupo`, `IdResponsable`, `Estado`, `Fech
 --
 
 DROP TABLE IF EXISTS `roles`;
-CREATE TABLE `roles` (
-  `idRol` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `roles` (
+  `idRol` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `tipo` int(11) NOT NULL,
+  PRIMARY KEY (`idRol`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -277,14 +242,15 @@ INSERT INTO `roles` (`idRol`, `descripcion`, `tipo`) VALUES
 --
 
 DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
-  `IdUser` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `IdUser` int(11) NOT NULL AUTO_INCREMENT,
   `Usuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `Nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `contrasenia` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `Rol` int(1) NOT NULL,
-  `Activo` bit(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `Activo` bit(1) NOT NULL,
+  PRIMARY KEY (`IdUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -309,7 +275,7 @@ INSERT INTO `usuario` (`IdUser`, `Usuario`, `Nombre`, `contrasenia`, `Rol`, `Act
 --
 
 DROP TABLE IF EXISTS `usuario_registros`;
-CREATE TABLE `usuario_registros` (
+CREATE TABLE IF NOT EXISTS `usuario_registros` (
   `ID_Usuario` int(11) DEFAULT NULL,
   `session_id` varchar(100) DEFAULT NULL,
   `UserName` varchar(10) DEFAULT NULL,
@@ -325,21 +291,9 @@ CREATE TABLE `usuario_registros` (
 --
 
 INSERT INTO `usuario_registros` (`ID_Usuario`, `session_id`, `UserName`, `Nombre`, `FechaInicio`, `FechaFinal`, `Tiempo_Total`, `Tipo`) VALUES
-(1, 'f54bd8e4e9258e29a813b099bdd053ef70d271e3', 'admin', 'admin', '2017-09-12 02:21:26', '2017-09-12 02:24:28', '00:03:02', 'ON'),
-(2, '0944ac006f8940193c79afc402019506d38c49e4', 'SAC1', 'MARYAN', '2017-09-12 02:21:37', '2017-09-12 02:24:17', '00:02:40', 'ON'),
-(2, '0944ac006f8940193c79afc402019506d38c49e4', 'SAC1', 'MARYAN', '2017-09-12 02:21:57', '2017-09-12 02:24:17', '00:02:20', 'PAUSA'),
-(2, '5a09842fef15ba1bf4522c32763a536852310762', 'SAC1', 'MARYAN', '2017-09-12 02:24:39', '2017-09-12 02:29:29', '00:04:50', 'ON'),
-(2, '5a09842fef15ba1bf4522c32763a536852310762', 'SAC1', 'MARYAN', '2017-09-12 02:25:35', '2017-09-12 02:29:29', '00:03:54', 'PAUSA'),
-(1, 'e3abaa3d7923174c9522b9131eae5baa8916b421', 'admin', 'admin', '2017-09-12 02:30:21', '2017-09-12 02:30:38', '00:00:17', 'ON'),
-(1, 'ca24e43617c4b8498c83ae8fd0e954b51118aa84', 'admin', 'admin', '2017-09-12 02:31:32', '2017-09-12 02:34:28', '00:02:56', 'ON'),
-(3, '3c3b2fbba352a28cdc94ec54b37f4c028b06279e', 'SAC2', 'BISMARK', '2017-09-12 02:35:33', '2017-09-12 02:37:18', '00:01:45', 'ON'),
-(1, '68d0af631b669175f5315ff45a664c59757c1fb8', 'admin', 'admin', '2017-09-12 02:36:57', '2017-09-12 02:38:58', '00:02:01', 'ON'),
-(3, '77eb1650d4e390a0e06e6d31680adaf87c315898', 'SAC2', 'BISMARK', '2017-09-12 02:37:24', '2017-09-12 02:38:48', '00:01:24', 'ON'),
-(3, '77eb1650d4e390a0e06e6d31680adaf87c315898', 'SAC2', 'BISMARK', '2017-09-12 02:37:37', '2017-09-12 02:37:53', '00:00:16', 'PAUSA'),
-(3, '77eb1650d4e390a0e06e6d31680adaf87c315898', 'SAC2', 'BISMARK', '2017-09-12 02:38:09', '2017-09-12 02:38:48', '00:00:39', 'PAUSA'),
-(1, 'b757a194f1500267e286acca5dbb80c5a67a4853', 'admin', 'admin', '2017-09-12 02:42:32', '2017-09-12 02:44:08', '00:01:36', 'ON'),
-(2, 'baee3499b5f87234a7f5f746cdb577422e59a0ec', 'SAC1', 'MARYAN', '2017-09-12 02:42:48', '2017-09-12 02:47:43', '00:04:55', 'ON'),
-(2, 'baee3499b5f87234a7f5f746cdb577422e59a0ec', 'SAC1', 'MARYAN', '2017-09-12 02:43:08', '2017-09-12 02:47:43', '00:04:35', 'PAUSA');
+(2, '42aa4bfb29561962d769191772c89f60146c5273', 'SAC1', 'MARYAN', '2017-09-19 12:02:13', '2017-09-19 14:03:41', '02:01:28', 'ON'),
+(2, '0729cbca80ae19b0284d8c62be3641a695d2d8cf', 'SAC1', 'MARYAN', '2017-09-19 14:05:00', '2017-09-19 14:05:10', '00:00:10', 'ON'),
+(1, '5c65a7479456889738151cc2d7c4b9f5718d448c', 'SU', 'SU', '2017-09-19 14:05:35', '2017-09-19 14:34:02', '00:28:27', 'ON');
 
 -- --------------------------------------------------------
 
@@ -347,7 +301,7 @@ INSERT INTO `usuario_registros` (`ID_Usuario`, `session_id`, `UserName`, `Nombre
 -- Estructura Stand-in para la vista `view_campannas_clientes`
 --
 DROP VIEW IF EXISTS `view_campannas_clientes`;
-CREATE TABLE `view_campannas_clientes` (
+CREATE TABLE IF NOT EXISTS `view_campannas_clientes` (
 `ID_Campannas` varchar(10)
 ,`ID_Cliente` varchar(10)
 ,`Nombre` varchar(255)
@@ -363,7 +317,7 @@ CREATE TABLE `view_campannas_clientes` (
 -- Estructura Stand-in para la vista `view_campannas_info`
 --
 DROP VIEW IF EXISTS `view_campannas_info`;
-CREATE TABLE `view_campannas_info` (
+CREATE TABLE IF NOT EXISTS `view_campannas_info` (
 `ID_Campannas` varchar(10)
 ,`Nombre` varchar(100)
 ,`Fecha_Inicio` datetime
@@ -384,7 +338,7 @@ CREATE TABLE `view_campannas_info` (
 -- Estructura Stand-in para la vista `view_monto_clientes`
 --
 DROP VIEW IF EXISTS `view_monto_clientes`;
-CREATE TABLE `view_monto_clientes` (
+CREATE TABLE IF NOT EXISTS `view_monto_clientes` (
 `ID_Campannas` varchar(10)
 ,`ID_CLIENTE` varchar(10)
 ,`MONTO_REAL` decimal(32,4)
@@ -406,7 +360,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_campannas_info`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_info`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Tiempo`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_campannas_info`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
 
 -- --------------------------------------------------------
 
@@ -417,69 +371,6 @@ DROP TABLE IF EXISTS `view_monto_clientes`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_monto_clientes`  AS  select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `campanna_estados`
---
-ALTER TABLE `campanna_estados`
-  ADD PRIMARY KEY (`ID_Estado`);
-
---
--- Indices de la tabla `campanna_tipificacion`
---
-ALTER TABLE `campanna_tipificacion`
-  ADD PRIMARY KEY (`ID_TPF`);
-
---
--- Indices de la tabla `grupos`
---
-ALTER TABLE `grupos`
-  ADD PRIMARY KEY (`IdGrupo`);
-
---
--- Indices de la tabla `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`idRol`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`IdUser`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `campanna_estados`
---
-ALTER TABLE `campanna_estados`
-  MODIFY `ID_Estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `campanna_tipificacion`
---
-ALTER TABLE `campanna_tipificacion`
-  MODIFY `ID_TPF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT de la tabla `grupos`
---
-ALTER TABLE `grupos`
-  MODIFY `IdGrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `roles`
---
-ALTER TABLE `roles`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -6,9 +6,10 @@ class CampaniaVistaAdmin_controller extends CI_Controller
  public function __construct(){
         parent::__construct();
         $this->load->library('session');
+        //echo APPPATH.'libraries\Excel\reader.php';
 
-        require_once(APPPATH.'libraries/Excel/reader.php');
-        require_once(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php'); 
+        //require_once(APPPATH.'libraries\Excel\reader.php');
+        //require_once(APPPATH.'libraries\PHPExcel\Classes\PHPExcel.php'); 
 
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');

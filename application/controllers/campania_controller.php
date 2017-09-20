@@ -6,10 +6,6 @@ class Campania_controller extends CI_Controller
  public function __construct(){
         parent::__construct();
         $this->load->library('session');
-
-        require_once(APPPATH.'libraries/Excel/reader.php');
-        require_once(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php'); 
-
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');
         }
@@ -58,7 +54,7 @@ class Campania_controller extends CI_Controller
     public function guardar_llamada()
     {
         $this->campanna_model->guardar_llamada(
-
+            $this->input->post('num'),
             $this->input->post('Cliente'),
             $this->input->post('Camp'),
             $this->input->post('Monto'),

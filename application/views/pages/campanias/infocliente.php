@@ -43,20 +43,23 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                 <div class="card hoverable " ><br>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">FECHA DE INICIO</label>
+                            <label class="left">FECHA DE INICIO</label>
+                            <input disabled  value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate" >
+
                         </div>
                         <div class="input-field col s3">
-                            <input value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">FECHA CIERRE</label>
+                            <label class="left">FECHA CIERRE</label>
+                            <input disabled value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
+
                         </div>
                         <div class="input-field col s3">
-                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Meta,2);?>" type="text" class=" center validate">
-                            <label for="icon_DateInit" class="left">META ESTIMADA</label>
+                            <label class="left">META ESTIMADA</label>
+                            <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Meta,2);?>" type="text" class=" center validate">
+
                         </div>
                         <div class="input-field col s3">
-                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Monto,2);?>" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">REAL</label>
+                            <label class="left">REAL</label>
+                            <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Monto,2);?>" type="text" class="center validate">
                         </div>
                     </div>
                     </form>
@@ -76,24 +79,28 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                         <span class="card-title center"><span id="clienteLlamado"><?php echo $UID ?></span> - <?php echo $UNA ?></span><br><br><br>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input value="<?php echo $T1?>" id="icon_DateInit" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">TELEFONO 1</label>
+                            <label class="left">TELEFONO 1</label>
+                            <input disabled value="<?php echo $T1?>" id="icon_DateInit" type="text" class="center validate">
+
                         </div>
                         <div class="input-field col s3">
-                            <input value="<?php echo $T3?>" id="icon_DateEnd" type="text" class="center validate">
-                            <label for="icon_DateInit" class="left">TELEFONO 2</label>
+                            <label class="left">TELEFONO 2</label>
+                            <input disabled value="<?php echo $T3?>" id="icon_DateEnd" type="text" class="center validate">
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="<?php echo $T3?>" type="text" class=" right validate">
-                            <label for="icon_DateInit" class="left">TELEFONO 3</label>
+                            <label class="left">TELEFONO 3</label>
+                            <input disabled id="icon_DateEnd" value="<?php echo $T3?>" type="text" class=" right validate">
+
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Meta_Cliente,2);?>" type="text" class="right validate">
-                            <label for="icon_DateInit" class="left"">META</label>
+                            <label class="left"">META</label>
+                            <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Meta_Cliente,2);?>" type="text" class="right validate">
+
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_DateEnd" value="C$ <?php echo number_format($Real_Cliente,2);?>" type="text" class="right validate">
-                            <label for="icon_DateInit" class="left"">REAL</label>
+                            <label class="left"">REAL</label>
+                            <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Real_Cliente,2);?>" type="text" class="right validate">
+
                         </div>
                     </div>
                 </div>
@@ -155,27 +162,27 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                         <div id="tb2">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input class="left" value="<?php echo $query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
-                                    <label for="icon_DIR" class="left">DIRECCION</label>
+                                    <label class="left">DIRECCION</label>
+                                    <input disabled class="left" value="<?php echo $query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
                                 </div>
 
                                 <div class="input-field col s6">
-                                    <input id="icon_RUC" class="left" value="<?php echo $query2[0]['RUC']?>" type="text" class=" right validate">
-                                    <label for="icon_RUC" class="left">RUC</label>
+                                    <label class="left">RUC</label>
+                                    <input disabled id="icon_RUC" class="left" value="<?php echo $query2[0]['RUC']?>" type="text" class=" right validate">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s3">
-                                    <input value="C$ <?php echo number_format($query2[0]['CREDITO'],2);?>" id="icon_DateInit" type="text" class="right validate">
-                                    <label for="icon_CREDITO" class="left">CREDITO</label>
+                                    <label class="left">CREDITO</label>
+                                    <input disabled value="C$ <?php echo number_format($query2[0]['CREDITO'],2);?>" id="icon_DateInit" type="text" class="right validate">
                                 </div>
                                 <div class="input-field col s3">
-                                    <input value="C$ <?php echo number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
-                                    <label for="icon_SALDO" class="left">SALDO</label>
+                                    <label class="left">SALDO</label>
+                                    <input disabled value="C$ <?php echo number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="icon_DISPONIBLE" value="C$ <?php echo number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
-                                    <label for="icon_DISPONIBLE" class="left">DISPONIBLE</label>
+                                    <label class="left">DISPONIBLE</label>
+                                    <input disabled id="icon_DISPONIBLE" value="C$ <?php echo number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
                                 </div>
 
                             </div>
@@ -194,12 +201,18 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
 <div id="outCall" class="modal">
     <div class="modal-content"><br>
         <div class="row center">
-            <span class="titulosModales">RESULTADO DE LLAMADA</span>
+            <span class="titulosModales">RESULTADO DE LLAMADA</span></span><br>
+            <span class="">DURACION: <span id="lblDuracion">00:00:00</span></span>
         </div>
         <form id="formNuevoUsuario" action="<?PHP echo base_url('index.php/agregarUsuario');?>" method="post" name="formNuevoUsuario">
-            <div class="row">
-                <div class="row">
-                    <div class="input-field offset-l1 col s12 m12 l10 ">
+            <div class="row" >
+                <div class="row" >
+                    <div class="row" >
+
+                        <div class="input-field offset-l1 col s12 m12 l10 " >
+                            <input id="frm_Numero" type="number"  placeholder="Numero de marcado">
+                        </div>
+                    <div class="input-field offset-l1 col s12 m12 l10 " >
                         <select class="chosen-select browser-default" id="frm_TPF">
                             <option value="" disabled selected><span>SELECCIONAR UN RESULTADO</span></option>
                             <?php
@@ -213,16 +226,20 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                         </select>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" >
+                    <div class="input-field offset-l1 col s12 m12 l10 " >
+                        <label class="left">MONTO VENDIDO C$</label>
+                    </div><br><br><br>
+
                     <div class="input-field offset-l1 col s12 m12 l10 ">
-                        <input id="frm_Monto" type="text" class="validate">
-                        <label for="frm_Monto">MONTO VENDIDO</label>
+                        <input id="frm_Monto" type="number" class="validate right" placeholder="ESCRIBA EL MONTO">
+
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field offset-l1 col s12 m12 l10 ">
+                <div class="row" >
+                    <div class="col s3 offset-s9"><label id="aComment">AGREGAR COMENTARIO <i class="material-icons prefix">comment</i></label></div>
+                    <div class="input-field offset-l1 col s12 m12 l10 " id="addComment" style="display: none;">
                         <textarea id="frm_comentario" class="materialize-textarea"></textarea>
-                        <label for="frm_comentario">COMENTARIOS</label>
                 </div>
             </div>
         </form><br><br><br>

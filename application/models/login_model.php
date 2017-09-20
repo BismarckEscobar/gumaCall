@@ -32,6 +32,7 @@ class Login_model extends CI_Model
             ));
         }
 
+
     }
     private function get_diff($strStart,$strEnd){
         $dteStart = new DateTime($strStart);
@@ -47,16 +48,16 @@ class Login_model extends CI_Model
                 'session_id' => session_id(),
                 'UserName' => $UserName,
                 'Nombre' => $Nombre,
-                'FechaInicio' => date('Y-m-d h:i:s',strtotime($Fecha_inicio)),
+                'FechaInicio' => date('Y-m-d H:i:s',strtotime($Fecha_inicio)),
                 'Tipo' => 'PAUSA'
             ));
         }else{
             $Tiempo_Total = $this->get_diff($Fecha_inicio,$Fecha_fin);
             $this->db->where('session_id', session_id());
             $this->db->where('Tipo', 'PAUSA');
-            $this->db->where('FechaInicio', date('Y-m-d h:i:s',strtotime($Fecha_inicio)));
+                $this->db->where('FechaInicio', date('Y-m-d H:i:s',strtotime($Fecha_inicio)));
             $this->db->update('usuario_registros', array(
-                'FechaFinal' => date('Y-m-d h:i:s',strtotime($Fecha_fin)),
+                'FechaFinal' => date('Y-m-d H:i:s',strtotime($Fecha_fin)),
                 'Tiempo_Total' => $Tiempo_Total
             ));
         }
