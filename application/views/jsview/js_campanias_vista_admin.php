@@ -116,6 +116,35 @@
         return val;
     }
 
+function cambiaEstadoCamp(numCampania, nuevoEstado) {
+    swal({
+        text: "¿Esta seguro de querer cambiar el estado de la campaña?",
+        type: 'warning',
+        showCloseButton: true,
+        confirmButtonColor: '#f44336',
+        confirmButtonText: 'ACEPTAR',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+    }).then(function() {
+        $.ajax({
+            url: "cambiarEstadoCamp/" + numCampania + "/" + nuevoEstado,
+            type: "post",
+            async: true,
+            success: function(data) {
+                if(data=="true") {
+                    swal({
+                        title: "Actualizado con éxito",
+                        type: "success",
+                        confirmButtonText: "CERRAR",
+                    }).then(
+                        function() { location.reload(); }
+                    )
+                }                
+            }
+        });
+    })
+}
+
     function graficas() {
         Highcharts.chart('container-grafica', {
             chart: {
@@ -126,13 +155,29 @@
             },
             xAxis: {
                 //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date'
+                }
             },
             series: [{
                 name: 'META',
-                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                data:[
+                    [Date.UTC(2017, 09, 18), 1],
+                    [Date.UTC(2017, 09, 19), 2.3],
+                    [Date.UTC(2017, 09, 20), 2.0]
+                ]
                 }, {
                 name: 'REAL',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                data: [
+                    [Date.UTC(2017, 09, 18), 0.5],
+                    [Date.UTC(2017, 09, 19), 1.6],
+                    [Date.UTC(2017, 09, 20), 1.9]
+                    ]
                 }]
         });     
     }

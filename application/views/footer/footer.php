@@ -1,5 +1,5 @@
 
-<div style="font-family:arial;  text-align: center; margin-left: 200px; padding: 10px 10px;">
+<div id="footer-f">
     <?php echo "Copyright © GCIT ".date("Y")." Todos los Derechos Reservados."?>
 </div>
 <!--Import jQuery before materialize.js-->

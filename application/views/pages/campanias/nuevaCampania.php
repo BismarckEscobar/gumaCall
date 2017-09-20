@@ -26,7 +26,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m12">
-                                  <?php echo '<input id="codigoCampania" type="text" class="validate mayuscula" value="'.$ultNoCampania.'">' ?>                                  
+                                  <?php echo '<input id="codigoCampania" type="text" name="codigoCampania" class="validate mayuscula" value="'.$ultNoCampania.'">' ?>                                  
                                   <label for="codigoCampania">N° DE CAMPAÑA</label>
                                 </div>                                
                             </div>
@@ -93,7 +93,7 @@
                                     <tr>
                                         <td style="display:none;">'.$key['IdUser'].'</td>
                                         <td style="width:10px">                                                    
-                                            <input type="checkbox" checked="checked" class="filled-in" name="chkUser'.$key['IdUser'].'" id="chkUser'.$key['IdUser'].'" value="'.$key['IdUser'].'"/>
+                                            <input type="checkbox" class="filled-in" name="chkUser'.$key['IdUser'].'" id="chkUser'.$key['IdUser'].'" value="'.$key['IdUser'].'"/>
                                             <label for="chkUser'.$key['IdUser'].'"></label>
                                         </td>
                                         <td style="text-align: left;">
@@ -102,7 +102,6 @@
                                     </tr>';
                                 }
                             }
-
                         ?>                            
                         </tbody>
                     </table>

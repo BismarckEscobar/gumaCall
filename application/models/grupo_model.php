@@ -83,7 +83,7 @@ class Grupo_model extends CI_Model {
     public function listandoVendedoresAct($idGrupo) {
         $i = 0;
         $json = array();
-        $query = $this->db->query('SELECT * FROM usuario WHERE Rol ="1" AND ACTIVO = 1');
+        $query = $this->db->query('SELECT * FROM usuario WHERE Rol=1 AND ACTIVO = 1 AND IdUser NOT IN(SELECT ID_Vendedor FROM grupo_asignacion WHERE idGrupo='.$idGrupo.')');
             if ($query->num_rows()>0) {
                 foreach ($query->result_array() as $key) {
                     $json['data'][$i]['IDUSUARIO'] = $key['IdUser'];
@@ -91,8 +91,70 @@ class Grupo_model extends CI_Model {
                     $json['data'][$i]['NOMBRE'] = $key['Nombre'];
                     $i++;
                 }
+            }else {
+                $json['data'][$i]['IDUSUARIO'] = '';
+                $json['data'][$i]['RUTA'] = '';
+                $json['data'][$i]['NOMBRE'] = '';
             }
         echo json_encode($json);
+    }
+
+    public function listandoVendedoresAgregados($idGrupo) {
+        $i = 0;
+        $json = array();
+        $query = $this->db->query('SELECT * FROM usuario WHERE Rol=1 AND ACTIVO = 1 AND IdUser IN(SELECT ID_Vendedor FROM grupo_asignacion WHERE idGrupo='.$idGrupo.')');
+            if ($query->num_rows()>0) {
+                foreach ($query->result_array() as $key) {
+                    $json['data'][$i]['IDUSUARIO'] = $key['IdUser'];
+                    $json['data'][$i]['VENDEDOR'] = $key['Usuario'];
+                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                    $i++;
+                }
+            }else {
+                $json['data'][$i]['IDUSUARIO'] = '';
+                $json['data'][$i]['VENDEDOR'] = 'No hay datos';
+                $json['data'][$i]['NOMBRE'] = '';
+            }
+        echo json_encode($json);
+    }
+
+    public function guardarInfoGrupo($dataGrupo) {
+        $datos = explode(",", $dataGrupo[0]);
+        $this->db->where('IdGrupo',$datos[0]);
+        $this->db->delete('grupo_asignacion');
+        for ($i = 0; $i <count($dataGrupo); $i++) {
+            $datos = explode(",", $dataGrupo[$i]);
+            if ($datos[1]) {            
+                $data = array(
+                    'IdGrupo' => $datos[0],
+                    'ID_Vendedor' => $datos[1],
+                    'fechaCreacion' => date("Y-m-d"),
+                    'ID_User' => 1                                
+                );
+                $query = $this->db->insert('grupo_asignacion',$data);
+            }
+        }
+        echo $query;
+    }
+
+    public function actualizarInfoGrupo($idGrupo,$nombreGrupo,$responsable,$estado) {        
+        if ($estado!=true) {
+            $estado=0;
+        }
+        if ($responsable=="") {
+            $data=array(
+                'NombreGrupo'=>$nombreGrupo,
+                'Estado'=>$estado
+            );
+        }else {
+            $data=array(
+                'NombreGrupo'=>$nombreGrupo,
+                'IdResponsable'=>$responsable,
+                'Estado'=>$estado
+            );
+        }
+        $this->db->where('IdGrupo', $idGrupo);
+        $result=$this->db->update('grupos', $data);
     }
 }
 ?>

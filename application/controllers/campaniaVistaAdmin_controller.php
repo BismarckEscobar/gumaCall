@@ -7,8 +7,8 @@ class CampaniaVistaAdmin_controller extends CI_Controller
         parent::__construct();
         $this->load->library('session');
 
-        require_once(APPPATH.'libraries/Excel/reader.php');
-        require_once(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php'); 
+        include(APPPATH.'libraries/Excel/reader.php');
+        include(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php');
 
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');
@@ -16,17 +16,19 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     }
 
     public function listadoCampanias() {
+        $data['listaCampanias'] = $this->campaniaVistaAdmin_model->listarCampaniasActivas();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/campanias_vista_admin');
+        $this->load->view('pages/campanias/campanias_vista_admin', $data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_campanias_vista_admin');
     }
 
-    public function detalle_vista_admin() {
+    public function detalle_vista_admin($numCampania) {
+        $data['campaniaInfo'] = $this->campaniaVistaAdmin_model->campaniaInfo($numCampania);
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/campanias/detallescampVA');
+        $this->load->view('pages/campanias/detallescampVA', $data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_campanias_vista_admin');
     }
@@ -42,8 +44,10 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     }
 
     public function subirExcelCampanias(){
+        $numCampania=$this->input->post('codigoCampania');
         $dataCliente=array(); $temp=array();
         $tmp = explode('.', $_FILES['dataExcel']['name']);
+        
         $file_extension = end($tmp);
 
         if ($file_extension=="xlsx") {
@@ -55,9 +59,9 @@ class CampaniaVistaAdmin_controller extends CI_Controller
                 $arrayData[$worksheet->getTitle()] = $worksheet->toArray();
                 for ($i=0; $i < count($worksheet->toArray()); $i++) {
                     if ($i>0) {
-                        $dataCliente[$i]['ID_Campannas'] = $worksheet->toArray()[$i][0];
-                        $dataCliente[$i]['ID_Cliente'] = $worksheet->toArray()[$i][1];
-                        $dataCliente[$i]['Meta'] = $worksheet->toArray()[$i][2];
+                        $dataCliente[$i]['ID_Campannas'] = $numCampania;
+                        $dataCliente[$i]['ID_Cliente'] = $worksheet->toArray()[$i][0];
+                        $dataCliente[$i]['Meta'] = $worksheet->toArray()[$i][1];
                     }
                 }                        
             }
@@ -72,9 +76,9 @@ class CampaniaVistaAdmin_controller extends CI_Controller
 
             $Cuenta = (@ereg_replace("[^0-9]", "", $data->sheets[0]['cells'][$i][1]));
                 if ($Cuenta<>0){
-                    $dataCliente[$i]['ID_Campannas'] = $data->sheets[0]['cells'][$i][1];
-                    $dataCliente[$i]['ID_Cliente']  = $data->sheets[0]['cells'][$i][2];
-                    $dataCliente[$i]['Meta'] = $data->sheets[0]['cells'][$i][3];
+                    $dataCliente[$i]['ID_Campannas'] = $numCampania;
+                    $dataCliente[$i]['ID_Cliente']  = $data->sheets[0]['cells'][$i][1];
+                    $dataCliente[$i]['Meta'] = $data->sheets[0]['cells'][$i][2];
                 }                
             }
             $this->campaniaVistaAdmin_model->guardarCampaniaCliente($dataCliente, 2);
@@ -82,7 +86,14 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     }
 
     public function guardandoData() {
-        $this->campaniaVistaAdmin_model->guardandoNuevaCampania($this->input->post('agentes'),$this->input->post('dataCampania'));
+        $result=$this->campaniaVistaAdmin_model->guardandoNuevaCampania($this->input->post('agentes'),$this->input->post('dataCampania'));
+        if ($result) {
+            $this->campaniaVistaAdmin_model->incrementarLlave();
+        }       
+    }
+
+    public function cambiandoEstadoCamp($numCampania, $nuevoEstado) {
+        $this->campaniaVistaAdmin_model->actualizandoEstado($numCampania, $nuevoEstado);
     }
 }
 ?>

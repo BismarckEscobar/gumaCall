@@ -7,8 +7,7 @@ class Campania_controller extends CI_Controller
         parent::__construct();
         $this->load->library('session');
 
-        require_once(APPPATH.'libraries/Excel/reader.php');
-        require_once(APPPATH.'libraries/PHPExcel/Classes/PHPExcel.php'); 
+
 
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');

@@ -12,6 +12,7 @@
         </div>
     </div>
 </header>
+<!--  CONTENIDO PRINCIPAL -->
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="contenedor">
         <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">LISTADO DE CAMPAÑAS</div></div>
@@ -36,39 +37,72 @@
                 </tr>
                 </thead>
                 <tbody class="center">
-                <tr>
-                    <td><a href="detallesVA">0503</a></td>
-                    <td>
-                        <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                        <label for="filled-in-box"></label>
-                    </td>
-                    <td>
-                        <span>PROMOCION RAMOS ADOSTO 2017</span>
-                    </td>
-                    <td>
-                        <span>01/08/2017</span>
-                    </td>
-                    <td>
-                        <span>15/08/2017</span>
-                    </td>
-                    <td>
-                        <span>PROCESANDO</span>
-                    </td>
-                    <td>
-                        <span>C$ 100,000</span>
-                    </td>
-                    <td>
-                        <span>C$ 3,000</span>
-                    </td>
-                    <td>
-                        <span>LOREM IPSUM</span>
-                    </td>
-                </tr>
+                <?php 
+                    if ($listaCampanias) {
+                        foreach ($listaCampanias as $key) {
+                            if ($key['Activo']==1) {
+                                $chk="<input type='checkbox' checked='checked' class='filled-in' id='chkActivo".$key['ID_Campannas']."'>";
+                            }else {
+                                $chk="<input type='checkbox' class='filled-in' id='chkActivo".$key['ID_Campannas']."'>";
+                            }
 
+                            if ($key['Estado']==1) {
+                                $estado='Activa';
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
+                            }elseif ($key['Estado']==2) {
+                                $estado='Inactiva';
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
+                            }elseif ($key['Estado']==3) {
+                                $estado='Aprobadada';
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
+                            }elseif ($key['Estado']==4) {
+                                $estado='Procesando';
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>";
+                            }
+                            echo"
+                            <tr>
+                                <td><a href='detallesVA/".$key['ID_Campannas']."'>".$key['ID_Campannas']."</a> </td>
+                                <td>".$chk."
+                                    <label for='chkActivo".$key['ID_Campannas']."'></label>
+                                </td>
+                            <td>
+                                <span>".$key['Nombre']."</span>
+                            </td>
+                            <td>
+                                <span>".date('d-m-Y', strtotime($key['Fecha_Inicio']))."</span>
+                            </td>
+                            <td>
+                                <span>".date('d-m-Y', strtotime($key['Fecha_Cierre']))."</span>
+                            </td>
+                            <td>
+                              <a class='dropdown-button' href='#' data-activates='dropdown1".$key['ID_Campannas']."'>".$estado."</a>
+                              <ul id='dropdown1".$key['ID_Campannas']."' class='dropdown-content ul-dr'>
+                                ".$status."
+                              </ul>
+                            </td>
+                            <td>
+                                <span>C$ ".number_format($key['Meta'],2)."</span>
+                            </td>
+                            <td>
+                                <span>C$ ".number_format($key['monto'],2)."</span>
+                            </td>
+                            <td>
+                                <span>".$key['Observaciones']."</span>
+                            </td>
+                            </tr>";
+                        }
+                    }
+                ?>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
-</div>
-</div>

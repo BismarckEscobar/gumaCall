@@ -438,6 +438,14 @@ table th {
     text-transform: uppercase;
     font-weight: 500;
 }
+.title-w {
+    font-family: 'robotoregular';
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left: 200px;
+}
 .ColorHeader{
     background: #263369;
     color: #fff;
@@ -645,12 +653,24 @@ label>select {
   padding: 0px;
   position:relative;
 }
+#footer-f {
+  font-family:arial;
+  text-align: center;
+  margin-left: 200px;
+  padding: 10px 10px;
+}
 @media only screen and (max-width: 1020px) {
 .container_reloj {
   width: 100%;
   }
+  .title-w {
+    margin-left: 0;    
+  }
   .footer_load {
     width: 100%;
+  }
+  #footer-f {
+    margin-left: 0;
   }
 }
 /*FIN DE ESTILOS PARA RELOJ*/
@@ -685,6 +705,7 @@ label>select {
 }
 .content-rows-right {
   width: 50%;
+  min-height: 20px;
   float: right;
   padding: 5px 5px;
 }
