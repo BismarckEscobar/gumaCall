@@ -35,9 +35,9 @@
                            <li href="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
                 break;
                 case '1':
-                  $menu = '<li><a href="campanias" ><i class="material-icons">exit_to_app</i> mis campañas</a></li>
+                  $menu = '<li id="mnCamp"><a href="campanias" ><i class="material-icons">shopping_cart</i> mis campañas</a></li>
                            <li><a href="#" id="ID_Cerrar" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>
-                           <li><a href="#" ><i class="material-icons">exit_to_app</i> Acerca de</a></li>';
+                           <li><a href="#" ><i class="material-icons">info</i> Acerca de</a></li>';
 
                 break;
 

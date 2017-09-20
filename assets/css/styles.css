@@ -36,6 +36,18 @@
 
 }
 @font-face {
+    font-family: 'robotocondensed';
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-Bold.ttf') format('truetype'),
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-BoldItalic.ttf') format('truetype'),
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-Italic.ttf') format('truetype'),
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-Light.ttf') format('truetype'),
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-LightItalic.ttf') format('truetype'),
+    url('/gumacall/assets/fonts/roboto/RobotoCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
     font-family: 'robotoregular';
     src: url('/gumacall/assets/fonts/Robot/roboto-regular-webfont.eot');
     src: url('/gumacall/assets/fonts/Robot/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -47,6 +59,7 @@
     font-style: normal;
 }
 .footer{
+    font-family: robotoregular;
    position: fixed;
     bottom: 0;
     z-index: 100;
@@ -107,6 +120,9 @@
 }
 #informeFactura{
   height:  50%!important;
+}
+.mdl-color--blue-grey-900 {
+    background-color: #1F3C8F!important;
 }
 .demo-layout .demo-header .mdl-textfield .mdl-textfield__expandable-holder {
   bottom: 19px;
@@ -320,7 +336,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     margin-top: 35px;
 }
 #contenedorL{
-    background: url('/gumacall/assets/img/hwebback2.png')  #263369;
+    background: url('/gumacall/assets/img/hwebback2.png')  #1F3C8F;
 }
 #nombre{
     font-family: 'robotoblack';
@@ -398,18 +414,19 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 /****** Tabla zebra ********/
 table tr:nth-child(even) {
+    font-family:'robotoregular';
     background-color: #ffffff;
 }
 table tr:nth-child(odd) {
+    font-family:'robotoregular';
     background-color: #e7e2f7;
 }
 
 table th {
-    background: #1F0A71;
+    background: #13479a;
     color: #fff;
     font-size: 14px;
-    font-family: 'robotobold';
-}
+    font-family:'robotoregular';}
 .labelValidacion{
   position: static!important;
   color: red!important;
@@ -429,6 +446,7 @@ table th {
 /*TITULOS_SUPERIORES: STYLE PARA TITULOS SUPERIORES DE CADA PAGINA*/
 .title span{
   margin-top: 80px;
+
 }
 .title{
     font-family: 'robotoregular';
@@ -447,11 +465,14 @@ table th {
     margin-left: 200px;
 }
 .ColorHeader{
-    background: #263369;
+    background: #1F3C8F;
     color: #fff;
     margin-top: 20px;
     text-align: center;
     font-family: 'robotoregular'
+}
+.mdl-layout__header {
+    background: #1F3C8F;
 }
 /*FIN DE TITULOS_SUPERIORES*/
 
@@ -484,6 +505,19 @@ table th {
     font-family: 'robotomedium';
     font-weight: 500;
     font-size: 12px;
+    transition: 0.5s;
+}
+.BtnKronos
+{
+    line-height: 68px;
+    text-align: center;
+    border-radius: 4px;
+    background: #1E824C;
+    font-family: 'robotomedium';
+    font-weight: 500;
+    font-size: 24px;
+    height: 68px;
+    width: 200px;
     transition: 0.5s;
 }
 
@@ -664,8 +698,11 @@ label>select {
   width: 100%;
   }
   .title-w {
-    margin-left: 0;    
+    margin-left: 0;
   }
+    .title-w span{
+        text-transform: uppercase;
+    }
   .footer_load {
     width: 100%;
   }
@@ -746,7 +783,31 @@ label>select {
 }
 
 .sKronos{
-    font-size: 33px;
+    font-size: 60px;
     font-family:'robotoregular';
     color: #363431;
+}
+
+.tabs .tab a.active{
+    font-family:'robotoregular';
+    color: #fff;
+    background: #1F3C8F;
+}
+
+.tabs .tab a{
+    font-family:'robotoregular';
+    color: #000;
+}
+input[type=text],input[disabled]{
+    font-family:'robotoregular';
+    border-bottom: 1px solid #000!important;
+}
+.Titulo_frm_nombrecliente{
+    font-family: 'robotoregular';
+    font-size: 20px;
+    border-bottom: 1px solid #000!important;
+
+}
+chosen-single a{
+    color: black;
 }

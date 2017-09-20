@@ -18,7 +18,7 @@
 
         <span id="USI"><?php echo $this->session->userdata('UserN');?></span>
         <span id="USN"><?php echo $this->session->userdata('UserName');?></span>
-        <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">mis campañas asignadas</div></div>
+        <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">MIS CAMPAÑAS ASIGNADAS</div></div>
         <div class="row" id="monitoreo1">
             <table id="tblcampanias" class="TblData">
                 <thead>

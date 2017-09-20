@@ -17,7 +17,7 @@ $UID =(!$My_camp_Clientes[0]['ID_Cliente']) ? 0 :$My_camp_Clientes[0]['ID_Client
 $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
 ?>
 <header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class=" title">N° <span id="spCamp"><?php echo $ID ?></span> - <?php echo $Nombre ?></span>
+    <div class="row center ColorHeader"><span class="title-w">N° <span id="spCamp"><?php echo $ID ?></span> - <?php echo $Nombre ?></span>
         <div class="container_reloj">
             <div class="clock">
                 <ul class="ul_r">
@@ -66,7 +66,8 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                 </div>
                 <div class="card hoverable" >
                     <div class="card-content">
-                        <span class="card-title left">MENSAJE</span><br><br><br>
+
+                        <div class="row" style="border-bottom: 1px solid #000!important;"><span class="card-title left" >MENSAJE:</span></div>
                         <div class="row" style="text-align: left">
                             <p>
                                 <?php echo $Mensaje?>
@@ -76,8 +77,11 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                 </div>
                 <div class="card hoverable">
                 <div class="card-content">
-                        <span class="card-title center"><span id="clienteLlamado"><?php echo $UID ?></span> - <?php echo $UNA ?></span><br><br><br>
-                    <div class="row">
+                    <div class="row Titulo_frm_nombrecliente left">
+                        <span id="clienteLlamado"><?php echo $UID ?></span> - <?php echo $UNA ?>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px">
                         <div class="input-field col s3">
                             <label class="left">TELEFONO 1</label>
                             <input disabled value="<?php echo $T1?>" id="icon_DateInit" type="text" class="center validate">
@@ -109,7 +113,7 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                 <div class="card-content">
                     <div class="row valign-wrapper">
                         <div class="col s6" >
-                            <a href="#" id="btn-comenzar" class="BtnBlue waves-effect btn modal-trigger">INICIAR</a>
+                            <a href="#" id="btn-comenzar" class="BtnKronos waves-effect btn modal-trigger">INICIAR</a>
                         </div>
                         <div class="col s6 " >
                                <label id="Kronos" class="sKronos center-align">00:00:00:00</label>
