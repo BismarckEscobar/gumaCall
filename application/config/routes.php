@@ -21,11 +21,12 @@ $route['Main'] = 'main_controller';
 //RUTAS CAMPAÑAS
 $route['campanias'] = 'campania_controller';
 $route['campaniasVA'] = 'campaniaVistaAdmin_controller/listadoCampanias';
-$route['detallesVA'] = 'campaniaVistaAdmin_controller/detalle_vista_admin';
+$route['detallesVA/(:any)'] = 'campaniaVistaAdmin_controller/detalle_vista_admin/$1';
 $route['crearCampania'] = 'campaniaVistaAdmin_controller/nuevaCampania';
 $route['guardarClienteCampania'] = 'campaniaVistaAdmin_controller/subirExcelCampanias';
 $route['guardarDataCampania'] = 'campaniaVistaAdmin_controller/guardandoData';
 $route['Guardar_llamada'] = 'campania_controller/guardar_llamada';
+$route['cambiarEstadoCamp/(:any)/(:any)'] = 'campaniaVistaAdmin_controller/cambiandoEstadoCamp/$1/$2';
 
 $route['detalles'] = 'campania_controller/detalles_camp/';
 $route['cCliente'] = 'campania_controller/get_info_cliente';
@@ -40,6 +41,7 @@ $route['cambiarEstado/(:any)/(:any)'] = 'Usuario_controller/cambiarEstado/$1/$2'
 //RUTAS GRUPOS
 $route['grupos'] = 'grupos_controller';
 $route['gestionarGrupo'] = 'grupos_controller/gestionandoGrupo';
+$route['nuevoGrupo'] = 'grupos_controller/guardarNuevoGrupo';
 $route['buscarGrupo/(:any)'] = 'grupos_controller/buscandoGrupo/$1';
 //FIN DE RUTAS GRUPOS
 
@@ -50,5 +52,7 @@ $route['Monitoreo'] = 'Monitoreo_controller';
 
 //RUTAS GRUPOS VISTA ADMINISTRADOR
 $route['listarVendedoresAct/(:any)'] = 'grupos_controller/listarVendedoresAct/$1';
+$route['listarVendedoresAgregados/(:any)'] = 'grupos_controller/listarVendedoresAgregados/$1';
 $route['dataCampaniaNueva'] = 'campania_controller/subirExcelCampanias';
+$route['guardandoEdicionGrupo'] ='grupos_controller/agregandoInfoGrupo';
 //FIN DE RUTAS GRUPOS

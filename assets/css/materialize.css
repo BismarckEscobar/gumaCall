@@ -5083,7 +5083,7 @@ button.btn-floating {
   will-change: width, height;
 }
 
-.dropdown-content li {
+/*.dropdown-content li {
   clear: both;
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
@@ -5092,7 +5092,7 @@ button.btn-floating {
   width: 100%;
   text-align: left;
   text-transform: none;
-}
+}*/
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
   background-color: #e7e1fe;
@@ -5108,14 +5108,12 @@ button.btn-floating {
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-  font-size: 13px;
+  font-size: 15px;
   color: #022a43;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
   font-family: 'robotomedium';
-  padding: 0px;
-  text-transform: uppercase;
 }
 
 .dropdown-content li > span > label {

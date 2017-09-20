@@ -5,17 +5,58 @@ class campaniaVistaAdmin_model extends CI_Model {
         parent::__construct();
     }
 
+    public function listarCampaniasActivas() {
+    	$dataFinal=array();$montoTemp=0;
+    	$result=$this->db->get('campanna');
+
+    	if ($result->num_rows()>0) {
+    		foreach ($result->result_array() as $key) {
+    			$temp=$key['ID_Campannas'];
+
+    			$this->db->where('ID_Campannas', $temp);
+    			$this->db->select_sum('Monto');
+    			$monto=$this->db->get('campanna_registros');
+
+    			if ($monto->result_array()[0]['Monto']!="") {
+    				$montoTemp=$monto->result_array()[0]['Monto'];
+    			}elseif ($monto->result_array()[0]['Monto']=="") {
+    				$montoTemp=0;
+    			}
+    			$data=array(
+    				'ID_Campannas'=>$key['ID_Campannas'],
+    				'Nombre'=>$key['Nombre'],
+    				'Fecha_Inicio'=>$key['Fecha_Inicio'],
+    				'Fecha_Cierre'=>$key['Fecha_Cierre'],
+    				'Estado'=>$key['Estado'],
+    				'Activo'=>$key['Activo'],
+    				'Meta'=>$key['Meta'],
+    				'Observaciones'=>$key['Observaciones'],
+    				'Mensaje'=>$key['Mensaje'],
+    				'monto'=>$montoTemp
+    			);
+    			$dataFinal[]=$data;
+    		}
+    		return $dataFinal;
+    	}else {
+    		return false;
+    	}
+    }
+
+    public function campaniaInfo($numCampania) {
+    	
+    }
+
     public function ultimoNoCampania() {
     	$temp="";$verifica=false;
-    	$this->db->select('id_campannas');
+    	$this->db->select('valor');
     	$this->db->limit(1);
-    	$this->db->order_by("fecha_creacion", "desc");
-    	$idCampania=$this->db->get('campanna');
+    	$this->db->order_by("valor", "desc");
+    	$idCampania=$this->db->get('llaves');
 
     	if ($idCampania->num_rows()>0) {    		
-    		$temp=$idCampania->result_array()[0]['id_campannas'];
-    		$temp = explode("-",$temp);
-    		$temp = $temp[1] + 1;
+    		$temp=$idCampania->result_array()[0]['valor'];
+    		
+    		$temp = $temp + 1;
 
 			while($verifica == false) {
 	    		switch ($temp) {
@@ -35,36 +76,8 @@ class campaniaVistaAdmin_model extends CI_Model {
 	   					$temp='CP-'.$temp;
 	   					break;
 	   			}
-
-				$this->db->where('id_campannas', $temp);
-	   			$valida=$this->db->get('campanna');
-
-	   			if ($valida->num_rows()>0) {
-		    		$temp = explode("-",$temp);
-		    		$temp = $temp[1] + 1;
-	   				
-		    		switch ($temp) {
-		    			case strlen($temp) <= 1:
-		    				$temp='CP-'.'0000'.$temp;
-		    				break;
-		    			case strlen($temp) <=2:
-		   					$temp='CP-'.'000'.$temp;
-		   					break;
-		   				case strlen($temp) <=3:
-		   					$temp='CP-'.'00'.$temp;
-		   					break;
-		   				case strlen($temp) <=4:
-		   					$temp='CP-'.'0'.$temp;
-		   					break;
-		   				case strlen($temp) <=5:
-		   					$temp='CP-'.$temp;
-		   					break;
-		   			}
-	   				$verifica=false;
-	   			}else {
-	   				$verifica=true;
-	   				return $temp;
-	   			}
+	   			$verifica=true;
+	   			return $temp;
 	   		}
     	}else {
     		return false;
@@ -79,7 +92,7 @@ class campaniaVistaAdmin_model extends CI_Model {
 						'ID_Cliente' => $array[$i]['ID_Cliente'],
 						'Meta' => $array[$i]['Meta']
 					);
-				$query = $this->db->insert('campanna_cliente', $data);		
+				$query = $this->db->insert('campanna_cliente', $data);	
 			}
 			redirect('campaniasVA','refresh');
     	}elseif ($opc==2) {
@@ -92,6 +105,26 @@ class campaniaVistaAdmin_model extends CI_Model {
 				$query = $this->db->insert('campanna_cliente', $data);							
 			}
 			redirect('campaniasVA','refresh');
+    	}
+	}
+
+	public function incrementarLlave() {
+    	$this->db->select('valor');
+    	$this->db->limit(1);
+    	$this->db->order_by("valor", "desc");
+    	$llave=$this->db->get('llaves');
+
+    	if ($llave->num_rows()>0) {
+    		$temp=$llave->result_array()[0]['valor'];
+
+    		$temp = $temp + 1;
+
+    		$data = array(
+    			'concepto' => 'Campaña',
+    			'valor' => $temp
+    		);
+
+    		$this->db->insert('llaves', $data);
     	}
 	}
 
@@ -136,11 +169,26 @@ class campaniaVistaAdmin_model extends CI_Model {
 				$result=$this->db->insert('campanna_asignacion', $temp);
 			}
 		}
-		if ($result!=0) {
-				echo json_encode(true);
-		}else {
+		if ($result) {			
+			echo json_encode(true);
+		}else {			
 			echo json_encode('0');
 		}
+		return $result;
+	}
+
+	public function actualizandoEstado($numCampania, $estado) {
+		$data = array(
+			'Estado'=>$estado
+		);
+		$this->db->where('ID_Campannas', $numCampania);
+		$result=$this->db->update('campanna', $data);
+
+		if ($result) {
+			echo json_encode(true);
+		}
+
+
 	}
 }
 ?>

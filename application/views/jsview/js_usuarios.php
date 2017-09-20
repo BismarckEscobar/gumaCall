@@ -1,6 +1,24 @@
 <script>
 $(document).ready(function() {
     $("#agregarUsuario").click(function() { $("#modalNuevoUsuario").openModal(); });
+    
+    $('#tblUsuario').DataTable({
+        "scrollCollapse": true,
+        "info":    false,            
+        "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS",
+            "paginate": {
+                "first":      "Primera",
+                "last":       "Última ",
+                "next":       "Siguiente",
+                "previous":   "Anterior"                    
+            },
+            "lengthMenu": "MOSTRAR _MENU_",
+            "emptyTable": "NO HAY DATOS DISPONIBLES",
+            "search":     "BUSCAR"
+        }
+    });    
 });
 
 $("#guardarUsuario").click(function(){

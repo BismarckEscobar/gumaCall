@@ -58,8 +58,6 @@
         </div>
     </div>
 </main>
-</div>
-</div>
 
 <div id="mTiempoFuera" class="modal">
     <div class="modal-content">

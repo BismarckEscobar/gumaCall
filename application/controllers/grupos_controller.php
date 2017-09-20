@@ -19,11 +19,12 @@ class Grupos_controller extends CI_Controller {
         $this->load->view('jsview/js_grupos');
     }
     public function gestionandoGrupo() {
-        $idGrupo = $this->input->post('idGrupo');
-        $nombreGrupo = $this->input->post('nombreGrupo');
-        $agenteResponsable = $this->input->post('agente');
-        $estado = $this->input->post('grupoEstado');
-        $this->grupo_model->guardarGrupos($idGrupo, $nombreGrupo, $agenteResponsable, $estado);
+        $idGrupo = $this->input->post('idGrupoBD2');
+        $nombreGrupo = $this->input->post('nombreGrupoBD');
+        $agenteResponsable = $this->input->post('agenteBD');
+        $estado = $this->input->post('grupoEstadoBD');
+
+        $this->grupo_model->actualizarInfoGrupo($idGrupo, $nombreGrupo, $agenteResponsable, $estado);
         redirect('grupos','refresh');
     }
     public function buscandoGrupo($idGrupo) {
@@ -32,6 +33,24 @@ class Grupos_controller extends CI_Controller {
 
     public function listarVendedoresAct($idGrupo) {
         $this->grupo_model->listandoVendedoresAct($idGrupo);
+    }
+
+    public function listarVendedoresAgregados($idGrupo) {
+        $this->grupo_model->listandoVendedoresAgregados($idGrupo);
+    }
+
+    public function agregandoInfoGrupo() {
+        $this->grupo_model->guardarInfoGrupo($this->input->post('grupo'));
+    }
+
+    public function guardarNuevoGrupo() {
+        $idGrupo = $this->input->post('idGrupo');
+        $nombreGrupo = $this->input->post('nombreGrupo');
+        $agenteResponsable = $this->input->post('agente');
+        $estado = $this->input->post('grupoEstado');
+
+        $this->grupo_model->guardarGrupos($idGrupo,$nombreGrupo,$agenteResponsable,$estado);
+        redirect('grupos', 'refresh');
     }
 
 }

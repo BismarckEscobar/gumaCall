@@ -4,7 +4,13 @@ $(document).ready(function() {
 
     var pathname = window.location.pathname;
     if (pathname.match(/detallesVA.*/)) {
-        graficas();
+        var pgurl = 'campaniasVA';
+        $("ul li").each(function(){
+            if($(this).attr("href") == pgurl)
+                $(this).addClass("urlActual");
+                $("ul li a").attr("href", "../campaniasVA");
+         })
+        graficas();      
     };
 
     $(function() {
@@ -25,7 +31,7 @@ $(document).ready(function() {
         $('.nav li a:first').addClass("active");
     }
     /*FORMATO PARA TABLAS SIN PAGINACION*/
-    $("#tblAgentes, #tblDetalleCamp, #tblUsuario").DataTable({
+    $("#tblAgentes, #tblDetalleCamp").DataTable({
         "ordering": true,
         "info": false,
         "bPaginate": false,
@@ -48,6 +54,10 @@ $(document).ready(function() {
             }
         }
     });
+});
+
+$('.dropdown-button').click(function() {
+    $(this).dropdown();
 });
 
 /*FUNCION PARA MENSAJE DE CONFIRMACIONES*/
