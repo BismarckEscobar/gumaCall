@@ -1,5 +1,11 @@
 <script>
     $(document).ready(function() {
+        $(function() {
+            $("ul li").each(function(){
+                if($(this).attr("id") == 'monitor')
+                $(this).addClass("urlActual");
+             })
+        });
         Eyes();
     });
     function Eyes(){

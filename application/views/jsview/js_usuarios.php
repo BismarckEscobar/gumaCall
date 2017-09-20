@@ -1,5 +1,12 @@
 <script>
 $(document).ready(function() {
+    
+    $(function() {
+        $("ul li").each(function(){
+            if($(this).attr("id") == 'usuarios')
+            $(this).addClass("urlActual");
+         })
+    });
     $("#agregarUsuario").click(function() { $("#modalNuevoUsuario").openModal(); });
     
     $('#tblUsuario').DataTable({

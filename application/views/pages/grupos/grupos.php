@@ -52,6 +52,7 @@
         </table>
     </div>
 </div>
+
 </main>  
 <!-- MODAL: NUEVO GRUPO-->
 <div id="nuevoGrupoModal" class="modal">
@@ -140,7 +141,7 @@
     </div>
 </div>
 
-<div id="editarGrupoModal" class="modal">
+<div id="editarGrupoModal" class="modal modal-fixed-footer">
     <div class="modal-content"><br>
         <div class="row center">
             <span id="grupo" class="titulosModales"></span>
@@ -152,8 +153,7 @@
                     <div><span class="titulos-tablas-sup">VENDEDORES NO AGREGADOS</span></div>
                     <table id="tblVNA" class="TblData">
                         <thead>
-                            <tr>
-                                <th>UID</th>
+                            <tr>                                
                                 <th>RUTA</th>
                                 <th>NOMBRE</th>
                             </tr>
@@ -184,8 +184,7 @@
                     <div><span class="titulos-tablas-sup">VENDEDORES AGREGADOS</span></div>
                     <table id="tblVA" class="TblData">
                         <thead>
-                            <tr>
-                                <th>UID</th>
+                            <tr>                                
                                 <th>RUTA</th>
                                 <th>NOMBRE</th>
                             </tr>
@@ -207,10 +206,12 @@
             <a id="editarGrupo" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
             <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
+    </div>
+    <div class="modal-footer">
         <div id="editarInfoGrupo" class="fixed-action-btn horizontal">
             <a class="btn-floating btn-large red">
                 <i class="large material-icons">mode_edit</i>
             </a>
         </div>
-    </div>    
+    </div>
 </div>

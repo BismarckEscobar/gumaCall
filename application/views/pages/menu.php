@@ -25,11 +25,11 @@
             <?php
               switch ($this->session->userdata('RolUser')) {
                 case '0':
-                  $menu = '<li href="campaniasVA"><a href="campaniasVA"><i class="material-icons">shopping_cart</i> Campañas</a></li>
+                  $menu = '<li href="#" id="campaniasAdmin"><a href="campaniasVA"><i class="material-icons">shopping_cart</i> Campañas</a></li>
                            <li href="#"><a href="#"><i class="material-icons">group</i> Clientes</a></li>
-                           <li href="usuarios"><a href="usuarios"><i class="material-icons">group</i> Usuarios</a></li>
-                           <li href="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>
-                           <li href="Monitoreo"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
+                           <li href="#" id="usuarios"><a href="usuarios"><i class="material-icons">group</i> Usuarios</a></li>
+                           <li href="#" id="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>
+                           <li href="#" id="monitor"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
                            <li href="#"><a href="#"><i class="material-icons">pie_chart</i> Reportes</a></li>                                        
                            <li href="#"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
                            <li href="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
