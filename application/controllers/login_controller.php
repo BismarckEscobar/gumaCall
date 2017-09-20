@@ -12,18 +12,24 @@ class Login_controller extends CI_Controller
     }
 
     public function index(){
-        $this->load->view('header/header_login');
-        $this->load->view('login/login');
-        $this->load->view('footer/footer_login');
+      if($this->session->userdata('logged')==0){
+            $this->load->view('header/header_login');
+            $this->load->view('login/login');
+            $this->load->view('footer/footer_login');
+        }else{
+            redirect('Main');
+        }
+
     }
 
     public function Salir(){
-        $this->login_model->libro_de_registro(
+
+            $this->login_model->libro_de_registro(
             $this->session->userdata('id'),
             $this->session->userdata('UserN'),
             $this->session->userdata('UserName'),
             $this->session->userdata('FechaAcceso'),
-            date('Y-m-d h:i:s'),
+            date('Y-m-d H:i:s'),
             'OFF');
 
 
@@ -65,7 +71,7 @@ class Login_controller extends CI_Controller
                     'UserN' => $data['user'][0]['Usuario'],
                     'UserName' => $data['user'][0]['Nombre'],
                     'RolUser'=>$data['user'][0]['Rol'],
-                    'FechaAcceso'=>date('Y-m-d h:i:s'),
+                    'FechaAcceso'=>date('Y-m-d H:i:s'),
                     'logged' => 1
                 );
                 $this->session->set_userdata($sessiondata);
@@ -74,9 +80,8 @@ class Login_controller extends CI_Controller
                     $this->session->userdata('id'),
                     $this->session->userdata('UserN'),
                     $this->session->userdata('UserName'),
-
                     $this->session->userdata('FechaAcceso'),
-                    date('Y-m-d h:i:s'),
+                    date('Y-m-d H:i:s'),
                 'IN');
 
                 if($this->session->userdata){
