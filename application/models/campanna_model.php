@@ -20,6 +20,7 @@ class Campanna_model extends CI_Model
         if ($query->num_rows()>0) {
             return $query->result_array()[0]['MONTO_REAL'];
         }
+        return 0;
 
     }
     public function getRealCliente($CID,$UID){
@@ -33,13 +34,24 @@ class Campanna_model extends CI_Model
 
     }
     public function My_Campannas_Header($id){
+        $cmp = array();
+        $c=0;
         $this->db->limit(1);
         $this->db->where('ID_Campannas',$id);
-        $Querry_Campanna = $this->db->get('View_campannas_info');
+        $Querry_Campanna = $this->db->get('campanna');
         if($Querry_Campanna->num_rows() > 0){
-            return $Querry_Campanna->result_array();
+            foreach ( $Querry_Campanna->result_array() as $Cmp){
+                $cmp[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
+                $cmp[$c]['Nombre'] = $Cmp['Nombre'];
+                $cmp[$c]['Mensaje'] = $Cmp['Mensaje'];
+                $cmp[$c]['Fecha_Inicio'] = $Cmp['Fecha_Inicio'];
+                $cmp[$c]['Fecha_Cierre'] = $Cmp['Fecha_Cierre'];
+                $cmp[$c]['Meta'] = $Cmp['Meta'];
+                $cmp[$c]['MONTO_REAL'] = $this->getRealCamp($Cmp['ID_Campannas']);
+                $c++;
+            }
         }
-        return 0;
+        return $cmp;
 
     }
     public function My_Campannas_Clientes($id){
@@ -68,11 +80,12 @@ class Campanna_model extends CI_Model
     public function HstCompra_3M($CL){
         $i=0;
         $json = array();
-        $iCliente = $this->sqlsrv->fetchArray("SELECT * FROM GMV_hstCompra_3M WHERE Cliente='".$CL."' ",SQLSRV_FETCH_ASSOC);
+
+        $iCliente = $this->sqlsrv->fetchArray("SELECT T0.ARTICULO,T0.DESCRIPCION,CONVERT(VARCHAR,T0.FECHA_FACTURA,105) as FECHA_FACTURA,T0.ARTICULO,SUM(T0.CANTIDAD) AS CANTIDAD FROM vtCC_hstCompra_3M T0 WHERE T0.Cliente='".$CL."' GROUP BY T0.FECHA_FACTURA,T0.ARTICULO,T0.DESCRIPCION",SQLSRV_FETCH_ASSOC);
         foreach($iCliente as $key){
             $json[$i]['ARTICULO']      = $key['ARTICULO'];
             $json[$i]['DESCRIPCION']       = $key['DESCRIPCION'];
-            $json[$i]['FECHA']       = $key['Dia'];
+            $json[$i]['FECHA']       = $key['FECHA_FACTURA'];
             $json[$i]['CANTIDAD']    = number_format($key['CANTIDAD'],0);
             $i++;
         }
@@ -110,33 +123,40 @@ class Campanna_model extends CI_Model
             }
         }
 
-        $this->db->where('Activo',1);
-        $this->db->where_in('ID_Campannas', $MyCmp);
-        $Querry_my_campanna = $this->db->get('campanna');
-        if($Querry_my_campanna->num_rows() > 0){
-            foreach ( $Querry_my_campanna->result_array() as $Cmp){
-                $array_my_campanas[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
-                $array_my_campanas[$c]['Fecha_Inicio'] = $Cmp['Fecha_Inicio'];
-                $array_my_campanas[$c]['Fecha_Cierre'] = $Cmp['Fecha_Cierre'];
-                $array_my_campanas[$c]['Nombre'] = $Cmp['Nombre'];
-                $array_my_campanas[$c]['Meta'] = $Cmp['Meta'];
-                $array_my_campanas[$c]['Real'] = $this->getRealCamp($Cmp['ID_Campannas']);
-                $array_my_campanas[$c]['Observaciones'] = $Cmp['Observaciones'];
-                $c++;
+        if (count($MyCmp)> 0){
+            $this->db->where('Activo',1);
+            $this->db->where_in('ID_Campannas', $MyCmp);
+            $Querry_my_campanna = $this->db->get('campanna');
+            if($Querry_my_campanna->num_rows() > 0){
+                foreach ( $Querry_my_campanna->result_array() as $Cmp){
+                    $array_my_campanas[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
+                    $array_my_campanas[$c]['Fecha_Inicio'] = $Cmp['Fecha_Inicio'];
+                    $array_my_campanas[$c]['Fecha_Cierre'] = $Cmp['Fecha_Cierre'];
+                    $array_my_campanas[$c]['Nombre'] = $Cmp['Nombre'];
+                    $array_my_campanas[$c]['Meta'] = $Cmp['Meta'];
+                    $array_my_campanas[$c]['Real'] = $this->getRealCamp($Cmp['ID_Campannas']);
+                    $array_my_campanas[$c]['Observaciones'] = $Cmp['Observaciones'];
+                    $c++;
+                }
+                return $array_my_campanas;
             }
-            return $array_my_campanas;
         }
+
+
         return 0;
 
     }
-    public function guardar_llamada($Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF)
+    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF)
     {
         $this->db->insert('campanna_registros',array(
+            'Num_CLI' => $num,
             'ID_Usuario' => $this->session->userdata('id'),
             'ID_Campannas' => $Camp,
             'ID_CLIENTE' => $Cliente,
             'Monto' => $Monto,
-            'Tiempo' => $Duracion,
+            'Fecha' => date('Y-m-d'),
+            'Hora' => date('H:i:s'),
+            'Duracion' => $Duracion,
             'Comentarios' => $Comentario,
             'ID_TPF' => $TPF
         ));

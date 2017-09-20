@@ -36,20 +36,21 @@ $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
                             <form class="col s12">
                                 <div class="row">
                                     <div class="input-field col s3">
-                                        <input value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate">
-                                        <label for="icon_DateInit" class="left">FECHA DE INICIO</label>
+                                        <label  class="left">FECHA DE INICIO</label>
+                                        <input disabled value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate">
+
                                     </div>
                                     <div class="input-field col s3">
-                                        <input value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
-                                        <label for="icon_DateInit" class="left">FECHA CIERRE</label>
+                                        <label class="left">FECHA CIERRE</label>
+                                        <input disabled value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
                                     </div>
                                     <div class="input-field col s3">
-                                        <input id="icon_DateEnd" value="C$ <?php echo number_format($Meta,2);?>" type="text" class=" center validate">
-                                        <label for="icon_DateInit" class="left">META ESTIMADA</label>
+                                        <label class="left">META ESTIMADA</label>
+                                        <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Meta,2);?>" type="text" class=" center validate">
                                     </div>
                                     <div class="input-field col s3">
-                                        <input id="icon_DateEnd" value="C$ <?php echo number_format($Monto,2);?>" type="text" class="center validate">
-                                        <label for="icon_DateInit" class="left">REAL</label>
+                                        <label class="left">REAL</label>
+                                        <input disabled id="icon_DateEnd" value="C$ <?php echo number_format($Monto,2);?>" type="text" class="center validate">
                                     </div>
                                 </div>
                             </form>

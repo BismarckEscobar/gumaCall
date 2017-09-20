@@ -42,6 +42,7 @@
 
              },10);
             }else{
+                $("#lblDuracion").text(frm_Kronos.text());
                 $(this).text('INICIAR');
                 clearInterval(Kronos_Run);
                 $('#outCall').openModal({
@@ -50,48 +51,68 @@
 
             }
         });
+
+        $("#aComment").click(function () {
+            if ($("#addComment").attr('style')=='display: none;'){
+                $("#addComment").show('slow');
+            }else{
+                $("#addComment").hide('slow');
+            }
+        });
+
         /*FIN DE CRONOMETRO DE LLAMADA*/
         /*INICIO DE GUARDADO DE LLAMADA*/
         $("#id_Guardar_llamada").click(function(){
-            var cmp = $("#spCamp").html();
-            var Frm_Datos = {
-                Cliente:$("#clienteLlamado").html(),
-                Camp:cmp,
-                TPF: $("#frm_TPF").val(),
-                Monto:  $("#frm_Monto").val(),
-                Coment:  $("#frm_comentario").val(),
-                TimeInCall:frm_Kronos.text()
-            };
+            var Cli   =  $("#clienteLlamado").html();
+            var cmp   =  $("#spCamp").html();
+            var Num   =  $("#frm_Numero").val();
+            var TPF   =  $("#frm_TPF").val();
+            var Monto =  $("#frm_Monto").val();
+            var Comnt =  $("#frm_comentario").val();
 
-            $.ajax({
-                url: "Guardar_llamada",
-                type: "post",
-                async:true,
-                data: Frm_Datos,
-                success:
-                    function(WTF){
-                        if(WTF > 0){
-                            swal({
-                                title: 'Informacion Guardada',
-                                timer: 2000
-                            }).then(
-                                function () {},
-                                // handling the promise rejection
-                                function (dismiss) {
-                                    window.location.href = "detalles?C="+cmp;
-                                }
-                            )
 
-                        }else{
-                            swal({
-                                title: 'Ooopp!!',
-                                text: "Algo salio mal, Contacte al Administrado.",
-                                type: 'warning',
-                                showCancelButton: false
-                            });
+
+            if(TPF == null || Monto=='' || Num==''){
+                swal('Oops...','Hay Informacion sin completar!','error')
+            }else{
+                var Frm_Datos = {
+                    num:Num,
+                    Cliente:Cli,
+                    Camp:cmp,
+                    TPF: TPF,
+                    Monto:  Monto,
+                    Coment: Comnt,
+                    TimeInCall:frm_Kronos.text()
+                };
+
+                $.ajax({
+                    url: "Guardar_llamada",
+                    type: "post",
+                    async:true,
+                    data: Frm_Datos,
+                    success:
+                        function(WTF){
+                            if(WTF > 0){
+                                swal({
+                                    title: 'Informacion Guardada',
+                                    timer: 2000
+                                }).then(
+                                    function () {},
+                                    function (dismiss) {
+                                        window.location.href = "detalles?C="+cmp;
+                                    }
+                                )
+                            }else{
+                                swal({
+                                    title: 'Ooopp!!',
+                                    text: "Algo salio mal, Contacte al Administrado.",
+                                    type: 'warning',
+                                    showCancelButton: false
+                                });
+                            }
                         }
-                    }
-            });
+                });
+            }
         });
         /*FIN DE CRONOMETRO DE LLAMADA*/
 
