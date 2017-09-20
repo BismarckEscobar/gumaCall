@@ -1,4 +1,6 @@
 <script>
+    $("#mnCamp").addClass("urlActual");
+    $("#outCall").openModal();
     $(document).ready(function() {
         var control;
         $("#USN,#USI").hide();
@@ -120,7 +122,7 @@
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
-            "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+            "lengthMenu": [[5,10,20,100,-1], [5,10,20,100,"Todo"]],
             "language": {
                 "zeroRecords": "NO HAY RESULTADOS",
                 "paginate": {
@@ -136,7 +138,6 @@
         });
 
         $("#cModal").click(function() {$("#outCall").openModal();});
-        console.log("Inicia validacion: ");
         if (localStorage.getItem("EnLinea")=== "true" || localStorage.getItem("EnLinea")=== null) {
             localStorage.setItem("FechaInicio", getDate());
             localStorage.setItem("EnLinea", false);

@@ -7,7 +7,7 @@ $Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fe
 $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
 ?>
 <header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class="title-w">campaña detalles</span>
+    <div class="row center ColorHeader"><span class="title-w">CAMPAÑAS DETALLES</span>
         <div class="container_reloj">
             <div class="clock">
                 <ul class="ul_r">
