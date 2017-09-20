@@ -5346,7 +5346,7 @@ a.waves-effect .waves-ripple {
   overflow-y: auto;
 }
 .modal.modal-fixed-footer .modal-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  /*border-top: 1px solid rgba(0, 0, 0, 0.1);*/
   position: absolute;
   bottom: 0;
 }

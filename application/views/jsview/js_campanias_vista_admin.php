@@ -1,5 +1,13 @@
 <script>
 	$(document).ready(function() {
+    
+    $(function() {
+        $("ul li").each(function(){
+            if($(this).attr("id") == 'campaniasAdmin')
+            $(this).addClass("urlActual");
+         })
+    });
+
 		$('#tblcampaniasVA').DataTable({
             "scrollCollapse": true,
             "info":    false,
