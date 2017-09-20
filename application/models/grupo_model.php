@@ -81,41 +81,41 @@ class Grupo_model extends CI_Model {
     }
 
     public function listandoVendedoresAct($idGrupo) {
-        $i = 0;
+        $i=0;
         $json = array();
-        $query = $this->db->query('SELECT * FROM usuario WHERE Rol=1 AND ACTIVO = 1 AND IdUser NOT IN(SELECT ID_Vendedor FROM grupo_asignacion WHERE idGrupo='.$idGrupo.')');
-            if ($query->num_rows()>0) {
-                foreach ($query->result_array() as $key) {
-                    $json['data'][$i]['IDUSUARIO'] = $key['IdUser'];
-                    $json['data'][$i]['RUTA'] = $key['Usuario'];
-                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+            foreach ($query as $key) {
+                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
+                if ($validador->num_rows()==0) {
+                    $json['data'][$i]['RUTA'] = $key['VENDEDOR'];
+                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
                     $i++;
                 }
-            }else {
-                $json['data'][$i]['IDUSUARIO'] = '';
-                $json['data'][$i]['RUTA'] = '';
-                $json['data'][$i]['NOMBRE'] = '';
             }
+        }
         echo json_encode($json);
+        $this->sqlsrv->close();
     }
 
     public function listandoVendedoresAgregados($idGrupo) {
         $i = 0;
         $json = array();
-        $query = $this->db->query('SELECT * FROM usuario WHERE Rol=1 AND ACTIVO = 1 AND IdUser IN(SELECT ID_Vendedor FROM grupo_asignacion WHERE idGrupo='.$idGrupo.')');
-            if ($query->num_rows()>0) {
-                foreach ($query->result_array() as $key) {
-                    $json['data'][$i]['IDUSUARIO'] = $key['IdUser'];
-                    $json['data'][$i]['VENDEDOR'] = $key['Usuario'];
-                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+            foreach ($query as $key) {
+                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
+                if ($validador->num_rows()!=0) {
+                    $json['data'][$i]['VENDEDOR'] = $key['VENDEDOR'];
+                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
                     $i++;
                 }
-            }else {
-                $json['data'][$i]['IDUSUARIO'] = '';
-                $json['data'][$i]['VENDEDOR'] = 'No hay datos';
-                $json['data'][$i]['NOMBRE'] = '';
             }
+        }
         echo json_encode($json);
+        $this->sqlsrv->close();
     }
 
     public function guardarInfoGrupo($dataGrupo) {
@@ -127,14 +127,14 @@ class Grupo_model extends CI_Model {
             if ($datos[1]) {            
                 $data = array(
                     'IdGrupo' => $datos[0],
-                    'ID_Vendedor' => $datos[1],
+                    'Vendedor' => (string)$datos[1],
                     'fechaCreacion' => date("Y-m-d"),
-                    'ID_User' => 1                                
+                    'ID_User' => 1                          
                 );
-                $query = $this->db->insert('grupo_asignacion',$data);
+                $query = $this->db->insert('grupo_asignacion',$data);                
             }
         }
-        echo $query;
+        echo json_encode($query);
     }
 
     public function actualizarInfoGrupo($idGrupo,$nombreGrupo,$responsable,$estado) {        

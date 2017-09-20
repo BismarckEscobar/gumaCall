@@ -6,20 +6,12 @@ $(document).ready(function() {
     if (pathname.match(/detallesVA.*/)) {
         var pgurl = 'campaniasVA';
         $("ul li").each(function(){
-            if($(this).attr("href") == pgurl)
+            if($(this).attr("id") == pgurl)
                 $(this).addClass("urlActual");
                 $("ul li a").attr("href", "../campaniasVA");
          })
-        graficas();      
+        graficas();  
     };
-
-    $(function() {
-        var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
-        $("ul li").each(function(){
-            if($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("href")+"#" == pgurl)
-            $(this).addClass("urlActual");
-         })
-    });
 
     $(".nav li a").each(function() {
         if(this.href.trim() == window.location){

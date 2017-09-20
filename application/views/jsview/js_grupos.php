@@ -1,5 +1,12 @@
 <script>
-$(document).ready(function() {  
+$(document).ready(function() {
+
+    $(function() {
+        $("ul li").each(function(){
+            if($(this).attr("id") == 'grupos')
+            $(this).addClass("urlActual");
+         })
+    });
     /*INICIALIZANDO TABLAS*/
 	$('#tblGrupos').DataTable({
         "scrollCollapse": true,
@@ -37,11 +44,13 @@ function cargarTablaNoVendedores(idGrupo) {
         "ordering": false,
         "pagingType": "full_numbers",
         "emptyTable": "No hay datos disponibles en la tabla",
-            columns: [
-                { "data": "IDUSUARIO" },
-                { "data": "RUTA" },
-                { "data": "NOMBRE" }
-            ]
+        "language": {
+            "zeroRecords": "No hay datos disponibles"
+        },
+        columns: [
+            { "data": "RUTA" },
+            { "data": "NOMBRE" }
+        ]
     });
 }
 function cargarTablaSiVendedores(idGrupo) {
@@ -54,11 +63,13 @@ function cargarTablaSiVendedores(idGrupo) {
         "ordering": false,
         "pagingType": "full_numbers",
         "emptyTable": "No hay datos disponibles en la tabla",
-            columns: [
-                { "data": "IDUSUARIO" },
-                { "data": "VENDEDOR" },
-                { "data": "NOMBRE" }
-            ]
+        "language": {
+            "zeroRecords": "No hay datos disponibles"
+        },
+        columns: [
+            { "data": "VENDEDOR" },
+            { "data": "NOMBRE" }
+        ]
     });
 }
 
@@ -91,7 +102,6 @@ $('#addRight').click( function (){
     var data = table.rows('.selected').data();
     for (var i=0; i < data.length ;i++){
         table2.row.add( {
-            "IDUSUARIO":      data[i]['IDUSUARIO'],
             "VENDEDOR":   data[i]['RUTA'],
             "NOMBRE":       data[i]['NOMBRE']
         } ).draw();
@@ -104,7 +114,6 @@ $('#addLeft').click( function (){
     var data = table2.rows('.selected').data();
     for (var i=0; i < data.length ;i++){
         table.row.add( {
-            "IDUSUARIO":      data[i]['IDUSUARIO'],
             "RUTA":     data[i]['VENDEDOR'],
             "NOMBRE":       data[i]['NOMBRE']
         } ).draw();           
@@ -142,13 +151,12 @@ $("#editarGrupo").click(function(){
     var i = 0; var idGrupo=$('#idGrupoBD1').val();
     tabla = $('#tblVA').DataTable();
     tabla.rows().data().each( function (index,value) {
-        grupoDetalle[i] = idGrupo +"," + tabla.row(i).data().IDUSUARIO;
+        grupoDetalle[i] = idGrupo +","+ tabla.row(i).data().VENDEDOR;
         i++;        
     });
     var form_data = {
         grupo: grupoDetalle
     };
-
     if (grupoDetalle.length!=0) {
         swal({
             title: '',
@@ -164,9 +172,8 @@ $("#editarGrupo").click(function(){
                 url: "guardandoEdicionGrupo/",
                 type: "POST",
                 data: form_data,
-                success: function(resu)
-                {
-                    if (resu==1) {
+                success: function(resu) {
+                    if (resu=="true") {
                         swal("Informacion Guardada!", "Espere...")
                         $(location).attr('href',"grupos");
                     }else{
