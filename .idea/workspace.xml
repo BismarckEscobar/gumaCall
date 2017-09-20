@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/application/views/pages/campanias/campanias.php" line="42" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa0d264-79ba-42da-bd32-a863381dd5c8" name="Default" comment="" />
+    <list default="true" id="bfa0d264-79ba-42da-bd32-a863381dd5c8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="gumaCall.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -32,7 +34,7 @@
     <favorites_list name="gumaCall" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -142,7 +144,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -372,6 +373,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -495,6 +497,7 @@
       <workItem from="1505916655578" duration="2000" />
       <workItem from="1505923148179" duration="12610000" />
       <workItem from="1505943802718" duration="527000" />
+      <workItem from="1505949598244" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="09-09-2017&#10;&#10;- LLenado de Campañas asignadas.&#10;- LLenado de detalles de Campaña.&#10;- Modificaciones a la base de datos.">
       <created>1505011752681</created>
@@ -528,7 +531,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99448000" />
+    <option name="totallyTimeSpent" value="99471000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -542,16 +545,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.176875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.176875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -858,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-51">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,11 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="54" column="41" lean-forward="false" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
-          <folding>
-            <marker date="1495659500708" expanded="true" signature="6367:6416" ph="SELECT ${$fe... ${$tableName}" />
-            <marker date="1495659500708" expanded="true" signature="7654:7690" ph="SELECT * FRO... ${$tableName}" />
-            <marker date="1495659500708" expanded="true" signature="9050:9108" ph="SELECT * FRO... ${$tableName}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -897,9 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="53" lean-forward="true" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="60" />
-          <folding>
-            <marker date="1505924477646" expanded="true" signature="3827:4332" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -924,10 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="15" />
-          <folding>
-            <marker date="1505926190705" expanded="true" signature="567:683" ph="..." />
-            <marker date="1505926190705" expanded="true" signature="589:608" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -959,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13787">
           <caret line="811" column="17" lean-forward="false" selection-start-line="811" selection-start-column="17" selection-end-line="811" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -967,7 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45067">
           <caret line="2651" column="3" lean-forward="false" selection-start-line="2651" selection-start-column="3" selection-end-line="2651" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -975,9 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3468">
           <caret line="204" column="16" lean-forward="false" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="16" />
-          <folding>
-            <marker date="1505941407470" expanded="true" signature="7578:7944" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,7 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="304" column="10" lean-forward="false" selection-start-line="304" selection-start-column="10" selection-end-line="304" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
