@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2017 a las 15:55:14
+-- Tiempo de generación: 21-09-2017 a las 01:17:57
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -214,6 +214,39 @@ INSERT INTO `grupos` (`IdGrupo`, `NombreGrupo`, `IdResponsable`, `Estado`, `Fech
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `grupo_asignacion`
+--
+
+DROP TABLE IF EXISTS `grupo_asignacion`;
+CREATE TABLE IF NOT EXISTS `grupo_asignacion` (
+  `IdGrupo` int(11) NOT NULL,
+  `ID_Vendedor` int(11) NOT NULL,
+  `fechaCreacion` date NOT NULL,
+  `ID_User` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `llaves`
+--
+
+DROP TABLE IF EXISTS `llaves`;
+CREATE TABLE IF NOT EXISTS `llaves` (
+  `concepto` varchar(50) NOT NULL,
+  `valor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `llaves`
+--
+
+INSERT INTO `llaves` (`concepto`, `valor`) VALUES
+('Campa?a', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -293,7 +326,29 @@ CREATE TABLE IF NOT EXISTS `usuario_registros` (
 INSERT INTO `usuario_registros` (`ID_Usuario`, `session_id`, `UserName`, `Nombre`, `FechaInicio`, `FechaFinal`, `Tiempo_Total`, `Tipo`) VALUES
 (2, '42aa4bfb29561962d769191772c89f60146c5273', 'SAC1', 'MARYAN', '2017-09-19 12:02:13', '2017-09-19 14:03:41', '02:01:28', 'ON'),
 (2, '0729cbca80ae19b0284d8c62be3641a695d2d8cf', 'SAC1', 'MARYAN', '2017-09-19 14:05:00', '2017-09-19 14:05:10', '00:00:10', 'ON'),
-(1, '5c65a7479456889738151cc2d7c4b9f5718d448c', 'SU', 'SU', '2017-09-19 14:05:35', '2017-09-19 14:34:02', '00:28:27', 'ON');
+(1, '5c65a7479456889738151cc2d7c4b9f5718d448c', 'SU', 'SU', '2017-09-19 14:05:35', '2017-09-19 14:34:02', '00:28:27', 'ON'),
+(1, '76938ff8350828928ce88a0df6872632fab8d99a', 'SU', 'SU', '2017-09-20 10:06:18', '2017-09-20 10:20:12', '00:13:54', 'ON'),
+(2, 'b1179a53a085c581c2e0ff120846a4abf8230f1e', 'SAC1', 'MARYAN', '2017-09-20 10:20:22', '2017-09-20 10:25:41', '00:05:19', 'ON'),
+(2, 'ba2d0843682d5a6e39a8c7de9fc5b2eb9ba19ea6', 'SAC1', 'MARYAN', '2017-09-20 10:25:59', '2017-09-20 10:27:40', '00:01:41', 'ON'),
+(1, 'd7600d573e1c3ec4b3b14530764a45088eea5170', 'SU', 'SU', '2017-09-20 10:27:49', '2017-09-20 10:28:47', '00:00:58', 'ON'),
+(2, 'acdcad9179d761111c06f6d28a515f3f84a88afa', 'SAC1', 'MARYAN', '2017-09-20 10:28:50', '2017-09-20 10:51:16', '00:22:26', 'ON'),
+(1, '52e8115ca1e5118593ecd1ed5421f588921de099', 'SU', 'SU', '2017-09-20 10:51:34', '2017-09-20 10:52:51', '00:01:17', 'ON'),
+(2, '0523ec58b1934038f648bed11ddbe1c9a84c7e60', 'SAC1', 'MARYAN', '2017-09-20 10:53:03', '2017-09-20 10:56:34', '00:03:31', 'ON'),
+(1, '3d41bcf34d8d7c952aa930673187eeb6f7c3e774', 'SU', 'SU', '2017-09-20 10:56:45', '2017-09-20 11:06:40', '00:09:55', 'ON'),
+(2, 'edfebad278ed343fdaa35dc5bdd5251793019fa0', 'SAC1', 'MARYAN', '2017-09-20 11:08:12', '2017-09-20 11:08:15', '00:00:03', 'ON'),
+(2, 'e1eee6b79afd4423fd08de3ee64c3ca83a6ce845', 'SAC1', 'MARYAN', '2017-09-20 11:52:41', '2017-09-20 14:09:16', '02:16:35', 'ON'),
+(1, 'e8f51cf472856a0aa9729aa94556e0a30b6ff82e', 'SU', 'SU', '2017-09-20 14:09:38', '2017-09-20 14:09:45', '00:00:07', 'ON'),
+(2, '300c66d5cd3b36f39eb097f8a021b32660e28bc4', 'SAC1', 'MARYAN', '2017-09-20 14:09:48', '2017-09-20 14:19:38', '00:09:50', 'ON'),
+(2, 'c2111ac14b8dcf202d8ce36c38ed2d95645a5bec', 'SAC1', 'MARYAN', '2017-09-20 14:19:47', '2017-09-20 14:20:08', '00:00:21', 'ON'),
+(2, '3e8dfc1e487fb000de2ae57d3d20a73733e03091', 'SAC1', 'MARYAN', '2017-09-20 14:20:14', '2017-09-20 14:26:52', '00:06:38', 'ON'),
+(2, 'ca6abbd3079137ef66bbcd4ac927417ac5405a92', 'SAC1', 'MARYAN', '2017-09-20 14:26:58', '2017-09-20 15:01:09', '00:34:11', 'ON'),
+(2, 'c813b7968505606b3c4821baad97ccca75fa4312', 'SAC1', 'MARYAN', '2017-09-20 15:01:28', '2017-09-20 15:01:50', '00:00:22', 'ON'),
+(2, 'ea83f6958ae2caf514a8d433af98138655299b42', 'SAC1', 'MARYAN', '2017-09-20 15:01:53', '2017-09-20 15:02:01', '00:00:08', 'ON'),
+(1, '562e5bf11c7ca104a9530bf783da059dfebef426', 'SU', 'SU', '2017-09-20 15:02:05', '2017-09-20 15:04:18', '00:02:13', 'ON'),
+(2, 'd99d381797e4356c5ae8b7fa6e3d1999ef243e01', 'SAC1', 'MARYAN', '2017-09-20 15:04:22', '2017-09-20 15:06:23', '00:02:01', 'ON'),
+(2, '6a9d05d8e044af9c7b4d71c43eac056b72114641', 'SAC1', 'MARYAN', '2017-09-20 15:07:49', NULL, NULL, 'ON'),
+(2, '437d2eb1423dca7caeb53b1d48c0a281a0861878', 'SAC1', 'MARYAN', '2017-09-20 15:10:49', NULL, NULL, 'ON'),
+(2, '7061ea58b7bab457e22d8ae8941f6f2152aec105', 'SAC1', 'MARYAN', '2017-09-20 15:14:03', '2017-09-20 15:22:27', '00:08:24', 'ON');
 
 -- --------------------------------------------------------
 
