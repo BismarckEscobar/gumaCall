@@ -69,7 +69,7 @@
                                 $estado='Procesando';
 
                             }
-                            
+
                             echo"
                             <tr>
                                 <td class='".$class."'><a href='detallesVA/".$key['ID_Campannas']."'>".$key['ID_Campannas']."</a> </td>
@@ -108,7 +108,6 @@
         </div>
     </div>
 </main>
-
 <!--MODAL: EDITANDO CAMPAÑAS-->
 <div id="modalEditarCamp" class="modal modal-fixed-footer">
     <div class="modal-content"><br>
