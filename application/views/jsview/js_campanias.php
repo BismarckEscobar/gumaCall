@@ -1,6 +1,6 @@
 <script>
     $("#mnCamp").addClass("urlActual");
-    $("#outCall").openModal();
+    //$("#outCall").openModal();
     $(document).ready(function() {
         var control;
         $("#USN,#USI").hide();

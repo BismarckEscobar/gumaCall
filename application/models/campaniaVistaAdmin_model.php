@@ -42,8 +42,26 @@ class campaniaVistaAdmin_model extends CI_Model {
     	}
     }
 
+    public function listarClientes($numCampania) {
+    	$this->db->where('ID_Campannas', $numCampania);
+    	$query = $this->db->get('view_clientescampaniadetalle');
+
+    	if ($query->num_rows()>0) {
+    		return $query->result_array();
+    	}else {
+    		return false;
+    	}
+    }
+
     public function campaniaInfo($numCampania) {
-    	
+    	$query=$this->db->query("CALL sp_infoCampania('".$numCampania."')");
+    	if ($query->num_rows()>0) {
+    		return $query->result_array();
+    	}else {
+    		return false;
+    	}
+		$query->free_result();
+		$query->next_result();
     }
 
     public function ultimoNoCampania() {
@@ -177,6 +195,70 @@ class campaniaVistaAdmin_model extends CI_Model {
 		return $result;
 	}
 
+	public function guardandoEdicion($array) {
+		$temp = array(); $numCampania = ''; $valor = ''; $tipo=0;
+		for ($i=0; $i < count($array); $i++) { 
+			$index=explode(",", $array[$i]);
+				$numCampania=$index[0];
+				$valor=$index[1];
+				$tipo=$index[2];
+		}
+		switch ($tipo) {
+			case 1:
+				$temp = array(
+					'Nombre' => (string)$valor
+				);
+			break;
+			case 2:
+				$fechatemp=explode("/",$valor); 
+				$dia=$fechatemp[0];
+				$mes=$fechatemp[1];
+				$anyo=$fechatemp[2];
+
+				$fecha = $anyo.'/'.$mes.'/'.$dia;
+				$fechaInicio = date("Y/m/d", strtotime($fecha));
+				$temp = array(
+					'Fecha_Inicio' => $fechaInicio
+				);
+			break;
+			case 3:
+				$meta = (float)$valor;
+				$temp = array(
+					'Meta'=> $meta
+				);
+			break;
+			case 4:
+				$fechatemp=explode("/",$valor); 
+				$dia=$fechatemp[0];
+				$mes=$fechatemp[1];
+				$anyo=$fechatemp[2];
+
+				$fecha = $anyo.'/'.$mes.'/'.$dia;
+				$fechaCierre = date("Y/m/d", strtotime($fecha));
+				$temp = array(
+					'Fecha_Cierre' => $fechaCierre
+				);
+			break;
+			case 5:
+				$temp = array(
+					'Observaciones' => (string)$valor
+				);
+			break;
+			case 6:
+				$temp = array(
+					'Mensaje' => (string)$valor
+				);
+			break;
+		}
+
+		$this->db->where('ID_Campannas', $numCampania);
+		$result=$this->db->update('campanna', $temp);
+
+		if ($result) {
+			echo json_encode(true);
+		}
+	}
+
 	public function actualizandoEstado($numCampania, $estado) {
 		$data = array(
 			'Estado'=>$estado
@@ -187,8 +269,109 @@ class campaniaVistaAdmin_model extends CI_Model {
 		if ($result) {
 			echo json_encode(true);
 		}
-
-
 	}
+
+	public function generandoDataGraficaDias($numCampania) {
+		$fecha1="";$fecha2="";$json=array();
+		$this->db->where('ID_Campannas', $numCampania);
+		$query=$this->db->get('campanna');
+
+		if ($query->num_rows()>0) {
+			foreach ($query->result_array() as $key) {
+				$fecha1 = $key['Fecha_Inicio'];
+				$fecha2 = $key['Fecha_Cierre'];
+			}
+		}		
+
+		for($i=$fecha1;$i<=$fecha2;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+			$temp = date('w', strtotime($i));
+			if ($temp!=0 && $i<=date('Y-m-d')) {
+				$json['name'][] = date('d/m', strtotime($i));	
+			}
+		}
+		echo json_encode($json);
+	}
+
+	public function returnMonto($numCampania, $fecha) {
+		$monto = $this->db->query("SELECT SUM(Monto) AS monto FROM campanna_registros WHERE ID_Campannas = '".$numCampania."' AND Fecha = '".date('Y-m-d', strtotime($fecha))."';");
+		return $monto;
+	}
+
+	public function generandoDataGrafica($idCampania) { 
+		$json = array();$real=array();$meta=array();
+		$this->db->where('ID_Campannas', $idCampania);
+		$query1=$this->db->get('campanna');
+
+		if ($query1->num_rows()>0) {		
+			for($i=$query1->result_array()[0]['Fecha_Inicio'];$i<=$query1->result_array()[0]['Fecha_Cierre'];$i = date("Y-m-d", strtotime($i ."+1 days"))){
+				$temp = date('w', strtotime($i));
+
+				if ($temp!=0 && $i<=date('Y-m-d')) {
+					$monto = $this->returnMonto($idCampania, date('Y-m-d',strtotime($i)));
+					if ($monto->result_array()[0]['monto']=="") {
+						$real[] = 0;	
+					}else {
+						$real[] = floatval($monto->result_array()[0]['monto']);						
+					}
+					$meta[] = floatval($query1->result_array()[0]['Meta']);
+				}else {
+					continue;
+				}
+			}
+		}
+
+        $data1[] = array(
+        	'Tipo' => 'Real',
+        	'Data' => $real
+        );        
+
+        $data2[] = array(
+        	'Tipo' => 'Meta',
+        	'Data' => $meta
+        );
+        
+        $json = array_merge($data1,$data2);
+        
+        echo json_encode($json);
+	}
+
+    public function listandoVendedoresAct($idGrupo) {
+        $i=0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+            foreach ($query as $key) {
+                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
+                if ($validador->num_rows()==0) {
+                    $json['data'][$i]['RUTA'] = $key['VENDEDOR'];
+                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
+                    $i++;
+                }
+            }
+        }
+        echo json_encode($json);
+        $this->sqlsrv->close();
+    }
+
+    public function listandoVendedoresAgregados($idGrupo) {
+        $i = 0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+            foreach ($query as $key) {
+                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
+                if ($validador->num_rows()!=0) {
+                    $json['data'][$i]['VENDEDOR'] = $key['VENDEDOR'];
+                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
+                    $i++;
+                }
+            }
+        }
+        echo json_encode($json);
+        $this->sqlsrv->close();
+        //SELECT * FROM usuario WHERE IdUser IN ( SELECT ID_Usuario FROM campanna_asignacion)
+    }
 }
 ?>

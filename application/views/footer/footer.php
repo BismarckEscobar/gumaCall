@@ -9,6 +9,7 @@
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/js/extensions/dataTables.colVis.min.js"></script>
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/js/extensions/dataTables.tableTools.min.js"></script>
 <script type="text/javascript" charset="utf8" src="<?PHP echo base_url();?>assets/js/sweetalert2.min.js"></script>
+<script type="text/javascript" src="<?PHP echo base_url();?>assets/js/jquery.mask.min.js" > </script>
 
 <script src="<?PHP echo base_url();?>assets/js/JS.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/material.min.js"></script>

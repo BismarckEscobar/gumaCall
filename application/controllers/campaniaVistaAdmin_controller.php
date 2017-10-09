@@ -8,7 +8,7 @@ class CampaniaVistaAdmin_controller extends CI_Controller
         $this->load->library('session');
         //echo APPPATH.'libraries\Excel\reader.php';
         require_once(APPPATH.'libraries\Excel\reader.php');
-        require_once(APPPATH.'libraries\PHPExcel\Classes\PHPExcel.php'); 
+        require_once(APPPATH.'libraries\PHPExcel\Classes\PHPExcel.php');
         
         if($this->session->userdata('logged')==0){
             redirect(base_url().'index.php/login','refresh');
@@ -25,7 +25,9 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     }
 
     public function detalle_vista_admin($numCampania) {
+        $data['clientes'] = $this->campaniaVistaAdmin_model->listarClientes($numCampania);
         $data['campaniaInfo'] = $this->campaniaVistaAdmin_model->campaniaInfo($numCampania);
+        
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/detallescampVA', $data);
@@ -94,6 +96,18 @@ class CampaniaVistaAdmin_controller extends CI_Controller
 
     public function cambiandoEstadoCamp($numCampania, $nuevoEstado) {
         $this->campaniaVistaAdmin_model->actualizandoEstado($numCampania, $nuevoEstado);
+    }
+
+    public function graficarMontoReal($idCampania) {
+        $this->campaniaVistaAdmin_model->generandoDataGrafica($idCampania);
+    }
+
+    public function graficarDiasCampania($idCampania) {
+        $this->campaniaVistaAdmin_model->generandoDataGraficaDias($idCampania);
+    }
+
+    public function editandoCampania() {
+        $this->campaniaVistaAdmin_model->guardandoEdicion($this->input->post('campaniaModificacion'));
     }
 }
 ?>

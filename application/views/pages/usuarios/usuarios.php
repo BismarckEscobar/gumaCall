@@ -47,12 +47,12 @@
 	                        		$texto="<a onclick='bajaUsuario(".'"'.$key['IdUser'].'","'.$val.'"'.")' href='#' class='btn-floating blue'><i class='small material-icons'>create</i></a>";
 	                        	}
 		                        echo"<tr>
-	                                    <td>".$key['IdUser']."</td>
-	                                    <td>".$key['Nombre']."</td>
-	                                    <td>".$key['Usuario']."</td>
+	                                    <td><span>".$key['IdUser']."</span></td>
+	                                    <td><span>".$key['Nombre']."</span></td>
+	                                    <td><span>".$key['Usuario']."</span></td>
 	                                    <td><span class='".$clase_estado."'>".$estado."</span></td>
 	                                    <td class='center'>
-	                                    ".$texto."
+	                                    <span>".$texto."</span>
 	                                    </td>
 		                            </tr>";
 		                        }

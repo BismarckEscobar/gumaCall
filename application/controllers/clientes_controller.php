@@ -1,81 +1,74 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Clientes_controller extends CI_Controller
-{
+class clientes_controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->library('session');
 
-        if($this->session->userdata('logged')==0){ //No aceptar a usuarios sin loguearse
+        require_once(APPPATH.'libraries\Excel\reader.php');
+        require_once(APPPATH.'libraries\PHPExcel\Classes\PHPExcel.php'); 
+
+        if($this->session->userdata('logged')==0){ 
             redirect(base_url().'index.php/login','refresh');
         }
-        $this->load->model('reportes_model');
     }
-    public function estadoCuenta()
-    {       
-        $f1 = '2015-06-01';
-        $f2 = date('d-m-Y');
-        $data = $this->reportes_model->cuentaXcliente($this->session->userdata('IdCL'),$f1,$f2,1);
-
+    public function index() {
+        $data['clientes'] = $this->cliente_model->listarClientes();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
-        $this->load->view('pages/EstadoCuenta',$data);
-        $this->load->view('footer/footer');
-        $this->load->view('jsview/js_facturas');
-    }
-    
-    public  function BajaClientes(){
-        $query = $this->cliente_model->LoadClientsBaja();
-
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/BajaClientes',$query);
+        $this->load->view('pages/clientes/clientes', $data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/js_clientes');
     }
-    public  function  PuntosClientes(){
-        $query = $this->cliente_model->LoadClientsPuntos();// Cargar puntos clientes
+
+    public function agregandoClientes() {
+        $dataCliente=array(); $temp=array();
+        $tmp = explode('.', $_FILES['dataCliente']['name']);
         
-        $this->load->view('header/header');
-        $this->load->view('pages/menu');
-        $this->load->view('pages/PuntosClientes',$query);
-        $this->load->view('footer/footer');
-        $this->load->view('jsview/js_clientes');
-    }
-    public function buscarEstadoCuenta()
-    {
-        $fecha1 = $_GET['fecha1'];
-        $fecha2 = $_GET['fecha2'];
-        $fecha1 = ($fecha1=="") ? '2014-01-01' : date('Y-d-m',strtotime($fecha1));
-        $fecha2 = ($fecha2=="") ? date('Y-d-m') : date('Y-d-m',strtotime($fecha2));
-        $codigo = $this->session->userdata('IdCL');
-        
-        $this->reportes_model->cuentaXcliente($codigo,$fecha1,$fecha2);
-    }
-    public function generarUsuarios()
-    {
-        $this->cliente_model->generarUsuarios($this->input->post('codigo'),$this->input->post('nombre'),$this->input->post('vendedor'));
-    }
-    public function traerUsuario($codigo)
-    {
-        $this->cliente_model->traerUsuario($codigo);
-    }
-    public function darBajaCliente()
-    {
-        $this->cliente_model->darBajaCliente($this->input->post('codigo'));
-    }
-    public function ListarClientes()
-    {
-        $this->cliente_model->ListarClientes();
-    }
-    public function ajaxFacturasXcliente($IdCL)
-    {
-        $this->cliente_model->ajaxFacturasXcliente($IdCL);
-    }
-    public function pedidos()
-    {
-        echo "string";
+        $file_extension = end($tmp);
+
+        if ($file_extension=="xlsx") {
+            $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+            
+            $objPHPExcel = $objReader->load($_FILES['dataCliente']['tmp_name']);
+            
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+                $arrayData[$worksheet->getTitle()] = $worksheet->toArray();
+                for ($i=0; $i < count($worksheet->toArray()); $i++) {
+                    if ($i>0) {
+                        $dataCliente[$i]['ID_Cliente'] = $worksheet->toArray()[$i][0];;
+                        $dataCliente[$i]['Nombre'] = $worksheet->toArray()[$i][1];
+                        $dataCliente[$i]['Direccion'] = $worksheet->toArray()[$i][2];
+                        $dataCliente[$i]['Telefono1'] = $worksheet->toArray()[$i][3];
+                        $dataCliente[$i]['Telefono2'] = $worksheet->toArray()[$i][4];
+                        $dataCliente[$i]['Telefono3'] = $worksheet->toArray()[$i][5];
+                        $dataCliente[$i]['Vendedor'] = $worksheet->toArray()[$i][6];
+                    }
+                }                        
+            }
+            $this->cliente_model->guardarDataCliente($dataCliente, 1);
+        }else if ($file_extension=="xls") {
+            $data = new Spreadsheet_Excel_Reader();
+            $data->setOutputEncoding('CP-1251');
+            $data->read($_FILES["dataCliente"]['tmp_name']);
+            error_reporting(E_ALL ^ E_NOTICE);
+
+            for ($i=0; $i <= count($data->sheets[0]['cells']); $i++) {
+
+            $Cuenta = (@ereg_replace("[^0-9]", "", $data->sheets[0]['cells'][$i][1]));
+                if ($Cuenta<>0){
+                    $dataCliente[$i]['ID_Cliente'] = $data->sheets[0]['cells'][$i][0];
+                    $dataCliente[$i]['Nombre']  = $data->sheets[0]['cells'][$i][1];
+                    $dataCliente[$i]['Direccion'] = $data->sheets[0]['cells'][$i][2];
+                    $dataCliente[$i]['Telefono1'] = $data->sheets[0]['cells'][$i][3];
+                    $dataCliente[$i]['Telefono2'] = $data->sheets[0]['cells'][$i][4];
+                    $dataCliente[$i]['Telefono3'] = $data->sheets[0]['cells'][$i][5];
+                    $dataCliente[$i]['Vendedor'] = $data->sheets[0]['cells'][$i][6];
+                }                
+            }
+            $this->cliente_model->guardarDataCliente($dataCliente, 2);
+        } 
     }
 }
 ?>

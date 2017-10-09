@@ -27,6 +27,7 @@ $route['guardarClienteCampania'] = 'campaniaVistaAdmin_controller/subirExcelCamp
 $route['guardarDataCampania'] = 'campaniaVistaAdmin_controller/guardandoData';
 $route['Guardar_llamada'] = 'campania_controller/guardar_llamada';
 $route['cambiarEstadoCamp/(:any)/(:any)'] = 'campaniaVistaAdmin_controller/cambiandoEstadoCamp/$1/$2';
+$route['editarCampaniaVA'] = 'campaniaVistaAdmin_controller/editandoCampania';
 
 $route['detalles'] = 'campania_controller/detalles_camp/';
 $route['cCliente'] = 'campania_controller/get_info_cliente';
@@ -45,7 +46,6 @@ $route['nuevoGrupo'] = 'grupos_controller/guardarNuevoGrupo';
 $route['buscarGrupo/(:any)'] = 'grupos_controller/buscandoGrupo/$1';
 //FIN DE RUTAS GRUPOS
 
-
 //RUTAS GRUPOS
 $route['Monitoreo'] = 'Monitoreo_controller';
 //FIN DE RUTAS GRUPOS
@@ -56,3 +56,13 @@ $route['listarVendedoresAgregados/(:any)'] = 'grupos_controller/listarVendedores
 $route['dataCampaniaNueva'] = 'campania_controller/subirExcelCampanias';
 $route['guardandoEdicionGrupo'] ='grupos_controller/agregandoInfoGrupo';
 //FIN DE RUTAS GRUPOS
+
+//GRAFICA CAMPAÑAS
+$route['metaReal/(:any)'] = 'campaniaVistaAdmin_controller/graficarMontoReal/$1';
+$route['diasGrafica/(:any)'] = 'campaniaVistaAdmin_controller/graficarDiasCampania/$1';
+//FIN GRAFICA CAMPAÑAS
+
+//RUTAS CLIENTES
+$route['clientes'] = 'clientes_controller';
+$route['agregarClientes'] = 'clientes_controller/agregandoClientes';
+

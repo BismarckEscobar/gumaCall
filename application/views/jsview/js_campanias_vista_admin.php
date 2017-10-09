@@ -1,17 +1,140 @@
 <script>
 	$(document).ready(function() {
     
-    $(function() {
-        $("ul li").each(function(){
-            if($(this).attr("id") == 'campaniasAdmin')
-            $(this).addClass("urlActual");
-         })
-    });
+    $('.date').mask('00/00/0000');
 
-		$('#tblcampaniasVA').DataTable({
+    $('#tblcampaniasVA').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {                      
+                var column = this;
+                var select = $('<select id="column'+column[0]+'"><option value="">TODOS</option></select>')
+                    .appendTo( $('#tableCampaniasVA .dataTables_wrapper .dataTables_filter' ))
+
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()                            
+                        );                       
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                        } )                
+                    column.data().unique().sort().each( function ( d, j ) {
+                              
+                    select.append( '<option value="'+d+'">'+d+'</option>' );
+                } );
+                
+            } );
+
+        }, 
+        "scrollCollapse": true,
+        "info":    false,
+        "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS",
+            "paginate": {
+                "first":      "Primera",
+                "last":       "Última ",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+            "lengthMenu": "MOSTRAR _MENU_",
+            "emptyTable": "NO HAY DATOS DISPONIBLES",
+            "search":     "BUSCAR"
+        }  
+    } );
+
+    var pathname = window.location.pathname;
+    if (pathname.match(/detallesVA.*/)) {
+        $("#menu ul li").each(function(){
+            var pos = $(this).attr("id");
+            if ($(this).attr("id")==pos) {
+                $("#"+pos+" a").attr("href", "../"+pos+"");
+            }
+        })
+
+        var numCampaniaGlobal = $('#numCampania').val();
+
+        var grafica = {
+
+            chart: {
+                type: 'line',
+                renderTo: 'container-grafica'
+            },
+            title: {
+                text: 'META - REAL'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                title: {
+                    text: ''
+                },
+                categories: [],
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    day: '%e of %b'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }                
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        radius: 4,
+                        lineColor: '#666666',
+                        lineWidth: 1
+                    }
+                }
+            /*line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }*/
+
+            },
+            series: [],
+        };
+        $.getJSON("../metaReal/"+numCampaniaGlobal, function(json) {
+            var newseries;
+
+            $.each(json, function (i, item) {
+                newseries = {};
+                newseries.showInLegend = true;
+                newseries.data = item['Data'];
+                newseries.name = item['Tipo'];              
+                
+                grafica.series.push(newseries);
+            });
+           var chart = new Highcharts.Chart(grafica);
+        });
+
+        $.getJSON("../diasGrafica/"+numCampaniaGlobal, function(json) {
+            grafica.xAxis.categories = json.name;
+            
+            var chart = new Highcharts.Chart(grafica);
+        });
+    }
+        $(function() {
+            $("ul li").each(function(){
+                if($(this).attr("id") == 'campaniasVA')
+                $(this).addClass("urlActual");
+             })
+        });
+
+        //INICIALIZANDO TABLA CLIENTES
+        $('#tblDetalleCliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
-            "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+            "lengthMenu": [[10,20,30,-1], [10,20,30,"Todo"]],
             "language": {
                 "zeroRecords": "NO HAY RESULTADOS",
                 "paginate": {
@@ -24,8 +147,9 @@
                 "emptyTable": "NO HAY DATOS DISPONIBLES",
                 "search":     "BUSCAR"
             }
-        });       
+        });      
 	});
+
 	/*CONFIGURACION DE DATEPICKER*/
 	$('.datepicker').pickadate({
 	    labelMonthNext: 'Mes siguiente',
@@ -87,7 +211,6 @@
                 async: true,
                 data: form_data,
                 success: function(data) {
-                    console.log(data);
                     if (data=="true") {
                         $('#formNuevaCampania').submit();
                     }
@@ -153,40 +276,60 @@ function cambiaEstadoCamp(numCampania, nuevoEstado) {
     })
 }
 
-    function graficas() {
-        Highcharts.chart('container-grafica', {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: ''
-            },
-            xAxis: {
-                //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                type: 'datetime',
-                dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-            series: [{
-                name: 'META',
-                data:[
-                    [Date.UTC(2017, 09, 18), 1],
-                    [Date.UTC(2017, 09, 19), 2.3],
-                    [Date.UTC(2017, 09, 20), 2.0]
-                ]
-                }, {
-                name: 'REAL',
-                data: [
-                    [Date.UTC(2017, 09, 18), 0.5],
-                    [Date.UTC(2017, 09, 19), 1.6],
-                    [Date.UTC(2017, 09, 20), 1.9]
-                    ]
-                }]
-        });     
+/*RECIBIENDO EVENTO FOCUS*/
+$("#metaEstimadaCamp").focus(function(){
+    $('#metaEstimadaCamp').mask('000,000,000.00', {reverse: true});
+});
+
+/*EDITAR CONTROLES CON ONCHANGE*/
+$(document).on('change', '.select', function(){ 
+    var nuevaData = new Array();
+    var numCampania = $('#numCampania').val();
+    var tipoModificacion = 0;
+    var valor = '';
+    var idControl = $(this).attr('id');
+    var valorControl = $(this).val();
+
+    if (idControl=='metaEstimadaCamp') {
+        valor = valorControl.replace(/,/g, "");
+        tipoModificacion = 3;
+    }else if (idControl=='nombreCampania') {
+        valor = $('#nombreCampania').val();
+        tipoModificacion = 1;
+    }else if (idControl=='fechaInicioCamp') {
+        valor = $('#fechaInicioCamp').val();
+        tipoModificacion = 2;
+    }else if (idControl=='fechaCierreCamp') {
+        valor = $('#fechaCierreCamp').val();
+        tipoModificacion = 4;
+    }else if (idControl=='editObservacion') {
+        valor = $('#editObservacion').val();
+        tipoModificacion = 5;
+    }else if (idControl=='editMensaje') {
+        valor = $('#editMensaje').val();
+        tipoModificacion = 6;
     }
+
+    nuevaData[0] = numCampania+","+valor+","+tipoModificacion;
+
+    form_data = {
+        campaniaModificacion:nuevaData
+    }
+    $.ajax({
+        url: "../editarCampaniaVA",
+        type: 'post',
+        async: true,
+        data: form_data,
+        success: function(res) {
+            if(res=="true") {
+                mensaje("Actualizado con éxito", "");
+            }
+        }
+    });    
+})
+
+function editarCampania(idCampania) {
+    var control = 'numcamp'+idCampania;
+    $('#'+control).click(function() { $("#modalEditarCamp").openModal(); });
+}
 </script>
