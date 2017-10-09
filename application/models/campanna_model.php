@@ -57,9 +57,8 @@ class Campanna_model extends CI_Model
     public function My_Campannas_Clientes($id){
         $array_Clientes_camp=array();
         $c=0;
-        $this->db->where('ID_Campannas',$id);
-        $Querry_Campanna = $this->db->get('View_campannas_Clientes');
-         if($Querry_Campanna->num_rows() > 0){
+        $Querry_Campanna = $this->db->get_where('View_campannas_Clientes',array('ID_Campannas'=>$id));
+         if($Querry_Campanna->num_rows()>0){
             foreach ( $Querry_Campanna->result_array() as $Cmp){
                 $array_Clientes_camp[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
                 $array_Clientes_camp[$c]['ID_Cliente'] = $Cmp['ID_Cliente'];
@@ -69,6 +68,29 @@ class Campanna_model extends CI_Model
                 $array_Clientes_camp[$c]['Telefono3'] = $Cmp['Telefono3'];
                 $array_Clientes_camp[$c]['Meta'] = $Cmp['Meta'];
                 $array_Clientes_camp[$c]['Real'] = $this->getRealCliente($Cmp['ID_Campannas'],$Cmp['ID_Cliente']);
+                $c++;
+            }
+            return $array_Clientes_camp;
+        }
+        return 0;
+
+    }
+
+    public function My_Campannas_Clientes1($Id)
+    {
+        $array_Clientes_camp = array();
+        $c = 0;
+        $Querry_Campanna = $this->db->get_where('View_campannas_Clientes', array('ID_Cliente' => $Id));
+        if ($Querry_Campanna->num_rows()>0) {
+            foreach ($Querry_Campanna->result_array() as $Cmp) {
+                $array_Clientes_camp[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
+                $array_Clientes_camp[$c]['ID_Cliente'] = $Cmp['ID_Cliente'];
+                $array_Clientes_camp[$c]['Nombre'] = $Cmp['Nombre'];
+                $array_Clientes_camp[$c]['Telefono1'] = $Cmp['Telefono1'];
+                $array_Clientes_camp[$c]['Telefono2'] = $Cmp['Telefono2'];
+                $array_Clientes_camp[$c]['Telefono3'] = $Cmp['Telefono3'];
+                $array_Clientes_camp[$c]['Meta'] = $Cmp['Meta'];
+                $array_Clientes_camp[$c]['Real'] = $this->getRealCliente($Cmp['ID_Campannas'], $Cmp['ID_Cliente']);
                 $c++;
             }
             return $array_Clientes_camp;
