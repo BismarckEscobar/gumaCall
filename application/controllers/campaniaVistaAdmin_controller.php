@@ -109,5 +109,9 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     public function editandoCampania() {
         $this->campaniaVistaAdmin_model->guardandoEdicion($this->input->post('campaniaModificacion'));
     }
+
+    public function cargaAgentes($idCampania) {
+        $this->campaniaVistaAdmin_model->listandoAgentes($idCampania);
+    }
 }
 ?>

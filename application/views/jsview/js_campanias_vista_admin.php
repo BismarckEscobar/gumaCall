@@ -1,6 +1,8 @@
 <script>
 	$(document).ready(function() {
     
+    $('ul.tabs').tabs();
+    
     $('.date').mask('00/00/0000');
 
     $('#tblcampaniasVA').DataTable( {
@@ -328,8 +330,53 @@ $(document).on('change', '.select', function(){
     });    
 })
 
+function cargarTablaAgentes(idCampania) {
+    $('#tblAdmAgentes').DataTable({
+        ajax: "cargaAgentesCampania/" + idCampania,
+        "destroy": true,
+        "info":    false,
+        "bPaginate": false,
+        "paging": false,
+        "ordering": false,
+        "pagingType": "full_numbers",
+        "emptyTable": "No hay datos disponibles en la tabla",
+        "language": {
+            "zeroRecords": "No hay datos disponibles"
+        },
+        columns: [
+            { "data": "ACTIVO" },
+            { "data": "NOMBRE" }
+        ]
+    });
+}
+
+function cargarTablaClientes(idCampania) {
+    $('#tblAdmClientes').DataTable({
+        ajax: "cargaClientesCampania/" + idCampania,     
+        "destroy": true,
+        "info":    false,
+        "bPaginate": false,
+        "paging": false,
+        "ordering": false,
+        "pagingType": "full_numbers",
+        "emptyTable": "No hay datos disponibles en la tabla",
+        "language": {
+            "zeroRecords": "No hay datos disponibles"
+        },
+        columns: [
+            { "data": "ACTIVO" },
+            { "data": "NOMBRE" }
+        ]
+    });
+}
+
+
 function editarCampania(idCampania) {
     var control = 'numcamp'+idCampania;
+    cargarTablaClientes(idCampania);
+    cargarTablaAgentes(idCampania);
     $('#'+control).click(function() { $("#modalEditarCamp").openModal(); });
 }
+
+
 </script>

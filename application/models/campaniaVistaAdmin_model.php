@@ -373,5 +373,31 @@ class campaniaVistaAdmin_model extends CI_Model {
         $this->sqlsrv->close();
         //SELECT * FROM usuario WHERE IdUser IN ( SELECT ID_Usuario FROM campanna_asignacion)
     }
+
+    public function listandoAgentes($idCampania) {
+        $i = 0;
+        $json = array();
+        $query = $this->db->query('SELECT * FROM usuario WHERE Rol = 1');
+
+        if (count($query)>0) {
+            foreach ($query->result_array() as $key) {
+                $validador = $this->db->query('SELECT * FROM campanna_asignacion WHERE ID_Campannas="'.$idCampania.'" AND ID_Usuario="'.$key['IdUser'].'"');
+                if ($validador->num_rows()==0) {
+                	$json['data'][$i]['ACTIVO'] = '<input type="checkbox" class="filled-in" id="chkAgente'.$key['IdUser'].'">
+                								   <label for="chkAgente'.$key['IdUser'].'"></label>';                  
+                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                    $json['data'][$i]['ID_Agente'] = $key['IdUser'];
+                    $i++;
+                }else {
+                	$json['data'][$i]['ACTIVO'] = '<input type="checkbox" checked="checked" class="filled-in" id="chkAgente'.$key['IdUser'].'">
+                								   <label for="chkAgente'.$key['IdUser'].'"></label>';                    
+                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];
+                    $json['data'][$i]['ID_Agente'] = $key['IdUser'];
+                    $i++;
+                }
+            }
+        }
+        echo json_encode($json);
+    }
 }
 ?>
