@@ -69,6 +69,7 @@
                                 $estado='Procesando';
 
                             }
+                            
                             echo"
                             <tr>
                                 <td class='".$class."'><a href='detallesVA/".$key['ID_Campannas']."'>".$key['ID_Campannas']."</a> </td>
