@@ -496,6 +496,24 @@ table th {
 .dataTables_filter{
   display: none!important;
 }
+
+#tableCampaniasVA .dataTables_wrapper .dataTables_filter label {
+  
+ display: none;
+}
+
+#tableCampaniasVA .dataTables_wrapper .dataTables_filter {
+  
+ display: block!important; 
+}
+
+#table-cliente .dataTables_wrapper .dataTables_filter {
+  display: block!important;
+}
+
+#table-detalleCliente .dataTables_wrapper .dataTables_filter {
+  display: block!important;
+}
 /*FIN TABLAS GENERALES*/
 
 .BtnBlue
@@ -600,8 +618,12 @@ table th {
   color: green;
 }
 
-#editarGrupoModal{
+#editarGrupoModal {
   width: 90%;
+  min-height: 85%;
+}
+#modalEditarCamp {
+  width: 80%;
   min-height: 85%;
 }
 .titulos-tablas-sup {
@@ -811,3 +833,15 @@ input[type=text],input[disabled]{
 chosen-single a{
     color: black;
 }
+
+.tachado{
+  color:#f00;text-decoration:line-through;
+}
+.highcharts-credits {
+  display: none;
+}
+
+#column0,#column1,#column2, #column3,#column4,#column5,#column6,#column7,#column9 {
+  display: none;
+}
+

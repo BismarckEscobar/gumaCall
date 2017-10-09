@@ -2,17 +2,6 @@ var activo = false;
 $(document).ready(function() {
     $('select').material_select();
 
-    var pathname = window.location.pathname;
-    if (pathname.match(/detallesVA.*/)) {
-        var pgurl = 'campaniasVA';
-        $("ul li").each(function(){
-            if($(this).attr("id") == pgurl)
-                $(this).addClass("urlActual");
-                $("ul li a").attr("href", "../campaniasVA");
-         })
-        graficas();  
-    };
-
     $(".nav li a").each(function() {
         if(this.href.trim() == window.location){
             $(this).parent().addClass("active");

@@ -18,96 +18,119 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <div class="row">
-                            <div class="input-field col s12 m12">
-                                <input id="nombreCampania" type="text" class="validate" value="N° 0504 - PROMOCIÓN RAMOS OCTUBRE 2017">
-                            </div>
-                        </div>
-                        <div class="content-rows">
-                            <div class="content-rows-left">
-                                <div class="row">                                
-                                    <div class="input-field col s6">
-                                        <input value="01/08/2017" id="fechaInicioCamp" type="text" class="left validate">
-                                        <label for="fechaInicioCamp" class="left">FECHA DE INICIO</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input value="C$ 100,000" id="metaEstimadaCamp" type="text" class="validate textos-cifras">
-                                        <label for="metaEstimadaCamp">META ESTIMADA</label>
+                    <?php 
+                        if ($campaniaInfo) {
+                            foreach ($campaniaInfo as $key) {
+                            $tiempoPromedio;       
+
+                            if ($key['tiempoPromedio']=='0') {
+                                $tiempoPromedio = "00:00:00";
+                            }elseif($key['tiempoPromedio']==0) {
+                                $tiempoPromedio = $key['tiempoPromedio'];
+                            }
+                            echo'<div class="row">
+                                    <div class="input-field col s12 m12">
+                                        <input id="nombreCampania" type="text" class="validate select" value="'.$key['nombre'].'">
+                                        <input id="numCampania" type="hidden" class="validate select" value="'.$key['ID_Campannas'].'">
                                     </div>
                                 </div>
-                                <div class="row">                                
+                                <div class="content-rows">
+                                    <div class="content-rows-left">
+                                        <div class="row">                                
+                                            <div class="input-field col s6">
+                                                <input value="'.date('d/m/Y', strtotime($key['fechaInicio'])).'" id="fechaInicioCamp" type="text" class="left validate date select">
+                                                <label for="fechaInicioCamp" class="left">FECHA DE INICIO</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input value="'.number_format($key['meta'], 2).'" id="metaEstimadaCamp" type="text" class="validate textos-cifras select money">
+                                                <label for="metaEstimadaCamp">META ESTIMADA C$</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">                                
+                                            <div class="input-field col s6">
+                                                <input value="'.date('d/m/Y', strtotime($key['fechaCierre'])).'" id="fechaCierreCamp" type="text" class="left validate date select">
+                                                <label for="fechaCierreCamp">FECHA FINAL</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input readonly value="'.number_format($key['montoReal'], 2).'" id="montoRealCamp" type="text" class="validate textos-cifras">
+                                                <label for="montoRealCamp">REAL C$</label>
+                                            </div>
+                                        </div> 
+                                    </div>               
+                                    <div class="content-rows-right">
+                                        <div id="container-grafica"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="input-field col s6">
-                                        <input value="01/08/2017" id="fechaInicioCamp" type="text" class="left validate">
-                                        <label for="fechaInicioCamp">FECHA FINAL</label>
+                                        <textarea id="editObservacion" class="materialize-textarea select">'.$key['observacion'].'</textarea>
+                                        <label for="editObservacion">OBSERVACIONES</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input value="C$ 3,000" id="metaEstimadaCamp" type="text" class="validate textos-cifras">
-                                        <label for="metaEstimadaCamp">REAL</label>
+                                        <textarea id="editMensaje" class="materialize-textarea select">'.$key['mensaje'].'</textarea>
+                                        <label for="editMensaje">MENSAJE</label>
                                     </div>
-                                </div> 
-                            </div>
-                            <div class="content-rows-right">
-                                <div id="container-grafica"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s4 m4">
-                                <span class="totales">100</span><br>
-                                <span class="totales">TOTAL LLAMADAS</span>
-                            </div>
-                            <div class="col s4 m4">
-                                <span class="totales">3.45 HORAS</span><br>
-                                <span class="totales">TIEMPO TOTAL</span>
-                            </div>
-                            <div class="col s4 m4">
-                                <span class="totales">5 MINUTOS</span><br>
-                                <span class="totales">TIEMPO PROMEDIO</span>
-                            </div>
-                        </div>           
+                                </div>
+                                <div class="row">
+                                    <div class="col s3 m3">
+                                        <span class="totales">'.$key['totalLlamadas'].'</span><br>
+                                        <span class="totales">TOTAL LLAMADAS</span>
+                                    </div>
+                                    <div class="col s3 m3">
+                                        <span class="totales">'.$key['tiempoTotal'].'</span><br>
+                                        <span class="totales">TIEMPO TOTAL</span>
+                                    </div>
+                                    <div class="col s3 m3">
+                                        <span class="totales">'.date("H:i:s", strtotime($tiempoPromedio)).'</span><br>
+                                        <span class="totales">TIEMPO PROMEDIO</span>
+                                    </div>
+                                    <div class="col s3 m3">
+                                        <span class="totales">'.intval($key['unidad']).'</span><br>
+                                        <span class="totales">UNIDADES</span>
+                                    </div>  
+                                </div>';
+                            }
+                        }
+                    ?>
                     </div>
-                </div><br>
+                </div><br> <!--<span class="totales">'.$campaniaInfo[0]['tiempoPromedio'].'</span><br>-->
                 <div class="row">
-                    <table id="tblDetalleCamp" class="TblData">
-                        <thead>
-                        <tr>
-                            <th>CODIGO</th>
-                            <th>NOMBRE</th>
-                            <th>ESTIMADO</th>
-                            <th>REAL</th>
-                            <th>OBSERVACIONES</th>
-                        </tr>
-                        </thead>
-                        <tbody class="center">
+                    <div id="table-detalleCliente">
+                        <table id="tblDetalleCliente" class="TblData">
+                            <thead>
                             <tr>
-                                <td><span>00276</span></td>
-                                <td><span>FARMCIA MASSIEL</span></td>
-                                <td><span>C$ 7,000</span></td>
-                                <td><span>C$ 39,000</span></td>
-                                <td><span>NINGUNA</span></td>
+                                <th>CODIGO</th>
+                                <th>NOMBRE</th>
+                                <th>ESTIMADO</th>
+                                <th>REAL</th>
+                                <th>OBSERVACIONES</th>
                             </tr>
-                            <tr>
-                                <td><span>00276</span></td>
-                                <td><span>FARMCIA MASSIEL</span></td>
-                                <td><span>C$ 78,000</span></td>
-                                <td><span>C$ 34,000</span></td>
-                                <td><span>NINGUNA</span></td>
-                            </tr>
-                            <tr>
-                                <td><span>00276</span></td>
-                                <td><span>FARMCIA MASSIEL</span></td>
-                                <td><span>C$ 74,000</span></td>
-                                <td><span>C$ 37,000</span></td>
-                                <td><span>NINGUNA</span></td>
-                            </tr>
-                            <tr>
-                                <td><span>00276</span></td>
-                                <td><span>FARMCIA MASSIEL</span></td>
-                                <td><span>C$ 72,000</span></td>
-                                <td><span>C$ 31,000</span></td>
-                                <td><span>NINGUNA</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="center">
+                            <?php 
+                                if ($clientes) {
+                                    $montoReal = 0;
+                                    foreach ($clientes as $key) {
+                                        if ($key['montoReal']=="") {
+                                            $montoReal=0;
+                                        }else {
+                                            $montoReal=$key['montoReal'];
+                                        }
+                                        echo '
+                                        <tr>
+                                            <td><span>'.$key['ID_Cliente'].'</span></td>
+                                            <td><span>'.$key['Nombre'].'</span></td>
+                                            <td><span>C$ '.$key['Meta'].'</span></td>
+                                            <td><span>C$ '.$montoReal.'</span></td>
+                                            <td><span>-</span></td>
+                                        </tr>
+                                        ';
+                                    }
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,23 +16,21 @@
                 ';
 
             }
-
           ?>
-
       </header>
        <div id="menu">
            <ul class="nav menu demo-navigation mdl-navigation__link" >
             <?php
               switch ($this->session->userdata('RolUser')) {
                 case '0':
-                  $menu = '<li href="#" id="campaniasAdmin"><a href="campaniasVA"><i class="material-icons">shopping_cart</i> Campañas</a></li>
-                           <li href="#"><a href="#"><i class="material-icons">group</i> Clientes</a></li>
+                  $menu = '<li href="#" id="campaniasVA"><a href="campaniasVA"><i class="material-icons">shopping_cart</i> Campañas</a></li>
+                           <li href="#" id="clientes"><a href="clientes"><i class="material-icons">group</i> Clientes</a></li>
                            <li href="#" id="usuarios"><a href="usuarios"><i class="material-icons">group</i> Usuarios</a></li>
                            <li href="#" id="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>
                            <li href="#" id="monitor"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
-                           <li href="#"><a href="#"><i class="material-icons">pie_chart</i> Reportes</a></li>                                        
-                           <li href="#"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
-                           <li href="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
+                           <li href="#" id="reportes"><a href="#"><i class="material-icons">pie_chart</i> Reportes</a></li>                                        
+                           <li href="#" id="acercaDe"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
+                           <li href="salir" id="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
                 break;
                 case '1':
                   $menu = '<li id="mnCamp"><a href="campanias" ><i class="material-icons">shopping_cart</i> mis campañas</a></li>
