@@ -8,13 +8,19 @@ $Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fe
 $Mensaje =(!$My_camp_Header[0]['Mensaje']) ? 0 :$My_camp_Header[0]['Mensaje'];
 $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
 
-$Real_Cliente =(!$My_camp_Clientes[0]['Real']) ? 0 :$My_camp_Clientes[0]['Real'];
-$Meta_Cliente =(!$My_camp_Clientes[0]['Meta']) ? 0 :$My_camp_Clientes[0]['Meta'];
-$T1 =(!$My_camp_Clientes[0]['Telefono1']) ? 0 :$My_camp_Clientes[0]['Telefono1'];
-$T2 =(!$My_camp_Clientes[0]['Telefono2']) ? 0 :$My_camp_Clientes[0]['Telefono2'];
-$T3 =(!$My_camp_Clientes[0]['Telefono3']) ? 0 :$My_camp_Clientes[0]['Telefono2'];
-$UID =(!$My_camp_Clientes[0]['ID_Cliente']) ? 0 :$My_camp_Clientes[0]['ID_Cliente'];
-$UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
+
+$Real_Cliente =(!$My_camp_Clientes1[0]['Real']) ? 0 :$My_camp_Clientes1[0]['Real'];
+$Meta_Cliente =(!$My_camp_Clientes1[0]['Meta']) ? 0 :$My_camp_Clientes1[0]['Meta'];
+$T1 =(!$My_camp_Clientes1[0]['Telefono1']) ? 0 :$My_camp_Clientes1[0]['Telefono1'];
+$T2 =(!$My_camp_Clientes1[0]['Telefono2']) ? 0 :$My_camp_Clientes1[0]['Telefono2'];
+$T3 =(!$My_camp_Clientes1[0]['Telefono3']) ? 0 :$My_camp_Clientes1[0]['Telefono2'];
+$UID =(!$My_camp_Clientes1[0]['ID_Cliente']) ? 0 :$My_camp_Clientes1[0]['ID_Cliente'];
+$UNA =(!$My_camp_Clientes1[0]['Nombre']) ? 0 :$My_camp_Clientes1[0]['Nombre'];
+
+
+
+$Fecha_Inicio = date_create($Fecha_Inicio);
+$Fecha_Cierre = date_create($Fecha_Cierre);
 ?>
 <header class="demo-header mdl-layout__header ">
     <div class="row center ColorHeader"><span class="title-w">N° <span id="spCamp"><?php echo $ID ?></span> - <?php echo $Nombre ?></span>
@@ -44,12 +50,12 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                     <div class="row">
                         <div class="input-field col s3">
                             <label class="left">FECHA DE INICIO</label>
-                            <input disabled  value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate" >
+                            <input disabled  value="<?php echo date_format($Fecha_Inicio,"Y/m/d");?>" id="icon_DateInit" type="text" class="center validate" >
 
                         </div>
                         <div class="input-field col s3">
                             <label class="left">FECHA CIERRE</label>
-                            <input disabled value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
+                            <input disabled value="<?php echo date_format($Fecha_Cierre,"Y/m/d");?>" id="icon_DateEnd" type="text" class="center validate">
 
                         </div>
                         <div class="input-field col s3">
@@ -122,7 +128,7 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                     </div>
                 </div>
             </div>
-                <div class="card">
+                <div class="card hoverable">
                     <div class="card-tabs">
                         <ul class="tabs tabs-fixed-width">
                             <li class="tab"><a class="active" href="#tb1">HISTORIAL DE COMPRAS</a></li>
@@ -167,28 +173,27 @@ $UNA =(!$My_camp_Clientes[0]['Nombre']) ? 0 :$My_camp_Clientes[0]['Nombre'];
                             <div class="row">
                                 <div class="input-field col s6">
                                     <label class="left">DIRECCION</label>
-                                    <input disabled class="left" value="<?php echo $query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
+                                    <input disabled class="left" value="<?php  (!$query2)?:$query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
                                 </div>
 
                                 <div class="input-field col s6">
                                     <label class="left">RUC</label>
-                                    <input disabled id="icon_RUC" class="left" value="<?php echo $query2[0]['RUC']?>" type="text" class=" right validate">
+                                    <input disabled id="icon_RUC" class="left" value="<?php  (!$query2) ? : $query2[0]['RUC']?>" type="text" class=" right validate">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s3">
                                     <label class="left">CREDITO</label>
-                                    <input disabled value="C$ <?php echo number_format($query2[0]['CREDITO'],2);?>" id="icon_DateInit" type="text" class="right validate">
+                                    <input disabled value="C$ <?php (!$query2)?:number_format($query2[0]['CREDITO'],2)?>" id="icon_DateInit" type="text" class="right validate">
                                 </div>
                                 <div class="input-field col s3">
                                     <label class="left">SALDO</label>
-                                    <input disabled value="C$ <?php echo number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
+                                    <input disabled value="C$ <?php (!$query2)?:number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
                                 </div>
                                 <div class="input-field col s6">
                                     <label class="left">DISPONIBLE</label>
-                                    <input disabled id="icon_DISPONIBLE" value="C$ <?php echo number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
+                                    <input disabled id="icon_DISPONIBLE" value="C$ <?php (!$query2)?:number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
                                 </div>
-
                             </div>
                         </div>
                     </div>
