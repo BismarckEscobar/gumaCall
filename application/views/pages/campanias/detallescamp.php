@@ -4,6 +4,7 @@ $Nombre =(!$My_camp_Header[0]['Nombre']) ? 0 :$My_camp_Header[0]['Nombre'];
 $Monto =(!$My_camp_Header[0]['MONTO_REAL']) ? 0 :$My_camp_Header[0]['MONTO_REAL'];
 $Fecha_Inicio =(!$My_camp_Header[0]['Fecha_Inicio']) ? 0 :$My_camp_Header[0]['Fecha_Inicio'];
 $Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fecha_Cierre'];
+
 $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
 $Fecha_Inicio = date_create($Fecha_Inicio);
 $Fecha_Cierre = date_create($Fecha_Cierre);
@@ -72,6 +73,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                     <th>TELEFONO</th>
                     <th>META</th>
                     <th>REAL</th>
+                    <th>MONTO RECUPERADO</th>
                 </tr>
                 </thead>
                 <tbody class="center">
@@ -88,6 +90,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                                     <td>'.$Lst['Telefono1'].'</td>
                                     <td>C$ '.number_format($Lst['Meta'],2).'</td>
                                     <td>C$ '.number_format($Lst['Real'],2).'</td>
+                                    <td>'.number_format($Lst['Real'], 2).'</td>
+                                    
                                  </tr>';
                         }
                     }
