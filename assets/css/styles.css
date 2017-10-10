@@ -623,7 +623,7 @@ table th {
   min-height: 85%;
 }
 #modalEditarCamp {
-  width: 80%;
+  width: 60%;
   min-height: 85%;
 }
 .titulos-tablas-sup {
@@ -844,4 +844,13 @@ chosen-single a{
 #column0,#column1,#column2, #column3,#column4,#column5,#column6,#column7,#column9 {
   display: none;
 }
+
+.th-campania {
+  width: 20px;
+}
+.modal .modal-footer #center a {
+  margin-right: 10px;
+
+}
+
 

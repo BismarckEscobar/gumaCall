@@ -1,6 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
+
 Source Server         : localhost
 Source Server Version : 50505
 Source Host           : localhost:3306
@@ -9,6 +10,7 @@ Source Database       : gcdb
 Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
+
 
 Date: 2017-10-09 09:08:31
 */
@@ -177,6 +179,7 @@ INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '88268430', '788', '20
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '4', '788', '2017-10-04', '15:33:54', '00:00:08', '1999.0000', null, 'no', '2');
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00004', '8555', '788', '2017-10-04', '17:05:44', '00:04:21', '3500.0000', '20', 'no', '2');
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00002', '155', '788', '2017-10-09', '08:15:46', '00:00:11', '4500.0000', null, '', '5');
+
 
 -- ----------------------------
 -- Table structure for campanna_tipificacion
@@ -444,17 +447,19 @@ INSERT INTO `usuario_registros` VALUES ('2', '65f784c3f8af277eba56ecd48f595b89b3
 INSERT INTO `usuario_registros` VALUES ('1', '67b989c50d4bfb0441c081eea93ae21b8c05aaed', 'SU', 'SU', '2017-10-09 08:34:59', '2017-10-09 09:04:42', '00:29:43', 'ON');
 INSERT INTO `usuario_registros` VALUES ('2', '299df5854a90361f37d0ff7e669d61dae86c0a4f', 'SAC1', 'MARYAN', '2017-10-09 09:04:46', '2017-10-09 09:07:46', '00:03:00', 'ON');
 
+
 -- ----------------------------
 -- View structure for view_campannas_clientes
 -- ----------------------------
 DROP VIEW IF EXISTS `view_campannas_clientes`;
-CREATE   VIEW `view_campannas_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t1`.`Telefono2` AS `Telefono2`,`t1`.`Telefono3` AS `Telefono3`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_campannas_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t1`.`Telefono2` AS `Telefono2`,`t1`.`Telefono3` AS `Telefono3`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
 
 -- ----------------------------
 -- View structure for view_campannas_info
 -- ----------------------------
 DROP VIEW IF EXISTS `view_campannas_info`;
-CREATE   VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
 
 -- ----------------------------
 -- View structure for view_monto_clientes
@@ -462,7 +467,6 @@ CREATE   VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campann
 DROP VIEW IF EXISTS `view_monto_clientes`;
 CREATE  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
 
--- ----------------------------
 
 -- ----------------------------
 -- View structure for view_clientescampaniadetalle
@@ -481,8 +485,9 @@ JOIN clientes cl ON cl.ID_Cliente = cc.ID_Cliente ;
 -- Procedure structure for sp_infoCampania
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_infoCampania`;
-DELIMITER ;;
-CREATE PROCEDURE `sp_infoCampania`(IN ID_CampanniaC VARCHAR(20))
+DELIMITER ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_infoCampania`(IN ID_CampanniaC VARCHAR(20))
+
 BEGIN
 SET @totalLlamadas = (SELECT TOTAL_LLAMADAS FROM view_campannas_info WHERE ID_Campannas = ID_CampanniaC );
 SET @tiempoPro = (SELECT TIEMPO_PROMEDIO FROM view_campannas_info WHERE ID_Campannas = ID_CampanniaC );
@@ -505,9 +510,8 @@ IF(ISNULL(@realMonto),0,@realMonto) AS montoReal,
 IF(ISNULL(@unidad),0, @unidad) AS unidad
 
 FROM campanna cm
-/*INNER JOIN campanna_registros cr ON cm.ID_Campannas = cr.ID_Campannas  */
 WHERE cm.ID_Campannas = ID_CampanniaC;
 
 END
-;;
+;
 DELIMITER ;

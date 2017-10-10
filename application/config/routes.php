@@ -31,6 +31,10 @@ $route['editarCampaniaVA'] = 'campaniaVistaAdmin_controller/editandoCampania';
 
 $route['detalles'] = 'campania_controller/detalles_camp/';
 $route['cCliente'] = 'campania_controller/get_info_cliente';
+
+$route['cargaAgentesCampania/(:any)'] = 'campaniaVistaAdmin_controller/cargaAgentes/$1';
+$route['cargaEstadoCamp/(:any)'] = 'campaniaVistaAdmin_controller/cargaEstados/$1';
+$route['editarAgentes'] = 'campaniaVistaAdmin_controller/editarAgentesCamp';
 //FIN RUTAS CAMPAÑAS
 
 //RUTAS USUARIOS

@@ -224,7 +224,7 @@
                     });
                     $('#mTiempoFuera').closeModal();
                     //setTimeout("", 3000);
-                    location.reload();
+                    //location.reload();
                 }
 
 
