@@ -38,6 +38,7 @@ class Campania_controller extends CI_Controller
 
         $data['My_camp_Header'] = $this->campanna_model->My_Campannas_Header($CP);
         $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($CP);
+        $data['My_camp_Clientes1'] = $this->campanna_model->My_Campannas_Clientes1($CL);
         $data['query'] = $this->campanna_model->HstCompra_3M($CL);
         $data['query2'] = $this->campanna_model->Info_Cliente($CL);
         $data['lst_TPF'] = $this->campanna_model->getTPF();

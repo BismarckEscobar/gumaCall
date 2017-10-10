@@ -5,6 +5,8 @@ $Monto =(!$My_camp_Header[0]['MONTO_REAL']) ? 0 :$My_camp_Header[0]['MONTO_REAL'
 $Fecha_Inicio =(!$My_camp_Header[0]['Fecha_Inicio']) ? 0 :$My_camp_Header[0]['Fecha_Inicio'];
 $Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fecha_Cierre'];
 $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
+$Fecha_Inicio = date_create($Fecha_Inicio);
+$Fecha_Cierre = date_create($Fecha_Cierre);
 ?>
 <header class="demo-header mdl-layout__header ">
     <div class="row center ColorHeader"><span class="title-w">CAMPAÑAS DETALLES</span>
@@ -12,7 +14,6 @@ $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
             <div class="clock">
                 <ul class="ul_r">
                     <li id="hours"></li>
-                    <li id="point">:</li>
                     <li id="min"></li>
                     <li id="type"></li>
                 </ul>
@@ -37,12 +38,12 @@ $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
                                 <div class="row">
                                     <div class="input-field col s3">
                                         <label  class="left">FECHA DE INICIO</label>
-                                        <input disabled value="<?php echo $Fecha_Inicio;?>" id="icon_DateInit" type="text" class="center validate">
+                                        <input disabled value="<?php echo date_format($Fecha_Inicio,"Y/m/d");?>" id="icon_DateInit" type="text" class="center validate">
 
                                     </div>
                                     <div class="input-field col s3">
                                         <label class="left">FECHA CIERRE</label>
-                                        <input disabled value="<?php echo $Fecha_Cierre;?>" id="icon_DateEnd" type="text" class="center validate">
+                                        <input disabled value="<?php echo date_format($Fecha_Cierre,"Y/m/d");?>" id="icon_DateEnd" type="text" class="center validate">
                                     </div>
                                     <div class="input-field col s3">
                                         <label class="left">META ESTIMADA</label>

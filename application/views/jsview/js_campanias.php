@@ -97,7 +97,19 @@
                             if(WTF > 0){
                                 swal({
                                     title: 'Informacion Guardada',
-                                    timer: 2000
+                                    timer: 2000,
+                                    showConfirmButton:false,
+                                    html:'<p>Cargando Datos</p>'+'<br>'+'<div class="preloader-wrapper active">'+
+                                            '<div class="spinner-layer spinner-blue-only">'+
+                                            '<div class="circle-clipper left">'+
+                                                '<div class="circle"></div>'+
+                                            '</div><div class="gap-patch">'+
+                                                '<div class="circle"></div>'+
+                                            '</div><div class="circle-clipper right">'+
+                                                '<div class="circle"></div>'+
+                                            '</div>'+
+                                            '</div>'+
+                                        '</div>'
                                 }).then(
                                     function () {},
                                     function (dismiss) {
