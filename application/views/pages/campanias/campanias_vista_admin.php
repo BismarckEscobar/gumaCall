@@ -120,38 +120,15 @@
                     <div class="col s12 m12 l12">                
                         <div class="row center">                            
                             <div class="row left">
-                            <?php 
-                                if ($listaCampanias) {
-                                    foreach ($listaCampanias as $key) {
-                                    if ($key['Estado']==1) {                                        
-                                        $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
-                                    }elseif ($key['Estado']==2) {                                        
-                                        $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
-                                    }elseif ($key['Estado']==3) {                                        
-                                        $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>";
-                                    }elseif ($key['Estado']==4) {                                        
-                                        $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
-                                                 <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>";
-                                    }
-                                    }
-                                    echo "<a class='dropdown-button btn-floating  blue darken-3' href='#' data-activates='dropdown1".$key['ID_Campannas']."'><i class='small material-icons'>list</i></a>
-                                    <ul id='dropdown1".$key['ID_Campannas']."' class='dropdown-content ul-dr'>
-                                    ".$status."
-                                    </ul>"; 
-                                }
-                            ?>
+                                <a class='dropdown-button btn-floating  blue darken-3' href='#' data-activates='dropdown1'><i class='small material-icons'>list</i></a>
+                                <ul id='dropdown1' class='dropdown-content ul-dr'>                                    
+                                </ul>
                             </div>
                             <table id="tblAdmAgentes" class="TblData">
                                 <thead>
                                     <tr>                                
                                         <th class="th-campania">SELECCIONAR</th>
+                                        <th>ID_USUARIO</th>
                                         <th>NOMBRE AGENTE</th>
                                     </tr>
                                 </thead>

@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : MySQL
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : gcdb
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-09 17:45:17
+Date: 2017-10-10 10:13:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,6 @@ INSERT INTO `campanna` VALUES ('CP-00003', 'campaña prueba CP-00003', '2017-09-
 INSERT INTO `campanna` VALUES ('CP-00004', 'nombre CP-00004', '2017-09-20 00:00:00', '2017-11-01 00:00:00', '1', '1', '25000.00', 'Datos de prueba editado 3', 'Datos de prueba editado', '2017-09-26 16:35:27', null, '1');
 INSERT INTO `campanna` VALUES ('CP-00005', 'campaña cp-00005', '2017-09-25 00:00:00', '2017-10-06 00:00:00', '1', '1', '50000.00', 'Campaña de prueba observaciones', 'Campaña de prueba mensaje', '2017-09-27 16:24:21', null, '1');
 INSERT INTO `campanna` VALUES ('CP-00006', 'prueba', '2017-10-09 00:00:00', '2017-10-21 00:00:00', '1', '1', '45000.00', 'no', 'no', '2017-10-09 08:38:33', null, '1');
-INSERT INTO `campanna` VALUES ('CP-00007', 'prueba 007', '2017-10-09 00:00:00', '2017-10-09 00:00:00', '1', '1', '80000.00', 'Prueba 007', 'Prueba 007', '2017-10-09 13:55:27', null, '1');
 
 -- ----------------------------
 -- Table structure for campanna_asignacion
@@ -68,11 +67,6 @@ INSERT INTO `campanna_asignacion` VALUES ('CP-00005', '2', '2017-09-27 16:24:21'
 INSERT INTO `campanna_asignacion` VALUES ('CP-00005', '3', '2017-09-27 16:24:21');
 INSERT INTO `campanna_asignacion` VALUES ('CP-00005', '4', '2017-09-27 16:24:21');
 INSERT INTO `campanna_asignacion` VALUES ('CP-00006', '6', '2017-10-09 08:38:34');
-INSERT INTO `campanna_asignacion` VALUES ('CP-00007', '2', '2017-10-09 13:55:28');
-INSERT INTO `campanna_asignacion` VALUES ('CP-00007', '3', '2017-10-09 13:55:28');
-INSERT INTO `campanna_asignacion` VALUES ('CP-00007', '4', '2017-10-09 13:55:28');
-INSERT INTO `campanna_asignacion` VALUES ('CP-00007', '5', '2017-10-09 13:55:28');
-INSERT INTO `campanna_asignacion` VALUES ('CP-00007', '6', '2017-10-09 13:55:28');
 
 -- ----------------------------
 -- Table structure for campanna_cliente
@@ -130,12 +124,6 @@ INSERT INTO `campanna_cliente` VALUES ('CP-00006', '790', '7000');
 INSERT INTO `campanna_cliente` VALUES ('CP-00006', '791', '8000');
 INSERT INTO `campanna_cliente` VALUES ('CP-00006', '792', '9000');
 INSERT INTO `campanna_cliente` VALUES ('CP-00006', '03000', '5000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '788', '5000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '789', '6000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '790', '7000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '791', '8000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '792', '9000');
-INSERT INTO `campanna_cliente` VALUES ('CP-00007', '03000', '5000');
 
 -- ----------------------------
 -- Table structure for campanna_estados
@@ -189,6 +177,14 @@ INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '88268430', '788', '20
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '4', '788', '2017-10-04', '15:33:54', '00:00:08', '1999.0000', null, 'no', '2');
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00004', '8555', '788', '2017-10-04', '17:05:44', '00:04:21', '3500.0000', '20', 'no', '2');
 INSERT INTO `campanna_registros` VALUES ('2', 'CP-00002', '155', '788', '2017-10-09', '08:15:46', '00:00:11', '4500.0000', null, '', '5');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '1', '788', '2017-10-09', '09:30:42', '00:00:01', '1.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00001', '12', '788', '2017-10-09', '11:43:44', '00:00:00', '23.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00002', '23', '789', '2017-10-09', '14:57:32', '00:00:00', '43.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00002', '7', '789', '2017-10-09', '14:57:53', '00:00:00', '7.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '3', '790', '2017-10-09', '16:23:38', '00:00:00', '50.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '44', '790', '2017-10-09', '16:23:59', '00:00:00', '50.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '12', '790', '2017-10-09', '16:25:40', '00:00:00', '100.0000', null, '', '1');
+INSERT INTO `campanna_registros` VALUES ('2', 'CP-00003', '12', '3000', '2017-10-10', '09:58:01', '00:00:00', '300.0000', null, '', '4');
 
 -- ----------------------------
 -- Table structure for campanna_tipificacion
@@ -300,7 +296,6 @@ INSERT INTO `llaves` VALUES ('Campaña', '3');
 INSERT INTO `llaves` VALUES ('Campaña', '4');
 INSERT INTO `llaves` VALUES ('Campaña', '5');
 INSERT INTO `llaves` VALUES ('Campaña', '6');
-INSERT INTO `llaves` VALUES ('Campaña', '7');
 
 -- ----------------------------
 -- Table structure for roles
@@ -456,40 +451,26 @@ INSERT INTO `usuario_registros` VALUES ('1', '13ea910fe3a29011d878cca0e46e3ddf30
 INSERT INTO `usuario_registros` VALUES ('2', '65f784c3f8af277eba56ecd48f595b89b378ea45', 'SAC1', 'MARYAN', '2017-10-09 08:33:19', '2017-10-09 08:34:54', '00:01:35', 'ON');
 INSERT INTO `usuario_registros` VALUES ('1', '67b989c50d4bfb0441c081eea93ae21b8c05aaed', 'SU', 'SU', '2017-10-09 08:34:59', '2017-10-09 09:04:42', '00:29:43', 'ON');
 INSERT INTO `usuario_registros` VALUES ('2', '299df5854a90361f37d0ff7e669d61dae86c0a4f', 'SAC1', 'MARYAN', '2017-10-09 09:04:46', '2017-10-09 09:07:46', '00:03:00', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '1d5020a38310a028d18ad6af148aa79e1e1fc5eb', 'SAC1', 'MARYAN', '2017-10-09 09:16:59', '2017-10-09 09:21:45', '00:04:46', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', '511d757055149f94397d6da3184fb7b208f2dd85', 'SU', 'SU', '2017-10-09 09:22:00', '2017-10-09 09:39:49', '00:17:49', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '6223bd75b2fe6f280134f7b4b80d20769ce0efa7', 'SAC1', 'MARYAN', '2017-10-09 09:39:53', null, null, 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '1f1dc053e7cfb1bd7b4ecd01fae34857a5943a2f', 'SAC1', 'MARYAN', '2017-10-09 09:44:51', '2017-10-09 09:46:00', '00:01:09', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', 'adeaa96526602d5054662a48f6a50af76409eeeb', 'SU', 'SU', '2017-10-09 09:46:06', '2017-10-09 09:46:25', '00:00:19', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '3b45cf5f10aa9f3cb634a82c54e3838df91f9330', 'SAC1', 'MARYAN', '2017-10-09 09:46:32', '2017-10-09 09:47:38', '00:01:06', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', 'e4edb31958864073210c530049b1387830be45f0', 'SU', 'SU', '2017-10-09 09:51:21', '2017-10-09 10:17:35', '00:26:14', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', 'b42d43aa36f2bc89dea42d6f8337b80973547ff6', 'SU', 'SU', '2017-10-09 10:17:38', '2017-10-09 10:17:40', '00:00:02', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '40be2689097c18453ed5bf1768eb63ebcf2d7c04', 'SAC1', 'MARYAN', '2017-10-09 10:17:42', '2017-10-09 10:17:59', '00:00:17', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', '4dcdae532ee13fa87e8e22953b24245a1a221d7c', 'SU', 'SU', '2017-10-09 10:18:02', '2017-10-09 10:23:49', '00:05:47', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', 'd3b7e28560ba1eaedd48fd825a7bf9c284907d24', 'SAC1', 'MARYAN', '2017-10-09 10:23:52', null, null, 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '26c40e71f40000aecb8cb940e3c221481adc9248', 'SAC1', 'MARYAN', '2017-10-09 10:24:27', '2017-10-09 10:31:21', '00:06:54', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', '43ca3e70485ff9338ab26f0e7ea9ba86ccb4670c', 'SU', 'SU', '2017-10-09 10:31:24', '2017-10-09 11:55:43', '01:24:19', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', 'a084759927173c7df67a275adfd2343803ddaee6', 'SU', 'SU', '2017-10-09 11:55:47', '2017-10-09 11:55:48', '00:00:01', 'ON');
-INSERT INTO `usuario_registros` VALUES ('2', '39cf2b82d6ebb69f05515c30ffb823bbcb850339', 'SAC1', 'MARYAN', '2017-10-09 11:55:51', '2017-10-09 11:57:00', '00:01:09', 'ON');
-INSERT INTO `usuario_registros` VALUES ('1', '026ddb7449cb77fc800877ef090b8bc8e3dd94fd', 'SU', 'SU', '2017-10-09 11:57:08', null, null, 'ON');
+INSERT INTO `usuario_registros` VALUES ('2', '8b3e7307516473f33e8d0e304f2e187a8fba165c', 'SAC1', 'MARYAN', '2017-10-09 13:08:02', '2017-10-09 16:51:10', '03:43:08', 'ON');
+INSERT INTO `usuario_registros` VALUES ('2', 'ad885d5e012c226d973afc8b2d1f9f0220624e9c', 'SAC1', 'MARYAN', '2017-10-10 07:55:32', null, null, 'ON');
 
 -- ----------------------------
 -- View structure for view_campannas_clientes
 -- ----------------------------
 DROP VIEW IF EXISTS `view_campannas_clientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_campannas_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t1`.`Telefono2` AS `Telefono2`,`t1`.`Telefono3` AS `Telefono3`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_campannas_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`ID_Cliente` AS `ID_Cliente`,`t1`.`Nombre` AS `Nombre`,`t1`.`Telefono1` AS `Telefono1`,`t1`.`Telefono2` AS `Telefono2`,`t1`.`Telefono3` AS `Telefono3`,`t0`.`Meta` AS `Meta` from (`campanna_cliente` `t0` join `clientes` `t1` on((`t0`.`ID_Cliente` = `t1`.`ID_Cliente`))) ;
 
 -- ----------------------------
 -- View structure for view_campannas_info
 -- ----------------------------
 DROP VIEW IF EXISTS `view_campannas_info`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
 
 -- ----------------------------
 -- View structure for view_clientescampaniadetalle
 -- ----------------------------
 DROP VIEW IF EXISTS `view_clientescampaniadetalle`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_clientescampaniadetalle` AS SELECT
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_clientescampaniadetalle` AS SELECT
 	cc.ID_Campannas,
 	cc.ID_Cliente,
 	cl.Nombre,
@@ -500,16 +481,10 @@ FROM
 JOIN clientes cl ON cl.ID_Cliente = cc.ID_Cliente ;
 
 -- ----------------------------
--- View structure for view_list_vendedores
--- ----------------------------
-DROP VIEW IF EXISTS `view_list_vendedores`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_list_vendedores` AS  ;
-
--- ----------------------------
 -- View structure for view_monto_clientes
 -- ----------------------------
 DROP VIEW IF EXISTS `view_monto_clientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
 
 -- ----------------------------
 -- Procedure structure for sp_infoCampania
@@ -539,7 +514,7 @@ IF(ISNULL(@realMonto),0,@realMonto) AS montoReal,
 IF(ISNULL(@unidad),0, @unidad) AS unidad
 
 FROM campanna cm
-/*INNER JOIN campanna_registros cr ON cm.ID_Campannas = cr.ID_Campannas  */
+
 WHERE cm.ID_Campannas = ID_CampanniaC;
 
 END

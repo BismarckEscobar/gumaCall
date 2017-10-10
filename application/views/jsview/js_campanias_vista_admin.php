@@ -345,37 +345,57 @@ function cargarTablaAgentes(idCampania) {
         },
         columns: [
             { "data": "ACTIVO" },
+            { "data": "ID_USUARIO" },
             { "data": "NOMBRE" }
         ]
     });
 }
-
-function cargarTablaClientes(idCampania) {
-    $('#tblAdmClientes').DataTable({
-        ajax: "cargaClientesCampania/" + idCampania,     
-        "destroy": true,
-        "info":    false,
-        "bPaginate": false,
-        "paging": false,
-        "ordering": false,
-        "pagingType": "full_numbers",
-        "emptyTable": "No hay datos disponibles en la tabla",
-        "language": {
-            "zeroRecords": "No hay datos disponibles"
-        },
-        columns: [
-            { "data": "ACTIVO" },
-            { "data": "NOMBRE" }
-        ]
-    });
-}
-
 
 function editarCampania(idCampania) {
+    $.ajax({
+        url: "cargaEstadoCamp/" + idCampania,
+        type: "post",
+        async: true,
+        success: function(data) {
+            $("#dropdown1").empty();
+            $.each(JSON.parse(data), function(i, item) {
+                if (item['Estado']==1) {                                        
+                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
+                }else if (item['Estado']==2) {                                        
+                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
+                }else if (item['Estado']==3) {                                        
+                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
+                }else if (item['Estado']==4) {                                       
+                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
+                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>");
+                }
+            });            
+        }
+    });
     var control = 'numcamp'+idCampania;
-    cargarTablaClientes(idCampania);
     cargarTablaAgentes(idCampania);
     $('#'+control).click(function() { $("#modalEditarCamp").openModal(); });
+}
+
+function guardarEdicionAgentes() {
+    var agentesSeleccionados = new Array();
+    var tabla = $('#tblAdmAgentes').DataTable();
+        tabla.rows().eq(0).each(function(index) {
+            var row = tabla.row(index);
+            var data = row.data();
+            var idUsuario = data[1];
+                        
+                agentesSeleccionados[pos] = ID_Campannas + "," + data[0];
+                pos++;
+            
+        });
 }
 
 
