@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function() {
-    
+    desactivarUsuarioFB();
     $(function() {
         $("ul li").each(function(){
             if($(this).attr("id") == 'usuarios')
@@ -55,18 +55,49 @@ function bajaUsuario(idUsuario, valor) {
             type: "post",
             async: true,
             success: function(data) {
-                console.log(data);
-                if(data=="true") {
-                    swal({
-                        title: "Actualizado con éxito",
-                        type: "success",
-                        confirmButtonText: "CERRAR",
-                    }).then(
-                        function() { location.reload(); }
-                    )
+                if(data!="false") {
+                $.each(JSON.parse(data), function(i, item){
+                    desactivarUsuarioFB(item['Usuario']);                    
+                });
+                swal({
+                    title: "Actualizando Usuario...",
+                    text: "Espere por favor",
+                    timer: 2000,
+                    showConfirmButton:false,
+                    html:'<br>'+'<div class="preloader-wrapper active">'+
+                            '<div class="spinner-layer spinner-blue-only">'+
+                            '<div class="circle-clipper left">'+
+                                '<div class="circle"></div>'+
+                            '</div><div class="gap-patch">'+
+                                '<div class="circle"></div>'+
+                            '</div><div class="circle-clipper right">'+
+                                '<div class="circle"></div>'+
+                            '</div>'+
+                            '</div>'+
+                        '</div>'
+                }).then(
+                    function () {},
+                    function (dismiss) {
+                        location.reload();
+                    }
+                )
                 }                
             }
         });
     })
+}
+
+function desactivarUsuarioFB(usuario){
+    var cont=1;
+    firebase.database().ref("USUARIOS").once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childKey = childSnapshot.key;
+            if (childKey==usuario) {
+                firebase.database().ref("/USUARIOS/"+childKey).remove();
+                return;
+            }
+            cont++;
+        });
+    });
 }
 </script>

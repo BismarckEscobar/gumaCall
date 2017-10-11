@@ -65,6 +65,7 @@ class Usuario_model extends CI_Model
         }
     }
     public function actulizarEstado($IdUsuario,$estado){
+        $usuario = "";
         if ($estado==1) {
             $estado=1;
         }else{$estado=0;}
@@ -73,6 +74,16 @@ class Usuario_model extends CI_Model
         );
         $this->db->where('IdUser', $IdUsuario);
         $result=$this->db->update('usuario',$data);
-        echo json_encode($result);
+
+        if ($result) {
+            $this->db->select('Usuario');
+            $this->db->where('IdUser', $IdUsuario);
+            $name = $this->db->get('usuario');
+
+            echo json_encode($name->result_array());
+        }else {
+            echo json_encode(false);
+        }
+        
     }
 }
