@@ -71,6 +71,7 @@ class Campanna_model extends CI_Model
                 $c++;
             }
             return $array_Clientes_camp;
+
         }
         return 0;
 
