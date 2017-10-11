@@ -343,6 +343,12 @@ function cargarTablaAgentes(idCampania) {
         "language": {
             "zeroRecords": "No hay datos disponibles"
         },
+        "columnDefs": [
+            {
+                "targets": [ 1 ],
+                "visible": false
+            }
+        ],
         columns: [
             { "data": "ACTIVO" },
             { "data": "ID_USUARIO" },
@@ -351,52 +357,91 @@ function cargarTablaAgentes(idCampania) {
     });
 }
 
-function editarCampania(idCampania) {
-    $.ajax({
-        url: "cargaEstadoCamp/" + idCampania,
-        type: "post",
-        async: true,
-        success: function(data) {
-            $("#dropdown1").empty();
-            $.each(JSON.parse(data), function(i, item) {
-                if (item['Estado']==1) {                                        
-                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
-                }else if (item['Estado']==2) {                                        
-                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
-                }else if (item['Estado']==3) {                                        
-                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 4)'>Procesar</a></li>");
-                }else if (item['Estado']==4) {                                       
-                    $("#dropdown1").append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 1)'>Activar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 2)'>Inactivar</a></li>")
-                                   .append("<li><a href='#!' onclick='cambiaEstadoCamp("+'"'+idCampania+'"'+", 3)'>Aprobar</a></li>");
-                }
-            });            
-        }
-    });
+function editarCampania(idCampania, nombre) {
     var control = 'numcamp'+idCampania;
+    $('#idCampania2').val(idCampania);
+    $('#nombreCampania').text(nombre);
     cargarTablaAgentes(idCampania);
+    
     $('#'+control).click(function() { $("#modalEditarCamp").openModal(); });
 }
 
-function guardarEdicionAgentes() {
-    var agentesSeleccionados = new Array();
-    var tabla = $('#tblAdmAgentes').DataTable();
-        tabla.rows().eq(0).each(function(index) {
-            var row = tabla.row(index);
-            var data = row.data();
-            var idUsuario = data[1];
-                        
-                agentesSeleccionados[pos] = ID_Campannas + "," + data[0];
-                pos++;
-            
-        });
+function guardarEdicionAgentes(idCampania) {
+    var agentes=new Array();
+    var i = 0;
+    
+    tabla = $('#tblAdmAgentes').DataTable();
+    
+    tabla.rows().data().each( function (index,value) {   
+    var idUsuario = tabla.row(i).data().ID_USUARIO
+        if ($('#chkAgente'+idUsuario).is(':checked')) {            
+            agentes[i] = idCampania +","+ tabla.row(i).data().ID_USUARIO;
+            i++;        
+        }else {
+            agentes[i]="";
+            i++;
+        }        
+    });
+
+    form_data = {
+        campania:idCampania,
+        nuevosAgentes:agentes
+    }    
+    $.ajax({
+        url: "editarAgentes",
+        type: 'post',
+        async: true,
+        data: form_data,
+        success: function(res) {
+            console.log(res);
+            if(res=="true") {
+                swal({
+                    title: "Actualizando información",
+                    timer: 2000,
+                    showConfirmButton:false,
+                    html:'<br>'+'<div class="preloader-wrapper active">'+
+                            '<div class="spinner-layer spinner-blue-only">'+
+                            '<div class="circle-clipper left">'+
+                                '<div class="circle"></div>'+
+                            '</div><div class="gap-patch">'+
+                                '<div class="circle"></div>'+
+                            '</div><div class="circle-clipper right">'+
+                                '<div class="circle"></div>'+
+                            '</div>'+
+                            '</div>'+
+                        '</div>'
+                }).then(
+                    function () {},
+                    function (dismiss) {
+                        location.reload();
+                    }
+                )
+            }
+        }
+    });
 }
 
+$('#guardarEdicion').click(function() {
+    var idCampania2 = $('#idCampania2').val(); var cont=0;var i = 0;
+        
+        tabla = $('#tblAdmAgentes').DataTable();
+        
+        tabla.rows().data().each( function (index,value) {   
+        var idUsuario = tabla.row(i).data().ID_USUARIO
+            if ($('#chkAgente'+idUsuario).is(':checked')) {            
+                cont++;
+                i++;        
+            }else {
+                i++;
+            }        
+        });
 
+        if (cont==0) {
+            mensaje("No ha selecciono ningun agente", "error");
+            val=false;
+        }else {
+            guardarEdicionAgentes(idCampania2)
+        }
+    
+});
 </script>

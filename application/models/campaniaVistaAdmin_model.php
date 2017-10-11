@@ -195,10 +195,6 @@ class campaniaVistaAdmin_model extends CI_Model {
 		return $result;
 	}
 
-	public function editarAgentesCamp() {
-
-	}
-
 	public function guardandoEdicion($array) {
 		$temp = array(); $numCampania = ''; $valor = ''; $tipo=0;
 		for ($i=0; $i < count($array); $i++) { 
@@ -339,48 +335,10 @@ class campaniaVistaAdmin_model extends CI_Model {
         echo json_encode($json);
 	}
 
-    /*public function listandoVendedoresAct($idGrupo) {
-        $i=0;
-        $json = array();
-        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
-
-        if (count($query)>0) {
-            foreach ($query as $key) {
-                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
-                if ($validador->num_rows()==0) {
-                    $json['data'][$i]['RUTA'] = $key['VENDEDOR'];
-                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
-                    $i++;
-                }
-            }
-        }
-        echo json_encode($json);
-        $this->sqlsrv->close();
-    }
-
-    public function listandoVendedoresAgregados($idGrupo) {
-        $i = 0;
-        $json = array();
-        $query = $this->sqlsrv->fetchArray('SELECT * FROM vtVS2_Vendedor', SQLSRV_FETCH_ASSOC);
-
-        if (count($query)>0) {
-            foreach ($query as $key) {
-                $validador = $this->db->query('SELECT * FROM grupo_asignacion WHERE idGrupo='.$idGrupo.' AND Vendedor="'.$key['VENDEDOR'].'"');
-                if ($validador->num_rows()!=0) {
-                    $json['data'][$i]['VENDEDOR'] = $key['VENDEDOR'];
-                    $json['data'][$i]['NOMBRE'] = $key['NOMBRE'];
-                    $i++;
-                }
-            }
-        }
-        echo json_encode($json);
-        $this->sqlsrv->close();        
-    }*/
-
     public function listandoAgentes($idCampania) {
         $i = 0;
         $json = array();
-        $query = $this->db->query('SELECT * FROM usuario WHERE Rol = 1');
+        $query = $this->db->query('SELECT * FROM usuario WHERE Rol = 1 AND Activo = 1;');
 
         if (count($query)>0) {
             foreach ($query->result_array() as $key) {
@@ -389,13 +347,13 @@ class campaniaVistaAdmin_model extends CI_Model {
                 	$json['data'][$i]['ACTIVO'] = '<input type="checkbox" class="filled-in" id="chkAgente'.$key['IdUser'].'">
                 								   <label for="chkAgente'.$key['IdUser'].'"></label>';                  
                     $json['data'][$i]['ID_USUARIO'] = $key['IdUser'];
-                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];                    
+                    $json['data'][$i]['NOMBRE'] = $key['Usuario'];                    
                     $i++;
                 }else {
                 	$json['data'][$i]['ACTIVO'] = '<input type="checkbox" checked="checked" class="filled-in" id="chkAgente'.$key['IdUser'].'">
                 								   <label for="chkAgente'.$key['IdUser'].'"></label>';                    
                     $json['data'][$i]['ID_USUARIO'] = $key['IdUser'];
-                    $json['data'][$i]['NOMBRE'] = $key['Nombre'];                    
+                    $json['data'][$i]['NOMBRE'] = $key['Usuario'];                    
                     $i++;
                 }
             }
@@ -403,16 +361,24 @@ class campaniaVistaAdmin_model extends CI_Model {
         echo json_encode($json);
     }
 
-    public function cargaEstadoCamp($idCampania) {
-    	$this->db->select('Estado');
-    	$this->db->where('ID_Campannas', $idCampania);
-    	$query = $this->db->get('campanna');
-    	if ($query->num_rows()>0) {
-    		echo json_encode($query->result_array());
-    	}else {
-    		return false;
-    	}
-    	
+    public function editarAgentesCamp($data, $campania) {
+  		$result=false;
+		if (count($data)>0) {
+			$this->db->where('ID_Campannas', $campania);
+			$this->db->delete('campanna_asignacion');
+			for ($i=0; $i<count($data) ; $i++) {
+				if ($data[$i]!="") {
+					$index=explode(",",$data[$i]);
+					$temp=array(
+						'ID_Campannas'=>$index[0],
+						'ID_Usuario'=>$index[1],
+						'Fecha_asignacion'=>date('Y-m-d H:i:s')
+					);
+					$result=$this->db->insert('campanna_asignacion', $temp);
+				}				
+			}
+			echo json_encode($result);
+		}
     }
 }
 ?>

@@ -14,7 +14,7 @@
 </header>
 <main class="mdl-layout__content mdl-color--grey-100">
 	<div class="contenedor">
-	    <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">USUARIOS DEL SISTEMA</div></div>
+	    <div id="titulo" class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">USUARIOS DEL SISTEMA</div></div>
 	    <div class="noMargen Buscar row column">
 	        <div id="agregarUsuario" class="col offset-s2 s2 right">
 	            <a href="#modalNuevoUsuario" class="BtnBlue waves-effect btn modal-trigger">AGREGAR</a>
@@ -62,6 +62,7 @@
 	        </table>
 	    </div>
 	</div>
+	<div id="prueba"></div>
 </main>
 
 <!--MODAL: INGRESO NUEVO USUARIO-->
