@@ -11,6 +11,7 @@ class Login_model extends CI_Model
         $this->load->view('paginas/login');
         $this->load->view('footer/footer_login');
     }
+
     public function libro_de_registro($ID,$UserName,$Nombre,$Fecha_inicio,$Fecha_fin,$TIPO)
     {
         if ($TIPO=='IN'){
@@ -20,7 +21,8 @@ class Login_model extends CI_Model
                 'UserName' => $UserName,
                 'Nombre' => $Nombre,
                 'FechaInicio' => $Fecha_inicio,
-                'Tipo' => 'ON'
+                'Tipo' => 'ON',
+                'Tipo_de_Usuario' => $this->session->userdata('RolUser')
             ));
         }else{
             $Tiempo_Total = $this->get_diff($Fecha_inicio,$Fecha_fin);
@@ -34,6 +36,7 @@ class Login_model extends CI_Model
 
 
     }
+
     private function get_diff($strStart,$strEnd){
         $dteStart = new DateTime($strStart);
         $dteEnd   = new DateTime($strEnd);

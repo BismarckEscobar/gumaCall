@@ -6,7 +6,8 @@
 class Sqlsrv
 {
 
-    public $serverName = "192.168.1.112";
+    //public $serverName = "192.168.1.112";
+    public $serverName = "192.168.1.9";
     public $dbname = "PRODUCCION";
     public $user = "dbomanager";
     public $password = "Umk*.*@!";
