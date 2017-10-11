@@ -4,8 +4,7 @@
  * @author Dpt MK47
  */
 class Sqlsrv
-{
-
+{    
     public $serverName = "192.168.1.112";
     public $dbname = "PRODUCCION";
     public $user = "dbomanager";

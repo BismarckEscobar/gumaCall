@@ -33,7 +33,6 @@ $route['detalles'] = 'campania_controller/detalles_camp/';
 $route['cCliente'] = 'campania_controller/get_info_cliente';
 
 $route['cargaAgentesCampania/(:any)'] = 'campaniaVistaAdmin_controller/cargaAgentes/$1';
-$route['cargaEstadoCamp/(:any)'] = 'campaniaVistaAdmin_controller/cargaEstados/$1';
 $route['editarAgentes'] = 'campaniaVistaAdmin_controller/editarAgentesCamp';
 //FIN RUTAS CAMPAÑAS
 
@@ -70,3 +69,7 @@ $route['diasGrafica/(:any)'] = 'campaniaVistaAdmin_controller/graficarDiasCampan
 $route['clientes'] = 'clientes_controller';
 $route['agregarClientes'] = 'clientes_controller/agregandoClientes';
 
+//RUTAS TIPIFICACIONES
+$route['tipificaciones'] = 'tipificaciones_controller';
+$route['nuevaTipificacion'] = 'tipificaciones_controller/guardarTipificacion';
+$route['cambiarEstadoTipi/(:any)/(:any)'] = 'tipificaciones_controller/cambiarEstado/$1/$2';

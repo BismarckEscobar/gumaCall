@@ -114,12 +114,8 @@ class CampaniaVistaAdmin_controller extends CI_Controller
         $this->campaniaVistaAdmin_model->listandoAgentes($idCampania);
     }
 
-    public function cargaEstados($idCampania) {
-        $this->campaniaVistaAdmin_model->cargaEstadoCamp($idCampania);
-    }
-
     public function editarAgentesCamp() {
-        
+        $this->campaniaVistaAdmin_model->editarAgentesCamp($this->input->post('nuevosAgentes'), $this->input->post('campania'));
     }
 }
 ?>

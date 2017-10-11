@@ -58,18 +58,33 @@
 
                             if ($key['Estado']==1) {
                                 $estado='Activa';
-
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
+                                         <li class='divider'></li>
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
                             }elseif ($key['Estado']==2) {
                                 $estado='Inactiva';
-
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
+                                         <li class='divider'></li>
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
                             }elseif ($key['Estado']==3) {
                                 $estado='Aprobada';
-
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
+                                         <li class='divider'></li>
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
                             }elseif ($key['Estado']==4) {
                                 $estado='Procesando';
-
+                                $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
+                                         <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
+                                         <li class='divider'></li>
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
                             }
-
                             echo"
                             <tr>
                                 <td class='".$class."'><a href='detallesVA/".$key['ID_Campannas']."'>".$key['ID_Campannas']."</a> </td>
@@ -93,10 +108,13 @@
                                     <label for='chkActivo".$key['ID_Campannas']."'></label>
                                 </td>
                                 <td style='display:none'>".$estado."</td>
-                                <td>
-                                    <div id='numcamp".$key['ID_Campannas']."'>
-                                        <a onclick='editarCampania(".'"'.$key['ID_Campannas'].'"'.")' href='#' class='btn-floating red darken-1'><i class='small material-icons'>create</i></a>
-                                    </div>                                
+                                <td> 
+                                    <div>
+                                        <a class='dropdown-button btn-floating  blue' href='#' data-activates='dropdown1".$key['ID_Campannas']."'><i class='small material-icons'>list</i></a>
+                                        <ul id='dropdown1".$key['ID_Campannas']."' class='dropdown-content ul-dr'>
+                                        ".$status."
+                                        </ul>
+                                    </div>                              
                                 </td>
                             </tr>";
                         }
@@ -109,21 +127,18 @@
     </div>
 </main>
 <!--MODAL: EDITANDO CAMPAÑAS-->
-<div id="modalEditarCamp" class="modal modal-fixed-footer">
+<div id="modalEditarCamp" class="modal">
     <div class="modal-content"><br>
         <div class="row center">            
-            <span id="grupo" class="titulosModales">ADMINISTRAR CAMPAÑA</span>                       
+            <span id="nombreCampania" class="titulosModales"></span><br><br>
+            <span style="font-family: robotomedium">SELECCIONAR AGENTES ACTIVOS</span>
+            <input type='hidden' id="idCampania2">                   
         </div>
         <div class="row center">
             <div id="agente" class="col s12">
                 <div class="row">  
                     <div class="col s12 m12 l12">                
-                        <div class="row center">                            
-                            <div class="row left">
-                                <a class='dropdown-button btn-floating  blue darken-3' href='#' data-activates='dropdown1'><i class='small material-icons'>list</i></a>
-                                <ul id='dropdown1' class='dropdown-content ul-dr'>                                    
-                                </ul>
-                            </div>
+                        <div class="row center">
                             <table id="tblAdmAgentes" class="TblData">
                                 <thead>
                                     <tr>                                
@@ -141,15 +156,9 @@
             </div>
             <div id="cliente" class="col s12"></div>
         </div>
-    </div>
-    <div class="modal-footer">        
-        <div id="center" class="fixed-action-btn">
-            <div>
-                <a class="BtnCancelar modal-action modal-close waves-effect btn modal-trigger">CANCELAR
-                </a>&nbsp;&nbsp;
-                <a class="BtnBlue waves-effect btn modal-trigger">GUARDAR
-                </a>
-            </div>
+        <div class="row center">
+            <a id="guardarEdicion" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
+            <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
 </div>
