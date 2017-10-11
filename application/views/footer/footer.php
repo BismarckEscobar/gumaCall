@@ -15,6 +15,8 @@
 <script src="<?PHP echo base_url();?>assets/js/material.min.js"></script>
 <script src="<?PHP echo base_url();?>assets/js/materialize.js"></script>
 
+<script src="<?PHP echo base_url(); ?>assets/js/moment.min.js"></script>
+
 <script src="<?PHP echo base_url();?>assets/js/chosen.jquery.js"></script>
 
 <!-- Calendar Script -->

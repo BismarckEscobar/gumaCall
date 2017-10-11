@@ -37,7 +37,7 @@
 }
 @font-face {
     font-family: 'robotocondensed';
-    url('/gumacall/assets/fonts/roboto/RobotoCondensed-Bold.ttf') format('truetype'),
+    src:url('/gumacall/assets/fonts/roboto/RobotoCondensed-Bold.ttf') format('truetype'),
     url('/gumacall/assets/fonts/roboto/RobotoCondensed-BoldItalic.ttf') format('truetype'),
     url('/gumacall/assets/fonts/roboto/RobotoCondensed-Italic.ttf') format('truetype'),
     url('/gumacall/assets/fonts/roboto/RobotoCondensed-Light.ttf') format('truetype'),
@@ -853,4 +853,9 @@ chosen-single a{
 
 }
 
-
+#log{
+ margin-bottom:20px;
+}
+#content{
+  margin-top: 20px;
+}

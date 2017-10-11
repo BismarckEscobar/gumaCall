@@ -51,6 +51,10 @@ $route['buscarGrupo/(:any)'] = 'grupos_controller/buscandoGrupo/$1';
 
 //RUTAS GRUPOS
 $route['Monitoreo'] = 'Monitoreo_controller';
+$route['monitoreoSesion'] = 'Monitoreo_controller/monitoreoSesion';
+$route['ajaxLog'] = 'Monitoreo_controller/ajaxLog';
+$route['forzarCierre'] = 'Monitoreo_controller/forzarCierre';
+
 //FIN DE RUTAS GRUPOS
 
 //RUTAS GRUPOS VISTA ADMINISTRADOR

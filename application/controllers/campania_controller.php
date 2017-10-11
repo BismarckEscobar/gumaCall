@@ -24,7 +24,8 @@ class Campania_controller extends CI_Controller
     public function detalles_camp(){
         $id = $this->input->get('C');
         $data['My_camp_Header'] = $this->campanna_model->My_Campannas_Header($id);
-        $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($id);
+        (!$this->campanna_model->My_Campannas_Clientes($id)) ? 
+        redirect(base_url(). 'index.php/campanias','refresh'): $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($id); ;
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/detallescamp',$data);
