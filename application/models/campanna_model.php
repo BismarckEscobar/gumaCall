@@ -77,6 +77,36 @@ class Campanna_model extends CI_Model
 
     }
 
+    /*FUNCION PARA MOSTRAR CLIENTES POR VENDEDOR*/
+    public function clientePorVendedor($id,$usuario){
+        $array_Clientes_camp = array();
+        $temp;
+        $c = 0;
+        $vendedores = $this->db->query("SELECT * FROM view_vendedoresporgrupo WHERE idUsuario = ".$usuario."");
+        foreach ($vendedores->result_array() as $key) {
+            $index = explode(", ", $key['vendedores']);
+            for ($i = 0; $i < count($index); $i++) {
+                $clientes = $this->db->query("SELECT * FROM view_campannas_clientes WHERE ID_Campannas = '".$id."' AND Vendedor='".$index[$i]."'; ");
+                foreach ($clientes->result_array() as $Cmp) {
+                    $temp = array(
+                        'ID_Campannas' => $id,
+                        'ID_Cliente' => $Cmp['ID_Cliente'],
+                        'Nombre' => $Cmp['Nombre'],
+                        'Telefono1' => $Cmp['Telefono1'],
+                        'Telefono2' => $Cmp['Telefono2'],
+                        'Telefono3' => $Cmp['Telefono3'],
+                        'Meta' => $Cmp['Meta'],
+                        'Real' => $this->getRealCliente($id, $Cmp['ID_Cliente'])
+                    );
+                     $array_Clientes_camp[] = $temp;  
+                }
+            }
+        }
+        return $array_Clientes_camp;
+        print_r($array_Clientes_camp);
+    }
+    /*FIN FUNCION PARA MOSTRAR CLIENTES POR VENDEDOR*/
+
     public function My_Campannas_Clientes1($Id)
     {
         $array_Clientes_camp = array();
@@ -169,7 +199,7 @@ class Campanna_model extends CI_Model
         return 0;
 
     }
-    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF)
+    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF,$unidad)
     {
         $this->db->insert('campanna_registros',array(
             'Num_CLI' => $num,
@@ -181,7 +211,8 @@ class Campanna_model extends CI_Model
             'Hora' => date('H:i:s'),
             'Duracion' => $Duracion,
             'Comentarios' => $Comentario,
-            'ID_TPF' => $TPF
+            'ID_TPF' => $TPF,
+            "Unidad" => $unidad
         ));
         echo ($this->db->affected_rows() > 0) ? 1 : 0;
 
