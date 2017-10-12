@@ -6,6 +6,7 @@ class Monitoreo_controller extends CI_Controller
 
     public function __construct(){
         parent::__construct();
+        $this->load->helper('cookie');
         $this->load->model("monitoreo_model");
         $this->load->model("login_model");
         $this->load->library('session');

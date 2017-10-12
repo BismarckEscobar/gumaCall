@@ -1,5 +1,17 @@
 <script>
     $("#mnCamp").addClass("urlActual");
+
+     var pathname = window.location.pathname;
+     var numcamp;
+     var camp;
+     if(pathname.match(/detalles.*/)){
+        console.log($("#span1").text());
+         console.log($("#span2").text());
+     }else if(pathname.match(/cCliente.*/)){
+        console.log($("#spCamp1").text());  
+        console.log($("#spCamp2").text());  
+     }
+     
     //$("#outCall").openModal();
     $(document).ready(function() {
         var control;
@@ -7,6 +19,7 @@
         var frm_Kronos =$("#Kronos");
         localStorage.setItem("uNombre", $("#USI").text());
         localStorage.setItem("uId", $("#USN").text());
+        
 
         if (localStorage.getItem("EnLinea")=== "true"){
             firebase.database().ref("USUARIOS").child(localStorage.getItem("uNombre")).update({
@@ -66,15 +79,16 @@
         /*INICIO DE GUARDADO DE LLAMADA*/
         $("#id_Guardar_llamada").click(function(){
             var Cli   =  $("#clienteLlamado").html();
-            var cmp   =  $("#spCamp").html();
+            var cmp   =  $("#spCamp1").html();
             var Num   =  $("#frm_Numero").val();
             var TPF   =  $("#frm_TPF").val();
             var Monto =  $("#frm_Monto").val();
             var Comnt =  $("#frm_comentario").val();
+            var unidad = $("#frm_Unidad").val();
 
 
 
-            if(TPF == null || Monto=='' || Num==''){
+            if(TPF == null || Monto=='' || Num=='' || unidad==''){
                 swal('Oops...','Hay Informacion sin completar!','error')
             }else{
                 var Frm_Datos = {
@@ -84,6 +98,7 @@
                     TPF: TPF,
                     Monto:  Monto,
                     Coment: Comnt,
+                    Unidad : unidad,
                     TimeInCall:frm_Kronos.text()
                 };
 
@@ -224,7 +239,7 @@
                     });
                     $('#mTiempoFuera').closeModal();
                     //setTimeout("", 3000);
-                    //location.reload();
+                    location.reload(); //Refrescar pagina despues de cerrar el modal mTiempoFuera
                 }
 
 
@@ -248,8 +263,7 @@
     );
 
 
-
-    function Ear_Eyes_Of_God(Init,End,isTime,id,name) {
+    function Ear_Eyes_Of_God(Init,End,isTime,id,name,camp,numcamp) {
         firebase.database().ref("USUARIOS").child(id).update({
             Agente: id,
             FechaInicio: Init,
@@ -257,7 +271,9 @@
             ttTrabajo:isTime,
             ttEnPausa:"",
             Nombre:name,
-            Camp:"PROMOCION RAMOS ADOSTO 2017"
+            Camp: (pathname.match(/detalles.*/) ? camp = $("#span2").text(): camp = $("#spCamp2").text()),  
+            NumCamp: (pathname.match(/detalles.*/) ? numcamp = $("#span1").text(): numcamp = $("#spCamp1").text())
+
         });
         firebase.database().ref("USUARIOS").child(id).once('value', function(snapshot) {
             if (snapshot.val().EnLinea==2){
@@ -268,7 +284,7 @@
                     $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
                 },10);
             }else{
-                $('#mTiempoFuera').closeModal();
+                $('#mTiempoFuera').closeModal();       
             }
         });
 

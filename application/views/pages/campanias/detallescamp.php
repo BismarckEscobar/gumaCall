@@ -33,7 +33,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title left">N° <?php echo $ID;?>- <?php echo $Nombre;?></span><br><br><br><br>
+                        <span id="span1" class="card-title left">N° <?php echo $ID;?> </span><span class="card-title left"> - </span>
+                        <span id="span2" class="card-title left"><?php echo $Nombre;?></span><br><br><br><br>
                         <div class="row">
                             <form class="col s12">
                                 <div class="row">
@@ -79,24 +80,22 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 <tbody class="center">
                 <?php
 
-                    if (!$My_camp_Clientes){
+                    if (!$ClixVend){
 
                     }else{
-                        foreach ($My_camp_Clientes as $Lst){
+                        foreach ($ClixVend as $Lst){
 
                             echo '<tr>
-                                    <td><a onclick="getInfoCliente('."'".$Lst['ID_Campannas']."'".",'".$Lst['ID_Cliente']."'".')" href="#">'.$Lst['ID_Cliente'].'</a></td>
+                                    <td><a id="Numcamp" onclick="getInfoCliente('."'".$Lst['ID_Campannas']."'".",'".$Lst['ID_Cliente']."'".')" href="#">'.$Lst['ID_Cliente'].'</a></td>
                                     <td>'.$Lst['Nombre'].'</td>
                                     <td>'.$Lst['Telefono1'].'</td>
                                     <td>C$ '.number_format($Lst['Meta'],2).'</td>
                                     <td>C$ '.number_format($Lst['Real'],2).'</td>
-                                    <td>'.number_format($Lst['Real'], 2).'</td>
-                                    
+                                    <td>'.number_format($Lst['Real'], 2).'</td>       
                                  </tr>';
                         }
                     }
                 ?>
-
                 </tbody>
             </table>
         </div>

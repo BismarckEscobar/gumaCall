@@ -35,10 +35,12 @@
                 }
 
                 if (childData.EnLinea===0) {
+                    numcamp ="";
                     btn = "";
                     tTrabajo ="";
                     tCamp ="";
                 }else{
+                    numcamp = childData.NumCamp
                     tTrabajo =childData.ttTrabajo
                     tCamp =childData.Camp
                     btn = "<a class='waves-effect waves-light btn' onclick='updateEyes("+'"'+childKey+'"'+','+EsPausa+")'>"+estado+"</a>";
@@ -51,7 +53,7 @@
                     '<div class="card-content white-text">' +
                     '<span class="card-title">AGENTE: '+childKey+'</span>'+
                     '<h1 class="center">'+sac+'</h1>'+
-                    '<h5 class="center">Nº 0051</h5>'+
+                    '<h5 class="center">'+numcamp+'</h5>'+
                     '<h5 class="center">'+tCamp+'</h5>'+
                     '<h4 class="center">'+tTrabajo+'</h4>'+
                     '</div>'+

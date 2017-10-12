@@ -23,7 +23,7 @@ $Fecha_Inicio = date_create($Fecha_Inicio);
 $Fecha_Cierre = date_create($Fecha_Cierre);
 ?>
 <header class="demo-header mdl-layout__header ">
-    <div class="row center ColorHeader"><span class="title-w">N° <span id="spCamp"><?php echo $ID ?></span> - <?php echo $Nombre ?></span>
+    <div class="row center ColorHeader"><span class="title-w">N° <span id="spCamp1"><?php echo $ID ?></span> - <span id="spCamp2"><?php echo $Nombre ?></span></span>
         <div class="container_reloj">
             <div class="clock">
                 <ul class="ul_r">
@@ -219,7 +219,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                     <div class="row" >
 
                         <div class="input-field offset-l1 col s12 m12 l10 " >
-                            <input id="frm_Numero" type="number"  placeholder="Numero de marcado">
+                            <input class="validate" id="frm_Numero" type="tel"  placeholder="Numero de marcado">
                         </div>
                     <div class="input-field offset-l1 col s12 m12 l10 " >
                         <select class="chosen-select browser-default" id="frm_TPF">
@@ -236,13 +236,18 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                     </div>
                 </div>
                 <div class="row" >
-                    <div class="input-field offset-l1 col s12 m12 l10 " >
+                    <div class="input-field  col s6 m6 l10 " >
                         <label class="left">MONTO VENDIDO C$</label>
+                    </div>
+                    <div class="input-field right col s6 m6 l6">
+                        <label class="left">UNIDADES VENDIDAS</label>
                     </div><br><br><br>
 
-                    <div class="input-field offset-l1 col s12 m12 l10 ">
+                    <div class="input-field col s6 m6 l6 ">
                         <input id="frm_Monto" type="number" class="validate right" placeholder="ESCRIBA EL MONTO">
-
+                    </div>
+                     <div class="input-field col s6 m6 l6 ">
+                        <input id="frm_Unidad" type="number" class="validate right" placeholder="ESCRIBA LA CANTIDAD DE UNIDADES">
                     </div>
                 </div>
                 <div class="row" >
