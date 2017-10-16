@@ -52,4 +52,5 @@ class Monitoreo_controller extends CI_Controller
        $this->monitoreo_model->forzarCierre($id, $fechainicio ,$FechaFinal,$Tiempo_Total);
         echo $id." ". $fechainicio ." ".$FechaFinal." ". $Tiempo_Total;
     }
+    
 }
