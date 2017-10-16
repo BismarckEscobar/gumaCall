@@ -68,6 +68,11 @@
     for (var selector in config) {
         $(selector).chosen(config[selector]);
     }
+
+    function ModalInfo()
+    {
+        $("#modalAbout").openModal();
+    }
 </script>
 </body>
 </html>

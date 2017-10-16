@@ -30,13 +30,13 @@
                            <li href="#" id="monitor"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
                            <li href="#" id="tipificaciones"><a href="tipificaciones"><i class="material-icons">phone_in_talk</i> Tipificaciones</a></li>
                            <li href="#" id="reportes"><a href="#"><i class="material-icons">pie_chart</i> Reportes</a></li>                                      
-                           <li href="#" id="acercaDe"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
+                           <li href="#" id="acercaDe"><a onclick="ModalInfo()" href="#"><i class="material-icons">info</i> acerca de</a></li>
                            <li href="salir" id="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
                 break;
                 case '1':
                   $menu = '<li id="mnCamp"><a href="campanias" ><i class="material-icons">shopping_cart</i> mis campañas</a></li>
                            <li><a href="#" id="ID_Cerrar" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>
-                           <li><a href="#" ><i class="material-icons">info</i> Acerca de</a></li>';
+                           <li><a onclick="ModalInfo()" href="javascript:void(0)"><i class="material-icons">info</i> Acerca de</a></li>';
 
                 break;
 
@@ -46,3 +46,21 @@
           </ul>
        </div>
     </div>
+<!-- Modal Structure -->
+<div id="modalAbout" class="modal" style="margin-top:100px;">
+  <div class="modal-content">
+    <a href="#!" class="right modal-action modal-close"><img src="<?php echo base_url("assets/img/cerrar.png") ?>" width="20px" alt="Cerrar"></a>
+    <div class="row">
+      <div class="col s12 m12 s12">
+        <h5 class="center negra indigo-text darken-4">ACERCA DE</h5>
+      </div>
+    </div>
+    <h5 class="center negra indigo-text darken-4">DESARROLLADO POR GERENCIA CORPORATIVA IT.</h5>
+    <img style="margin-top:-75px;" src="<?php echo base_url(" assets/img/logo-principal.png ") ?>" alt="Logo" class="indigo circle"
+      width="100px">
+  </div>
+  <div class="modal-footer">
+    <p class="center negra indigo-text darken-4">COPYRIGHT &copy; TODOS LOS DERECHOS RESERVADOS.</p>
+  </div>
+</div>
+          
