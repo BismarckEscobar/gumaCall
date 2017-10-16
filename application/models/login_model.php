@@ -52,7 +52,8 @@ class Login_model extends CI_Model
                 'UserName' => $UserName,
                 'Nombre' => $Nombre,
                 'FechaInicio' => date('Y-m-d H:i:s',strtotime($Fecha_inicio)),
-                'Tipo' => 'PAUSA'
+                'Tipo' => 'PAUSA',
+                'Tipo_de_Usuario' => $this->session->userdata('RolUser')
             ));
         }else{
             $Tiempo_Total = $this->get_diff($Fecha_inicio,$Fecha_fin);

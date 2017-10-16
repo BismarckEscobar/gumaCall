@@ -24,8 +24,9 @@ class Campania_controller extends CI_Controller
     public function detalles_camp(){
         $id = $this->input->get('C');
         $data['My_camp_Header'] = $this->campanna_model->My_Campannas_Header($id);
-        (!$this->campanna_model->My_Campannas_Clientes($id)) ? 
-        redirect(base_url(). 'index.php/campanias','refresh'): $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($id); ;
+ (!$this->campanna_model->My_Campannas_Clientes($id)) ? redirect(base_url().'index.php/campanias','refresh') 
+ : $data['My_camp_Clientes'] = $this->campanna_model->My_Campannas_Clientes($id);
+        $data['ClixVend'] = $this->campanna_model->clientePorVendedor($id,$this->session->userdata('id'));
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/detallescamp',$data);
@@ -63,7 +64,8 @@ class Campania_controller extends CI_Controller
             $this->input->post('Monto'),
             $this->input->post('TimeInCall'),
             $this->input->post('Coment'),
-            $this->input->post('TPF')
+            $this->input->post('TPF'),
+            $this->input->post('Unidad')
         );
 
     }

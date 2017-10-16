@@ -11,9 +11,9 @@ class monitoreo_model extends CI_Model
        $consulta = "SELECT * FROM usuario_registros WHERE Tipo='ON' ";
        if($f1 != "" && $f2 !=""){
             $consulta .= "AND FechaInicio AND FechaFinal 
-       BETWEEN '" . date('Y-m-d H:i:s', strtotime($f1)) . "' AND '" . date('Y-m-d H:i:s', strtotime($f2)) . "' ORDER BY FechaInicio ASC";
+       BETWEEN '" . date('Y-m-d H:i:s', strtotime($f1)) . "' AND '" . date('Y-m-d H:i:s', strtotime($f2)) . "' ";
        } 
-       
+       $consulta.= " AND UserName NOT IN('SU') ORDER BY UserName DESC";
        $query = $this->db->query($consulta);
        if ($query->num_rows()>0) {
            foreach ($query->result_array() as $key) {
@@ -62,11 +62,19 @@ class monitoreo_model extends CI_Model
         ));
     }
 
-    public function get_diff($strStart, $strEnd)
+    public function get_diff($start_time, $end_time)
     {
-        $dteStart = new DateTime($strStart);
-        $dteEnd = new DateTime($strEnd);
-        $dteDiff = $dteStart->diff($dteEnd);
-        return $dteDiff->format("%H:%I:%S");
+        $total_seconds = strtotime($end_time) - strtotime($start_time);
+        $horas = floor($total_seconds / 3600);
+        $minutes = ( ($total_seconds / 60) % 60);
+        $seconds = ($total_seconds % 60);
+
+        $time['horas'] = str_pad($horas, 2, "0", STR_PAD_LEFT);
+        $time['minutes'] = str_pad($minutes, 2, "0", STR_PAD_LEFT);
+        $time['seconds'] = str_pad($seconds, 2, "0", STR_PAD_LEFT);
+
+        $time = implode(':', $time);
+
+        return $time;
     }
 }
