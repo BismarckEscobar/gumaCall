@@ -29,7 +29,7 @@
                            <li href="#" id="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>
                            <li href="#" id="monitor"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
                            <li href="#" id="tipificaciones"><a href="tipificaciones"><i class="material-icons">phone_in_talk</i> Tipificaciones</a></li>
-                           <li href="#" id="reportes"><a href="#"><i class="material-icons">pie_chart</i> Reportes</a></li>                                      
+                           <li href="#" id="reportes"><a href="reportes"><i class="material-icons">pie_chart</i> Reportes</a></li>                                      
                            <li href="#" id="acercaDe"><a href="#"><i class="material-icons">info</i> acerca de</a></li>
                            <li href="salir" id="salir"><a href="salir" ><i class="material-icons">exit_to_app</i> CERRAR SESIÓN</a></li>';
                 break;

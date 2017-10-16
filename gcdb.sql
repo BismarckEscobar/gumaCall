@@ -13,7 +13,7 @@ File Encoding         : 65001
 
 Date: 2017-10-11 13:33:52
 
-
+*/
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -438,38 +438,10 @@ DROP VIEW IF EXISTS `view_campannas_info`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_campannas_info` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t1`.`Nombre` AS `Nombre`,`t1`.`Fecha_Inicio` AS `Fecha_Inicio`,`t1`.`Fecha_Cierre` AS `Fecha_Cierre`,count(`t0`.`ID_Campannas`) AS `TOTAL_LLAMADAS`,sec_to_time(sum(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_TOTAL`,sec_to_time(avg(time_to_sec(`t0`.`Duracion`))) AS `TIEMPO_PROMEDIO`,`t1`.`Meta` AS `Meta`,sum(`t0`.`Monto`) AS `MONTO_REAL`,`t1`.`Observaciones` AS `Observaciones`,`t1`.`Mensaje` AS `Mensaje`,`t1`.`Estado` AS `Estado` from (`campanna_registros` `t0` join `campanna` `t1` on((`t0`.`ID_Campannas` = `t1`.`ID_Campannas`))) group by `t0`.`ID_Campannas` ;
 
-
--- ----------------------------
--- View structure for view_clientescampaniadetalle
--- ----------------------------
-DROP VIEW IF EXISTS `view_clientescampaniadetalle`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_clientescampaniadetalle` AS SELECT
-
-	cc.ID_Campannas,
-	cc.ID_Cliente,
-	cl.Nombre,
-	cc.Meta,
-	(SELECT MONTO_REAL FROM view_monto_clientes WHERE ID_CLIENTE = cc.ID_Cliente AND ID_Campannas = cc.ID_Campannas) AS montoReal
-FROM
-	campanna_cliente cc
-JOIN clientes cl ON cl.ID_Cliente = cc.ID_Cliente ;
-
-
--- ----------------------------
-DROP VIEW IF EXISTS `view_list_vendedores`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_list_vendedores` AS  ;
-
--- ----------------------------
 -- View structure for view_monto_clientes
 -- ----------------------------
 DROP VIEW IF EXISTS `view_monto_clientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
-
--- View structure for view_monto_clientes
--- ----------------------------
-DROP VIEW IF EXISTS `view_monto_clientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
+CREATE  VIEW `view_monto_clientes` AS select `t0`.`ID_Campannas` AS `ID_Campannas`,`t0`.`ID_CLIENTE` AS `ID_CLIENTE`,sum(`t0`.`Monto`) AS `MONTO_REAL` from `campanna_registros` `t0` group by `t0`.`ID_Campannas`,`t0`.`ID_CLIENTE` ;
 
 
 -- ----------------------------
@@ -477,7 +449,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `view_monto_clientes
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_infoCampania`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_infoCampania`(IN ID_CampanniaC VARCHAR(20))
+CREATE PROCEDURE `sp_infoCampania`(IN ID_CampanniaC VARCHAR(20))
 BEGIN
 SET @totalLlamadas = (SELECT TOTAL_LLAMADAS FROM view_campannas_info WHERE ID_Campannas = ID_CampanniaC );
 SET @tiempoPro = (SELECT TIEMPO_PROMEDIO FROM view_campannas_info WHERE ID_Campannas = ID_CampanniaC );
@@ -509,3 +481,19 @@ WHERE cm.ID_Campannas = ID_CampanniaC;
 END
 ;;
 DELIMITER ;
+
+-- ----------------------------
+-- View structure for view_clientescampaniadetalle
+-- ----------------------------
+DROP VIEW IF EXISTS `view_clientescampaniadetalle`;
+
+CREATE VIEW `view_clientescampaniadetalle` AS SELECT
+
+  cc.ID_Campannas,
+  cc.ID_Cliente,
+  cl.Nombre,
+  cc.Meta,
+  (SELECT MONTO_REAL FROM view_monto_clientes WHERE ID_CLIENTE = cc.ID_Cliente AND ID_Campannas = cc.ID_Campannas) AS montoReal
+FROM
+  campanna_cliente cc
+JOIN clientes cl ON cl.ID_Cliente = cc.ID_Cliente ;
