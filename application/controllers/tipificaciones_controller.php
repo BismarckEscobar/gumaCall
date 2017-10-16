@@ -29,11 +29,9 @@ class tipificaciones_controller extends CI_Controller {
 			$comentario = $this->input->post('comentarioTipificacion');
 		}
 		$data = array(
-			'nombre' => $this->input->post('nombreTipificacion'),
-			'descripcion' => $comentario,
-			'fecha_creacion' => date('Y-m-d H:i:s'),
-			'ID_Usuario' => $this->input->post('idUser'),
-			'estado' => 1
+			'Tipificacion' => $this->input->post('nombreTipificacion'),
+			'Fecha_TPF' => date('Y-m-d H:i:s'),
+			'Activa' => 1
 		);
 		$this->tipificacion_model->guardandoTipificacion($data);
 	}

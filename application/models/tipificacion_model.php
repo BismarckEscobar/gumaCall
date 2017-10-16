@@ -6,7 +6,7 @@ class tipificacion_model extends CI_Model {
 	}
 
 	public function listarTipificaciones() {
-		$query=$this->db->get('tipificaciones');
+		$query=$this->db->get('campanna_tipificacion');
 		if ($query->num_rows()>0) {
 			return $query->result_array();
 		}else {
@@ -16,10 +16,9 @@ class tipificacion_model extends CI_Model {
 
 	public function guardandoTipificacion($data) {
 		if (count($data)>0) {
-	        $query = $this->db->insert('tipificaciones', $data);
+	        $query = $this->db->insert('campanna_tipificacion', $data);
 	        if ($query) {
 	            redirect('tipificaciones','refresh');
-	            //echo "1";
 	        }
 		}
 	}
@@ -29,10 +28,10 @@ class tipificacion_model extends CI_Model {
             $estado=1;
         }else{$estado=0;}
         $data = array(
-            'estado' => $estado,
+            'Activa' => $estado,
         );
-        $this->db->where('ID_Tipificacion', $idTipificacion);
-        $result=$this->db->update('tipificaciones',$data);
+        $this->db->where('ID_TPF', $idTipificacion);
+        $result=$this->db->update('campanna_tipificacion',$data);
         echo json_encode($result);
     }
 
