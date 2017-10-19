@@ -173,26 +173,26 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                             <div class="row">
                                 <div class="input-field col s6">
                                     <label class="left">DIRECCION</label>
-                                    <input disabled class="left" value="<?php  (!$query2)?:$query2[0]['DIRECCION'];?>" id="icon_DateInit" type="text" class="center validate">
+                                    <input readonly class="left" value="<?php  (!$query2)? : print $query2[0]['DIRECCION']?>" id="icon_DateInit" type="text" class="center">
                                 </div>
 
                                 <div class="input-field col s6">
                                     <label class="left">RUC</label>
-                                    <input disabled id="icon_RUC" class="left" value="<?php  (!$query2) ? : $query2[0]['RUC']?>" type="text" class=" right validate">
+                                    <input readonly id="icon_RUC" class="left" value="<?php (!$query2) ? : print $query2[0]['RUC'] ?>" type="text" class=" right">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s3">
                                     <label class="left">CREDITO</label>
-                                    <input disabled value="C$ <?php (!$query2)?:number_format($query2[0]['CREDITO'],2)?>" id="icon_DateInit" type="text" class="right validate">
+                                    <input readonly value="C$ <?php (!$query2)?:print number_format($query2[0]['CREDITO'],2)?>" id="icon_DateInit" type="text" class="right">
                                 </div>
                                 <div class="input-field col s3">
                                     <label class="left">SALDO</label>
-                                    <input disabled value="C$ <?php (!$query2)?:number_format($query2[0]['SALDO'],2);?>" id="icon_DateEnd" type="text" class="right validate">
+                                    <input readonly value="C$ <?php (!$query2)?:print number_format($query2[0]['SALDO'],2)?>" id="icon_DateEnd" type="text" class="right">
                                 </div>
                                 <div class="input-field col s6">
                                     <label class="left">DISPONIBLE</label>
-                                    <input disabled id="icon_DISPONIBLE" value="C$ <?php (!$query2)?:number_format($query2[0]['DISPONIBLE'],2);?>" type="text" class=" right validate">
+                                    <input readonly id="icon_DISPONIBLE" value="C$ <?php (!$query2)?:print number_format($query2[0]['DISPONIBLE'],2)?>" type="text" class=" right">
                                 </div>
                             </div>
                         </div>
