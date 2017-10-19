@@ -26,7 +26,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m12">
-                                  <?php echo '<input id="codigoCampania" type="text" name="codigoCampania" class="validate mayuscula" value="'.$ultNoCampania.'">' ?>                                  
+                                  <?php echo '<input readonly id="codigoCampania" type="text" name="codigoCampania" class="validate mayuscula" value="'.$ultNoCampania.'">' ?>                                  
                                   <label for="codigoCampania">N° DE CAMPAÑA</label>
                                 </div>                                
                             </div>
@@ -63,14 +63,12 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                  <textarea id="observacionesCamp" class="materialize-textarea"></textarea>
-                                  <label for="observacionesCamp">OBSERVACIONES</label>
+                                  <textarea id="observacionesCamp" placeholder="OBSERVACIONES" class="text-area"></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                  <textarea id="mensajeCamp" class="materialize-textarea"></textarea>
-                                  <label for="mensajeCamp">MENSAJE</label>
+                                  <textarea id="mensajeCamp" placeholder="MENSAJE" class="text-area"></textarea>
                                 </div>
                             </div>
                         </form>      
