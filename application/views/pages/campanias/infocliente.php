@@ -8,7 +8,6 @@ $Fecha_Cierre =(!$My_camp_Header[0]['Fecha_Cierre']) ? 0 :$My_camp_Header[0]['Fe
 $Mensaje =(!$My_camp_Header[0]['Mensaje']) ? 0 :$My_camp_Header[0]['Mensaje'];
 $Meta =(!$My_camp_Header[0]['Meta']) ? 0 :$My_camp_Header[0]['Meta'];
 
-print_r($query2);
 
 $Real_Cliente =(!$My_camp_Clientes1[0]['Real']) ? 0 :$My_camp_Clientes1[0]['Real'];
 $Meta_Cliente =(!$My_camp_Clientes1[0]['Meta']) ? 0 :$My_camp_Clientes1[0]['Meta'];
