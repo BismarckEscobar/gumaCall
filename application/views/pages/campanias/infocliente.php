@@ -252,8 +252,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 </div>
                 <div class="row" >
                     <div class="col s3 offset-s9"><label id="aComment">AGREGAR COMENTARIO <i class="material-icons prefix">comment</i></label></div>
-                    <div class="input-field offset-l1 col s12 m12 l10 " id="addComment" style="display: none;">
-                        <textarea id="frm_comentario" class="materialize-textarea"></textarea>
+                    <div class="input-field col s12 m12 s12 " id="addComment" style="display: none;">
+                        <textarea id="frm_comentario" class="text-area" placeholder="COMENTARIOS"></textarea>
                 </div>
             </div>
         </form><br><br><br>
