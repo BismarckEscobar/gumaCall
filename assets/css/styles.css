@@ -632,7 +632,7 @@ table th {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #aaa;
 }
-#rptCampaniaModal, #rptAgenteModal {
+#rptCampaniaModal, #rptAgenteModal, #rptClienteModal {
   width: 80%;
   min-height: 85%;
 }
@@ -886,7 +886,7 @@ chosen-single a{
 .titulo-menu-rpt {
   color: #1f3c91;
   padding: 20px 15px;
-  font-family: 'robotoregular';
+  font-family: 'robotobold';
   text-transform: uppercase!important;
   text-align: center;
   font-size: 14px;
