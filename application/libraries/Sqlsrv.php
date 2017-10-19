@@ -4,7 +4,7 @@
  * @author Dpt MK47
  */
 class Sqlsrv{
-    public $serverName = "192.168.1.112";
+    public $serverName = "192.168.1.18";
     //public $serverName = "192.168.1.9";
 
     public $dbname = "PRODUCCION";
