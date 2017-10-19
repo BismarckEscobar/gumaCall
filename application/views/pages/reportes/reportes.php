@@ -44,7 +44,7 @@
                     </div>
                     <div class="col s3 m3">
                         <center>
-                            <a href='<?php echo base_url("index.php/Usuarios")?>'>
+                            <a href='<?php echo base_url("index.php/tipoRpt/rptclientes")?>'>
                                 <i class="material-icons icons-menu-rpt">group</i>
                                 <center><span class="titulo-menu-rpt">clientes</span></center>
                             </a>

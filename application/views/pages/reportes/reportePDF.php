@@ -4,200 +4,216 @@
 <head>
 	<title>REPORTE DE CAMPAÑA</title>
 	<style>
-		#footer {			
-			padding: 30px 30px;
-			width: 90%;
-			height: auto;
-			margin: 0 auto;
-			font-family: 'arial'!important;
-		    text-transform: uppercase!important;
-        }
-        .footer {
-        	margin-top: 50px;
-        }
-		.footer tr td {
-			width: 50%;
-			text-align: center;
-			padding: 5px 5px;
-			border: none;
+		.titulos {
+		    color: #000;    
+		    font-family: 'arial';
+		    font-size: 25px;
+		    text-transform: uppercase;
+		    font-weight: bold;
 		}
-		table {
-		    color: black;
-		    font-size: 11px;
-		    font-family: 'arial'!important;
-		    text-transform: uppercase!important;
-		    border-collapse: collapse;
-		    width: 98%;
+		.titulo-var {
+		    color: #000;    
+		    font-family: 'arial';
+		    font-size: 15px;
+		    font-weight: bold;
+		    text-transform: uppercase;	   
+		    margin-top: 2px;
+		}
+		table tr:nth-child(even) {		    
+		    background-color: #ffffff;
+		}
+		table tr:nth-child(odd) {		    
+		    background-color: #e7e2f7;
+		}
+		.titulos-2 {
+			font-family: arial;
+			font-size: 12px;
+			text-transform: uppercase;
+		}
+		.titulos-3 {
+			font-family: arial;
+			font-size: 12px;
+		}
+		.titulos-4 {
+			font-family: arial;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		table {		    
+		    width: 100%;
 		    margin: 0 auto;
 		    margin-bottom: 5px;
+		    border-collapse: separate;
+		    border-spacing: 2px;
 		}
-		.table-control th,td{
-			border: 1px solid black;
-		    text-align: left;
-		    padding: 2px 2px;
-		    border: 1px solid black;
-		}
-
-		.table, th, td {
-   			border: 1px solid black;
+		.table-control, th, td {
+   			padding: 7px 7px;
    			text-align: center;
+		}
+		.table-control th{
+		    background: #1F3C8F;
+		    color: #fff;
+		    font-size: 14px;
+		    font-family: 'arial';
+		    font-weight: normal;
+		    
+		}
+		.table-control td
+		{
+		    font-family: 'arial';		    
+		    font-size: 12px;
 		}
 		.contenedor {
 			width: 100%;
 			height: 100%;
-			margin: 0 auto;
-			border: 1px solid black;
-			border-radius: 2px;
-			padding: 2px 2px;
+			margin: 0 auto;			
+			padding: 5px 5px;
 		}
-		.encabezado {
-			width:100%;
-			margin: 0 auto;
-			margin-bottom:2px;
-			margin-top: 5px;
-		}
-		.table-control {			
-			text-align: center;
-			width: 98%;
-			margin-top: 5px;
-		}
-		.titulos {
+		.content-div {
 			width: 100%;		
 			text-align: center;
-			padding: 1px 1px;
-			font-weight: bold;
+			padding: 2px 2px;
+			margin: 0 auto;	
+		}
+		.contenedor-primary {
 			margin: 0 auto;
-			margin-top: 10px;
+			width: 100%;
+			height: auto;
 		}
-		.titulos-text {
-			font-family: arial;
-			font-size: 20px;
-			text-transform: uppercase;
-			font-weight: bold;
-		}
-
-		.subtitulos {
-			font-family: arial;
-			font-size: 15px;
-			text-transform: uppercase;
-		}
-		.titulos-tablas {
+		#tll, #tt, #tp, #un  {
+			width: 25%;
+			float: left;
 			text-align: center;
 		}
-		span {
-			text-transform: uppercase!important;
-			font-weight: bold;
-			font-size: 10px;
-		}
-		.span {
-			text-transform: uppercase!important;
-			font-family: 'arial'!important;
-			font-size: 10px;
-			font-weight: normal;
-		}
-		.encabezado #totales {	
-			width: 100%; 
-		}
-		#totales .subtotales1, .subtotales2, .subtotales3, .subtotales4 {
-			display:inline-block;
-			float: right;
-			margin: 0 auto;
-			padding: 0;	
-		}
-		
+		.text-area {		    
+		    border: 1px solid #8b8b8b;
+		    font-size: 12px;
+		    font-family: 'arial';		    
+		    padding: 10px 10px 15px;
+		    resize: none;
+		    width: 100%;
+		    height: 15%;
+		}		
 	</style>
 </head>
 <body>
-	<div class="contenedor">
-		<div class="encabezado">
-			<div class="titulos">
-				<span class="titulos-text">reporte de Campaña</span>				
-			</div>
-			<?php
+	<div class="contenedor">		
+		<?php			
+		if ($tipoReporte=='rpt_campania') {
 			$temp=array();
-
-			if ($data_campania) {
-				foreach ($data_campania as $key) {
-
-					$temp = $key['array_1'];
+			if ($data_reporte) {
+				foreach ($data_reporte as $key) {
+					$temp = $key['array_1']; $temp2 = $key['array_2'];
 					foreach ($temp as $key) {
 						echo "
-						<div class='titulos'>
-							<span class='subtitulos'>".$key['ID_Campannas']." - </span>
-							<span class='subtitulos'>".$key['nombre']."</span>
+						<div class='content-div'>
+							<span class='titulos'>".$key['ID_Campannas']."</span>							
 						</div>
-						<div class='titulos'>
-							<span class='subtitulos'>Del ".date('d/m/Y', strtotime($key['fechaInicio']))." al ".date('d/m/Y', strtotime($key['fechaCierre']))." </span>
+						<div class='content-div'>
+							<span class='titulo-var'>".$key['nombre']."</span>
+						</div>
+						<div class='content-div'>
+							<span class='titulos-2'>Del ".date('d/m/Y', strtotime($key['fechaInicio']))." al ".date('d/m/Y', strtotime($key['fechaCierre']))." </span>
 						</div><br><br>
-						<div id='totales'>
-							<table class='table'>
-								<tr>
-									<td>
-										<div >
-											<span class='subtitulos'>".(int)$key['totalLlamadas']."</span><br>
-											<span class='subtitulos'>Total llamadas</span><br>											
-										</div>
-									</td>
-									<td>
-										<div>
-											<span class='subtitulos'>".$key['tiempoTotal']."</span><br>
-											<span class='subtitulos'>Tiempo total</span>										
-										</div>
-									</td>
-									<td>
-										<div>
-											<span class='subtitulos'>".$key['tiempoPromedio']."</span><br>
-											<span class='subtitulos'>Tiempo promedio</span>										
-										</div>
-									</td>
-									<td>
-										<div>
-											<span class='subtitulos'>".number_format($key['unidad'])."</span><br>
-											<span class='subtitulos'>Unidades</span>											
-										</div>
-									</td>
-								</tr>
-							</table>
-
-
-
-
-
-
-
-						</div>";
-					}
-				}
-			}
-			?>
-		</div><br>
-		<table class="table-control">
-			<thead>
-				<tr>
-					<th style="text-align:center;">CÓDIGO</th>
-					<th style="text-align:center;">NOMBRE</th>
-					<th style="text-align:center;">META</th>
-					<th style="text-align:center;">MONTO REAL</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php 
-					foreach ($data_campania as $key) {
-						$temp = $key['array_2'];
-						foreach ($temp as $key) {
-							echo "
+						<div class='content-div'>
+							<span class='titulo-var'>Real: c$".number_format($key['montoReal'],2)."</span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<span class='titulo-var'>Meta: c$".number_format($key['meta'], 2)."</span>
+						</div><br><br>				
+						<div class='contenedor-primary'>								
+							<div id='tll'>
+								<span class='titulos-4'>".(int)$key['totalLlamadas']."</span><br>
+								<span class='titulos-3'>Total llamadas</span><br>											
+							</div>			
+							<div id='tt'>
+								<span class='titulos-4'>".date("H:i:s", strtotime($key['tiempoTotal']))."</span><br>
+								<span class='titulos-3'>Tiempo total</span>										
+							</div>						
+							<div id='tp'>
+								<span class='titulos-4'>".date("H:i:s", strtotime($key['tiempoPromedio']))."</span><br>
+								<span class='titulos-3'>Tiempo promedio</span>										
+							</div>
+							<div id='un'>
+								<span class='titulos-4'>".number_format($key['unidad'])."</span><br>
+								<span class='titulos-3'>Unidades</span>
+							</div>
+						</div><br><br><br>";
+					}						
+					echo "
+					<div class='content-div'>
+						<span class='titulo-var'>CLIENTES POR CAMPAÑA</span>
+					</div>
+					<table class='table-control'>
+						<thead>
 							<tr>
+								<th>CÓDIGO</th>
+								<th>NOMBRE</th>
+								<th>META C$</th>
+								<th>MONTO REAL C$</th>
+							</tr>
+						</thead>
+						<tbody>";
+						foreach ($temp2 as $key) {
+							echo"<tr>
 								<td><span>".$key['ID_Cliente']."</span></td>
 								<td><span>".$key['Nombre']."</span></td>
-								<td><span>".$key['Meta']."</span></td>
-								<td><span>".$key['montoReal']."</span></td>
+								<td><span>".number_format($key['Meta'], 2)."</span></td>
+								<td><span>".number_format($key['montoReal'], 2)."</span></td>
 							</tr>
 							";
 						}
+						echo "</tbody></table>";
+				}
+			}
+		} elseif ($tipoReporte=='rpt_agente') {
+			if($data_reporte) {
+				foreach ($data_reporte as $key) {
+					if ($key['activo']==1) {
+						$estado="ACTUALMENTE ACTIVO";
+					}else {
+						$estado="ACTUALMENTE INACTIVO";
 					}
-				?>
-			</tbody>
-		</table>
+					echo 
+					"<br><div class='content-div'>
+						<span class='titulos'>".$key['usuario']."</span>						
+					</div>
+					<div class='content-div'>
+						<span class='titulos-2'>NOMBRE COMPLETO: ".$key['nombre']."</span>
+					</div><br>
+					<div class='content-div'>
+						<span class='titulos-2'>".$estado."</span>
+					</div><br><br>";
+					echo 
+					"<div class='content-div'>
+						<span class='titulo-var'>Registro del ".date("d/m/Y", strtotime($key['fecha1']))." al ".date("d/m/Y", strtotime($key['fecha2']))."</span>
+					</div>
+					<table class='table-control'>
+						<thead>
+							<tr>
+								<th>HORAS CONECTADO</th>
+								<th>TIEMPOS PAUSA</th>
+								<th>TIEMPOS TOTAL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span>".$key['tiempoON']."</span></td>
+								<td><span>".$key['tiempoPAUSA']."</span></td>
+								<td><span>".$key['tiempoTotal']."</span></td>
+							</tr>
+						</tbody>
+					</table>";
+				}
+			}
+		}
+		?>
+		
 	</div>
 </body>
 </html>
+<!--
+						<div class='content-div'>
+							<textarea class='text-area'>Observaciones: ".$key['observacion']."</textarea>
+						</div><br>
+						<div class='content-div'>
+							<textarea class='text-area'>Mensaje: ".$key['mensaje']."</textarea>
+						</div><br><br>-->
