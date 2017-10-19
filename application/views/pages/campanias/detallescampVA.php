@@ -120,8 +120,8 @@
                                         <tr>
                                             <td><span>'.$key['ID_Cliente'].'</span></td>
                                             <td><span>'.$key['Nombre'].'</span></td>
-                                            <td><span>C$ '.$key['Meta'].'</span></td>
-                                            <td><span>C$ '.$montoReal.'</span></td>
+                                            <td><span>C$ '.number_format($key['Meta'], 2).'</span></td>
+                                            <td><span>C$ '.number_format($montoReal, 2).'</span></td>
                                             <td><span>-</span></td>
                                         </tr>
                                         ';

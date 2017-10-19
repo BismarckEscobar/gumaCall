@@ -54,7 +54,6 @@ $route['Monitoreo'] = 'Monitoreo_controller';
 $route['monitoreoSesion'] = 'Monitoreo_controller/monitoreoSesion';
 $route['ajaxLog'] = 'Monitoreo_controller/ajaxLog';
 $route['forzarCierre'] = 'Monitoreo_controller/forzarCierre';
-
 //FIN DE RUTAS GRUPOS
 
 //RUTAS GRUPOS VISTA ADMINISTRADOR
@@ -77,3 +76,10 @@ $route['agregarClientes'] = 'clientes_controller/agregandoClientes';
 $route['tipificaciones'] = 'tipificaciones_controller';
 $route['nuevaTipificacion'] = 'tipificaciones_controller/guardarTipificacion';
 $route['cambiarEstadoTipi/(:any)/(:any)'] = 'tipificaciones_controller/cambiarEstado/$1/$2';
+
+//RUTAS REPORTES
+$route['reportes'] = 'reportes_controller';
+$route['tipoRpt/(:any)'] = 'reportes_controller/tipoReporte/$1';
+$route['generarRep'] = 'reportes_controller/generarReporte';
+$route['generarPDF'] = 'reportes_controller/generarReportePDF';
+//FIN RUTAS REPORTES

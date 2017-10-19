@@ -12,6 +12,11 @@ class Login_controller extends CI_Controller
     }
 
     public function index(){
+        if ($_SERVER['HTTP_HOST'] == '165.98.75.219:8448') {
+            echo '<div style="color: rgba(0,0,0,0.4);font-size: 150px;">Acceso denegado</div>';
+            exit();
+        }
+
       if($this->session->userdata('logged')==0){
             $this->load->view('header/header_login');
             $this->load->view('login/login');
