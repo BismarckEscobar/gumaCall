@@ -37,7 +37,7 @@ class Reportes_model extends CI_Model {
                 $temp[] = $data;
             }
             return $temp;
-        }elseif ($tipoRpt==3) {
+        }elseif ($tipoRpt=='rptclientes') {
             $this->db->select('ID_Cliente');
             $this->db->select('Nombre');
             $query_clientes = $this->db->get('clientes');
@@ -55,8 +55,59 @@ class Reportes_model extends CI_Model {
         }
     }
 
-    public function generandoReporte($identificador, $tipoRpt) {
-        $array_final=array();
+    public function generandoReporte($data) {
+        $array_final=array(); 
+        $index=explode(",", $data[0]);
+        $identificador=$index[0];
+        $tipoRpt=$index[1];
+        $d1=$index[2];
+        $d2=$index[3];
+
+        if ($tipoRpt==1) { 
+            $array_campania_info=$this->db->query("CALL sp_infoCampania('".$index[0]."')");
+
+            $array_campania_info->next_result();
+
+            if ($array_campania_info->num_rows()>0) {
+
+                $this->db->where('ID_Campannas', $identificador);
+                $array_info_cliente = $this->db->get('view_clientescampaniadetalle');
+
+                if ($array_info_cliente->num_rows()>0) {                 
+                    $array_final[] = array(
+                        'array_1' => $array_campania_info->result_array(),
+                        'array_2' => $array_info_cliente->result_array()
+                    );
+                    echo json_encode($array_final);
+                }else {
+                    return false;
+                }                             
+
+            }else {
+                return false;
+            }
+            return $array_final;
+
+        }elseif ($tipoRpt==2) {
+            $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."', '".$d1."', '".$d2."')");
+
+            $array_agente_info->next_result();
+
+            if ($array_agente_info->num_rows()>0) {
+                echo json_encode($array_agente_info->result_array());
+            }            
+        }else if ($tipoRpt==3) {
+            $array_cliente_info=$this->db->query("CALL sp_infoCliente('".$identificador."')");
+
+            $array_cliente_info->next_result();
+
+            if ($array_cliente_info->num_rows()>0) {
+                 echo json_encode($array_cliente_info->result_array());            
+            } 
+        }
+    }
+
+    public function generandoPDF($identificador, $tipoRpt, $d1, $d2) {
         if ($tipoRpt==1) { 
             $array_campania_info=$this->db->query("CALL sp_infoCampania('".$identificador."')");
 
@@ -71,24 +122,25 @@ class Reportes_model extends CI_Model {
                     $array_final[] = array(
                         'array_1' => $array_campania_info->result_array(),
                         'array_2' => $array_info_cliente->result_array()
-                    );
+                    );     
+                    return $array_final;               
                 }else {
                     return false;
-                }
-                echo json_encode($array_final);
-                return $array_final;
+                }                             
 
             }else {
                 return false;
-            }
+            }            
+
         }elseif ($tipoRpt==2) {
-            $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."')");
+            $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."', '".$d1."', '".$d2."')");
 
             $array_agente_info->next_result();
 
             if ($array_agente_info->num_rows()>0) {
-                echo json_encode($array_agente_info->result_array());
-            }
+                return $array_agente_info->result_array();
+            }            
         }
+
     }
 }

@@ -27,16 +27,29 @@ class Reportes_controller extends CI_Controller {
         $this->load->view('jsview/js_reportes');
     }
 
-    public function generarReporte($identificador, $tipoRpt) {
-        $this->reportes_model->generandoReporte($identificador, $tipoRpt);
+    public function generarReporte() {
+        $this->reportes_model->generandoReporte($this->input->post('data'));
     }
 
-    public function generarReportePDF($tipo, $data) {
-       $data_['data_campania'] =  $this->reportes_model->generandoReporte($data, 1);        
+    public function generarReportePDF() {  
+        $tipo=$_GET['tipo'];
+        $id=$_GET['id'];
+        $d1=$_GET['f1'];
+        $d2=$_GET['f2'];
+        
+        if ($tipo=='rptcampania') {
+            $tipo=1;
+            $data_['tipoReporte'] = 'rpt_campania';
+        }elseif ($tipo=='rptagentes') {            
+            $tipo=2;
+            $data_['tipoReporte'] = 'rpt_agente';
+        }
+        
+        $data_['data_reporte'] =  $this->reportes_model->generandoPDF($id, $tipo, $d1, $d2);
         $PdfCliente = new mPDF('utf-8','A4');
         $PdfCliente->SetFooter("Página {PAGENO} de {nb}");
         $PdfCliente -> writeHTML($this->load->view('pages/reportes/reportePDF', $data_, true));
         $PdfCliente->Output();
-        //$this->load->view('pages/reportes/reportePDF', $data_);     
+        //$this->load->view('pages/reportes/reportePDF', $data_);
     }
 }
