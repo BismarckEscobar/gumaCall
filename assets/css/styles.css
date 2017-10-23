@@ -891,3 +891,20 @@ chosen-single a{
   text-align: center;
   font-size: 14px;
 }
+.reporte-title {
+  color: black;
+  float: left;
+  margin-left: 12px;
+  font-family: 'robotobold';
+  text-transform: uppercase!important;
+  text-align: center;
+  font-size: 22px;
+}
+.reporte-title-1 {
+  color: black;
+  font-family: 'robotobold';
+  text-transform: uppercase!important;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 5px;
+}

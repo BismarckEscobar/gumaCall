@@ -31,6 +31,10 @@ class Reportes_controller extends CI_Controller {
         $this->reportes_model->generandoReporte($this->input->post('data'));
     }
 
+    public function filtrarPorCampanias() {
+        echo json_encode($this->reportes_model->listarOpciones('rptcampania'));
+    }
+
     public function generarReportePDF() {  
         $tipo=$_GET['tipo'];
         $id=$_GET['id'];
@@ -43,9 +47,13 @@ class Reportes_controller extends CI_Controller {
         }elseif ($tipo=='rptagentes') {            
             $tipo=2;
             $data_['tipoReporte'] = 'rpt_agente';
+        }elseif ($tipo='rptclientes') {
+            $tipo=3;
+            $data_['tipoReporte'] = 'rpt_cliente';
         }
         
         $data_['data_reporte'] =  $this->reportes_model->generandoPDF($id, $tipo, $d1, $d2);
+
         $PdfCliente = new mPDF('utf-8','A4');
         $PdfCliente->SetFooter("Página {PAGENO} de {nb}");
         $PdfCliente -> writeHTML($this->load->view('pages/reportes/reportePDF', $data_, true));

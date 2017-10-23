@@ -49,8 +49,16 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+                <div id="filtroPorCamp" class="row center" style="display:none">
+                    <div class="col s12 m12">
+                        <div style="width:40%; margin: 0 auto;">
+                            <select name="campania" id="campania" class="chosen-select browser-default">
+                                <option value="" disabled selected>SELECCIONE UNA CAMPAÑA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><br><br>
                 <div class="row center">
                     <center>
                         <a class="BtnBlue waves-effect btn modal-trigger" id="generarRpt" href="#rptCampaniaModal">GENERAR
@@ -79,8 +87,8 @@
                     <p style="font-family:robotoregular" id="fechasCampania"></p>
                 </div>
                 <div class="row center">                                
-                    <div class="col s6"><span class="mayuscula" id="monto"></span></div>
-                    <div class="col s6"><span class="mayuscula" id="real"></span></div>                                
+                    <div class="col s6"><span class="reporte-title-1" id="monto"></span></div>
+                    <div class="col s6"><span class="reporte-title-1" id="real"></span></div>                                
                 </div><br><br>
                 <div class="row center">
                     <div class="col s3 m3">
@@ -143,14 +151,16 @@
                 </div><br>
                 <input type="hidden" id="idAgente">
                 <div class="row center">
-                    <span class="titulosModales">NOMBRE: </span>
-                    <span id="nombreUsuario" class="titulosModales"></span>
+                    <span class="reporte-title">NOMBRE:</span>
+                    <span id="nombreUsuario" class="reporte-title"></span>
                 </div>
                 <div class="row center">
-                    <span class="titulosModales">USUARIO: </span>
-                    <span id="usuario" class="titulosModales"></span>
-                </div><br><br>
+                    <span class="reporte-title">USUARIO: </span>
+                    <span id="usuario" class="reporte-title"></span>
+                </div><br>
+
                 <div class="row center">
+                    <span class="reporte-title-1">TIEMPOS TOTALES</span>
                     <table id="tblTiempos" class="TblData">
                         <thead>
                             <tr>
@@ -165,6 +175,21 @@
                                 <td><span id="TP" class="totales">0</span></td>
                                 <td><span id="TT" class="totales">0</span></td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div><br><br>
+                <div class="row center">
+                    <span class="reporte-title-1">DETALLES CONEXIóN</span>
+                    <table id="tblDetalleConexion" class="TblData">
+                        <thead>
+                            <tr>
+                                <th>INICIO</th>
+                                <th>FINALIZO</th>
+                                <th>TIEMPO</th>
+                                <th>TIPO</th>
+                            </tr>
+                        </thead>
+                        <tbody class="center">
                         </tbody>
                     </table>
                 </div>
@@ -184,22 +209,22 @@
                     </div>
                 </div><br>
                 <input type="hidden" id="idAgente">
-                <div class="row center">
-                    <span class="titulosModales">NOMBRE: </span>
-                    <span id="nombreCliente" class="titulosModales"></span>
+                <div class="row right">
+                    <span class="reporte-title">NOMBRE: </span>
+                    <span id="nombreCliente" class="reporte-title"></span>
                 </div>
                 <div class="row center">
-                    <span class="titulosModales">DIRECCION: </span>
-                    <span id="direccion" class="titulosModales"></span>
+                    <span class="reporte-title">DIRECCION: </span>
+                    <span id="direccion" class="reporte-title"></span>
                 </div><br><br>
                 <div class="row center">
                     <table id="tblClientes" class="TblData">
                         <thead>
                             <tr>
                                 <th>CAMPAÑA</th>
-                                <th>MONTO</th>
+                                <th>MONTO REAL C$</th>
+                                <th>META C$</th>
                                 <th>UNIDAD</th>
-                                <th>META</th>
                                 <th>NOMBRE</th>
                                 <th>DIRECCION</th>
                                 <th>TELEFONO1</th>

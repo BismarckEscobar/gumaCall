@@ -215,6 +215,7 @@
                 success: function(data) {
                     if (data=="true") {
                         $('#formNuevaCampania').submit();
+                        espere();
                     }
                 }
             }); 
@@ -444,4 +445,25 @@ $('#guardarEdicion').click(function() {
         }
     
 });
+
+function espere() {
+    swal({
+        title: "Cargando datos",
+        text: 'Actualizado con éxito',
+        showConfirmButton:false,
+        showCloseButton: false,
+        allowOutsideClick: false,
+        html:'<p>Espere por favor...</p><br>'+'<div class="preloader-wrapper active">'+
+                '<div class="spinner-layer spinner-blue-only">'+
+                '<div class="circle-clipper left">'+
+                    '<div class="circle"></div>'+
+                '</div><div class="gap-patch">'+
+                    '<div class="circle"></div>'+
+                '</div><div class="circle-clipper right">'+
+                    '<div class="circle"></div>'+
+                '</div>'+
+                '</div>'+
+            '</div>'
+    }).then();
+}
 </script>
