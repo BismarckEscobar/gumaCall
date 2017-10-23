@@ -3,42 +3,29 @@ class cliente_model extends CI_Model {
 
 	public function __construct(){
 		parent::__construct();
+		require_once(APPPATH.'libraries\PHPExcel\Classes\PHPExcel.php'); 
 	}
 
-	public function guardarDataCliente($array, $opc) {
-		$data=array(); $dataCliente=array();
-    	if ($opc==1) {
-    		$this->db->truncate('clientes');
-	    	for ($i=1; $i <= count($array); $i++) {	    		
-				$data = array(
-					'ID_Cliente' => $array[$i]['ID_Cliente'],
-					'Nombre' => $array[$i]['Nombre'],
-					'Direccion' => $array[$i]['Direccion'],
-					'Telefono1' => $array[$i]['Telefono1'],
-					'Telefono2' => $array[$i]['Telefono2'],
-					'Telefono3' => $array[$i]['Telefono3'],
-					'Vendedor' => $array[$i]['Vendedor']
-				);
-				$dataCliente[]=$data;
+	public function guardarDataCliente($objPHPExcel) {
+		$i=2;$param=0;
+		$this->db->truncate('clientes');
+
+		while ($param==0) {
+			$this->db->insert('clientes', array(
+				'ID_Cliente' => $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue(),
+				'Nombre' => $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue(),
+				'Direccion' => $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue(),
+				'Telefono1' => $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue(),
+				'Telefono2' => $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(),
+				'Telefono3' => $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(),
+				'Vendedor' => $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue()
+			));
+			$i++;
+			if($objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue()==NULL){
+				$param=1;
 			}
-			$this->db->insert_batch("clientes",$dataCliente);
-			redirect('clientes','refresh');
-    	}elseif ($opc==2) {
-			for ($i=2; $i <= count($array)+1; $i++) {
-				$data = array(
-					'ID_Cliente' => $array[$i]['ID_Cliente'],
-					'Nombre' => $array[$i]['Nombre'],
-					'Direccion' => $array[$i]['Direccion'],
-					'Telefono1' => $array[$i]['Telefono1'],
-					'Telefono2' => $array[$i]['Telefono2'],
-					'Telefono3' => $array[$i]['Telefono3'],
-					'Vendedor' => $array[$i]['Vendedor']
-				);				
-				$dataCliente[]=$data;
-			}
-			$this->db->insert_batch("clientes",$dataCliente);
-			redirect('clientes','refresh');
-    	}
+		}
+		redirect('clientes','refresh');
 	}
 
 	public function listarClientes() {

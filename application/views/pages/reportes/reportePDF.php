@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>REPORTE DE CAMPAÑA</title>
+	<title>REPORTE</title>
 	<style>
 		.titulos {
 		    color: #000;    
@@ -204,16 +204,48 @@
 					</table>";
 				}
 			}
+		}elseif ($tipoReporte=='rpt_cliente') {
+			if ($data_reporte) {
+				echo 
+				"<br>
+				<div class='content-div'>
+					<span class='titulos'>".$data_reporte[0]['nombre']."</span>						
+				</div>
+				<div class='content-div'>
+					<span class='titulos-2'>CÓDIGO DEL CLIENTE: ".$data_reporte[0]['idCliente']."</span>
+				</div><br>
+				<div class='content-div' style='text-align:left'>
+					&nbsp;&nbsp;<span class='titulos-2'>Dirección: ".$data_reporte[0]['direccion']."</span>						
+				</div>
+				<div class='content-div' style='text-align:left'>
+					&nbsp;&nbsp;<span class='titulos-2'>Teléfonos: ".$data_reporte[0]['telefono1'].", ".$data_reporte[0]['telefono2'].", ".$data_reporte[0]['telefono3']."</span>						
+				</div>
+				<table class='table-control'>
+					<thead>
+						<tr>
+							<th>CAMPAÑA</th>
+							<th>MONTO REAL C$</th>
+							<th>META C$</th>
+							<th>UNIDADES</th>
+							<th>AGENTE</th>
+						</tr>
+					</thead>
+					<tbody>";
+				foreach ($data_reporte as $key) {
+					echo"<tr>
+							<td><span>".$key['campania']."</span></td>
+							<td><span>".number_format($key['monto'], 2)."</span></td>
+							<td><span>".number_format($key['meta'], 2)."</span></td>
+							<td><span>".$key['unidad']."</span></td>
+							<td><span>".$key['agente']."</span></td>
+						</tr>";
+				}
+				echo "</tbody>
+					</table>";
+			}
 		}
 		?>
 		
 	</div>
 </body>
 </html>
-<!--
-						<div class='content-div'>
-							<textarea class='text-area'>Observaciones: ".$key['observacion']."</textarea>
-						</div><br>
-						<div class='content-div'>
-							<textarea class='text-area'>Mensaje: ".$key['mensaje']."</textarea>
-						</div><br><br>-->

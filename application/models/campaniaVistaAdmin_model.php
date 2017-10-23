@@ -102,28 +102,22 @@ class campaniaVistaAdmin_model extends CI_Model {
     	}
     }
 
-    public function guardarCampaniaCliente($array, $opc) { 
-    	if ($opc==1) {
-	    	for ($i=1; $i <= count($array); $i++) { 
-					$data = array(
-						'ID_Campannas' => $array[$i]['ID_Campannas'],
-						'ID_Cliente' => $array[$i]['ID_Cliente'],
-						'Meta' => $array[$i]['Meta']
-					);
-				$query = $this->db->insert('campanna_cliente', $data);	
-			}
-			redirect('campaniasVA','refresh');
-    	}elseif ($opc==2) {
-			for ($i=2; $i <= count($array)+1; $i++) {
-				$data = array(
-					'ID_Campannas' => $array[$i]['ID_Campannas'],
-					'ID_Cliente' => $array[$i]['ID_Cliente'],
-					'Meta' => $array[$i]['Meta']
-				);				
-				$query = $this->db->insert('campanna_cliente', $data);							
-			}
-			redirect('campaniasVA','refresh');
-    	}
+    public function guardarCampaniaCliente($objPHPExcel, $numCampania) {
+		$i=2;$param=0;
+
+		while ($param==0) {
+			$this->db->insert('campanna_cliente', array(
+				'ID_Campannas' => $numCampania,
+				'ID_Cliente' => $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue(),
+				'Meta' => $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue()
+			));
+			$i++;
+			if($objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue()==NULL){
+				$param=1;
+			}			
+		}
+		$this->incrementarLlave();
+		redirect('campaniasVA','refresh');
 	}
 
 	public function incrementarLlave() {

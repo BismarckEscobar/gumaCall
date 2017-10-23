@@ -82,4 +82,5 @@ $route['reportes'] = 'reportes_controller';
 $route['tipoRpt/(:any)'] = 'reportes_controller/tipoReporte/$1';
 $route['generarRep'] = 'reportes_controller/generarReporte';
 $route['generarPDF'] = 'reportes_controller/generarReportePDF';
+$route['filtrarPorCamp'] = 'reportes_controller/filtrarPorCampanias';
 //FIN RUTAS REPORTES

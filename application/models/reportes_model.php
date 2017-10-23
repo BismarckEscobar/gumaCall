@@ -17,7 +17,7 @@ class Reportes_model extends CI_Model {
             foreach ($query_campanias->result_array() as $key) {
                 $data = array(
                     'value' => $key['ID_Campannas'],
-                    'desc' => $key['ID_Campannas'].'-'.$key['Nombre']
+                    'desc' => $key['ID_Campannas'].' - '.$key['Nombre']
                 );
                 $temp[] = $data;
             }
@@ -32,7 +32,7 @@ class Reportes_model extends CI_Model {
             foreach ($query_agentes->result_array() as $key) {
                 $data = array(
                     'value' => $key['IdUser'],
-                    'desc' => $key['Usuario'].'-'.$key['Nombre']
+                    'desc' => $key['Usuario'].' - '.$key['Nombre']
                 );
                 $temp[] = $data;
             }
@@ -45,7 +45,7 @@ class Reportes_model extends CI_Model {
             foreach ($query_clientes->result_array() as $key) {
                 $data = array(
                     'value' => $key['ID_Cliente'],
-                    'desc' => $key['Nombre']
+                    'desc' => $key['ID_Cliente'].' - '.$key['Nombre']
                 );
                 $temp[] = $data;
             }
@@ -72,21 +72,13 @@ class Reportes_model extends CI_Model {
 
                 $this->db->where('ID_Campannas', $identificador);
                 $array_info_cliente = $this->db->get('view_clientescampaniadetalle');
-
-                if ($array_info_cliente->num_rows()>0) {                 
-                    $array_final[] = array(
-                        'array_1' => $array_campania_info->result_array(),
-                        'array_2' => $array_info_cliente->result_array()
-                    );
-                    echo json_encode($array_final);
-                }else {
-                    return false;
-                }                             
-
-            }else {
-                return false;
+                               
+                $array_final[] = array(
+                    'array_1' => $array_campania_info->result_array(),
+                    'array_2' => $array_info_cliente->result_array()
+                );
+                echo json_encode($array_final);                
             }
-            return $array_final;
 
         }elseif ($tipoRpt==2) {
             $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."', '".$d1."', '".$d2."')");
@@ -94,7 +86,15 @@ class Reportes_model extends CI_Model {
             $array_agente_info->next_result();
 
             if ($array_agente_info->num_rows()>0) {
-                echo json_encode($array_agente_info->result_array());
+
+                $dtConexion=$this->db->query("SELECT * FROM usuario_registros WHERE ID_Usuario='".$identificador."' AND FechaInicio >= '".$d1."' AND FechaFinal <= '".$d2."'");
+    
+                $array_final[] = array(
+                    'array_1' => $array_agente_info->result_array(),
+                    'array_2' => $dtConexion->result_array()
+                );
+         
+                echo json_encode($array_final);
             }            
         }else if ($tipoRpt==3) {
             $array_cliente_info=$this->db->query("CALL sp_infoCliente('".$identificador."')");
@@ -140,6 +140,14 @@ class Reportes_model extends CI_Model {
             if ($array_agente_info->num_rows()>0) {
                 return $array_agente_info->result_array();
             }            
+        }elseif ($tipoRpt==3) {
+            $array_cliente_info=$this->db->query("CALL sp_infoCliente('".$identificador."')");
+
+            $array_cliente_info->next_result();
+
+            if ($array_cliente_info->num_rows()>0) {
+                return $array_cliente_info->result_array();
+            }  
         }
 
     }
