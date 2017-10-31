@@ -15,27 +15,35 @@
 
 <main class="mdl-layout__content mdl-color--grey-100">
 	<div class="contenedor">
-        <div class="noMargen row TextColor center"><div class="col s12 m8 l12 offset-m1">MONITOREO DE SESIONES</div></div>
-          <div class="row" id="content">
-            <div class="container">
-                <div class="input-field col s6 m4 s6">
-                    <label for="">Fecha Inicio</label>
-                    <input type="text" name="" id="FechaInicio" class="datepicker" placeholder="ELIJA UNA FECHA INICIAL">
-                </div>  
-                <div class="input-field col s6 m4 s6">
-                    <label for="lblfechafin">Fecha Fin</label>
-                    <input type="text" name="" id="FechaFin" class="datepicker"  placeholder="ELIJA UNA FECHA FINAL">
-                </div>  
-                <div class="col s6 m4 s6">
-                    <button onclick="Filtrar()" class="BtnBlue btn" id="btnFiltrar">Filtrar</button>    
-                </div>  
-            </div> 
-         </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="noMargen row TextColor center"><div class="col s12 m12">MONITOREO DE SESIONES</div></div><br><br>
+                <div class="row center">
+                    <div class="col s12 m12">
+                        <div style="width:50%; margin: 0 auto;">
+                            <div class="input-field col s6">
+                                <label for="">Desde</label>
+                                <input type="text" name="" id="FechaInicio" class="datepicker">
+                            </div>  
+                            <div class="input-field col s6">
+                                <label for="lblfechafin">Hasta</label>
+                                <input type="text" name="" id="FechaFin" class="datepicker">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="col s12">
+                        <button onclick="Filtrar()" class="BtnBlue btn" id="btnFiltrar">Filtrar</button>    
+                    </div> 
+                </div>             
+            </div>
+        </div>
         <div class="row" id="table-log">
             <div class="progress" style="display:none;" id="carga">
                 <div class="indeterminate"></div>
             </div>
-            <table class="TblData table center col s12 m12 s12" id="tblLog">
+            <table class="TblData" id="tblLog">
                 <thead>
                     <tr>
                         <th>ID SESION</th>
@@ -48,7 +56,7 @@
                         <th>ACCION</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="center">
                 </tbody>
             </table>
         </div>

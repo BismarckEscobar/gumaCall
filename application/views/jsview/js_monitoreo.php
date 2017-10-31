@@ -1,12 +1,40 @@
 <script>
     $(document).ready(function() {
+        
+        var pathname = window.location.pathname;
         $(function() {
-            $("ul li").each(function(){
-                if($(this).attr("id") == 'monitor')
-                $(this).addClass("urlActual");
-             })
+            if (!(pathname.match(/monitoreoSesion*/)))
+                $("ul li").each(function(){
+                    if($(this).attr("id") == 'Monitoreo')
+                    $(this).addClass("urlActual")
+                }); 
+            else
+                $("ul li").each(function(){
+                    if($(this).attr("id") == 'reportes')
+                    $(this).addClass("urlActual")
+                }); 
         });
         Eyes();
+
+        $("#tblLog").DataTable({
+            "bFilter": false,
+            "scrollCollapse": true,
+            "info":    false,
+            "bPaginate": true,         
+            "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+            "language": {
+                "zeroRecords": "NO HAY RESULTADOS",
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"                    
+                },
+                "lengthMenu": "MOSTRAR _MENU_",
+                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                "search":     "BUSCAR"
+                }
+        });
     });
     function Eyes(){
         var sac=1;
@@ -101,25 +129,7 @@
             //min: new Date()
     });
 
-    $("#tblLog").DataTable({
-            "scrollCollapse": true,
-            "info":    false,
-            "lengthMenu": [[5,10,20,100,-1], [5,10,20,100,"Todo"]],
-            "language": {
-                "zeroRecords": "NO HAY RESULTADOS",
-                "paginate": {
-                    "first":      "Primera",
-                    "last":       "Última ",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "lengthMenu": "MOSTRAR _MENU_",
-                "emptyTable": "NO HAY DATOS DISPONIBLES",
-                "search":     "BUSCAR"
-            }
-        });
-
-     function limpiarTabla (idTabla) {
+    function limpiarTabla (idTabla) {
         idTabla = $(idTabla).DataTable();
         idTabla.destroy();
         idTabla.clear();
@@ -128,8 +138,15 @@
 
     function Filtrar(){
         limpiarTabla(tblLog);
-        var f1 = $("#FechaInicio").val();
-        var f2 = $("#FechaFin").val();
+
+        if ($("#FechaInicio").val()=="" && $("#FechaFin").val()=="") {
+            f1= moment(new Date('2017-01-01')).format('YYYY-MM-DD 00:00:00');
+            f2= moment(new Date()).format('YYYY-MM-DD 23:59:59');
+        }else {
+            f1 = moment($("#FechaInicio").val()).format('YYYY-MM-DD 00:00:00');
+            f2 = moment($("#FechaFin").val()).format('YYYY-MM-DD 23:59:59');            
+        }
+
         $("#carga").show();
         $("#tblLog").DataTable({
             "ajax":{
@@ -140,13 +157,12 @@
                    f2: f2
                 },
             },
-            Responsive:true,
             async:'false',
             "info":    false,
                 "bPaginate": true,
                 "paging": true,
                 "pagingType": "full_numbers",
-                "lengthMenu": [[5,10,20,100,-1], [5,10,20,100,"Todo"]],
+                "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
                 "language": {
                     "emptyTable": "No hay datos disponibles en la tabla",
                     "lengthMenu": '_MENU_ ',

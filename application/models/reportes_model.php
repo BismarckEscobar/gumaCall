@@ -1,9 +1,8 @@
 <?php
 class Reportes_model extends CI_Model {
-    
+
     public function __construct(){
         parent::__construct();
-
     }
 
     public function listarOpciones($tipoRpt) {
@@ -15,14 +14,13 @@ class Reportes_model extends CI_Model {
             $query_campanias = $this->db->get('campanna');
 
             foreach ($query_campanias->result_array() as $key) {
-                $data = array(
+                $temp[] = array(
                     'value' => $key['ID_Campannas'],
                     'desc' => $key['ID_Campannas'].' - '.$key['Nombre']
-                );
-                $temp[] = $data;
+                );                
             }
             return $temp;
-        }elseif ($tipoRpt=='rptagentes') {
+        }elseif ($tipoRpt=='rptagentes' || $tipoRpt=='rptLlamadas') {
             $this->db->select('IdUser');
             $this->db->select('Usuario');
             $this->db->select('Nombre');
@@ -30,11 +28,10 @@ class Reportes_model extends CI_Model {
             $query_agentes = $this->db->get('usuario');
 
             foreach ($query_agentes->result_array() as $key) {
-                $data = array(
+                $temp[] = array(
                     'value' => $key['IdUser'],
                     'desc' => $key['Usuario'].' - '.$key['Nombre']
-                );
-                $temp[] = $data;
+                );                
             }
             return $temp;
         }elseif ($tipoRpt=='rptclientes') {
@@ -43,14 +40,27 @@ class Reportes_model extends CI_Model {
             $query_clientes = $this->db->get('clientes');
 
             foreach ($query_clientes->result_array() as $key) {
-                $data = array(
+                $temp[] = array(
                     'value' => $key['ID_Cliente'],
                     'desc' => $key['ID_Cliente'].' - '.$key['Nombre']
-                );
-                $temp[] = $data;
+                );                
             }
             return $temp;
-        }else {
+        }elseif ($tipoRpt=='RegLlmdRealizadas') {
+            $this->db->select('EXT');
+            $this->db->select('Usuario');
+            $this->db->select('Nombre');
+            $this->db->where('Rol', 1);
+            $query_agentes = $this->db->get('usuario');
+
+            foreach ($query_agentes->result_array() as $key) {
+                $temp[] = array(
+                    'value' => $key['EXT'],
+                    'desc' => $key['Usuario'].' - '.$key['Nombre']
+                );                
+            }
+            return $temp;
+        } else {
             return false;
         }
     }
@@ -62,10 +72,11 @@ class Reportes_model extends CI_Model {
         $tipoRpt=$index[1];
         $d1=$index[2];
         $d2=$index[3];
+        $nc=$index[4];
+        $cl=$index[5];
 
         if ($tipoRpt==1) { 
             $array_campania_info=$this->db->query("CALL sp_infoCampania('".$index[0]."')");
-
             $array_campania_info->next_result();
 
             if ($array_campania_info->num_rows()>0) {
@@ -82,7 +93,6 @@ class Reportes_model extends CI_Model {
 
         }elseif ($tipoRpt==2) {
             $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."', '".$d1."', '".$d2."')");
-
             $array_agente_info->next_result();
 
             if ($array_agente_info->num_rows()>0) {
@@ -96,18 +106,68 @@ class Reportes_model extends CI_Model {
          
                 echo json_encode($array_final);
             }            
-        }else if ($tipoRpt==3) {
-            $array_cliente_info=$this->db->query("CALL sp_infoCliente('".$identificador."')");
+        }elseif ($tipoRpt==3) {
+            $i=0;
+            $query = $this->db->query("CALL sp_infoCliente('".$identificador."')");
+            $query->next_result();
 
-            $array_cliente_info->next_result();
+            if ($nc!="") {
+                foreach ($query->result_array() as $key) {
+                    if($key['campania']==$nc){
+                        $row[]=$query->row_array($i);
+                        break;
+                    }else { $i++; }
+                }
+                echo json_encode($row);              
+            }else {
+                echo json_encode($query->result_array());
+            }
+                     
+        }elseif ($tipoRpt==4) {
+            $array_llamadas_info=$this->db->query("CALL sp_infoGeneral('%".$nc."%','%".$identificador."%', '%".$cl."%', '".$d1."', '".$d2."')");
+            $array_llamadas_info->next_result();
 
-            if ($array_cliente_info->num_rows()>0) {
-                 echo json_encode($array_cliente_info->result_array());            
-            } 
+            if ($array_llamadas_info->num_rows()>0) {         
+                echo json_encode($array_llamadas_info->result_array());
+            }    
+        }elseif ($tipoRpt==5) {
+            $data_final=array();$cantTotal=0;
+            $db_asterisk = $this->load->database('db_asterisk', TRUE);
+            
+            if ($identificador=='1T0OD1O0S') {
+                $identificador='';
+            }
+            
+            $array_agentLlamda_info=$this->db->query("CALL sp_infoLlamadas('%".$identificador."%', '".$d1."', '".$d2."')");
+            $array_agentLlamda_info->next_result();
+
+            $ext=$this->db->query("SELECT GROUP_CONCAT(DISTINCT EXT SEPARATOR ', ') AS EXT FROM usuario;");
+            
+            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
+            for ($i=0;$i<=count($array_planta->result_array());$i++) {
+                list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
+                $minutos = ($h * 3600) + ($m * 60) + $s;     
+                $this->cantTotal += $minutos;
+            }
+
+            $data_final[] = array(
+                'array_1' => $array_agentLlamda_info->result_array(),
+                'array_2' => $array_planta->result_array(),
+                'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($this->cantTotal)))
+            );                     
+            echo json_encode($data_final);
         }
     }
+    
+    public function conversorSegundosHoras($tiempo_en_segundos) {
+        $horas = floor($tiempo_en_segundos / 3600);
+        $minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
+        $segundos = $tiempo_en_segundos - ($horas * 3600) - ($minutos * 60);
 
-    public function generandoPDF($identificador, $tipoRpt, $d1, $d2) {
+        return $horas . ':' . $minutos . ":" . $segundos;
+    }
+
+    public function generandoPDF($identificador, $tipoRpt, $d1, $d2, $nc, $cl) {
         if ($tipoRpt==1) { 
             $array_campania_info=$this->db->query("CALL sp_infoCampania('".$identificador."')");
 
@@ -133,22 +193,56 @@ class Reportes_model extends CI_Model {
             }            
 
         }elseif ($tipoRpt==2) {
+            $array_final = array();
             $array_agente_info=$this->db->query("CALL sp_infoUsuario('".$identificador."', '".$d1."', '".$d2."')");
 
             $array_agente_info->next_result();
 
             if ($array_agente_info->num_rows()>0) {
-                return $array_agente_info->result_array();
-            }            
+
+                $dtConexion=$this->db->query("SELECT * FROM usuario_registros WHERE ID_Usuario='".$identificador."' AND FechaInicio >= '".$d1."' AND FechaFinal <= '".$d2."'");
+    
+                $array_final[] = array(
+                    'array_1' => $array_agente_info->result_array(),
+                    'array_2' => $dtConexion->result_array()
+                );                
+            } return $array_final;    
         }elseif ($tipoRpt==3) {
-            $array_cliente_info=$this->db->query("CALL sp_infoCliente('".$identificador."')");
+            $i=0;
+            $query = $this->db->query("CALL sp_infoCliente('".$identificador."')");
+            $query->next_result();
 
-            $array_cliente_info->next_result();
+            if ($nc!="") {
+                foreach ($query->result_array() as $key) {
+                    if($key['campania']==$nc){
+                        $row[]=$query->row_array($i);
+                        break;
+                    }else { $i++; }
+                }
+                return $row;              
+            }else {
+                return $query->result_array();
+            }
+            
+        }elseif ($tipoRpt==4) {
+            $array_llamadas_info=$this->db->query("CALL sp_infoGeneral('%".$nc."%','%".$identificador."%', '%".$cl."%', '".$d1."', '".$d2."')");
+            $array_llamadas_info->next_result();
 
-            if ($array_cliente_info->num_rows()>0) {
-                return $array_cliente_info->result_array();
+            if ($array_llamadas_info->num_rows()>0) {         
+                return $array_llamadas_info->result_array();
+            }
+        }elseif ($tipoRpt==5) {
+            if ($identificador=='1T0OD1O0S') {
+                $identificador='';
+            }
+            $array_agentLlamda_info=$this->db->query("CALL sp_infoLlamadas('%".$identificador."%', '".$d1."', '".$d2."')");            
+
+            $array_agentLlamda_info->next_result();
+
+            if ($array_agentLlamda_info->num_rows()>0) {
+         
+                return $array_agentLlamda_info->result_array();
             }  
         }
-
     }
 }

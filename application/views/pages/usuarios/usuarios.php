@@ -27,6 +27,7 @@
 	                    <th>CÓDIGO</th>
 	                    <th>NOMBRE</th>
 	                    <th>USUARIO</th>
+	                    <th>EXTENSIÓN</th>
 	                    <th>ESTADO</th>
 	                    <th>ACCIÓN</th>
 	                </tr>
@@ -50,6 +51,7 @@
 	                                    <td><span>".$key['IdUser']."</span></td>
 	                                    <td><span>".$key['Nombre']."</span></td>
 	                                    <td><span>".$key['Usuario']."</span></td>
+	                                    <td><span>".$key['EXT']."</span></td>
 	                                    <td><span class='".$clase_estado."'>".$estado."</span></td>
 	                                    <td class='center'>
 	                                    <span>".$texto."</span>
@@ -101,6 +103,22 @@
 		                    	foreach ($roles as $key) {
 			                    	echo "
 					                    <option value=".$key['tipo']."><span>".$key['descripcion']."</span></option>
+					                    ";
+				                }
+		                    }
+			            ?>
+	                </select>
+	            </div>
+            </div>
+            <div class="row" id="ext" style="display:none">
+	    	    <div class="input-field offset-l1 col s12 m12 l10 ">
+	                <select class="chosen-select browser-default" name="extension" id="extension">
+	                    <option value="" disabled selected><span>EXTENSION</span></option>
+	                    <?php
+		                    if ($ext) {
+		                    	foreach ($ext as $key) {
+			                    	echo "
+					                    <option value=".$key['value']."><span>".$key['desc']."</span></option>
 					                    ";
 				                }
 		                    }

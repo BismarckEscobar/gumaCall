@@ -73,9 +73,9 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 <div class="card hoverable" >
                     <div class="card-content">
 
-                        <div class="row" style="border-bottom: 1px solid #000!important;"><span class="card-title left" >MENSAJE:</span></div>
+                        <div class="row title-mensaje left"><span>MENSAJE:</span></div>
                         <div class="row" style="text-align: left">
-                            <p>
+                            <p class="textos">
                                 <?php echo $Mensaje?>
                             </p>
                         </div>
@@ -91,7 +91,6 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         <div class="input-field col s3">
                             <label class="left">TELEFONO 1</label>
                             <input disabled value="<?php echo $T1?>" id="icon_DateInit" type="text" class="center validate">
-
                         </div>
                         <div class="input-field col s3">
                             <label class="left">TELEFONO 2</label>
@@ -100,7 +99,6 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         <div class="input-field col s2">
                             <label class="left">TELEFONO 3</label>
                             <input disabled id="icon_DateEnd" value="<?php echo $T3?>" type="text" class=" right validate">
-
                         </div>
                         <div class="input-field col s2">
                             <label class="left"">META</label>
@@ -204,6 +202,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
 </main>
 <div id="mTiempoFuera" class="modal">
     <div class="modal-content">
+        <center><img src="<?php echo base_url(); ?>assets/img/icono_reloj.gif" style="width: 150px"></center><br>
+        <center><h2 class='titulosModales'>en PAUSA</h2></center>
         <h2 class="center sKronos"  id="ttPausa">00:00:00</h2>
     </div>
 </div>
@@ -211,17 +211,17 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
     <div class="modal-content"><br>
         <div class="row center">
             <span class="titulosModales">RESULTADO DE LLAMADA</span></span><br>
-            <span class="">DURACION: <span id="lblDuracion">00:00:00</span></span>
+            <span class="reporte-title-3">DURACION: <span class="reporte-title-3" id="lblDuracion">00:00:00</span></span>
+            <input id="fmr_ext" type="hidden" value="<?php echo $this->session->userdata('EXT');?>">            
         </div>
         <form id="formNuevoUsuario" action="<?PHP echo base_url('index.php/agregarUsuario');?>" method="post" name="formNuevoUsuario">
             <div class="row" >
                 <div class="row" >
                     <div class="row" >
-
                         <div class="input-field offset-l1 col s12 m12 l10 " >
                             <input class="validate" id="frm_Numero" type="tel"  placeholder="Numero de marcado">
-                        </div>
-                    <div class="input-field offset-l1 col s12 m12 l10 " >
+                    </div><br>
+                    <div class="input-field offset-l1 col s12 m12 l10 " ><br><br>
                         <select class="chosen-select browser-default" id="frm_TPF">
                             <option value="" disabled selected><span>SELECCIONAR UN RESULTADO</span></option>
                             <?php
@@ -235,27 +235,20 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         </select>
                     </div>
                 </div>
-                <div class="row" >
-                    <div class="input-field  col s6 m6 l10 " >
-                        <label class="left">MONTO VENDIDO C$</label>
+                <div class="row" >                    
+                    <div class="input-field offset-l1 col s6 m6 l5 " ><br><br>
+                        <input id="frm_Monto" type="number" class="validate right" placeholder="ESCRIBA EL MONTO C$">
                     </div>
-                    <div class="input-field right col s6 m6 l6">
-                        <label class="left">UNIDADES VENDIDAS</label>
-                    </div><br><br><br>
-
-                    <div class="input-field col s6 m6 l6 ">
-                        <input id="frm_Monto" type="number" class="validate right" placeholder="ESCRIBA EL MONTO">
-                    </div>
-                     <div class="input-field col s6 m6 l6 ">
+                     <div class="input-field col s6 m6 l5 " ><br><br>
                         <input id="frm_Unidad" type="number" class="validate right" placeholder="ESCRIBA LA CANTIDAD DE UNIDADES">
                     </div>
                 </div>
-                <div class="row" >
-                    <div class="col s3 offset-s9"><label id="aComment">AGREGAR COMENTARIO <i class="material-icons prefix">comment</i></label></div>
-                    <div class="input-field col s12 m12 s12 " id="addComment" style="display: none;">
+                <div class="row center" >
+                    <div class="col s12 m12"><label id="aComment"><i class="material-icons prefix">comment</i> AGREGAR COMENTARIO</label></div>
+                    <div class="input-field offset-l1 col s12 m12 l10" id="addComment" style="display: none;">
                         <textarea id="frm_comentario" class="text-area" placeholder="COMENTARIOS"></textarea>
                 </div>
-            </div>
+                </div>
         </form><br><br><br>
         <div class="row center">
             <a id="id_Guardar_llamada" class="BtnBlue waves-effect btn modal-trigger">OK</a>

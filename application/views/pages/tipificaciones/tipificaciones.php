@@ -25,7 +25,7 @@
                 <a href="#nuevaTipificacion" id="agregarTipi" class="BtnBlue waves-effect btn modal-trigger">NUEVA TIPIFICACION</a>
             </div>
         </div>            
-        <div class="row" id="monitoreo1">
+        <div class="row" id="tipificaciones">
             <table id="tblTipificaciones" class="TblData">
                 <thead>
                     <tr>

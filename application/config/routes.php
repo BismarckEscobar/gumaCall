@@ -79,8 +79,10 @@ $route['cambiarEstadoTipi/(:any)/(:any)'] = 'tipificaciones_controller/cambiarEs
 
 //RUTAS REPORTES
 $route['reportes'] = 'reportes_controller';
+//$route['rpt2'] = 'reportes_controller/rpt2';
 $route['tipoRpt/(:any)'] = 'reportes_controller/tipoReporte/$1';
 $route['generarRep'] = 'reportes_controller/generarReporte';
-$route['generarPDF'] = 'reportes_controller/generarReportePDF';
 $route['filtrarPorCamp'] = 'reportes_controller/filtrarPorCampanias';
+$route['filtrarPorCliente'] = 'reportes_controller/filtrarPorClientes';
+$route['generarPDF'] = 'reportes_controller/generarReportePDF';
 //FIN RUTAS REPORTES

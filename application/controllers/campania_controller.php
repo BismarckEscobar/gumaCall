@@ -65,6 +65,7 @@ class Campania_controller extends CI_Controller
             $this->input->post('TimeInCall'),
             $this->input->post('Coment'),
             $this->input->post('TPF'),
+            $this->input->post('EXT'),
             $this->input->post('Unidad')
         );
 

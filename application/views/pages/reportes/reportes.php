@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="noMargen row TextColor center"><div class="col s12 m12">REPORTES</div></div><br><br>
-                <div class="row">
+                <div class="row" style="">
                     <div class="col s3 m3">
                         <center>
                             <a href='<?php echo base_url("index.php/tipoRpt/rptcampania")?>'>
@@ -50,7 +50,25 @@
                             </a>
                         </center>
                     </div>
-                </div><br><br><br><br><br>
+                </div><br><br>
+                <div class="row">
+                    <div class="col s3 m3">
+                        <center>
+                            <a href='<?php echo base_url("index.php/tipoRpt/RegLlmdRealizadas")?>'>
+                                <i class="material-icons icons-menu-rpt">phone_forwarded</i>
+                                <center><span class="titulo-menu-rpt">Llamadas</span></center>
+                            </a>
+                        </center>
+                    </div>
+                    <div class="col s3 m3">
+                        <center>
+                            <a href='<?php echo base_url("index.php/tipoRpt/rptLlamadas")?>'>
+                                <i class="material-icons icons-menu-rpt">find_in_page</i>
+                                <center><span class="titulo-menu-rpt">General</span></center>
+                            </a>
+                        </center>
+                    </div>
+                </div>
             </div>
         </div>        
     </div>
