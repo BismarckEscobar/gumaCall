@@ -5,9 +5,8 @@ class monitoreo_model extends CI_Model
         parent::__construct();
     }
 
-    public function listarSesion($f1 = "",$f2= ""){
-       $json = array();
-       $i=0;
+    public function listarSesion($f1,$f2){
+       $json = array(); $i=0;
        $consulta = "SELECT * FROM usuario_registros WHERE Tipo='ON' ";
        if($f1 != "" && $f2 !=""){
             $consulta .= "AND FechaInicio AND FechaFinal 

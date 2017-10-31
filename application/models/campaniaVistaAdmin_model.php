@@ -162,7 +162,7 @@ class campaniaVistaAdmin_model extends CI_Model {
 				'Fecha_Cierre'=>$index[3],
 				'Estado'=>1,
 				'Activo'=>1,
-				'Meta'=>$index[4],
+				'Meta'=>(float)$index[4],
 				'Observaciones'=>$index[5],
 				'Mensaje'=>$index[6],
 				'Fecha_Creacion'=>date('Y-m-d H:i:s'),
@@ -204,13 +204,7 @@ class campaniaVistaAdmin_model extends CI_Model {
 				);
 			break;
 			case 2:
-				$fechatemp=explode("/",$valor); 
-				$dia=$fechatemp[0];
-				$mes=$fechatemp[1];
-				$anyo=$fechatemp[2];
-
-				$fecha = $anyo.'/'.$mes.'/'.$dia;
-				$fechaInicio = date("Y/m/d", strtotime($fecha));
+				$fechaInicio = date('Y-m-d', strtotime($valor));
 				$temp = array(
 					'Fecha_Inicio' => $fechaInicio
 				);
@@ -222,13 +216,7 @@ class campaniaVistaAdmin_model extends CI_Model {
 				);
 			break;
 			case 4:
-				$fechatemp=explode("/",$valor); 
-				$dia=$fechatemp[0];
-				$mes=$fechatemp[1];
-				$anyo=$fechatemp[2];
-
-				$fecha = $anyo.'/'.$mes.'/'.$dia;
-				$fechaCierre = date("Y/m/d", strtotime($fecha));
+				$fechaCierre =  date('Y-m-d', strtotime($valor));
 				$temp = array(
 					'Fecha_Cierre' => $fechaCierre
 				);
@@ -279,7 +267,7 @@ class campaniaVistaAdmin_model extends CI_Model {
 
 		for($i=$fecha1;$i<=$fecha2;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
 			$temp = date('w', strtotime($i));
-			if ($temp!=0 && $i<=date('Y-m-d')) {
+			if ($temp!=0 && $i<=date('Y-m-d H:i:s')) {
 				$json['name'][] = date('d/m', strtotime($i));	
 			}
 		}
@@ -291,21 +279,21 @@ class campaniaVistaAdmin_model extends CI_Model {
 		return $monto;
 	}
 
-	public function generandoDataGrafica($idCampania) { 
+	public function generandoDataGrafica($idCampania) {
 		$json = array();$real=array();$meta=array();
 		$this->db->where('ID_Campannas', $idCampania);
 		$query1=$this->db->get('campanna');
 
-		if ($query1->num_rows()>0) {		
+		if ($query1->num_rows()>0) {
 			for($i=$query1->result_array()[0]['Fecha_Inicio'];$i<=$query1->result_array()[0]['Fecha_Cierre'];$i = date("Y-m-d", strtotime($i ."+1 days"))){
 				$temp = date('w', strtotime($i));
 
-				if ($temp!=0 && $i<=date('Y-m-d')) {
+				if ($temp!=0 && $i<date('Y-m-d H:i:s')) {
 					$monto = $this->returnMonto($idCampania, date('Y-m-d',strtotime($i)));
 					if ($monto->result_array()[0]['monto']=="") {
-						$real[] = 0;	
+						$real[] = 0;
 					}else {
-						$real[] = floatval($monto->result_array()[0]['monto']);						
+						$real[] = floatval($monto->result_array()[0]['monto']);				
 					}
 					$meta[] = floatval($query1->result_array()[0]['Meta']);
 				}else {

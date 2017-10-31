@@ -199,7 +199,7 @@ class Campanna_model extends CI_Model
         return 0;
 
     }
-    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF,$unidad)
+    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF,$EXT,$unidad)
     {
         $this->db->insert('campanna_registros',array(
             'Num_CLI' => $num,
@@ -212,6 +212,7 @@ class Campanna_model extends CI_Model
             'Duracion' => $Duracion,
             'Comentarios' => $Comentario,
             'ID_TPF' => $TPF,
+            'EXT' => $EXT,
             "Unidad" => $unidad
         ));
         echo ($this->db->affected_rows() > 0) ? 1 : 0;

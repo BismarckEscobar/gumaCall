@@ -85,7 +85,7 @@
             var Monto =  $("#frm_Monto").val();
             var Comnt =  $("#frm_comentario").val();
             var unidad = $("#frm_Unidad").val();
-
+            var ext = $("#fmr_ext").val();
 
 
             if(TPF == null || Monto=='' || Num=='' || unidad==''){
@@ -99,6 +99,7 @@
                     Monto:  Monto,
                     Coment: Comnt,
                     Unidad : unidad,
+                    EXT: ext,
                     TimeInCall:frm_Kronos.text()
                 };
 
@@ -149,7 +150,7 @@
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
             "scrollCollapse": true,
             "info":    false,
-            "lengthMenu": [[5,10,20,100,-1], [5,10,20,100,"Todo"]],
+            "lengthMenu": [[10,20,30,50,100,-1], [10,20,30,50,100,"Todo"]],
             "language": {
                 "zeroRecords": "NO HAY RESULTADOS",
                 "paginate": {

@@ -31,7 +31,22 @@ class Usuario_model extends CI_Model
         }
     }
 
-    public function guardarUsuario($nombreCompleto, $nombreUsuario, $contrasenia, $rolTipo) {
+    public function cargarExt() {
+        $db_asterisk = $this->load->database('db_asterisk', TRUE);
+
+        $db_asterisk->where('asterisk.users.name', 'sac');
+        $row = $db_asterisk->get('asterisk.users');
+        
+        foreach ($row->result_array() as $key) {
+            $data[] = array(
+                'value' => $key['extension'],
+                'desc' => $key['extension']
+            );
+        }
+        return $data;
+    }
+
+    public function guardarUsuario($nombreCompleto, $nombreUsuario, $contrasenia, $ext, $rolTipo) {
         $q = $this->verificarUsuario($nombreUsuario,$contrasenia);
         if ($q == 1) {
             $dataUsuario = array(
@@ -39,6 +54,7 @@ class Usuario_model extends CI_Model
             'Usuario' => $nombreUsuario,
             'contrasenia' => MD5($contrasenia),
             'Rol' => $rolTipo,
+            'EXT' => $ext,
             'Activo' => 1
             );
             $query = $this->db->insert('usuario', $dataUsuario);

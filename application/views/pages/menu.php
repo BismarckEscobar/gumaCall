@@ -27,7 +27,7 @@
                            <li href="#" id="clientes"><a href="clientes"><i class="material-icons">group</i> Clientes</a></li>
                            <li href="#" id="usuarios"><a href="usuarios"><i class="material-icons">group</i> Usuarios</a></li>
                            <li href="#" id="grupos"><a href="grupos"><i class="material-icons">group_work</i> Grupos</a> </li>
-                           <li href="#" id="monitor"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
+                           <li href="#" id="Monitoreo"><a href="Monitoreo"><i class="material-icons">desktop_windows</i> Monitoreo</a></li>
                            <li href="#" id="tipificaciones"><a href="tipificaciones"><i class="material-icons">phone_in_talk</i> Tipificaciones</a></li>
 
                            <li href="#" id="reportes"><a href="reportes"><i class="material-icons">pie_chart</i> Reportes</a></li>
@@ -52,17 +52,10 @@
 <div id="modalAbout" class="modal" style="margin-top:100px;">
   <div class="modal-content">
     <a href="#!" class="right modal-action modal-close"><img src="<?php echo base_url("assets/img/cerrar.png") ?>" width="20px" alt="Cerrar"></a>
-    <div class="row">
-      <div class="col s12 m12 s12">
-        <h5 class="center negra indigo-text darken-4">ACERCA DE</h5>
-      </div>
-    </div>
-    <h5 class="center negra indigo-text darken-4">DESARROLLADO POR GERENCIA CORPORATIVA IT.</h5>
-    <img style="margin-top:-75px;" src="<?php echo base_url(" assets/img/logo-principal.png ") ?>" alt="Logo" class="indigo circle"
-      width="100px">
+    <br><br><h5 class="center negra indigo-text darken-4">DESARROLLADO POR GERENCIA CORPORATIVA IT.</h5>
   </div>
   <div class="modal-footer">
     <p class="center negra indigo-text darken-4">COPYRIGHT &copy; TODOS LOS DERECHOS RESERVADOS.</p>
-  </div>
+  </div><br><br>
 </div>
           

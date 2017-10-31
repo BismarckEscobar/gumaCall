@@ -61,6 +61,8 @@
 
 <div id="mTiempoFuera" class="modal">
     <div class="modal-content">
-        <h2 class="center sKronos"  id="ttPausa">00:00:00</h2>
+        <center><img src="<?php echo base_url(); ?>assets/img/icono_reloj.gif" style="width: 150px"></center><br>
+        <center><h2 class='titulosModales'>en PAUSA</h2></center>
+        <h2 class="center sKronos" id="ttPausa">00:00:00</h2>
     </div>
 </div>

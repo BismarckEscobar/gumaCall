@@ -38,7 +38,7 @@
                                     <div class="content-rows-left">
                                         <div class="row">                                
                                             <div class="input-field col s6">
-                                                <input value="'.date('d/m/Y', strtotime($key['fechaInicio'])).'" id="fechaInicioCamp" type="text" class="left validate date select">
+                                                <input value="'.date('Y-m-d', strtotime($key['fechaInicio'])).'" id="fechaInicioCamp" type="date" class="datepicker select">
                                                 <label for="fechaInicioCamp" class="left">FECHA DE INICIO</label>
                                             </div>
                                             <div class="input-field col s6">
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="row">                                
                                             <div class="input-field col s6">
-                                                <input value="'.date('d/m/Y', strtotime($key['fechaCierre'])).'" id="fechaCierreCamp" type="text" class="left validate date select">
+                                                <input value="'.date('Y-m-d', strtotime($key['fechaCierre'])).'" id="fechaCierreCamp" type="date" class="datepicker select">
                                                 <label for="fechaCierreCamp">FECHA FINAL</label>
                                             </div>
                                             <div class="input-field col s6">
@@ -59,16 +59,6 @@
                                     </div>               
                                     <div class="content-rows-right">
                                         <div id="container-grafica"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <textarea id="editObservacion" class="materialize-textarea select">'.$key['observacion'].'</textarea>
-                                        <label for="editObservacion">OBSERVACIONES</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <textarea id="editMensaje" class="materialize-textarea select">'.$key['mensaje'].'</textarea>
-                                        <label for="editMensaje">MENSAJE</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -88,6 +78,18 @@
                                         <span class="totales">'.intval($key['unidad']).'</span><br>
                                         <span class="totales">UNIDADES</span>
                                     </div>  
+                                </div><br><br>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="editObservacion" class="text-area select">'.str_replace("-", ",", $key['observacion']).'</textarea>
+                                        <label for="editObservacion">OBSERVACIONES</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="editMensaje" class="text-area select">'.str_replace("-", ",", $key['mensaje']).'</textarea>
+                                        <label for="editMensaje">MENSAJE</label>
+                                    </div>
                                 </div>';
                             }
                         }

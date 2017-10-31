@@ -497,17 +497,19 @@ table th {
   display: none!important;
 }
 
-#tableCampaniasVA .dataTables_wrapper .dataTables_filter label {
-  
+#tableCampaniasVA .dataTables_wrapper .dataTables_filter label {  
  display: none;
 }
 
-#tableCampaniasVA .dataTables_wrapper .dataTables_filter {
-  
+#tableCampaniasVA .dataTables_wrapper .dataTables_filter {  
  display: block!important; 
 }
 
 #table-cliente .dataTables_wrapper .dataTables_filter {
+  display: block!important;
+}
+
+#monitoreo1 .dataTables_wrapper .dataTables_filter {
   display: block!important;
 }
 
@@ -632,9 +634,13 @@ table th {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #aaa;
 }
-#rptCampaniaModal, #rptAgenteModal, #rptClienteModal {
+#rptCampaniaModal, #rptAgenteModal, #rptClienteModal, #rptLlamadasModal, #rptRgtLlamadas {
   width: 80%;
   min-height: 85%;
+}
+#outCall {
+  min-height: 85%;
+  margin-bottom: 20px;
 }
 
 li{
@@ -794,9 +800,23 @@ label>select {
   font-size: 17px;
   color: #000000;
 }
+.textos {
+  
+  font-family: 'robotoregular';
+  font-size: 17px;
+  color: #000000;
+}
 .mayuscula {
   font-family: 'robotoregular';
   font-size: 17px;
+  color: #000000;
+  text-transform: uppercase;
+}
+.mayuscula-bold {
+  font-family: 'robotobold';
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 15px;
   color: #000000;
   text-transform: uppercase;
 }
@@ -875,7 +895,7 @@ chosen-single a{
     height: 100px;
 }
 ::-webkit-input-placeholder {
-  color: #696969;
+  color: #696969; 
 }
 
 .icons-menu-rpt {
@@ -897,7 +917,7 @@ chosen-single a{
   margin-left: 12px;
   font-family: 'robotobold';
   text-transform: uppercase!important;
-  text-align: center;
+  text-align: left;
   font-size: 22px;
 }
 .reporte-title-1 {
@@ -907,4 +927,28 @@ chosen-single a{
   text-align: center;
   font-size: 22px;
   margin-bottom: 5px;
+}
+
+.reporte-title-2 {
+  color: black;
+  float: left;
+  margin-left: 12px;
+  font-family: 'robotoregular';
+  font-weight: bold;
+  text-transform: uppercase!important;
+  text-align: left;
+  font-size: 15px;
+}
+.reporte-title-3 {
+  color: black;
+  font-family: 'robotoregular';
+  font-weight: normal;
+  text-transform: uppercase!important;
+  text-align: center;
+  font-size: 15px;
+}
+.title-mensaje {
+  font-family: 'robotoregular';
+  font-size: 20px;
+  border-bottom: 1px solid #000!important;
 }

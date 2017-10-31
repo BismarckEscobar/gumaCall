@@ -33,8 +33,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <span id="span1" class="card-title left">N° <?php echo $ID;?> </span><span class="card-title left"> - </span>
-                        <span id="span2" class="card-title left"><?php echo $Nombre;?></span><br><br><br><br>
+                        <span id="span1" class="card-title mayuscula-bold left">N° <?php echo $ID;?> </span><span class="card-title left"> - </span>
+                        <span id="span2" class="card-title mayuscula-bold left"><?php echo $Nombre;?></span><br><br><br><br>
                         <div class="row">
                             <form class="col s12">
                                 <div class="row">
@@ -103,6 +103,8 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
 </main>
 <div id="mTiempoFuera" class="modal">
     <div class="modal-content">
+        <center><img src="<?php echo base_url(); ?>assets/img/icono_reloj.gif" style="width: 150px"></center><br>
+        <center><h2 class='titulosModales'>en PAUSA</h2></center>
         <h2 class="center sKronos"  id="ttPausa">00:00:00</h2>
     </div>
 </div>

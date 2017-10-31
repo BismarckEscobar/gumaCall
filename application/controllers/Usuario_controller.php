@@ -14,6 +14,7 @@ class Usuario_controller extends CI_Controller
     public function index() {
         $data['dataUsuario'] = $this->usuario_model->cargarUsuarios();
         $data['roles'] = $this->usuario_model->cargarRoles();
+        $data['ext'] = $this->usuario_model->cargarExt();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/usuarios/usuarios', $data);
@@ -24,9 +25,10 @@ class Usuario_controller extends CI_Controller
         $nombreCompleto = $this->input->post('nombreUsuario');
         $nombreUsuario = $this->input->post('usuario');
         $contrasenia = $this->input->post('contrasenia');
+        $ext = $this->input->post('extension');
         $rol = $this->input->post('tipoUsuario');
         
-        $this->usuario_model->guardarUsuario($nombreCompleto, $nombreUsuario, $contrasenia, $rol);
+        $this->usuario_model->guardarUsuario($nombreCompleto, $nombreUsuario, $contrasenia, $ext, $rol);
     }    
 
     public function cambiarEstado($IdUser,$estado) {

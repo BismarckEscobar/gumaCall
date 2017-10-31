@@ -6,14 +6,14 @@
 	<style>
 		.titulos {
 		    color: #000;    
-		    font-family: 'arial';
+		    font-family: 'Calibri';
 		    font-size: 25px;
 		    text-transform: uppercase;
 		    font-weight: bold;
 		}
 		.titulo-var {
 		    color: #000;    
-		    font-family: 'arial';
+		    font-family: 'Calibri';
 		    font-size: 15px;
 		    font-weight: bold;
 		    text-transform: uppercase;	   
@@ -26,16 +26,16 @@
 		    background-color: #e7e2f7;
 		}
 		.titulos-2 {
-			font-family: arial;
+			font-family: 'Calibri';
 			font-size: 12px;
 			text-transform: uppercase;
 		}
 		.titulos-3 {
-			font-family: arial;
+			font-family: 'Calibri';
 			font-size: 12px;
 		}
 		.titulos-4 {
-			font-family: arial;
+			font-family: 'Calibri';
 			font-size: 20px;
 			font-weight: bold;
 		}
@@ -53,14 +53,13 @@
 		.table-control th{
 		    background: #1F3C8F;
 		    color: #fff;
-		    font-size: 14px;
-		    font-family: 'arial';
-		    font-weight: normal;
-		    
+		    font-size: 12px;
+		    font-family: 'Calibri';
+		    font-weight: normal;		    
 		}
 		.table-control td
 		{
-		    font-family: 'arial';		    
+		    font-family: 'Calibri'; 
 		    font-size: 12px;
 		}
 		.contenedor {
@@ -167,24 +166,30 @@
 		} elseif ($tipoReporte=='rpt_agente') {
 			if($data_reporte) {
 				foreach ($data_reporte as $key) {
-					if ($key['activo']==1) {
+					$array1 = $key['array_1'];
+					$array2 = $key['array_2'];
+
+					if ($array1[0]['activo']==1) {
 						$estado="ACTUALMENTE ACTIVO";
 					}else {
 						$estado="ACTUALMENTE INACTIVO";
 					}
 					echo 
 					"<br><div class='content-div'>
-						<span class='titulos'>".$key['usuario']."</span>						
+						<span class='titulos'>".$array1[0]['usuario']."</span>						
 					</div>
 					<div class='content-div'>
-						<span class='titulos-2'>NOMBRE COMPLETO: ".$key['nombre']."</span>
+						<span class='titulos-2'>NOMBRE COMPLETO: ".$$array1[0]['nombre']."</span>
 					</div><br>
 					<div class='content-div'>
 						<span class='titulos-2'>".$estado."</span>
 					</div><br><br>";
 					echo 
 					"<div class='content-div'>
-						<span class='titulo-var'>Registro del ".date("d/m/Y", strtotime($key['fecha1']))." al ".date("d/m/Y", strtotime($key['fecha2']))."</span>
+						<span class='titulo-var'>Registro del ".date("d/m/Y", strtotime($array1[0]['fecha1']))." al ".date("d/m/Y", strtotime($array1[0]['fecha2']))."</span>
+					</div><br><br>
+					<div class='content-div'>
+						<span class='titulo-var'>TIEMPO TOTALES</span>
 					</div>
 					<table class='table-control'>
 						<thead>
@@ -196,12 +201,39 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><span>".$key['tiempoON']."</span></td>
-								<td><span>".$key['tiempoPAUSA']."</span></td>
-								<td><span>".$key['tiempoTotal']."</span></td>
+								<td><span>".$array1[0]['tiempoON']."</span></td>
+								<td><span>".$array1[0]['tiempoPAUSA']."</span></td>
+								<td><span>".$array1[0]['tiempoTotal']."</span></td>
 							</tr>
 						</tbody>
-					</table>";
+					</table>
+					<div class='content-div'>
+						<span class='titulo-var'>DETALLE DE CONEXIÓN</span>
+					</div>
+					<table class='table-control'>
+						<thead>
+							<tr>
+								<th>INICIO</th>
+								<th>FINALIZO</th>
+								<th>TIEMPO</th>
+								<th>TIPO</th>
+							</tr>
+						</thead>
+						<tbody>";
+					foreach ($array2 as $key) {
+						echo"
+						<tr>
+							<td>".date('d/m/Y h:i A', strtotime($key['FechaInicio']))."</td>
+							<td>".date('d/m/Y h:i A', strtotime($key['FechaFinal']))."</td>
+							<td>".$key['Tiempo_Total']."</td>
+							<td>".$key['Tipo']."</td>
+						</tr>
+						";
+					}
+					echo "
+						</tbody>
+						</table>
+					";
 				}
 			}
 		}elseif ($tipoReporte=='rpt_cliente') {
@@ -228,6 +260,7 @@
 							<th>META C$</th>
 							<th>UNIDADES</th>
 							<th>AGENTE</th>
+							<th>CANT. LLAMADAS</th>
 						</tr>
 					</thead>
 					<tbody>";
@@ -238,11 +271,85 @@
 							<td><span>".number_format($key['meta'], 2)."</span></td>
 							<td><span>".$key['unidad']."</span></td>
 							<td><span>".$key['agente']."</span></td>
+							<td><span>".$key['cantllamadas']."</span></td>
 						</tr>";
 				}
 				echo "</tbody>
 					</table>";
 			}
+		}elseif ($tipoReporte=='rpt_llamadas') {
+			if ($data_reporte) {
+				echo 
+				"<br>
+				<div class='content-div'>
+					<span class='titulos'>REPORTE DE ACTIVIDAD</span>					
+				</div>
+				<div class='content-div'>
+					<span class='titulo-var'>".$fechas."</span>
+				</div><br><br>
+				<table class='table-control'>
+					<thead>
+						<tr>
+							<th>CAMPAÑA</th>
+							<th>ID CLIENTE</th>
+							<th>NOMBRE</th>
+							<th>RECUPERADO C$</th>
+							<th>REAL C$</th>
+							<th>CANT. LLAMADAS</th>
+						</tr>
+					</thead>
+					<tbody>";
+				foreach ($data_reporte as $key) {
+					echo"<tr>
+							<td><span>".$key['campania']."</span></td>
+							<td><span>".$key['idCliente']."</span></td>
+							<td><span>".$key['nombre']."</span></td>
+							<td><span>".number_format($key['recuperado'], 2)."</span></td>
+							<td><span>".number_format($key['real1'], 2)."</span></td>
+							<td><span>".$key['cantLlamadas']."</span></td>
+						</tr>";
+				}
+				echo "</tbody>
+					</table>";
+				}
+		}elseif ($tipoReporte=='rpt_regLlamadas') {
+			$totalLlamadas=0;
+			if ($data_reporte) {
+				foreach ($data_reporte as $key) {
+					$totalLlamadas=$totalLlamadas+(int)$key['cantllamadas'];
+				}
+				echo 
+				"<br>
+				<div class='content-div'>
+					<span class='titulos'>REGISTRO DE LLAMADAS</span>					
+				</div>
+				<div class='content-div'>
+					<span class='titulo-var'>".$fechas."</span>
+				</div><br><br>
+				<div class='content-div' style='text-align:left'>
+					&nbsp;&nbsp;<span class='titulos-2'>Cant. llamadas realizadas: ".$totalLlamadas."</span>						
+				</div>
+				<table class='table-control'>
+					<thead>
+						<tr>							
+							<th>ID USUARIO</th>
+							<th>NOMBRE</th>							
+							<th>REAL C$</th>
+							<th>CANT. LLAMADAS</th>
+						</tr>
+					</thead>
+					<tbody>";
+				foreach ($data_reporte as $key) {
+					echo"<tr>							
+							<td><span>".$key['IdUser']."</span></td>
+							<td><span>".$key['Nombre']."</span></td>
+							<td><span>".number_format($key['montoReal'], 2)."</span></td>
+							<td><span>".$key['cantllamadas']."</span></td>
+						</tr>";
+				}
+				echo "</tbody>
+					</table>";
+				}
 		}
 		?>
 		

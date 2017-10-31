@@ -35,25 +35,42 @@ class Reportes_controller extends CI_Controller {
         echo json_encode($this->reportes_model->listarOpciones('rptcampania'));
     }
 
-    public function generarReportePDF() {  
+    public function filtrarPorClientes() {
+        echo json_encode($this->reportes_model->listarOpciones('rptclientes'));
+    }
+    public function rpt2() {
+        $this->reportes_model->rpt2();
+    }
+    
+
+    public function generarReportePDF() {
         $tipo=$_GET['tipo'];
         $id=$_GET['id'];
         $d1=$_GET['f1'];
         $d2=$_GET['f2'];
+        $nc=$_GET['nc'];
+        $cl=$_GET['cl'];
         
         if ($tipo=='rptcampania') {
             $tipo=1;
             $data_['tipoReporte'] = 'rpt_campania';
-        }elseif ($tipo=='rptagentes') {            
+        }elseif ($tipo=='rptagentes') {      
             $tipo=2;
             $data_['tipoReporte'] = 'rpt_agente';
-        }elseif ($tipo='rptclientes') {
+        }elseif ($tipo=='rptclientes') {
             $tipo=3;
             $data_['tipoReporte'] = 'rpt_cliente';
+        }elseif ($tipo=='rptllamadas') {
+            $tipo=4;
+            $data_['tipoReporte'] = 'rpt_llamadas';
+            $data_['fechas'] = 'Del '.date('d/m/Y', strtotime($d1)).' al '.date('d/m/Y', strtotime($d2));
+        }elseif ($tipo=='rptregllamadas') {
+            $tipo=5;
+            $data_['tipoReporte'] = 'rpt_regLlamadas';
+            $data_['fechas'] = 'Del '.date('d/m/Y', strtotime($d1)).' al '.date('d/m/Y', strtotime($d2));
         }
-        
-        $data_['data_reporte'] =  $this->reportes_model->generandoPDF($id, $tipo, $d1, $d2);
 
+        $data_['data_reporte'] =  $this->reportes_model->generandoPDF($id, $tipo, $d1, $d2, $nc, $cl);
         $PdfCliente = new mPDF('utf-8','A4');
         $PdfCliente->SetFooter("Página {PAGENO} de {nb}");
         $PdfCliente -> writeHTML($this->load->view('pages/reportes/reportePDF', $data_, true));

@@ -100,4 +100,13 @@ function desactivarUsuarioFB(usuario){
         });
     });
 }
+
+$("#tipoUsuario").on('change', function(event) {
+    if ($('#tipoUsuario').val()==1) {
+        $("#ext").show(200);
+    }else {
+        $("#ext").hide(200);
+    }
+});
+
 </script>

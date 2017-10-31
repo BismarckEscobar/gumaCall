@@ -21,7 +21,7 @@
             <a href="#nuevoGrupoModal" id="agregarNuevo" class="BtnBlue waves-effect btn modal-trigger"><i class="material-icons left">add</i>NUEVO GRUPO</a>
         </div>
     </div>            
-    <div class="row" id="monitoreo1">
+    <div class="row">
         <table id="tblGrupos" class="TblData">
             <thead>
                 <tr>

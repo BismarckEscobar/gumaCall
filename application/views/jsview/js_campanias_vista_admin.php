@@ -183,7 +183,8 @@
             var Nombre = $('#nombreCampania').val();
             var Fecha_Inicio = $('#fechaInicioCampania').val();
             var Fecha_Cierre = $('#fechaFinalCampania').val();
-            var Meta = $('#metaEstimada').val();
+            var valor = $('#metaEstimada').val();
+            Meta = valor.replace(/,/g, "");
             var Observaciones = $('#observacionesCamp').val();
             var Mensaje = $('#mensajeCamp').val();
             var ID_Usuario = $('#idUser').val();
@@ -284,6 +285,10 @@ $("#metaEstimadaCamp").focus(function(){
     $('#metaEstimadaCamp').mask('000,000,000.00', {reverse: true});
 });
 
+$("#metaEstimada").focus(function(){
+    $('#metaEstimada').mask('000,000,000.00', {reverse: true});
+});
+
 /*EDITAR CONTROLES CON ONCHANGE*/
 $(document).on('change', '.select', function(){ 
     var nuevaData = new Array();
@@ -306,13 +311,12 @@ $(document).on('change', '.select', function(){
         valor = $('#fechaCierreCamp').val();
         tipoModificacion = 4;
     }else if (idControl=='editObservacion') {
-        valor = $('#editObservacion').val();
+        valor = $('#editObservacion').val().replace(/,/g, "-");      
         tipoModificacion = 5;
     }else if (idControl=='editMensaje') {
-        valor = $('#editMensaje').val();
+        valor = $('#editMensaje').val().replace(/,/g, "-");
         tipoModificacion = 6;
     }
-
     nuevaData[0] = numCampania+","+valor+","+tipoModificacion;
 
     form_data = {
@@ -328,7 +332,7 @@ $(document).on('change', '.select', function(){
                 mensaje("Actualizado con éxito", "");
             }
         }
-    });    
+    });
 })
 
 function cargarTablaAgentes(idCampania) {
