@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="noMargen row TextColor center"><div class="col s12 m12">REPORTES</div></div><br><br>
-                <div class="row" style="">
+                <div class="row" style="display:none">
                     <div class="col s3 m3">
                         <center>
                             <a href='<?php echo base_url("index.php/tipoRpt/rptcampania")?>'>
@@ -60,7 +60,7 @@
                             </a>
                         </center>
                     </div>
-                    <div class="col s3 m3">
+                    <div class="col s3 m3" style="display:none">
                         <center>
                             <a href='<?php echo base_url("index.php/tipoRpt/rptLlamadas")?>'>
                                 <i class="material-icons icons-menu-rpt">find_in_page</i>

@@ -41,9 +41,9 @@
                         foreach ($tipificaciones as $key) {
                             $estado = 0;
                             if ($key['Activa']==1) {
-                                $estado = "<td><a onclick='editarTipificacion(".$key['ID_TPF'].", 0)' href='#editarTipi' class='btn-floating blue'><i class='small material-icons'>done</i></a></td>";
+                                $estado = "<td><a onclick='editarTipificacion(".$key['ID_TPF'].", 0)' href='#editarTipi' class='btn-floating red'><i class='small material-icons'>clear</i></a></td>";
                             }else {
-                                $estado = "<td><a onclick='editarTipificacion(".$key['ID_TPF'].", 1)' href='#editarTipi' class='btn-floating red'><i class='small material-icons'>clear</i></a></td>";
+                                $estado = "<td><a onclick='editarTipificacion(".$key['ID_TPF'].", 1)' href='#editarTipi' class='btn-floating blue'><i class='small material-icons'>done</i></a></td>";
                             }
                             echo "
                             <tr>

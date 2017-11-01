@@ -219,9 +219,10 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 <div class="row" >
                     <div class="row" >
                         <div class="input-field offset-l1 col s12 m12 l10 " >
-                            <input class="validate" id="frm_Numero" type="tel"  placeholder="Numero de marcado">
-                    </div><br>
-                    <div class="input-field offset-l1 col s12 m12 l10 " ><br><br>
+                            <input class="validate" id="frm_Numero" type="tel">
+                            <p class="title-tipifacion">Número marcado</p>
+                    </div>
+                    <div class="input-field offset-l1 col s12 m12 l10 " ><br>
                         <select class="chosen-select browser-default" id="frm_TPF">
                             <option value="" disabled selected><span>SELECCIONAR UN RESULTADO</span></option>
                             <?php
@@ -234,25 +235,27 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                             ?>
                         </select>
                     </div>
-                </div>
+                </div><br>
                 <div class="row" >                    
-                    <div class="input-field offset-l1 col s6 m6 l5 " ><br><br>
-                        <input id="frm_Monto" type="number" class="validate right" placeholder="ESCRIBA EL MONTO C$">
+                    <div class="input-field offset-l1 col s6 m6 l5 " ><br>
+                        <input id="frm_Monto" type="number" class="validate right">
+                        <p class="title-tipifacion">Escriba el monto C$</p>
                     </div>
-                     <div class="input-field col s6 m6 l5 " ><br><br>
-                        <input id="frm_Unidad" type="number" class="validate right" placeholder="ESCRIBA LA CANTIDAD DE UNIDADES">
+                     <div class="input-field col s6 m6 l5 " ><br>
+                        <input id="frm_Unidad" type="number" class="validate right">
+                        <p class="title-tipifacion">Escriba cant. unidades</p>
                     </div>
-                </div>
+                </div><br>
                 <div class="row center" >
                     <div class="col s12 m12"><label id="aComment"><i class="material-icons prefix">comment</i> AGREGAR COMENTARIO</label></div>
                     <div class="input-field offset-l1 col s12 m12 l10" id="addComment" style="display: none;">
                         <textarea id="frm_comentario" class="text-area" placeholder="COMENTARIOS"></textarea>
                 </div>
                 </div>
-        </form><br><br><br>
+        </form><br><br>
         <div class="row center">
             <a id="id_Guardar_llamada" class="BtnBlue waves-effect btn modal-trigger">OK</a>
-            <a id="cancelarProceso" class="modal-action modal-close BtnBlue waves-effect btn modal-trigger">CANCELAR</a>
+            <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
 </div>

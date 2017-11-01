@@ -143,17 +143,18 @@ class Reportes_model extends CI_Model {
 
             $ext=$this->db->query("SELECT GROUP_CONCAT(DISTINCT EXT SEPARATOR ', ') AS EXT FROM usuario;");
             
-            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
+            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND TIPO = 'EXTERNO' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
             for ($i=0;$i<=count($array_planta->result_array());$i++) {
-                list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
+                $cantTotal=$cantTotal+intval($array_planta->result_array()[$i]['duration']);
+                /*list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
                 $minutos = ($h * 3600) + ($m * 60) + $s;     
-                $this->cantTotal += $minutos;
+                $this->cantTotal += $minutos;*/
             }
 
             $data_final[] = array(
                 'array_1' => $array_agentLlamda_info->result_array(),
                 'array_2' => $array_planta->result_array(),
-                'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($this->cantTotal)))
+                'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($cantTotal)))
             );                     
             echo json_encode($data_final);
         }
@@ -232,17 +233,32 @@ class Reportes_model extends CI_Model {
                 return $array_llamadas_info->result_array();
             }
         }elseif ($tipoRpt==5) {
+            $data_final=array();$cantTotal=0;
+            $db_asterisk = $this->load->database('db_asterisk', TRUE);
+            
             if ($identificador=='1T0OD1O0S') {
                 $identificador='';
             }
-            $array_agentLlamda_info=$this->db->query("CALL sp_infoLlamadas('%".$identificador."%', '".$d1."', '".$d2."')");            
-
+            
+            $array_agentLlamda_info=$this->db->query("CALL sp_infoLlamadas('%".$identificador."%', '".$d1."', '".$d2."')");
             $array_agentLlamda_info->next_result();
 
-            if ($array_agentLlamda_info->num_rows()>0) {
-         
-                return $array_agentLlamda_info->result_array();
-            }  
+            $ext=$this->db->query("SELECT GROUP_CONCAT(DISTINCT EXT SEPARATOR ', ') AS EXT FROM usuario;");
+            
+            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND TIPO = 'EXTERNO' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
+            for ($i=0;$i<=count($array_planta->result_array());$i++) {
+                $cantTotal=$cantTotal+intval($array_planta->result_array()[$i]['duration']);
+                /*list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
+                $minutos = ($h * 3600) + ($m * 60) + $s;     
+                $this->cantTotal += $minutos;*/
+            }
+
+            $data_final[] = array(
+                'array_1' => $array_agentLlamda_info->result_array(),
+                'array_2' => $array_planta->result_array(),
+                'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($cantTotal)))
+            );                     
+            return $data_final;
         }
     }
 }

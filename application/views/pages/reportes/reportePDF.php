@@ -313,10 +313,15 @@
 					</table>";
 				}
 		}elseif ($tipoReporte=='rpt_regLlamadas') {
-			$totalLlamadas=0;
+			$total=0;
 			if ($data_reporte) {
 				foreach ($data_reporte as $key) {
-					$totalLlamadas=$totalLlamadas+(int)$key['cantllamadas'];
+					$array1 = $key['array_1'];
+					$array2 = $key['array_2'];
+					$tempo = $key['tiempoTotal'];					
+				}
+				for ($i=0; $i <= count($array1) ; $i++) { 
+					$total=$total+floatval($array1[$i]['Monto']);
 				}
 				echo 
 				"<br>
@@ -326,29 +331,87 @@
 				<div class='content-div'>
 					<span class='titulo-var'>".$fechas."</span>
 				</div><br><br>
-				<div class='content-div' style='text-align:left'>
-					&nbsp;&nbsp;<span class='titulos-2'>Cant. llamadas realizadas: ".$totalLlamadas."</span>						
-				</div>
+				<div class='content-div'>
+					<span class='titulo-var'>LLAMADAS POR CAMPAÑA</span>
+				</div><br>
+				<div class='contenedor-primary'>								
+					<div id='tll' style='width:33%'>
+						<span class='titulos-4'>".count($array1)."</span><br>
+						<span class='titulos-3'>Total llamadas</span><br>											
+					</div>			
+					<div id='tt' style='width:33%'>
+						<span class='titulos-4'>".$array1[0]['tt']."</span><br>
+						<span class='titulos-3'>Tiempo total</span>										
+					</div>						
+					<div id='tp' style='width:33%'>
+						<span class='titulos-4'>C$ ".number_format($total, 2)."</span><br>
+						<span class='titulos-3'>Total Real</span>										
+					</div>
+				</div><br>
 				<table class='table-control'>
 					<thead>
 						<tr>							
-							<th>ID USUARIO</th>
-							<th>NOMBRE</th>							
-							<th>REAL C$</th>
-							<th>CANT. LLAMADAS</th>
+							<th>EXTENSIÓN</th>
+							<th>NOMBRE</th>
+							<th>FECHA</th>						
+							<th>HORA</th>
+							<th>NÚMERO MARCADO</th>
+							<th>DURACIÓN</th>
+							<th>REAL C$</th>							
 						</tr>
 					</thead>
 					<tbody>";
-				foreach ($data_reporte as $key) {
+				foreach ($array1 as $key) {
 					echo"<tr>							
-							<td><span>".$key['IdUser']."</span></td>
+							<td><span>".$key['EXT']."</span></td>
 							<td><span>".$key['Nombre']."</span></td>
-							<td><span>".number_format($key['montoReal'], 2)."</span></td>
-							<td><span>".$key['cantllamadas']."</span></td>
+							<td><span>".date('d/m/Y', strtotime($key['Fecha']))."</span></td>
+							<td><span>".date('h:i A', strtotime($key['Hora']))."</span></td>
+							<td><span>".$key['Num_CLI']."</span></td>
+							<td><span>".$key['Duracion']."</span></td>
+							<td><span>".number_format($key['Monto'], 2)."</span></td>							
 						</tr>";
 				}
 				echo "</tbody>
-					</table>";
+					</table><br>
+					<div class='content-div'>
+						<span class='titulo-var'>LLAMADAS POR PLANTA</span>
+					</div><br>
+					<div class='contenedor-primary'>								
+						<div id='tll' style='width:50%'>
+							<span class='titulos-4'>".count($array2)."</span><br>
+							<span class='titulos-3'>Total llamadas</span><br>											
+						</div>			
+						<div id='tt' style='width:50%'>
+							<span class='titulos-4'>".$tempo."</span><br>
+							<span class='titulos-3'>Tiempo total</span>										
+						</div>
+					</div><br>
+					<table class='table-control'>
+						<thead>
+							<tr>							
+								<th>EXTENSIÓN</th>								
+								<th>FECHA</th>						
+								<th>HORA</th>
+								<th>NÚMERO MARCADO</th>
+								<th>DURACIÓN</th>														
+							</tr>
+						</thead>
+						<tbody>
+					";					
+					foreach($array2 as $key) {
+						echo"<tr>							
+							<td><span>".$key['ORIGEN']."</span></td>							
+							<td><span>".date('d/m/Y', strtotime($key['FECHA']))."</span></td>
+							<td><span>".date("h:i A", strtotime($key['Hora']))."</span></td>
+							<td><span>".$key['DESTINO']."</span></td>
+							<td><span>".$key['DURACION']."</span></td>							
+						</tr>";
+					}
+					echo "
+						</tbody>
+					</table><br>
+					";
 				}
 		}
 		?>

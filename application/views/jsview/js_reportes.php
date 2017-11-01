@@ -191,8 +191,9 @@ $('#generarRpt2').click(function() {
     if ($('#desde').val()=="" && $('#hasta').val()=="") {
         mensaje("Tiene que seleccionar un rango de fechas", "error");
     }else {
+        $('#pgr').show();
         identificador = $('#selectRpt2').val();
-        generarReporte(identificador, 5);
+        generarReporte(identificador, 5);        
         $('#val').val(5);
         $("#rptRgtLlamadas").openModal();
     }
@@ -235,7 +236,7 @@ function generarReporte(identificador, tipoReporte) {
         data: form_data,
         success: function(data) {
             if (data.length!=0) {
-                $.each(JSON.parse(data), function(i, item) {
+                $.each(JSON.parse(data), function(i, item) {                    
                     if (tipoReporte==1) {
                         $.each(item['array_1'], function(i, item) {
                             $('#idTemporal').val(item['ID_Campannas']);
@@ -349,15 +350,22 @@ function generarReporte(identificador, tipoReporte) {
                         $('#tblGeneral').DataTable({              
                             "destroy": true,
                             "data": JSON.parse(data),
+                            "bFilter": true,
+                            "scrollCollapse": true,
                             "info":    false,
-                            "bPaginate": false,
-                            "paging": false,
-                            "ordering": false,
-                            "pagingType": "full_numbers",
-                            "emptyTable": "No hay datos disponibles en la tabla",
+                            "lengthMenu": [[5,10,20,30,-1], [5,10,20,30,"Todo"]],
                             "language": {
-                                "zeroRecords": "No hay datos disponibles"
-                            }, 
+                                "zeroRecords": "NO HAY RESULTADOS",
+                                "paginate": {
+                                    "first":      "Primera",
+                                    "last":       "Última ",
+                                    "next":       "Siguiente",
+                                    "previous":   "Anterior"          
+                                },
+                                "lengthMenu": "MOSTRAR _MENU_",
+                                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                                "search":     "BUSCAR"
+                            },
                             columns: [
                                 { "data": "campania" },
                                 { "data": "idCliente", },
@@ -368,14 +376,13 @@ function generarReporte(identificador, tipoReporte) {
                             ]
                         });
                     }else if (tipoReporte==5) {
-                        $('#pgr').show();
                         var monto=0;
                         $('#tltLlamadas').text('');
                         $('#tltLlamadasPlt').text('');                        
                         $('#tltMinutosPlt').text('');
                         $('#tltMinutos').text('');
                         $('#tltReal').text('');
-
+                        
                         $.each(item['array_1'], function(i, item){
                             $('#tltMinutos').text(item['tt']);
                             monto=monto+parseFloat(item['Monto']);                                 
@@ -384,7 +391,7 @@ function generarReporte(identificador, tipoReporte) {
                         $('#tltLlamadas').text(item['array_1'].length);
                         $('#tltLlamadasPlt').text(item['array_2'].length);
                         $('#tltMinutosPlt').text(item['tiempoTotal']);
-                        $('#tltReal').text(monto.toLocaleString("en-US"));
+                        $('#tltReal').text(monto.toLocaleString("en-US"));                        
                         
                         $('#tblRegLllamadas').DataTable({
                             "destroy": true,
@@ -430,7 +437,7 @@ function generarReporte(identificador, tipoReporte) {
                             ]
                         });
 
-                        $('#tblRegLllamadasPlanta').DataTable({            
+                        $('#tblRegLllamadasPlanta').DataTable({
                             "destroy": true,
                             "data": item['array_2'],
                             "bFilter": true,
@@ -470,14 +477,14 @@ function generarReporte(identificador, tipoReporte) {
                                 { "data": "TIPO" }
                             ]
                         });
-                        $('#pgr').hide();
+                        $("#pgr").hide();                    
                     };
-                });
+                });                
             }else if (data.length===0) {
                 limpiarControles(tipoReporte);
             }
         }
-    });
+    });    
 }
 
 function imprimirRpt() {
