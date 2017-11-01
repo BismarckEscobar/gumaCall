@@ -73,21 +73,24 @@
                     tCamp =childData.Camp
                     btn = "<a class='waves-effect waves-light btn' onclick='updateEyes("+'"'+childKey+'"'+','+EsPausa+")'>"+estado+"</a>";
                 }
-
-
-                $("#monitoreo").append('' +
-                    '<div class="col s12 m3">'+
+                var html1="",html2="";
+                if (sac%4==0) {
+                    html1='<div class="row">';
+                    html2='</div>'
+                }
+                $("#monitoreo").append(html1 +
+                    '<div id="card-monitor" class="col s12 m3">'+
                     '<div class="card hoverable '+color+'">'+
                     '<div class="card-content white-text">' +
                     '<span class="card-title">AGENTE: '+childKey+'</span>'+
-                    '<h1 class="center">'+sac+'</h1>'+
-                    '<h5 class="center">'+numcamp+'</h5>'+
-                    '<h5 class="center">'+tCamp+'</h5>'+
-                    '<h4 class="center">'+tTrabajo+'</h4>'+
+                    '<h1 style="font-family:robotoregular;" class="center">'+sac+'</h1>'+
+                    '<h5 style="font-family:robotoregular;" class="center">'+numcamp+'</h5>'+
+                    '<h5 style="font-family:robotoregular; font-size:20px" class="center">'+tCamp+'</h5>'+
+                    '<h4 style="font-family:robotoregular" class="center">'+tTrabajo+'</h4>'+
                     '</div>'+
-                    '<div class="card-action">'+btn+'<div>'+
+                    '<div style="font-family:robotoregular" class="card-action">'+btn+'<div>'+
                     '</div>'+
-                    '</div>');
+                    '</div>'+html2);
                 sac++;
 
             });

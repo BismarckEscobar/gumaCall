@@ -519,6 +519,7 @@ table th {
 #tb1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
+
 /*FIN TABLAS GENERALES*/
 
 .BtnBlue
@@ -743,6 +744,18 @@ label>select {
   }
   #footer-f {
     margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  #card-monitor {
+    width: 50%;
+    text-align: center;    
+    margin-left: 25%;
+  }
+  #monitoreo {
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 }
 /*FIN DE ESTILOS PARA RELOJ*/
@@ -972,4 +985,7 @@ chosen-single a{
     color: #000000;
     font-family: 'robotoregular';
     text-align: center;
+}
+.card-title {
+  font-family: 'roboto';
 }

@@ -56,7 +56,7 @@ class Reportes_model extends CI_Model {
             foreach ($query_agentes->result_array() as $key) {
                 $temp[] = array(
                     'value' => $key['EXT'],
-                    'desc' => $key['Usuario'].' - '.$key['Nombre']
+                    'desc' => $key['Usuario'].' - '.$key['Nombre'].' / EXT:'.$key['EXT']
                 );                
             }
             return $temp;
