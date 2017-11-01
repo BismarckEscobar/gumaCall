@@ -317,7 +317,7 @@
                 </div><br>
                 <div class="row center">
                     <span class="reporte-title-1">LLAMADAS POR CAMPAÑA</span><br><br>
-                    <div class="progress" style="" id="pgr">
+                    <div class="progress" style="display:none;" id="pgr">
                         <div class="indeterminate"></div>
                     </div>
                     <div class="row center">
@@ -333,7 +333,7 @@
                             <span class="reporte-title-2">TOTAL REAL C$: </span>
                             <span id="tltReal" class="reporte-title-2"></span>
                         </div>
-                    </div>    
+                    </div>
                     <table id="tblRegLllamadas" class="TblData">
                         <thead>
                             <tr>
