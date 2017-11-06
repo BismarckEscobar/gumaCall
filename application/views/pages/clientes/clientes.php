@@ -40,7 +40,7 @@
                             echo "
                             <tr>
                                 <td><span>".$key['ID_Cliente']."</span></td>
-                                <td><span></span></td>
+                                <td><span>".$key['RUC']."</span></td>
                                 <td><span>".$key['Nombre']."</span></td>
                                 <td><span>".$key['Telefono1']."</span></td>
                                 <td><span>".$key['Telefono2']."</span></td>

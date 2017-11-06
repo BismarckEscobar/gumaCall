@@ -20,6 +20,9 @@ class Main_controller extends CI_Controller
             case '1':
                 redirect('campanias');
             break;
+            case '2':
+                redirect('campaniasVA');
+            break;
         }
     }
 }
