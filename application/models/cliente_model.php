@@ -13,12 +13,13 @@ class cliente_model extends CI_Model {
 		while ($param==0) {
 			$this->db->insert('clientes', array(
 				'ID_Cliente' => $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue(),
-				'Nombre' => $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue(),
-				'Direccion' => $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue(),
-				'Telefono1' => $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue(),
-				'Telefono2' => $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(),
-				'Telefono3' => $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(),
-				'Vendedor' => $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue()
+				'RUC' => $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue(),
+				'Nombre' => $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue(),
+				'Direccion' => $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue(),
+				'Telefono1' => $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(),
+				'Telefono2' => $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(),
+				'Telefono3' => $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue(),
+				'Vendedor' => $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue()
 			));
 			$i++;
 			if($objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue()==NULL){
