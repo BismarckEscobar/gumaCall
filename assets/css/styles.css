@@ -501,8 +501,16 @@ table th {
  display: none;
 }
 
-#tableCampaniasVA .dataTables_wrapper .dataTables_filter {  
+#tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter label {  
+ display: none;
+}
+
+#tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter {  
  display: block!important; 
+}
+
+#tableCampaniasVA .dataTables_wrapper .dataTables_filter {  
+ display: block!important;
 }
 
 #table-cliente .dataTables_wrapper .dataTables_filter {
@@ -510,13 +518,19 @@ table th {
 }
 
 #monitoreo1 .dataTables_wrapper .dataTables_filter {
-  display: block!important;
+  display: none;
 }
 
 #table-detalleCliente .dataTables_wrapper .dataTables_filter {
   display: block!important;
 }
 #tb1 .dataTables_wrapper .dataTables_filter {
+ display: block!important; 
+}
+#tblRegLllamadas1 .dataTables_wrapper .dataTables_filter {
+ display: block!important; 
+}
+#tblRegLllamadasPlanta1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
 
@@ -878,6 +892,10 @@ chosen-single a{
 }
 
 #column0,#column1,#column2, #column3,#column4,#column5,#column6,#column7,#column9 {
+  display: none;
+}
+
+#column0c,#column1c,#column2c,#column3c,#column4c,#column5c {
   display: none;
 }
 

@@ -143,12 +143,10 @@ class Reportes_model extends CI_Model {
 
             $ext=$this->db->query("SELECT GROUP_CONCAT(DISTINCT EXT SEPARATOR ', ') AS EXT FROM usuario;");
             
-            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND TIPO = 'EXTERNO' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
+            $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND TIPO = 'EXTERNO' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].") ORDER BY Hora DESC;");
+            
             for ($i=0;$i<=count($array_planta->result_array());$i++) {
                 $cantTotal=$cantTotal+intval($array_planta->result_array()[$i]['duration']);
-                /*list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
-                $minutos = ($h * 3600) + ($m * 60) + $s;     
-                $this->cantTotal += $minutos;*/
             }
 
             $data_final[] = array(
