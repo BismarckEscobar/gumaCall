@@ -15,6 +15,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
             <div class="clock">
                 <ul class="ul_r">
                     <li id="hours"></li>
+                    <li id="point">:</li>
                     <li id="min"></li>
                     <li id="type"></li>
                 </ul>
@@ -66,38 +67,48 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
 
 
         <div class="row" id="monitoreo1">
-            <table id="tbl_camp_cliente" class="TblData">
-                <thead>
-                <tr>
-                    <th>CODIGO</th>
-                    <th>NOMBRE</th>
-                    <th>TELEFONO</th>
-                    <th>META</th>
-                    <th>REAL</th>
-                    <th>MONTO RECUPERADO</th>
-                </tr>
-                </thead>
-                <tbody class="center">
-                <?php
+            <div class="row center">
+                <i class="material-icons prefix">search</i>
+                <input style="width:40%" type="text" id="filtrarClientes" placeholder=" BUSCAR CLIENTE">
+            </div>
+            <div id="tbl_camp_cliente2">
+                <table id="tbl_camp_cliente" class="TblData">
+                    <thead>
+                    <tr>
+                        <th>CODIGO</th>
+                        <th>NOMBRE</th>
+                        <th>TELEFONO</th>
+                        <th>META</th>
+                        <th>REAL</th>
+                        <th>MONTO RECUPERADO</th>
+                        <th>RUTA</th>
+                    </tr>
+                    </thead>
+                    <tfoot style="display:none">
+                    </tfoot>
+                    <tbody class="center">
+                    <?php
 
-                    if (!$ClixVend){
+                        if (!$ClixVend){
 
-                    }else{
-                        foreach ($ClixVend as $Lst){
+                        }else{
+                            foreach ($ClixVend as $Lst){
 
-                            echo '<tr>
-                                    <td><a id="Numcamp" onclick="getInfoCliente('."'".$Lst['ID_Campannas']."'".",'".$Lst['ID_Cliente']."'".')" href="#">'.$Lst['ID_Cliente'].'</a></td>
-                                    <td>'.$Lst['Nombre'].'</td>
-                                    <td>'.$Lst['Telefono1'].'</td>
-                                    <td>C$ '.number_format($Lst['Meta'],2).'</td>
-                                    <td>C$ '.number_format($Lst['Real'],2).'</td>
-                                    <td>'.number_format($Lst['Real'], 2).'</td>       
-                                 </tr>';
+                                echo '<tr>
+                                        <td><a id="Numcamp" onclick="getInfoCliente('."'".$Lst['ID_Campannas']."'".",'".$Lst['ID_Cliente']."'".')" href="#">'.$Lst['ID_Cliente'].'</a></td>
+                                        <td>'.$Lst['Nombre'].'</td>
+                                        <td>'.$Lst['Telefono1'].'</td>
+                                        <td>C$ '.number_format($Lst['Meta'],2).'</td>
+                                        <td>C$ '.number_format($Lst['Real'],2).'</td>
+                                        <td>'.number_format($Lst['Real'], 2).'</td> 
+                                        <td>'.$Lst['Vendedor'].'</td>       
+                                     </tr>';
+                            }
                         }
-                    }
-                ?>
-                </tbody>
-            </table>
+                    ?>
+                    </tbody>
+                </table>  
+            </div>
         </div>
     </div>
 </main>

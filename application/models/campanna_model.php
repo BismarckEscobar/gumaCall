@@ -96,7 +96,8 @@ class Campanna_model extends CI_Model
                         'Telefono2' => $Cmp['Telefono2'],
                         'Telefono3' => $Cmp['Telefono3'],
                         'Meta' => $Cmp['Meta'],
-                        'Real' => $this->getRealCliente($id, $Cmp['ID_Cliente'])
+                        'Real' => $this->getRealCliente($id, $Cmp['ID_Cliente']),
+                        'Vendedor' => $Cmp['Vendedor']
                     );
                      $array_Clientes_camp[] = $temp;  
                 }

@@ -334,23 +334,25 @@
                             <span id="tltReal" class="reporte-title-2"></span>
                         </div>
                     </div>
-                    <table id="tblRegLllamadas" class="TblData">
-                        <thead>
-                            <tr>
-                                <th>ID USUARIO</th>
-                                <th>EXTENSION</th>
-                                <th>NOMBRE</th>
-                                <th>FECHA</th>
-                                <th>HORA</th>                    
-                                <th>NUMERO MARCADO</th>                                
-                                <th>DURACION</th>
-                                <th>REAL C$</th>
-                                <th>tt</th>
-                            </tr>
-                        </thead>
-                        <tbody class="center">
-                        </tbody>
-                    </table>
+                    <div id="tblRegLllamadas1">
+                        <table id="tblRegLllamadas" class="TblData">
+                            <thead>
+                                <tr>
+                                    <th>ID USUARIO</th>
+                                    <th>EXTENSION</th>
+                                    <th>NOMBRE</th>
+                                    <th>FECHA</th>
+                                    <th>HORA</th>                    
+                                    <th>NUMERO MARCADO</th>                                
+                                    <th>DURACION</th>
+                                    <th>REAL C$</th>
+                                    <th>tt</th>
+                                </tr>
+                            </thead>
+                            <tbody class="center">
+                            </tbody>
+                        </table>                        
+                    </div>
                 </div><br><br><br>
                 
                 <div class="row center">
@@ -367,20 +369,22 @@
                         <div class="col s4">
                         </div>
                     </div>
-                    <table id="tblRegLllamadasPlanta" class="TblData">
-                        <thead>
-                            <tr>
-                                <th>EXTENSIÓN</th>
-                                <th>FECHA</th>
-                                <th>HORA</th>
-                                <th>NÚMERO MARCADO</th>                    
-                                <th>DURACIÓN</th>                                
-                                <th>TIPO</th>
-                            </tr>
-                        </thead>
-                        <tbody class="center">
-                        </tbody>
-                    </table>
+                    <div id="tblRegLllamadasPlanta1">
+                        <table id="tblRegLllamadasPlanta" class="TblData">
+                            <thead>
+                                <tr>
+                                    <th>EXTENSIÓN</th>
+                                    <th>FECHA</th>
+                                    <th>HORA</th>
+                                    <th>NÚMERO MARCADO</th>                    
+                                    <th>DURACIÓN</th>                                
+                                    <th>TIPO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="center">
+                            </tbody>
+                        </table> 
+                    </div>
                 </div><br><br><br>
             </div>
         </div>        

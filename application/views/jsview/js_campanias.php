@@ -148,6 +148,28 @@
 
 
         $('#tblcampanias,#tbl_camp_cliente').DataTable({
+            initComplete: function () {
+                this.api().columns().every( function () {                      
+                    var column = this;
+                    var select = $('<select id="column'+column[0]+'c"><option value="">TODOS</option></select>')
+                        .appendTo( $('#tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter' ))
+
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()                            
+                            );                       
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                            } )                
+                        column.data().unique().sort().each( function ( d, j ) {
+                                  
+                        select.append( '<option value="'+d+'">'+d+'</option>' );
+                    } );
+                    
+                } );
+
+            },
             "scrollCollapse": true,
             "info":    false,
             "lengthMenu": [[10,20,30,50,100,-1], [10,20,30,50,100,"Todo"]],
@@ -349,6 +371,9 @@
     }
     /*DIN DE INFORMACION DEL CLIENTE EN LA CAMPAÑA*/
 
-
+    $('#filtrarClientes').on('keyup', function() {
+        var table = $('#tbl_camp_cliente').DataTable();
+        table.search(this.value).draw();
+    });
 
 </script>
