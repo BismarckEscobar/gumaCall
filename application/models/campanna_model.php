@@ -153,15 +153,26 @@ class Campanna_model extends CI_Model
         $HstCompra = $this->sqlsrv->fetchArray("SELECT * FROM vtCC_CLIENTES WHERE Cliente='".$CL."' ",SQLSRV_FETCH_ASSOC);
         foreach($HstCompra as $key){
             $json[$i]['DIRECCION']      = $key['DIRECCION'];
-            $json[$i]['RUC']      = $key['RUC'];
-            $json[$i]['CREDITO']      = $key['LIMITE_CREDITO'];
-            $json[$i]['SALDO']       = $key['SALDO'];
-            $json[$i]['DISPONIBLE']       = $key['CREDITODISP'];
+            $json[$i]['RUC']            = $key['RUC'];
+            $json[$i]['CREDITO']        = $key['LIMITE_CREDITO'];
+            $json[$i]['SALDO']          = $key['SALDO'];
+            $json[$i]['DISPONIBLE']     = $key['CREDITODISP'];
+            $json[$i]['RUTA']           = $key['VENDEDOR'];
+            $json[$i]['MOROSO']         = $key['MOROSO'];
+            $json[$i]['cDisp']          = $this->color_saldo($key['VENDEDOR'],$key['CREDITODISP']);
             $i++;
         }
         return $json;
         $this->sqlsrv->close();
 
+    }
+    private function color_saldo($Ruta,$Saldo){
+        $Rutas_Managua = array('F13','F03','F04','F05','F19');
+        if (in_array($Ruta, $Rutas_Managua)) {
+            return ($Saldo>=500) ? "": "red";
+        }else{
+            return ($Saldo>=1000) ? "": "red";
+        }
     }
     public function My_Campannas(){
         $i=0;
