@@ -91,6 +91,10 @@
   min-height: 80%;
   height: 80%;
 }
+#modalCargaClienteInd {
+  width: 75%;
+  min-height: 80%;
+}
 .negra{
   font-family: 'robotoblack'!important;
 }
