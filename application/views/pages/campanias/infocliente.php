@@ -190,7 +190,15 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                                 </div>
                                 <div class="input-field col s6">
                                     <label class="left">DISPONIBLE</label>
-                                    <input readonly id="icon_DISPONIBLE" value="C$ <?php (!$query2)?:print number_format($query2[0]['DISPONIBLE'],2)?>" type="text" class=" right">
+                                    <input style="color: <?php echo $query2[0]['cDisp']?>" readonly id="icon_DISPONIBLE" value="C$ <?php (!$query2)?:print number_format($query2[0]['DISPONIBLE'],2)?>" type="text" class=" right">
+                                </div>
+
+                                <div class="input-field col s12 center" >
+                                    <?php
+                                        if ($query2[0]['MOROSO']=="S"){
+                                            echo '<p class="color_moroso">MOROSO</p>';
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>
