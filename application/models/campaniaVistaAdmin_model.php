@@ -361,6 +361,42 @@ class campaniaVistaAdmin_model extends CI_Model {
 			}
 			echo json_encode($result);
 		}
-    }
+	}
+	
+	//Funciones sobre Agregar Clientes a Campaña
+	public function mostrarClientes()
+	{
+		$query = $this->db->get("clientes");
+		if ($query->num_rows() > 0 ) {
+			return $query->result_array();
+		}
+		return 0;
+	}
+
+	public function saveClientes($campania,$idCli,$meta)
+	{
+		$data = array(
+			"ID_Campannas" => $campania,
+			"ID_Cliente" => $idCli,
+			"Meta" => $meta
+		);
+		$validate = $this->db->query("SELECT * FROM campanna_cliente WHERE ID_Campannas LIKE '%".$campania. "%' AND ID_Cliente LIKE '%".$idCli."%' "); 
+		if ($validate->num_rows() > 0) {
+			echo "Ya existe";
+		} else {
+			echo "no existe";
+			$this->db->insert("campanna_cliente", $data);	
+		}
+	}
+
+	public function validar($campania, $idCli)
+	{
+		$validate = $this->db->query("SELECT * FROM campanna_cliente WHERE ID_Campannas LIKE '%" . $campania . "%' AND ID_Cliente LIKE '%" . $idCli . "%' "); 
+		if ($validate->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>

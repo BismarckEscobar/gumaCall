@@ -62,28 +62,32 @@
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
                             }elseif ($key['Estado']==2) {
                                 $estado='Inactiva';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
                             }elseif ($key['Estado']==3) {
                                 $estado='Aprobada';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
                             }elseif ($key['Estado']==4) {
                                 $estado='Procesando';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
                             }
                             echo"
                             <tr>
@@ -159,6 +163,61 @@
         <div class="row center">
             <a id="guardarEdicion" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
             <a id="cancelarProceso" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
+        </div>
+    </div>
+</div>
+
+<!--MODAL: AGRREGANDO CLIENTE A CAMPAÑA-->
+<div id="modalAddClienteCamp" class="modal" style="width:1000px;">
+    <div class="modal-content"><br>
+        <div class="row center">            
+            <span id="nombreCampania1" class="titulosModales"></span><br><br>
+            <span style="font-family: robotomedium">SELECCIONAR CLIENTE</span>
+            <input type='hidden' id="idCampaniaclient" name="idCampaniaclient">                   
+        </div>
+        <div class="row center">
+            <div id="agente" class="col s12">
+                <div class="row">  
+                    <div class="col s12 m12 l12">          
+                        <div class="row center">
+                                <div class="col s4 m4 l4 input-field right" id="divsearchClients">
+                                    <i class="material-icons prefix">search</i>
+                                    <input type="text" id="searchClients" placeholder="BUSCAR CLIENTE">   
+                                </div>
+                            <table id="tbladdclientcamp" class="TblData">
+                                <thead>
+                                    <tr>                                
+                                        <th>ID_CLIENTE</th>
+                                        <th>NOMBRE CLIENTE</th>
+                                        <th class="th-campania">AGREGAR</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="center">
+                                    <?php
+                                        if(!$Clients)
+                                        {}else{
+                                            foreach ($Clients as $key) {
+                                                echo"
+                                                    <tr>
+                                                        <td>".$key["ID_Cliente"]."</td>
+                                                        <td>".$key["Nombre"]. "</td>
+                                                        <td><a href='#' onclick='saveClient(".'"'.$key["ID_Cliente"].'"'.")' class='btn BtnBlue waves-effect waves-light'><i class='material-icons'>add</i></a></td>
+                                                    </tr>
+                                                ";
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cliente" class="col s12"></div>
+        </div>
+        <div class="row center">
+            <a id="saveClientCamp" class="BtnBlue waves-effect btn modal-trigger">GUARDAR</a>&nbsp;&nbsp;
+            <a id="" class="modal-action modal-close BtnCancelar waves-effect btn modal-trigger">CANCELAR</a>
         </div>
     </div>
 </div>
