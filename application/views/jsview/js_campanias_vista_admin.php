@@ -6,130 +6,153 @@
          table.search(this.value).draw();
      });   
     
-    $('ul.tabs').tabs();
+        $('ul.tabs').tabs();
     
-    $('.date').mask('00/00/0000');
+        $('.date').mask('00/00/0000');
 
-    $('#tblcampaniasVA').DataTable( {
-        initComplete: function () {
-            this.api().columns().every( function () {                      
-                var column = this;
-                var select = $('<select id="column'+column[0]+'"><option value="">TODOS</option></select>')
-                    .appendTo( $('#tableCampaniasVA .dataTables_wrapper .dataTables_filter' ))
+        $('#tblcampaniasVA').DataTable( {
+            initComplete: function () {
+                this.api().columns().every( function () {               
+                    var column = this;
+                    var select = $('<select id="column'+column[0]+'"><option value="">TODOS</option></select>')
+                        .appendTo( $('#tableCampaniasVA .dataTables_wrapper .dataTables_filter' ))
 
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()                            
-                        );                       
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                        } )                
-                    column.data().unique().sort().each( function ( d, j ) {
-                              
-                    select.append( '<option value="'+d+'">'+d+'</option>' );
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()                            
+                            );                       
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                            } )                
+                        column.data().unique().sort().each( function ( d, j ) {
+                                  
+                        select.append( '<option value="'+d+'">'+d+'</option>' );
+                    } );
+                    
                 } );
-                
-            } );
 
-        }, 
-        "scrollCollapse": true,
-        "info":    false,
-        "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
-        "language": {
-            "zeroRecords": "NO HAY RESULTADOS",
-            "paginate": {
-                "first":      "Primera",
-                "last":       "Última ",
-                "next":       "Siguiente",
-                "previous":   "Anterior"
-            },
-            "lengthMenu": "MOSTRAR _MENU_",
-            "emptyTable": "NO HAY DATOS DISPONIBLES",
-            "search":     "BUSCAR"
-        }  
-    } );
+            }, 
+            "scrollCollapse": true,
+            "info":    false,
+            "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+            "language": {
+                "zeroRecords": "NO HAY RESULTADOS",
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "lengthMenu": "MOSTRAR _MENU_",
+                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                "search":     "BUSCAR"
+            }  
+        } );
 
-    var pathname = window.location.pathname;
-    if (pathname.match(/detallesVA.*/)) {
-        $("#menu ul li").each(function(){
-            var pos = $(this).attr("id");
-            if ($(this).attr("id")==pos) {
-                $("#"+pos+" a").attr("href", "../"+pos+"");
-            }
-        })
+        var pathname = window.location.pathname;
+        if (pathname.match(/detallesVA.*/)) {
+            $("#menu ul li").each(function(){
+                var pos = $(this).attr("id");
+                if ($(this).attr("id")==pos) {
+                    $("#"+pos+" a").attr("href", "../"+pos+"");
+                }
+            })
 
-        var numCampaniaGlobal = $('#numCampania').val();
+            var numCampaniaGlobal = $('#numCampania').val();
 
-        var grafica = {
+            var grafica = {
 
-            chart: {
-                type: 'line',
-                renderTo: 'container-grafica'
-            },
-            title: {
-                text: 'META - REAL'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
+                chart: {
+                    type: 'line',
+                    renderTo: 'container-grafica'
+                },
                 title: {
+                    text: 'META - REAL'
+                },
+                subtitle: {
                     text: ''
                 },
-                categories: [],
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    day: '%e of %b'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: ''
-                }                
-            },
-            tooltip: {
-                crosshairs: true,
-                shared: true
-            },
-            plotOptions: {
-                spline: {
-                    marker: {
-                        radius: 4,
-                        lineColor: '#666666',
-                        lineWidth: 1
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: [],
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        day: '%e of %b'
                     }
-                }
-            /*line: {
-                dataLabels: {
-                    enabled: true
                 },
-                enableMouseTracking: false
-            }*/
+                yAxis: {
+                    title: {
+                        text: ''
+                    }                
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                /*line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }*/
 
-            },
-            series: [],
-        };
-        $.getJSON("../metaReal/"+numCampaniaGlobal, function(json) {
-            var newseries;
+                },
+                series: [],
+            };
+            $.getJSON("../metaReal/"+numCampaniaGlobal, function(json) {
+                var newseries;
 
-            $.each(json, function (i, item) {
-                newseries = {};
-                newseries.showInLegend = true;
-                newseries.data = item['Data'];
-                newseries.name = item['Tipo'];              
-                
-                grafica.series.push(newseries);
+                $.each(json, function (i, item) {
+                    newseries = {};
+                    newseries.showInLegend = true;
+                    newseries.data = item['Data'];
+                    newseries.name = item['Tipo'];              
+                    
+                    grafica.series.push(newseries);
+                });
+               var chart = new Highcharts.Chart(grafica);
             });
-           var chart = new Highcharts.Chart(grafica);
-        });
 
-        $.getJSON("../diasGrafica/"+numCampaniaGlobal, function(json) {
-            grafica.xAxis.categories = json.name;
-            
-            var chart = new Highcharts.Chart(grafica);
-        });
-    }
+            $.getJSON("../diasGrafica/"+numCampaniaGlobal, function(json) {
+                grafica.xAxis.categories = json.name;
+                
+                var chart = new Highcharts.Chart(grafica);
+            });
+        }else if (pathname.match(/crearCampania.*/)) {          
+
+            $('#tblArticulos').DataTable({            
+                "bFilter": true,
+                "scrollCollapse": true,
+                'bPaginate' : true,
+                "info":    false,            
+                "iDisplayLength": 5,
+                //"lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+                "language": {
+                    "zeroRecords": "NO HAY RESULTADOS",
+                    "paginate": {
+                        "first":      "Primera",
+                        "last":       "Última ",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"                    
+                    },
+                    "lengthMenu": "MOSTRAR _MENU_",
+                    "emptyTable": "NO HAY DATOS DISPONIBLES",
+                    "search":     "BUSCAR"
+                }
+            });  
+        }
+
         $(function() {
             $("ul li").each(function(){
                 if($(this).attr("id") == 'campaniasVA')
@@ -177,12 +200,14 @@
     $('#guardarCampania').click(function() {
         var val = validarControles();
         if (val!=false) {
-            /*VARIABLES AGENTES*/
+            //VARIABLES AGENTES
             var tabla = $('#tblAgentes').DataTable();
+            var tabla1 = $('#tblArticulos').DataTable();
             var agentesSeleccionados = new Array();
+            var artSeleccionados = new Array();
             var pos = 0;
 
-            /*VARIABLES OTROS PARAMETROS*/
+            //VARIABLES OTROS PARAMETROS
             var campania = new Array();
             var ID_Campannas = $('#codigoCampania').val();
             var Nombre = $('#nombreCampania').val();
@@ -199,7 +224,7 @@
                 var data = row.data();
                 var idUsuario = data[0];
 
-                if ($('#chkUser'+data[0]).is(':checked')) {            
+                if ($('#chkUser'+data[0]).is(':checked')) { 
                     agentesSeleccionados[pos] = ID_Campannas + "," + data[0];
                     pos++;
                 }
@@ -207,10 +232,15 @@
 
             campania[0] = ID_Campannas+","+Nombre+","+Fecha_Inicio+","+Fecha_Cierre+","+Meta+","+Observaciones+","+Mensaje+","+ID_Usuario;
 
+            if ($('#selectAll').is(':checked')) {
+                seleccion = [];
+                seleccion[0] = "*";
+            }
 
             form_data = {
                 dataCampania:campania,
-                agentes:agentesSeleccionados
+                agentes:agentesSeleccionados,
+                articulos:seleccion
             }
 
             $.ajax({
@@ -224,12 +254,11 @@
                         espere();
                     }
                 }
-            }); 
+            });
         }            
     });
 
-    function validarControles() {   
-        
+    function validarControles() {     
         var val=true; var cont=0;
         if ($('#codigoCampania').val()=="" || $('#nombreCampania').val()=="" || $('#fechaInicioCampania').val()=="" || $('#fechaFinalCampania').val()=="" || $('#metaEstimada').val()=="" || $('#observacionesCamp').val()=="" || $('#mensajeCamp').val()=="") {  
             mensaje("Todavia no ha rellenado todos los campos","error");
@@ -248,6 +277,11 @@
                 cont++;
             }
         });
+
+        if (jQuery.isEmptyObject(seleccion) && (!$('#selectAll').is(':checked'))) {
+            mensaje("No ha seleccionado ningún articulo","error");
+            val=false;
+        }
 
         if (cont==0) {
             mensaje("No ha selecciono ningun agente", "error");
@@ -475,7 +509,53 @@ function espere() {
             '</div>'
     }).then();
 }
+  
+$('#filtrarArticulo').on('keyup', function() {
+    var table = $('#tblArticulos').DataTable();
+    table.search(this.value).draw();
+});
 
+$("#selectAll").on( 'change', function() {
+    if($(this).is(':checked') ) {
+        $( ".enabled1" ).removeClass( "enabled1" ).addClass( "disabled1" );
+    }else {
+        $( ".disabled1" ).removeClass( "disabled1" ).addClass( "enabled1" );
+    }
+});
+
+//Evento paginacion activa y desactiva los checkboxs
+$('#tblArticulos').on('draw.dt', function () {
+    $('.dropdown-button').dropdown();
+    if($("#selectAll").is(':checked') ) {
+        $( ".enabled1" ).removeClass( "enabled1" ).addClass( "disabled1" );
+    }else {
+        $( ".disabled1" ).removeClass( "disabled1" ).addClass( "enabled1" );
+    }
+} );
+
+$('#select1').on('change', function() {
+    var cantRows = $('#select1').val();
+    var table = $('#tblArticulos').DataTable();  
+    
+    table.page.len( cantRows ).draw();
+})
+
+
+var seleccion = new Array();
+
+function seleccionandoChk(element) {
+    var x = $(element).attr("name");
+    var y = $('input:checkbox[name='+x+']').val();
+    
+    if (element.checked) {
+        seleccion.push(y);
+    }else {
+        var index = seleccion.indexOf(y);        
+        
+        if ( index !== -1 ) {
+            seleccion.splice( index, 1 );
+        }
+    }
 
 $("#tbladdclientcamp").DataTable({
         "bFilter": true,

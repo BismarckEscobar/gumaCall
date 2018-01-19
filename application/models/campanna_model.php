@@ -31,8 +31,8 @@ class Campanna_model extends CI_Model
         if ($query->num_rows()>0) {
             return $query->result_array()[0]['MONTO_REAL'];
         }
-
     }
+
     public function My_Campannas_Header($id){
         $cmp = array();
         $c=0;
@@ -67,7 +67,7 @@ class Campanna_model extends CI_Model
                 $array_Clientes_camp[$c]['Telefono2'] = $Cmp['Telefono2'];
                 $array_Clientes_camp[$c]['Telefono3'] = $Cmp['Telefono3'];
                 $array_Clientes_camp[$c]['Meta'] = $Cmp['Meta'];
-                $array_Clientes_camp[$c]['Real'] = $this->getRealCliente($Cmp['ID_Campannas'],$Cmp['ID_Cliente']);
+                $array_Clientes_camp[$c]['Real'] = 500;//$this->getRealCliente($Cmp['ID_Campannas'],$Cmp['ID_Cliente']);
                 $c++;
             }
             return $array_Clientes_camp;
@@ -108,11 +108,17 @@ class Campanna_model extends CI_Model
     }
     /*FIN FUNCION PARA MOSTRAR CLIENTES POR VENDEDOR*/
 
-    public function My_Campannas_Clientes1($Id)
+    public function My_Campannas_Clientes1($Cp,$Id)
     {
         $array_Clientes_camp = array();
         $c = 0;
-        $Querry_Campanna = $this->db->get_where('View_campannas_Clientes', array('ID_Cliente' => $Id));
+        $this->db->where('ID_Campannas', $Cp);
+        $this->db->where('ID_Cliente', $Id);
+        $Querry_Campanna=$this->db->get('View_campannas_Clientes');
+        
+        //$this->db->get_where('View_campannas_Clientes', array('ID_Campannas' => $Cp));
+        //$Querry_Campanna = $this->db->get_where('View_campannas_Clientes', array('ID_Cliente' => $Id));
+        
         if ($Querry_Campanna->num_rows()>0) {
             foreach ($Querry_Campanna->result_array() as $Cmp) {
                 $array_Clientes_camp[$c]['ID_Campannas'] = $Cmp['ID_Campannas'];
@@ -211,8 +217,21 @@ class Campanna_model extends CI_Model
         return 0;
 
     }
-    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$TPF,$EXT,$unidad)
-    {
+    public function guardar_llamada($num,$Cliente,$Camp,$Monto,$Duracion,$Comentario,$articulos,$TPF,$EXT,$unidad) {
+        $articulosSeleccionados=""; $i=0;
+        if (count($articulos)>0) {
+            foreach ($articulos as $key => $value) {
+                if ($i==0) {
+                    $articulosSeleccionados = $value;
+                }else {
+                    $articulosSeleccionados = $articulosSeleccionados.','.$value;
+                }
+                $i++;
+            }
+        }else {
+            $articulosSeleccionados="0";
+        }
+
         $this->db->insert('campanna_registros',array(
             'Num_CLI' => $num,
             'ID_Usuario' => $this->session->userdata('id'),
@@ -223,11 +242,45 @@ class Campanna_model extends CI_Model
             'Hora' => date('H:i:s'),
             'Duracion' => $Duracion,
             'Comentarios' => $Comentario,
+            'Articulos' => $articulosSeleccionados,
             'ID_TPF' => $TPF,
             'EXT' => $EXT,
             "Unidad" => $unidad
         ));
         echo ($this->db->affected_rows() > 0) ? 1 : 0;
+    }
 
+    public function agregandoArticulos($articulo) {
+        $json = array();
+        $query = $this->sqlsrv->fetchArray("SELECT ARTICULO AS ARTICULO, DESCRIPCION AS DESCRIPCION FROM iweb_articulos WHERE ARTICULO = '".$articulo."';", SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+            echo json_encode($query);
+        }else
+            echo '0';
+    }
+
+    public function listandoArtCampania($numCampania) {
+        $temp = array();
+        $this->db->where('ID_Campannas', $numCampania);
+        $this->db->select('Articulos');
+        $query = $this->db->get('campanna');
+
+        if ($query->num_rows()>0) {
+            if ($query->result_array()[0]['Articulos']=="*") {
+                $query1 = $this->sqlsrv->fetchArray("SELECT ARTICULO AS ARTICULO, DESCRIPCION AS DESCRIPCION FROM iweb_articulos;", SQLSRV_FETCH_ASSOC);
+            }else {
+                $query1 = $this->sqlsrv->fetchArray("SELECT ARTICULO AS ARTICULO, DESCRIPCION AS DESCRIPCION FROM iweb_articulos WHERE ARTICULO IN (".$query->result_array()[0]['Articulos'].");", SQLSRV_FETCH_ASSOC);
+            }
+        }
+
+        foreach ($query1 as $key) {
+            $temp[] = array(
+                'value' => $key['ARTICULO'],
+                'desc' => $key['DESCRIPCION']
+            );                
+        } 
+
+        echo json_encode($temp);
     }
 }

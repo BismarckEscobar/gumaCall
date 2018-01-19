@@ -151,9 +151,19 @@ class campaniaVistaAdmin_model extends CI_Model {
 		}
 	}
 
-	public function guardandoNuevaCampania($agentes,$campania) {
-		$result=0;
-		for ($i=0; $i < count($campania) ; $i++) { 
+	public function guardandoNuevaCampania($agentes,$campania,$articulos) {
+		$result=0; $articulosSeleccionados=""; $ii=0;
+
+		foreach ($articulos as $key => $value) {
+			if ($ii==0) {
+				$articulosSeleccionados = $value;
+			}else {
+			 	$articulosSeleccionados = $articulosSeleccionados.','.$value;
+			}
+			$ii++;
+		}
+
+		for ($i=0; $i < count($campania) ; $i++) {
 			$index=explode(",", $campania[$i]);
 			$temp=array(
 				'ID_Campannas'=>$index[0],
@@ -165,12 +175,14 @@ class campaniaVistaAdmin_model extends CI_Model {
 				'Meta'=>(float)$index[4],
 				'Observaciones'=>$index[5],
 				'Mensaje'=>$index[6],
+				'Articulos'=>$articulosSeleccionados,
 				'Fecha_Creacion'=>date('Y-m-d H:i:s'),
 				'ID_Usuario'=>$index[7]
 			);
 			$result=$this->db->insert('campanna', $temp);
 		}
-		if ($result!=0) {			
+
+		if ($result!=0) {
 			for ($i=0; $i<count($agentes) ; $i++) {
 				$index=explode(",",$agentes[$i]);
 				$temp=array(
@@ -341,6 +353,17 @@ class campaniaVistaAdmin_model extends CI_Model {
             }
         }
         echo json_encode($json);
+    }
+
+    public function listandoArticulos() {
+        $i = 0;
+        $json = array();
+        $query = $this->sqlsrv->fetchArray('SELECT * FROM iweb_articulos', SQLSRV_FETCH_ASSOC);
+
+        if (count($query)>0) {
+        	return $query;
+        }else
+        	return false;
     }
 
     public function editarAgentesCamp($data, $campania) {
