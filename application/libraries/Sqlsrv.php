@@ -3,12 +3,10 @@
  * @version 0.1
  * @author Dpt MK47
  */
+class Sqlsrv
+{
 
-class Sqlsrv{
     public $serverName = "192.168.1.18";
-
-    //public $serverName = "192.168.1.9";
-
     public $dbname = "PRODUCCION";
     public $user = "dbomanager";
     public $password = "Umk*.*@!";

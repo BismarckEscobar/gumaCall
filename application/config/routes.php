@@ -28,6 +28,9 @@ $route['guardarDataCampania'] = 'campaniaVistaAdmin_controller/guardandoData';
 $route['Guardar_llamada'] = 'campania_controller/guardar_llamada';
 $route['cambiarEstadoCamp/(:any)/(:any)'] = 'campaniaVistaAdmin_controller/cambiandoEstadoCamp/$1/$2';
 $route['editarCampaniaVA'] = 'campaniaVistaAdmin_controller/editandoCampania';
+$route['GuardaClients'] = 'campaniaVistaAdmin_controller/saveClientes';
+$route['ValidaAjax/(:any)/(:any)'] = 'campaniaVistaAdmin_controller/validar/$1/$2';
+
 
 $route['detalles'] = 'campania_controller/detalles_camp/';
 $route['cCliente'] = 'campania_controller/get_info_cliente';

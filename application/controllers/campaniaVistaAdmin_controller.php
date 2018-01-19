@@ -17,6 +17,7 @@ class CampaniaVistaAdmin_controller extends CI_Controller
 
     public function listadoCampanias() {
         $data['listaCampanias'] = $this->campaniaVistaAdmin_model->listarCampaniasActivas();
+        $data["Clients"] = $this->campaniaVistaAdmin_model->mostrarClientes();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
         $this->load->view('pages/campanias/campanias_vista_admin', $data);
@@ -77,6 +78,20 @@ class CampaniaVistaAdmin_controller extends CI_Controller
 
     public function editarAgentesCamp() {
         $this->campaniaVistaAdmin_model->editarAgentesCamp($this->input->post('nuevosAgentes'), $this->input->post('campania'));
+    }
+
+    public function saveClientes()
+    {
+        $idCampania = $this->input->get_post("idCampaniaclient");
+        $idcliente = $this->input->get_post("idclient");
+        $meta = $this->input->get_post("metaclient");
+        echo $idCampania." ".$idcliente." ".$meta;
+        $this->campaniaVistaAdmin_model->saveClientes($idCampania,$idcliente,$meta);
+    }
+
+    public function validar($idCampania, $idcliente)
+    {
+        $this->campaniaVistaAdmin_model->validar($idCampania,$idcliente);
     }
 }
 ?>
