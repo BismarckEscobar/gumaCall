@@ -1,8 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CampaniaVistaAdmin_controller extends CI_Controller
-{
+class CampaniaVistaAdmin_controller extends CI_Controller {
  public function __construct(){
         parent::__construct();
         $this->load->library('session');
@@ -37,6 +36,7 @@ class CampaniaVistaAdmin_controller extends CI_Controller
 
     public function nuevaCampania() {
         $data['agentes'] = $this->campaniaVistaAdmin_model->listarAgentes();
+        $data['catalogoArticulos'] = $this->campaniaVistaAdmin_model->listandoArticulos();
         $data['ultNoCampania'] = $this->campaniaVistaAdmin_model->ultimoNoCampania();
         $this->load->view('header/header');
         $this->load->view('pages/menu');
@@ -52,7 +52,7 @@ class CampaniaVistaAdmin_controller extends CI_Controller
     }
 
     public function guardandoData() {
-        $this->campaniaVistaAdmin_model->guardandoNuevaCampania($this->input->post('agentes'),$this->input->post('dataCampania'));    
+        $this->campaniaVistaAdmin_model->guardandoNuevaCampania($this->input->post('agentes'),$this->input->post('dataCampania'),$this->input->post('articulos'));    
     }
 
     public function cambiandoEstadoCamp($numCampania, $nuevoEstado) {

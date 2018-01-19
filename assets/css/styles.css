@@ -528,12 +528,15 @@ table th {
 #table-detalleCliente .dataTables_wrapper .dataTables_filter {
   display: block!important;
 }
+
 #tb1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
+
 #tblRegLllamadas1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
+
 #tblRegLllamadasPlanta1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
@@ -549,18 +552,25 @@ table th {
     font-size: 12px;
     transition: 0.5s;
 }
-.BtnKronos
-{
-    line-height: 68px;
+.BtnKronos {
+    line-height: 60px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 5px;
     background: #1E824C;
-    font-family: 'robotomedium';
+    font-family: 'robotoregular';
     font-weight: 500;
-    font-size: 24px;
-    height: 68px;
-    width: 200px;
+    font-size: 18px;
+    height: 60px;
+    width: 150px;
     transition: 0.5s;
+}
+
+.btnLlamar {
+  background: #1E824C;
+  border-radius: 5px;
+}
+.btnLlamar i {
+  font-size: 26px;
 }
 
 .BtnCancelar {
@@ -656,7 +666,7 @@ table th {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #aaa;
 }
-#rptCampaniaModal, #rptAgenteModal, #rptClienteModal, #rptLlamadasModal, #rptRgtLlamadas {
+#rptCampaniaModal, #rptAgenteModal, #rptClienteModal, #rptLlamadasModal, #rptRgtLlamadas, #outCall {
   width: 80%;
   min-height: 85%;
 }
@@ -967,6 +977,15 @@ chosen-single a{
   margin-bottom: 5px;
 }
 
+.llamada-title-1 {
+  color: black;
+  font-family: 'robotobold';
+  text-transform: uppercase!important;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
 .reporte-title-2 {
   color: black;
   float: left;
@@ -1011,3 +1030,53 @@ chosen-single a{
 .card-title {
   font-family: 'roboto';
 }
+
+.disabled1 {
+  display: none;
+}
+
+#select1 {
+  display: none;
+}
+
+#tblArticulos_length {
+  display: none;
+}
+
+.num-phone {
+  font-family: 'robotobold';
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+  background-color: #e0e0e0e0;
+  padding: 10px 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.titulo-reg-llamadas {
+  font-family: 'robotobold';
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#llamada-info-cont {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 15px 0px 0px;
+  margin-bottom: 20px;
+}
+
+.titulo-span {
+  font-size: 18px;
+  font-family: 'robotoregular';
+  font-weight: normal;
+}
+
+input[type=text]:disabled {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'robotobold';
+  color: #212121
+}
+

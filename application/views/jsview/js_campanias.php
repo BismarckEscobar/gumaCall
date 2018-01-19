@@ -14,6 +14,26 @@
      
     //$("#outCall").openModal();
     $(document).ready(function() {
+        $("#tblArtSeleccionados").DataTable({
+            "scrollCollapse": true,
+            "bPaginate": false,
+            "ordering": false,              
+            "info":    false,            
+            "lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
+            "language": {
+                "zeroRecords": "NO HAY RESULTADOS",
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"                    
+                },
+                "lengthMenu": "MOSTRAR _MENU_",
+                "emptyTable": "NO HAY ARTICULOS SELECCIONADOS",
+                "search":     "BUSCAR"
+            }
+        });
+
         var control;
         $("#USN,#USI").hide();
         var frm_Kronos =$("#Kronos");
@@ -29,9 +49,12 @@
 
         /*INICIO DE CRONOMETRO DE LLAMADA*/
         var Kronos_Run = null;
-        $("#btn-comenzar").click(function(){
+        $("#btn-comenzar").click(function() {
+            var numTelefono = $("#numTelefono").text();
             var tiempo = {hora: 0,minuto: 0,segundo: 0,centesimas:0};
             if ( $(this).text() == 'INICIAR' ){
+                $("#btn-comenzar").css("background", "#d32f2f");
+                $("#crono1").show();
                 $(this).text('FINALIZAR');
                     Kronos_Run = setInterval(function(){
                     tiempo.centesimas++;
@@ -57,13 +80,19 @@
 
              },10);
             }else{
+                $(this).css("background", "#1E824C");
+                $("#crono1").hide();               
                 $("#lblDuracion").text(frm_Kronos.text());
                 $(this).text('INICIAR');
                 clearInterval(Kronos_Run);
+                $("#frm_Numero").val(numTelefono);
+                $("#title-num-tel").text(numTelefono);
+                
+                llenandoCmbArticulos($("#spCamp1").text());
+                
                 $('#outCall').openModal({
                     dismissible:false
                 });
-
             }
         });
 
@@ -77,20 +106,34 @@
 
         /*FIN DE CRONOMETRO DE LLAMADA*/
         /*INICIO DE GUARDADO DE LLAMADA*/
-        $("#id_Guardar_llamada").click(function(){
+        $("#id_Guardar_llamada").click(function() {
+            var tabla = $("#tblArtSeleccionados").DataTable();
+            var artSeleccionados = new Array();
+            var pos = 0;
+
             var Cli   =  $("#clienteLlamado").html();
             var cmp   =  $("#spCamp1").html();
             var Num   =  $("#frm_Numero").val();
             var TPF   =  $("#frm_TPF").val();
             var Monto =  $("#frm_Monto").val();
             var Comnt =  $("#frm_comentario").val();
-            var unidad = $("#frm_Unidad").val();
+            var unidad = '0';
             var ext = $("#fmr_ext").val();
 
+            Monto == "" ? Monto="0" : console.log(":+1:");
 
             if(TPF == null || Monto=='' || Num=='' || unidad==''){
                 swal('Oops...','Hay Informacion sin completar!','error')
             }else{
+
+                tabla.rows().eq(0).each(function(index) {
+                    var row = tabla.row(index);
+                    var data = row.data();
+
+                    artSeleccionados[pos] = data[0];
+                    pos++;
+                });
+
                 var Frm_Datos = {
                     num:Num,
                     Cliente:Cli,
@@ -98,6 +141,7 @@
                     TPF: TPF,
                     Monto:  Monto,
                     Coment: Comnt,
+                    Articulos: artSeleccionados,
                     Unidad : unidad,
                     EXT: ext,
                     TimeInCall:frm_Kronos.text()
@@ -113,7 +157,7 @@
                             if(WTF > 0){
                                 swal({
                                     title: 'Informacion Guardada',
-                                    timer: 2000,
+                                    timer: 3000,
                                     showConfirmButton:false,
                                     html:'<p>Cargando Datos</p>'+'<br>'+'<div class="preloader-wrapper active">'+
                                             '<div class="spinner-layer spinner-blue-only">'+
@@ -375,5 +419,87 @@
         var table = $('#tbl_camp_cliente').DataTable();
         table.search(this.value).draw();
     });
+
+/*NUEVA ACTUALIZACION: NUEVO DISEÑO PANTALLA LLAMADA*/
+
+function getNumTelefono(numTelefono) {
+    if (numTelefono == " " || numTelefono == "") {
+        mensaje("El campo del teléfono esta vacío","error");
+    }else {
+        $('#Kronos').text("00:00:00:00");
+        $('#numTelefono').text(numTelefono);
+        $("#nuevaLlamada-modal").openModal({
+            dismissible:false
+        });
+    }
+}
+
+function llenandoCmbArticulos(numeroCamp) {
+    $.ajax({
+        url: "listarArticulos/"+numeroCamp,
+        type: "POST",
+        async: true,
+        success: function(data) {
+            if (data!=1) {
+                $('#frm_articulos').empty();
+                $("#frm_articulos").append('<option value="" disabled selected>SELECCIONE LOS PRODUCTOS VENDIDOS</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    $("#frm_articulos").append('<option value="' + item['value'] + '">' + item['desc'] + '</option>');
+                });
+                $('#frm_articulos').trigger("chosen:updated");
+            }
+        }
+    });
+}
+
+$("#agregarArticuloDT").on('click', function() {
+    var table = $('#tblArtSeleccionados').DataTable();
+    var articulo = $('#frm_articulos').val();
+
+    $.ajax({
+        url: "agregarArtDatatable/"+articulo,
+        type: "POST",
+        async: true,
+        success: function(data) {
+            if (data!=1) {
+                $.each(JSON.parse(data), function(i, item) {
+                    table.row.add( [
+                        item['ARTICULO'],
+                        item['DESCRIPCION'],
+                        '<center><a class="btn-floating red" href="#"><i class="tiny material-icons quitar">close</i></a></center>'
+                    ]).draw(false);
+                });
+            }
+        }
+    });
+});
+
+$('#tblArtSeleccionados tbody').on( 'click', 'i.quitar', function () {
+    var tabla = $('#tblArtSeleccionados').DataTable();
+    tabla
+    .row( $(this).parents('tr'))
+    .remove()
+    .draw();
+} );
+
+$("#cancelarProceso").on("click", function() {
+    swal({
+        title: '¿Desea cancelar la operación?',
+        text: 'Los datos que haya ingresado se borraran',
+        type: 'warning',
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonColor: '#C72828',
+        confirmButtonText: 'OK',
+        cancelButtonText: 'CANCELAR'
+    }).then(function() {
+        var table = $('#tblArtSeleccionados').DataTable();
+            table
+            .clear()
+            .draw();
+        $("#frm_Monto").val("");
+        $("#outCall").closeModal();
+    });
+});
 
 </script>

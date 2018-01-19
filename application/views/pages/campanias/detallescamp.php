@@ -80,7 +80,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         <th>TELEFONO</th>
                         <th>META</th>
                         <th>REAL</th>
-                        <th>MONTO RECUPERADO</th>
+                        
                         <th>RUTA</th>
                     </tr>
                     </thead>
@@ -100,7 +100,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                                         <td>'.$Lst['Telefono1'].'</td>
                                         <td>C$ '.number_format($Lst['Meta'],2).'</td>
                                         <td>C$ '.number_format($Lst['Real'],2).'</td>
-                                        <td>'.number_format($Lst['Real'], 2).'</td> 
+                                        
                                         <td>'.$Lst['Vendedor'].'</td>       
                                      </tr>';
                             }

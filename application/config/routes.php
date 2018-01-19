@@ -34,6 +34,8 @@ $route['cCliente'] = 'campania_controller/get_info_cliente';
 
 $route['cargaAgentesCampania/(:any)'] = 'campaniaVistaAdmin_controller/cargaAgentes/$1';
 $route['editarAgentes'] = 'campaniaVistaAdmin_controller/editarAgentesCamp';
+$route['agregarArtDatatable/(:any)'] = 'campania_controller/agregarArticulos/$1';
+$route['listarArticulos/(:any)'] = 'campania_controller/listarArticulosCamp/$1';
 //FIN RUTAS CAMPAÑAS
 
 //RUTAS USUARIOS
