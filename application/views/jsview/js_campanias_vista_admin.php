@@ -1,5 +1,10 @@
 <script>
 	$(document).ready(function() {
+
+     $("#searchClients").on("keyup",function(){
+         var table = $("#tbladdclientcamp").DataTable();
+         table.search(this.value).draw();
+     });   
     
         $('ul.tabs').tabs();
     
@@ -504,7 +509,7 @@ function espere() {
             '</div>'
     }).then();
 }
-
+  
 $('#filtrarArticulo').on('keyup', function() {
     var table = $('#tblArticulos').DataTable();
     table.search(this.value).draw();
@@ -551,5 +556,100 @@ function seleccionandoChk(element) {
             seleccion.splice( index, 1 );
         }
     }
+
+$("#tbladdclientcamp").DataTable({
+        "bFilter": true,
+        "scrollCollapse": true,
+        "info":    false,            
+        "lengthMenu": [[10,20,50,100,-1], [10,20,50,100,"Todo"]],
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS",
+            "paginate": {
+                "first":      "Primera",
+                "last":       "Última ",
+                "next":       "Siguiente",
+                "previous":   "Anterior"                    
+            },
+            "lengthMenu": "MOSTRAR _MENU_",
+            "emptyTable": "NO HAY DATOS DISPONIBLES",
+            "search":     "BUSCAR"
+        }
+    });
+
+function addClientCamp (id,nom) {
+    $("#modalAddClienteCamp").openModal();
+    $("#idCampaniaclient").val(id);
+    $("#nombreCampania1").html(nom);
+}
+
+function saveClient(id)
+{
+   swal({
+        title: 'AGREGAR META',
+        html:'<input id="idclient" name="idclient" type="hidden" class="swal2-input">' +
+            '<input id="metaclient" name="metaclient" type="number" class="swal2-input" placeholder="Ingresala cantidad">',
+            confirmButtonText:"AGREGAR",
+            confirmButtonColor:"#1E824C",
+            showCancelButton:true,
+            cancelButtonText:"CANCELAR", 
+            cancelButtonColor:"#C72828"
+   }).then(function(){
+       saveClientes();
+   });
+   $("#idclient").val(id);
+}
+
+function saveClientes ()
+{
+    var form_data = {
+           idCampaniaclient: $("#idCampaniaclient").val(),
+           idclient: $("#idclient").val(),
+           metaclient: $("#metaclient").val()
+       };
+       ValidarCli($("#idCampaniaclient").val(), $("#idclient").val())
+       $.ajax({
+            url:"GuardaClients",
+            type:"POST",
+            async:true,
+            data: form_data,
+            success:function (data) {
+                    if(true)
+                    {
+                        swal({
+                            text:"Guardado con exito",
+                            type:"success",
+                            confirmButtonText:"Aceptar",
+                            confirmButtonColor:"#1E824C"
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }else{
+                        swal({
+                            text:"Algo salio mal, contáctece con el administrador",
+                            type:"error",
+                            confirmButtonText:"CERRAR",
+                            confirmButtonColor:"#C72828"
+                        });
+                    }
+            }
+        });
+}
+
+function ValidarCli(campana,cliente)
+{
+    $.ajax({
+        url:"ValidaAjax/"+campana+"/"+cliente,
+        type:"POST",
+        success:function()
+        {
+            if(true){
+                swal({
+                    text:"El cliente "+cliente +" ya existe en la campaña "+campana,
+                    type:"info",
+                    confirmButtonText:"ACEPTAR"
+                });
+            }
+        }
+    });
 }
 </script>

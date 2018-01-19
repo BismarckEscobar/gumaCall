@@ -101,7 +101,7 @@
                 </div>
             </div><br>
             <div class="row">
-                <div class="input-field col s12 m6 l12">
+                <div class="input-field col s12 m12 l12">
                     <input name="nombreCliente" id="nombreCliente" type="text" class="validate">
                     <label for="nombreCliente">NOMBRE COMPLETO</label>
                 </div>
@@ -112,21 +112,19 @@
                 </div>                
             </div>
             <div class="row">
-                <div class="input-field col s4 m4">
+                <div class="input-field col s4 m4 l2">
                     <input name="telf1" id="telf1" type="text" class="validate">
                     <label for="telf1">TELEFONO 1</label>
                 </div>
-                <div class="input-field col s4 m4">
+                <div class="input-field col s4 m4 l2">
                     <input name="telf2" id="telf2" type="text" class="validate">
                     <label for="telf2">TELEFONO 2</label>
                 </div>
-                <div class="input-field col s4 m4">
+                <div class="input-field col s4 m4 l2">
                     <input name="telf3" id="telf3" type="text" class="validate">
                     <label for="telf3">TELEFONO 3</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s4 m4">
+                <div class="input-field col s12 m12 l5">
                     <select name="selectRuta" id="selectRuta" class="chosen-select browser-default">
                         <option value="" disabled selected>RUTA</option>
                         <?php 

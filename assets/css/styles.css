@@ -509,6 +509,11 @@ table th {
  display: none;
 }
 
+.select-dropdown,
+.caret {
+  display: none !important;
+}
+
 #tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter {  
  display: block!important; 
 }
@@ -539,6 +544,9 @@ table th {
 
 #tblRegLllamadasPlanta1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
+}
+  #tbladdclientcamp .dataTables_wrapper .dataTables_filter {
+  display: block!important;
 }
 
 /*FIN TABLAS GENERALES*/
@@ -1080,3 +1088,9 @@ input[type=text]:disabled {
   color: #212121
 }
 
+.input-field .prefix.active {
+  color: #1f3c8f !important;
+}
+#divsearchClients{
+  margin-bottom:auto;
+}
