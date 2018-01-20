@@ -556,6 +556,7 @@ function seleccionandoChk(element) {
             seleccion.splice( index, 1 );
         }
     }
+}
 
 $("#tbladdclientcamp").DataTable({
         "bFilter": true,
