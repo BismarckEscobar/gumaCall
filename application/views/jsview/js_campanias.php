@@ -35,10 +35,23 @@
         });
 
         var control;
-        $("#USN,#USI").hide();
+        $("#USN,#USI,#USV").hide();
         var frm_Kronos =$("#Kronos");
         localStorage.setItem("uNombre", $("#USI").text());
         localStorage.setItem("uId", $("#USN").text());
+        localStorage.setItem("uRu", $("#USV").text());
+        var arrRutas = localStorage.getItem("uRu").split(',');
+
+        firebase.database().ref("CLIENTES_AD").on('child_changed', function(data) {
+            console.log(data);
+            if (data.key=="Ruta"){
+                if ($.inArray(data.val(), arrRutas) != -1){
+                    firebase.database().ref("CLIENTES_AD").once('value', function(snapshot) {
+                        Materialize.toast($('<div>Tienes un Nuevo Cliente.<br> Nº: '+snapshot.val().Cod+' <br>Nombre: '+snapshot.val().Name+' <br>Ruta: '+snapshot.val().Ruta+'</div>'), 10000,'red rounded');
+                    });
+                }
+            }
+        });
         
 
         if (localStorage.getItem("EnLinea")=== "true"){

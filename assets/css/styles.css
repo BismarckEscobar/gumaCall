@@ -1044,7 +1044,7 @@ chosen-single a{
 }
 
 #select1 {
-  display: none;
+  /*display: none;*/
 }
 
 #tblArticulos_length {

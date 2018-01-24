@@ -41,7 +41,10 @@ $('#guardarClientes').click(function() {
 });
 
 $('#guardarUnCl').click( function() {
-    if (validarControles()!=true) {
+
+
+
+  if (validarControles()!=true) {
         msj = validarControles();
         mensaje(msj,'error');
     }else {
@@ -67,6 +70,16 @@ $('#guardarUnCl').click( function() {
             data: form_data,
             success: function(data) {
                 if (data==1) {
+                    firebase.database().ref("CLIENTES_AD").update({
+                        Cod: "",
+                        Name:"",
+                        Ruta: ""
+                    });
+                    firebase.database().ref("CLIENTES_AD").update({
+                        Cod: $('#codCliente').val(),
+                        Name:$('#nombreCliente').val(),
+                        Ruta: $('#selectRuta').val()
+                    });
                     swal({
                       title: 'GUARDADO CON EXITO',
                       text: '¿Desea guardar otro cliente?',
@@ -75,7 +88,7 @@ $('#guardarUnCl').click( function() {
                       confirmButtonText: 'Sí',
                       confirmButtonColor: '#3085d6',
                       cancelButtonText: 'NO',
-                      cancelButtonColor: '#C72828',
+                      cancelButtonColor: '#C72828'
                     }).then(function() {
                         limpiarControles();
                         $('#codCliente').focus();

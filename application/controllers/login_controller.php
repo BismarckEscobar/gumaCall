@@ -78,6 +78,7 @@ class Login_controller extends CI_Controller
                     'RolUser'=>$data['user'][0]['Rol'],
                     'FechaAcceso'=>date('Y-m-d H:i:s'),
                     'EXT' => $data['user'][0]['EXT'],
+                    'RUTAS' => str_replace(' ', '', $data['user'][0]['rutas']),
                     'logged' => 1
                 );
                 $this->session->set_userdata($sessiondata);

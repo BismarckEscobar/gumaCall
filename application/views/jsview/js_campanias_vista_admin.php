@@ -131,11 +131,11 @@
             });
         }else if (pathname.match(/crearCampania.*/)) {          
 
-            $('#tblArticulos').DataTable({            
+            $('#tblArticulos').DataTable({
                 "bFilter": true,
                 "scrollCollapse": true,
                 'bPaginate' : true,
-                "info":    false,            
+                "info":    false,
                 "iDisplayLength": 5,
                 //"lengthMenu": [[20,30,50,100,-1], [20,30,50,100,"Todo"]],
                 "language": {
@@ -144,7 +144,7 @@
                         "first":      "Primera",
                         "last":       "Última ",
                         "next":       "Siguiente",
-                        "previous":   "Anterior"                    
+                        "previous":   "Anterior"
                     },
                     "lengthMenu": "MOSTRAR _MENU_",
                     "emptyTable": "NO HAY DATOS DISPONIBLES",
