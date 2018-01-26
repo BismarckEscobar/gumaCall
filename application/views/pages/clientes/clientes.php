@@ -34,28 +34,15 @@
                         <th>TELEFONO 2</th>
                         <th>TELEFONO 3</th>                        
                         <th>DIRECCIÓN</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="center">
-                    <?php
-                    if ($clientes) {
-                        foreach ($clientes as $key) {
-                            echo "
-                            <tr>
-                                <td><span>".$key['ID_Cliente']."</span></td>
-                                <td><span>".$key['RUC']."</span></td>
-                                <td><span>".$key['Nombre']."</span></td>
-                                <td><span>".$key['Telefono1']."</span></td>
-                                <td><span>".$key['Telefono2']."</span></td>
-                                <td><span>".$key['Telefono3']."</span></td>                                
-                                <td><span>".$key['Direccion']."</span></td>
-                            </tr>
-                            ";
-                        }
-                    }
-                    ?>
                 </tbody>
             </table>
+        </div>
+        <div id="pgr1" class="progress">
+            <div class="indeterminate"></div>
         </div>
     </div>
 </main>
@@ -112,19 +99,19 @@
                 </div>                
             </div>
             <div class="row">
-                <div class="input-field col s4 m4 l2">
+                <div class="input-field col s3">
                     <input name="telf1" id="telf1" type="text" class="validate">
                     <label for="telf1">TELEFONO 1</label>
                 </div>
-                <div class="input-field col s4 m4 l2">
+                <div class="input-field col s3">
                     <input name="telf2" id="telf2" type="text" class="validate">
                     <label for="telf2">TELEFONO 2</label>
                 </div>
-                <div class="input-field col s4 m4 l2">
+                <div class="input-field col s3">
                     <input name="telf3" id="telf3" type="text" class="validate">
                     <label for="telf3">TELEFONO 3</label>
                 </div>
-                <div class="input-field col s12 m12 l5">
+                <div class="input-field col s3">
                     <select name="selectRuta" id="selectRuta" class="chosen-select browser-default">
                         <option value="" disabled selected>RUTA</option>
                         <?php 
@@ -143,3 +130,5 @@
         </div>
     </div>
 </div>
+
+<!-- <td><a class='btn-floating blue' onclick='editar_registro(".'"'.$key["ID_Cliente"].'"'.")'><i class='small material-icons'>close</i></a></td> -->

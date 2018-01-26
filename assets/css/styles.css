@@ -894,7 +894,7 @@ label>select {
 }
 input[type=text],input[disabled]{
     font-family:'robotoregular';
-    border-bottom: 1px solid #000!important;
+    /*border-bottom: 1px solid #000!important;*/
 }
 .Titulo_frm_nombrecliente{
     font-family: 'robotoregular';
@@ -917,7 +917,7 @@ chosen-single a{
   display: none;
 }
 
-#column0c,#column1c,#column2c,#column3c,#column4c,#column5c {
+#column0c,#column1c,#column2c,#column3c,#column4c {
   display: none;
 }
 
@@ -937,6 +937,7 @@ chosen-single a{
 }
 
 .text-area {
+  cursor: hand;
     background-color: #fff;
     border: 1px solid #8b8b8b;
     border-radius: 5px;
@@ -1033,7 +1034,6 @@ chosen-single a{
     text-align: left;
     color: #000000;
     font-family: 'robotoregular';
-    text-align: center;
 }
 .card-title {
   font-family: 'roboto';
@@ -1093,4 +1093,52 @@ input[type=text]:disabled {
 }
 #divsearchClients{
   margin-bottom:auto;
+}
+
+textarea.edit  {
+  border: 1px solid #1e88e5;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 16px;
+  overflow:hidden;
+}
+
+input.edit  {
+  border: 1px solid #1e88e5;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 15px;
+  resize: none;
+  overflow:hidden;
+}
+
+textarea.no-edit  {
+  border: none;
+  resize: none;
+  overflow:hidden;
+  font-size: 15px;
+  width: 100%;
+  height: 4em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+input.no-edit  {
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  color: #1F0A71;
+  border-bottom: none;
+}
+
+.lista-edicion {
+    font-size: 15px;
+    color: red;
+    display: block;
+    line-height: 22px;
+    padding: 7px 7px;
+    font-family: 'robotomedium';
 }

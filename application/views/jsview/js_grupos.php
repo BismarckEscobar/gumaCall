@@ -50,7 +50,10 @@ function cargarTablaNoVendedores(idGrupo) {
         columns: [
             { "data": "RUTA" },
             { "data": "NOMBRE" }
-        ]
+        ],
+        "fnInitComplete": function () {
+            $("#pgr2").hide();
+        }
     });
 }
 function cargarTablaSiVendedores(idGrupo) {
@@ -69,7 +72,10 @@ function cargarTablaSiVendedores(idGrupo) {
         columns: [
             { "data": "VENDEDOR" },
             { "data": "NOMBRE" }
-        ]
+        ],
+        "fnInitComplete": function () {
+            $("#pgr2").hide();
+        }
     });
 }
 

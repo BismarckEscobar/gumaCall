@@ -113,17 +113,17 @@
                                     <div class="col s6" >                                        
                                         <input type="text" id="filtrarArticulo" placeholder=" BUSCAR ARTICULO">
                                     </div>
-                                    <div class="col s4" >                                    
-                                        <input type="checkbox" class="filled-in" id="selectAll" />
-                                        <label for="selectAll">Seleccionar todos</label>                                 
-                                    </div>
                                     <div class="col s2">
                                         <select id="select1">                                            
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="20">20</option>
                                             <option value="-1">Todos</option>
-                                        </select>                                        
+                                        </select>                                    
+                                    </div>
+                                    <div class="col s4" >                                    
+                                        <input type="checkbox" class="filled-in" id="selectAll" />
+                                        <label for="selectAll">Seleccionar todos</label>                                 
                                     </div>
                                 </div>
                                 <br>

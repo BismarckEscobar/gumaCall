@@ -191,21 +191,21 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
             <div class="col offset-s2 s2 right">
                 <a href="#" class="modal-action modal-close"><i class="material-icons" style="color:red; font-size: 30px">clear</i></a>
             </div>
-        </div>
+        </div><br>
         <div class="row">
             <div class="col s12">
                 <center><p class="num-phone">Marcando a: <span id="numTelefono"></span></p></center>
             </div>            
         </div>
-        <div class="row">                  
-            <div class="col s12 center" >
-                <center><a href="#" id="btn-comenzar" class="BtnKronos waves-effect btn modal-trigger">INICIAR</a></center>
-            </div>            
-        </div>
-        <hr>
         <div class="row center" >
             <div class="col s12 ">
                 <label id="Kronos" class="sKronos center-align">00:00:00:00</label>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col s12 center" >
+                <center><a href="#" id="btn-comenzar" class="BtnKronos waves-effect btn modal-trigger">INICIAR</a></center>
             </div>
         </div>
     </div>
@@ -283,9 +283,9 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
             </div><br>
             <div class="row center" >
                 <div class="col s12 m12">
-                    <label id="aComment"><i class="material-icons prefix">comment</i> AGREGAR COMENTARIO</label>
+                    <label id="aComment" style="cursor:pointer;"><i class="material-icons prefix">comment</i> AGREGAR COMENTARIO</label>
                 </div>
-                <div class="input-field offset-l1 col s12 m12 l10" id="addComment" style="display: none;">
+                <div class="input-field col s12" id="addComment" style="display: none;">
                     <textarea id="frm_comentario" class="text-area" placeholder="COMENTARIOS"></textarea>
                 </div>
             </div>

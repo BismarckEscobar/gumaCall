@@ -62,32 +62,32 @@
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
-                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Nuevo</a></div></li>";
                             }elseif ($key['Estado']==2) {
                                 $estado='Inactiva';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
-                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Nuevo</a></div></li>";
                             }elseif ($key['Estado']==3) {
                                 $estado='Aprobada';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 4)'>Procesar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
-                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Nuevo</a></div></li>";
                             }elseif ($key['Estado']==4) {
                                 $estado='Procesando';
                                 $status="<li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 1)'>Activar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 2)'>Inactivar</a></li>
                                          <li><a href='#!' onclick='cambiaEstadoCamp(".'"'.$key['ID_Campannas'].'"'.", 3)'>Aprobar</a></li>
                                          <li class='divider'></li>
-                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' style='color:red'>Editar</a></div></li>
-                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='red-text'>Agregar Nuevo</a></div></li>";
+                                         <li><div id='numcamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='editarCampania(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Editar</a></div></li>
+                                         <li><div id='NumCamp".$key['ID_Campannas']."' style='padding: 7px 7px'><a onclick='addClientCamp(".'"'.$key['ID_Campannas'].'","'.$key['Nombre'].'"'.")' href='#' class='lista-edicion'>Nuevo</a></div></li>";
                             }
                             echo"
                             <tr>

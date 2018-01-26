@@ -1,5 +1,6 @@
 <script>
 $(document).ready(function() {
+
     $(function() {
         $("ul li").each(function(){
             if($(this).attr("id") == 'clientes')
@@ -11,6 +12,8 @@ $(document).ready(function() {
     $("#aClientInd").click(function() {$("#modalCargaClienteInd").openModal();});
 
     $('#tblCliente').DataTable({
+        ajax: "listandoClientes",
+        "destroy": true,
         "bFilter": true,
         "scrollCollapse": true,
         "info":    false,            
@@ -26,18 +29,33 @@ $(document).ready(function() {
             "lengthMenu": "MOSTRAR _MENU_",
             "emptyTable": "NO HAY DATOS DISPONIBLES",
             "search":     "BUSCAR"
+        },
+        columns: [
+            { "data": "CODIGO" },
+            { "data": "RUC" },
+            { "data": "NOMBRE" },
+            { "data": "TELEFONO1" },
+            { "data": "TELEFONO2" },
+            { "data": "TELEFONO3" },
+            { "data": "DIRECCION" },
+            { "data": "OPC" }
+        ],
+        "fnInitComplete": function () {
+            $("#pgr1").hide();
         }
-    });      
+    });
+
+    $('.dropdown-button').dropdown();
 });
 
 $('#guardarClientes').click(function() {
     if ($('#dataCliente').val()=="") {
-            mensaje("No ha cargado ningun archivo excel","error");
-            val=false;
-        } else {
-            $('#formCargaCliente').submit();
-            espere();           
-        }    
+        mensaje("No ha cargado ningun archivo excel","error");
+        val=false;
+    } else {
+        $('#formCargaCliente').submit();
+        espere();
+    }
 });
 
 $('#guardarUnCl').click( function() {
@@ -54,6 +72,7 @@ $('#guardarUnCl').click( function() {
             ruc1=$('#rucCliente').val();
         }
         var form_data = {
+            Tipo:'I',
             ID_Cliente: $('#codCliente').val(),
             RUC: ruc1,
             Nombre: $('#nombreCliente').val(),
@@ -64,7 +83,7 @@ $('#guardarUnCl').click( function() {
             Vendedor: $('#selectRuta').val()
         };
         $.ajax({
-            url: "guardarUnCl",
+            url: "editCliente",
             type: "post",
             async: true,
             data: form_data,
@@ -98,7 +117,7 @@ $('#guardarUnCl').click( function() {
                       }
                     })
                 }else if(data==false) {
-                    mensaje('El código de cliente ingresado ya existe', 'error');
+                    mensaje('El código del cliente ya existe', 'error');
                 }
             }
         });
@@ -151,4 +170,94 @@ function validarControles() {
         return true;
     }
 }
+
+function editar_registro(id) {
+    $(".input-edit-"+id).removeAttr("readonly");
+    $( ".input-edit-"+id).removeClass( "no-edit" ).addClass( "edit" );
+
+    $("#opciones2-"+id).show();
+    $("#opciones1-"+id).hide();
+}
+
+function guardarEdicion(idCliente) {
+    var form_data = {
+        Tipo:'U',
+        ID_Cliente: idCliente,
+        RUC: $('#ruc-'+idCliente).val(),
+        Nombre: $('#nombre-'+idCliente).val(),
+        Direccion: $('#dir-'+idCliente).val(),
+        Telefono1: $('#telf1-'+idCliente).val(),
+        Telefono2: $('#telf2-'+idCliente).val(),
+        Telefono3: $('#telf3-'+idCliente).val(),
+        Vendedor: 0
+    };
+    $.ajax({
+        url: "editCliente",
+        type: "post",
+        async: true,
+        data: form_data,
+        success: function(data) {
+            if (data==1) {
+                swal({
+                    text:"Guardado con exito",
+                    type:"success",
+                    confirmButtonText:"Aceptar",
+                    confirmButtonColor:"#1E824C"
+                }).then(function(){
+                    location.reload();
+                });
+            }else if(data==false) {
+                mensaje('No se puede actualizar el registro', 'error');
+            }
+        }
+    });   
+}
+
+function eliminar_registro(idCliente) {
+    swal({
+        text: "¿Esta seguro que quiere eliminar este registro?",
+        type: 'warning',
+        showCloseButton: true,
+        confirmButtonColor: '#f44336',
+        confirmButtonText: 'ACEPTAR',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+    }).then(function() {
+        var form_data = {
+            Tipo:'D',
+            ID_Cliente: idCliente
+        };
+
+        $.ajax({
+            url: "editCliente",
+            type: "post",
+            async: true,
+            data: form_data,
+            success: function(data) {
+                if(data==1) {
+                    swal({
+                        text: "Se elimino el registro del cliente",
+                        type: "success",
+                        confirmButtonText: "CERRAR",
+                    }).then(
+                        function() { location.reload(); }
+                    )
+                }                
+            }
+        });
+    })
+}
+
+function cancelarEdicion(id) {
+    $(".input-edit-"+id).attr("readonly","readonly");
+    $( ".input-edit-"+id).removeClass( "edit" ).addClass("no-edit");
+
+    $("#opciones2-"+id).hide();
+    $("#opciones1-"+id).show();
+}
+
+$('#tblCliente').on('draw.dt', function () {
+    $('.dropdown-button').dropdown();
+} );
+
 </script>

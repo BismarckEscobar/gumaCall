@@ -140,12 +140,15 @@
         </div>
     </div>
 </div>
-
+<!-- EDITANDO GRUPO AGENTES SAC -->
 <div id="editarGrupoModal" class="modal modal-fixed-footer">
     <div class="modal-content"><br>
         <div class="row center">
             <span id="grupo" class="titulosModales"></span>
         </div><br>
+        <div id="pgr2" class="progress">
+            <div class="indeterminate"></div>
+        </div>
         <input type="hidden" id="idGrupoBD1" name="idGrupoBD">
         <div class="row">  
             <div class="col s5 m5 l5">                

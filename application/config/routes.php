@@ -76,7 +76,8 @@ $route['diasGrafica/(:any)'] = 'campaniaVistaAdmin_controller/graficarDiasCampan
 //RUTAS CLIENTES
 $route['clientes'] = 'clientes_controller';
 $route['agregarClientes'] = 'clientes_controller/agregandoClientes';
-$route['guardarUnCl'] = 'clientes_controller/guardarUnCliente';
+$route['editCliente'] = 'clientes_controller/editarRegCliente';
+$route['listandoClientes'] = 'clientes_controller/listandoClientes';
 
 //RUTAS TIPIFICACIONES
 $route['tipificaciones'] = 'tipificaciones_controller';
