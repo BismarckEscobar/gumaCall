@@ -5634,7 +5634,7 @@ input[type=search]:disabled,
 input[type=search][readonly="readonly"],
 textarea.materialize-textarea:disabled,
 textarea.materialize-textarea[readonly="readonly"] {
-  color: rgba(0, 0, 0, 0.75);
+  /*color: rgba(0, 0, 0, 0.75);*/
   border-bottom: 1px dotted rgba(0, 0, 0, 0.26);
 }
 

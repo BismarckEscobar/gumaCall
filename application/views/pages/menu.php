@@ -61,11 +61,14 @@
 <!-- Modal Structure -->
 <div id="modalAbout" class="modal" style="margin-top:100px;">
   <div class="modal-content">
-    <a href="#!" class="right modal-action modal-close"><img src="<?php echo base_url("assets/img/cerrar.png") ?>" width="20px" alt="Cerrar"></a>
+  <div class="col offset-s2 s2 right">
+      <a href="#" class="modal-action modal-close"><i class="material-icons" style="color:red; font-size: 30px">clear</i></a>
+  </div>
     <br><br><h5 class="center negra indigo-text darken-4">DESARROLLADO POR GERENCIA CORPORATIVA IT.</h5>
   </div>
   <div class="modal-footer">
-    <p class="center negra indigo-text darken-4">COPYRIGHT &copy; TODOS LOS DERECHOS RESERVADOS.</p>
+    <p class="center negra indigo-text darken-4"><?php echo "Copyright © GCIT ".date("Y")." Todos los Derechos Reservados."?></p>
+    <p class="center negra indigo-text darken-4">Versión 1.3.1</p>
   </div><br><br>
 </div>
           

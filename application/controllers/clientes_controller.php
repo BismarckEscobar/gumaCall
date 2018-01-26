@@ -27,8 +27,9 @@ class clientes_controller extends CI_Controller {
         $this->cliente_model->guardarDataCliente($objReader->load($_FILES['dataCliente']['tmp_name']));
     }
 
-    public function guardarUnCliente() {
-        $this->cliente_model->guardarUncliente(
+    public function editarRegCliente() {
+        $this->cliente_model->editarRegcliente(
+            $this->input->post('Tipo'),
             $this->input->post('ID_Cliente'),
             $this->input->post('RUC'),
             $this->input->post('Nombre'),
@@ -38,6 +39,10 @@ class clientes_controller extends CI_Controller {
             $this->input->post('Telefono3'),
             $this->input->post('Vendedor')
         );
+    }
+
+    public function listandoClientes() {
+        $this->cliente_model->listandoClientesCampania();
     }
 }
 ?>

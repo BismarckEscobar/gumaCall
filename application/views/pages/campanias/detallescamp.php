@@ -63,13 +63,10 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 </div>
             </div>
         </div>
-
-
-
         <div class="row" id="monitoreo1">
             <div class="row center">
                 <i class="material-icons prefix">search</i>
-                <input style="width:40%" type="text" id="filtrarClientes" placeholder=" BUSCAR CLIENTE">
+                <input style="width:40%; text-align: center;" type="text" id="filtrarClientes" placeholder=" BUSCAR CLIENTE">
             </div>
             <div id="tbl_camp_cliente2">
                 <table id="tbl_camp_cliente" class="TblData">

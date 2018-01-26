@@ -498,6 +498,7 @@ $("#cancelarProceso").on("click", function() {
             .clear()
             .draw();
         $("#frm_Monto").val("");
+        $("#frm_comentario").val("");
         $("#outCall").closeModal();
     });
 });
