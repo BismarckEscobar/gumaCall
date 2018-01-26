@@ -72,7 +72,7 @@ class Login_model extends CI_Model
             $this->db->where('usuario', $name);
             $this->db->where('contrasenia', MD5($pass));
             $this->db->where('Activo',1);
-            $query = $this->db->get('usuario');
+            $query = $this->db->get('view_login');
 
             if($query->num_rows() == 1){
                 return $query->result_array();
