@@ -68,7 +68,7 @@
   </div>
   <div class="modal-footer">
     <p class="center negra indigo-text darken-4"><?php echo "Copyright © GCIT ".date("Y")." Todos los Derechos Reservados."?></p>
-    <p class="center negra indigo-text darken-4">Versión 1.3.1</p>
+    <p class="center negra indigo-text darken-4">Versión 1.3.2</p>
   </div><br><br>
 </div>
           
