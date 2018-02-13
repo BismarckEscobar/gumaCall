@@ -13,7 +13,10 @@
      }
      
     //$("#outCall").openModal();
-    $(document).ready(function() {
+    $(document).ready(function() {   
+        //FUNCION QUE POSICIONA EN LA ROW ANTERIOR
+        posicionRowDt();
+        
         $("#tblArtSeleccionados").DataTable({
             "scrollCollapse": true,
             "bPaginate": false,
@@ -203,30 +206,7 @@
         });
         /*FIN DE CRONOMETRO DE LLAMADA*/
 
-
-        $('#tblcampanias,#tbl_camp_cliente').DataTable({
-            initComplete: function () {
-                this.api().columns().every( function () {                      
-                    var column = this;
-                    var select = $('<select id="column'+column[0]+'c"><option value="">TODOS</option></select>')
-                        .appendTo( $('#tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter' ))
-
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()                            
-                            );                       
-                            column
-                                .search( val ? '^'+val+'$' : '', true, false )
-                                .draw();
-                            } )                
-                        column.data().unique().sort().each( function ( d, j ) {
-                                  
-                        select.append( '<option value="'+d+'">'+d+'</option>' );
-                    } );
-                    
-                } );
-
-            },
+        $('#tblcampanias').DataTable({
             "scrollCollapse": true,
             "info":    false,
             "lengthMenu": [[10,20,30,50,100,-1], [10,20,30,50,100,"Todo"]],
@@ -259,6 +239,7 @@
         }
 
         $("#ID_Cerrar").click(function(){
+            localStorage.removeItem('idRow');
             clearInterval(control);
             //clearInterval(intFirebase);
             localStorage.setItem("EnLinea", true);
@@ -267,10 +248,7 @@
 
            window.location.href = "salir"
 
-
         });
-
-
 
        /* intFirebase = setInterval(function(){
             Ear_Eyes_Of_God(
@@ -281,8 +259,6 @@
                 localStorage.getItem("uId")
             );
         },30000);*/
-
-
 
         firebase.database().ref("USUARIOS").on('child_changed', function(data) {
             if (data.key==localStorage.getItem("uNombre")){
@@ -322,10 +298,6 @@
                     location.reload(); //Refrescar pagina despues de cerrar el modal mTiempoFuera
                 }
 
-
-
-
-
                 Interval_pausa = setInterval(function(){
                     $('#ttPausa').text(Cal_Date(localStorage.getItem("Incio_Descanso"),getDate()));
                 },10);
@@ -334,13 +306,13 @@
 
 
 
-    Ear_Eyes_Of_God(
+    /*Ear_Eyes_Of_God(
         localStorage.getItem("FechaInicio"),
         getDate(),
         Cal_Date(localStorage.getItem("FechaInicio"),getDate()),
         localStorage.getItem("uNombre"),
         localStorage.getItem("uId")
-    );
+    );*/
 
 
     function Ear_Eyes_Of_God(Init,End,isTime,id,name,camp,numcamp) {
@@ -367,8 +339,6 @@
                 $('#mTiempoFuera').closeModal();       
             }
         });
-
-
     }
 
 
@@ -515,5 +485,61 @@ $("#cancelarProceso").on("click", function() {
         $("#outCall").closeModal();
     });
 });
+
+$('#tbl_camp_cliente').on( 'click', 'tr', function () {
+    var table = $('#tbl_camp_cliente').DataTable();
+
+    localStorage.removeItem('idRow');
+    localStorage.setItem("idRow", table.row( this ).id());
+} );
+
+function posicionRowDt() {
+    var table = $('#tbl_camp_cliente').DataTable({
+            stateSave: true,
+            "scrollCollapse": true,
+            "info":    false,
+            "lengthMenu": [[10,20,30,50,100,-1], [10,20,30,50,100,"Todo"]],
+            "language": {
+                "zeroRecords": "NO HAY RESULTADOS",
+                "paginate": {
+                    "first":      "Primera",
+                    "last":       "Última ",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "lengthMenu": "MOSTRAR _MENU_",
+                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                "search":     "BUSCAR"
+            },
+            initComplete: function () {
+                this.api().columns().every( function () {
+                    var column = this;
+                    var select = $('<select id="column'+column[0]+'c"><option value="">TODOS</option></select>')
+                        .appendTo( $('#tbl_camp_cliente2 .dataTables_wrapper .dataTables_filter' ))
+
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );                       
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                            } )                
+                        column.data().unique().sort().each( function ( d, j ) {
+                                  
+                        select.append( '<option value="'+d+'">'+d+'</option>' );
+                    } );
+                    
+                } );
+
+            }
+        });
+        
+        var indexRow=localStorage.getItem("idRow");
+        var row = table
+            .row( '#'+indexRow )
+            .node();         
+        $(row).addClass( 'selected' );
+    }
 
 </script>

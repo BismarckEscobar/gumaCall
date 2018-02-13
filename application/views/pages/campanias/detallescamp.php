@@ -76,8 +76,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         <th>NOMBRE</th>
                         <th>TELEFONO</th>
                         <th>META</th>
-                        <th>REAL</th>
-                        
+                        <th>REAL</th>                        
                         <th>RUTA</th>
                     </tr>
                     </thead>
@@ -91,7 +90,7 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                         }else{
                             foreach ($ClixVend as $Lst){
 
-                                echo '<tr>
+                                echo '<tr id="'.$Lst['ID_Cliente'].'">
                                         <td><a id="Numcamp" onclick="getInfoCliente('."'".$Lst['ID_Campannas']."'".",'".$Lst['ID_Cliente']."'".')" href="#">'.$Lst['ID_Cliente'].'</a></td>
                                         <td>'.$Lst['Nombre'].'</td>
                                         <td>'.$Lst['Telefono1'].'</td>
