@@ -69,6 +69,13 @@ table.dataTable tbody tr {
 table.dataTable tbody tr.selected {
  background: #81d4fa!important;
 }
+/*REGLA CSS PARA INDICAR QUE ROW BORRAR*/
+table.dataTable tbody tr.selected-deleted {
+ background: #ff5252!important;
+}
+table.dataTable tbody tr.selected-deleted td {
+  color: white!important;
+}
 table.dataTable tbody th,
 table.dataTable tbody td {
   padding: 8px 10px;

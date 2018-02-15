@@ -13,7 +13,7 @@
      }
      
     //$("#outCall").openModal();
-    $(document).ready(function() {   
+    $(document).ready(function() {
         //FUNCION QUE POSICIONA EN LA ROW ANTERIOR
         posicionRowDt();
         
@@ -72,12 +72,13 @@
                 $("#btn-comenzar").css("background", "#d32f2f");
                 $("#crono1").show();
                 $(this).text('FINALIZAR');
-                    Kronos_Run = setInterval(function(){
-                    tiempo.centesimas++;
+                    Kronos_Run = window.setInterval(function(){
+                    /*tiempo.centesimas++;
                      if(tiempo.centesimas >= 100){
                         tiempo.centesimas = 0;
                         tiempo.segundo++;
-                    }
+                    }*/
+                    tiempo.segundo++;
                     if(tiempo.segundo >= 60){
                         tiempo.segundo = 0;
                         tiempo.minuto++;
@@ -90,11 +91,12 @@
                     Hrs = tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora;
                     Min = tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto;
                     Seg = tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo;
-                    Cen = tiempo.centesimas < 10 ? '0' + tiempo.centesimas : tiempo.centesimas
+                    //Cen = tiempo.centesimas < 10 ? '0' + tiempo.centesimas : tiempo.centesimas
 
-                   frm_Kronos.text(Hrs+":"+Min+":"+Seg+":"+Cen);
+                   //frm_Kronos.text(Hrs+":"+Min+":"+Seg+":"+Cen);
+                   frm_Kronos.text(Hrs+":"+Min+":"+Seg);
 
-             },10);
+             }, 1000);
             }else{
                 $(this).css("background", "#1E824C");
                 $("#crono1").hide();               
@@ -305,14 +307,14 @@
         });
 
 
-
-    /*Ear_Eyes_Of_God(
+    //COMENTARIAR ESTA FUNCION EN CASO DE REFRESCAMIENTO CONTINUO
+    Ear_Eyes_Of_God(
         localStorage.getItem("FechaInicio"),
         getDate(),
         Cal_Date(localStorage.getItem("FechaInicio"),getDate()),
         localStorage.getItem("uNombre"),
         localStorage.getItem("uId")
-    );*/
+    );
 
 
     function Ear_Eyes_Of_God(Init,End,isTime,id,name,camp,numcamp) {
@@ -409,7 +411,7 @@ function getNumTelefono(numTelefono) {
     if (numTelefono == " " || numTelefono == "") {
         mensaje("El campo del teléfono esta vacío","error");
     }else {
-        $('#Kronos').text("00:00:00:00");
+        $('#Kronos').text("00:00:00");
         $('#numTelefono').text(numTelefono);
         $("#nuevaLlamada-modal").openModal({
             dismissible:false

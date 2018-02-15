@@ -103,9 +103,8 @@
                             <tr>
                                 <th>CODIGO</th>
                                 <th>NOMBRE</th>
-                                <th>ESTIMADO</th>
-                                <th>REAL</th>
-                                <th>OBSERVACIONES</th>
+                                <th>ESTIMADO C$</th>
+                                <th>REAL C$</th>                                
                             </tr>
                             </thead>
                             <tbody class="center">
@@ -119,12 +118,11 @@
                                             $montoReal=$key['montoReal'];
                                         }
                                         echo '
-                                        <tr>
-                                            <td><span>'.$key['ID_Cliente'].'</span></td>
+                                        <tr id="'.$key['ID_Cliente'].'">
+                                            <td>'.$key['ID_Cliente'].'</td>
                                             <td><span>'.$key['Nombre'].'</span></td>
-                                            <td><span>C$ '.number_format($key['Meta'], 2).'</span></td>
-                                            <td><span>C$ '.number_format($montoReal, 2).'</span></td>
-                                            <td><span>-</span></td>
+                                            <td><span>'.number_format($key['Meta'], 2).'</span></td>
+                                            <td><span>'.number_format($montoReal, 2).'</span></td>
                                         </tr>
                                         ';
                                     }
@@ -138,3 +136,11 @@
         </div>
     </div>
 </main>
+<div class="row" id="opciones-eliminar" style="display: none;">
+    <div class="col s12 m12" style="margin-left: 100px; font-family: 'robotoregular'; margin-top: 10px;">
+        <center>
+            <a id="eliminarSeleccion" class="waves-effect waves-light btn green">Eliminar</a>
+            <a id="cancelarSeleccion" class="waves-effect waves-light btn red">Cancelar</a>
+        </center>
+    </div>
+</div>

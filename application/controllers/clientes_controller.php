@@ -44,5 +44,9 @@ class clientes_controller extends CI_Controller {
     public function listandoClientes() {
         $this->cliente_model->listandoClientesCampania();
     }
+
+    public function elimandoClientesCampania() {
+        $this->cliente_model->eliminandoClientes($this->input->post('clientes'),$this->input->post('campania'));
+    }
 }
 ?>
