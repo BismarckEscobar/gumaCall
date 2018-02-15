@@ -5464,6 +5464,7 @@ a.waves-effect .waves-ripple {
   padding: 0 12px;
   border-radius: 16px;
   background-color: #e4e4e4;
+  font-family: 'robotoregular';
 }
 .chip img {
   float: left;

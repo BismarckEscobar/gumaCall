@@ -78,6 +78,7 @@ $route['clientes'] = 'clientes_controller';
 $route['agregarClientes'] = 'clientes_controller/agregandoClientes';
 $route['editCliente'] = 'clientes_controller/editarRegCliente';
 $route['listandoClientes'] = 'clientes_controller/listandoClientes';
+$route['elimandoClienteCamp'] = 'clientes_controller/elimandoClientesCampania';
 
 //RUTAS TIPIFICACIONES
 $route['tipificaciones'] = 'tipificaciones_controller';

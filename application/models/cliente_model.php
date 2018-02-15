@@ -124,5 +124,21 @@ class cliente_model extends CI_Model {
         }
         echo json_encode($json);
 	}
+
+	public function eliminandoClientes($clientes, $campania) {
+		$clientesSeleccionados=""; $ii=0;
+
+		foreach ($clientes as $key => $value) {
+			if ($ii==0) {
+				$clientesSeleccionados = '"'.$value.'"';
+			}else {
+			 	$clientesSeleccionados = $clientesSeleccionados.',"'.$value.'"';
+			}
+			$ii++;
+		}
+		$this->db->query("DELETE FROM campanna_cliente WHERE ID_Cliente IN (".$clientesSeleccionados.") AND ID_Campannas = ".'"'.$campania.'"'.";");
+
+		echo ($this->db->affected_rows() > 0) ? 1 : 0;
+	}
 }
 ?>

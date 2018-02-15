@@ -1,6 +1,5 @@
 <script>
     $(document).ready(function() {
-
      $("#searchClients").on("keyup",function(){
          var table = $("#tbladdclientcamp").DataTable();
          table.search(this.value).draw();
@@ -12,7 +11,7 @@
 
         $('#tblcampaniasVA').DataTable( {
             initComplete: function () {
-                this.api().columns().every( function () {               
+                this.api().columns().every( function () {  
                     var column = this;
                     var select = $('<select id="column'+column[0]+'"><option value="">TODOS</option></select>')
                         .appendTo( $('#tableCampaniasVA .dataTables_wrapper .dataTables_filter' ))
@@ -68,7 +67,7 @@
                     renderTo: 'container-grafica'
                 },
                 title: {
-                    text: 'META - REAL'
+                    text: 'MONTO REAL (por día)'
                 },
                 subtitle: {
                     text: ''
@@ -159,7 +158,7 @@
                 $(this).addClass("urlActual");
              })
         });
-
+        
         //INICIALIZANDO TABLA CLIENTES
         $('#tblDetalleCliente').DataTable({
             "scrollCollapse": true,
@@ -542,7 +541,6 @@ $('#select1').on('change', function() {
 
 
 var seleccion = new Array();
-
 function seleccionandoChk(element) {
     var x = $(element).attr("name");
     var y = $('input:checkbox[name='+x+']').val();
@@ -557,6 +555,97 @@ function seleccionandoChk(element) {
         }
     }
 }
+
+var activa=false; var clienteEliminar = new Array();
+$('#tblDetalleCliente').on( 'click', 'tr', function () {
+    var nameClass = this.className;
+    var table = $('#tblDetalleCliente').DataTable();    
+    
+    if (activa==false) {
+        $("#opciones-eliminar").show();
+        activa=true;
+    }
+
+    if (nameClass.match(/selected-deleted.*/)) {
+        var index = clienteEliminar.indexOf(table.cell( table.row( this ).index(), 0 ).data());        
+        $(this).removeClass('selected-deleted');
+        if ( index !== -1 ) {
+            clienteEliminar.splice( index, 1 );
+            
+            if (clienteEliminar.length=="") {
+                $("#opciones-eliminar").hide();
+                activa=false;
+            }
+        }
+    }else {
+        $(this).toggleClass('selected-deleted');
+        clienteEliminar.push(table.cell( table.row( this ).index(), 0 ).data());
+    }
+});
+
+$("#eliminarSeleccion").click( function() {
+    var table = $('#tblDetalleCliente').DataTable();
+    
+    if (clienteEliminar.length=="") {
+        mensaje("No hay ningún cliente seleccionado", "error");
+    }else {
+        swal({
+            text: "¿Esta seguro de querer eliminar estos registros?",
+            type: 'warning',
+            showCloseButton: true,
+            confirmButtonColor: '#f44336',
+            confirmButtonText: 'ACEPTAR',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+        }).then(function() {
+
+            var form_data = {
+                clientes: clienteEliminar,
+                campania: $("#numCampania").val()
+            };
+
+            $.ajax({
+                url: "../elimandoClienteCamp",
+                type: "post",
+                async: true,
+                data: form_data,
+                success: function(data) {
+                    console.log(data)
+                    if(data==1) {
+                        swal({
+                            title: "Actualizado con éxito",
+                            type: "success",
+                            confirmButtonText: "CERRAR",
+                        }).then(
+                            function() { location.reload(); }
+                        )
+                    }else {
+                        mensaje('Ocurrio un problema al tratar de guardar', 'error');
+                    }      
+                }
+            });
+        })
+    }
+});
+
+$("#cancelarSeleccion").click( function() {        
+    var tabla = $('#tblDetalleCliente').DataTable();
+    
+    tabla.rows().eq(0).each( function(index) {
+        var row = tabla.row(index);
+        var nameClass = row.node().className;
+
+        if (nameClass.match(/selected-deleted.*/)) {
+            var idRow = tabla.row( row ).id();            
+            var row1 = tabla
+                .row( '#'+idRow )
+                .node();            
+            $(row1).removeClass( 'selected-deleted' );
+        }
+    });
+    activa=false;
+    $("#opciones-eliminar").hide();
+});
 
 $("#tbladdclientcamp").DataTable({
         "bFilter": true,

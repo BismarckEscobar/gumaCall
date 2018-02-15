@@ -319,14 +319,14 @@ class campaniaVistaAdmin_model extends CI_Model {
         	'Data' => $real
         );        
 
-        $data2[] = array(
+        /*$data2[] = array(
         	'Tipo' => 'Meta',
         	'Data' => $meta
-        );
+        );*/
         
-        $json = array_merge($data1,$data2);
+        $json = array_merge($data1);
         
-        echo json_encode($json);
+        echo json_encode($data1);
 	}
 
     public function listandoAgentes($idCampania) {

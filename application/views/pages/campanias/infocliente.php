@@ -197,9 +197,18 @@ $Fecha_Cierre = date_create($Fecha_Cierre);
                 <center><p class="num-phone">Marcando a: <span id="numTelefono"></span></p></center>
             </div>            
         </div>
-        <div class="row center" >
+        <div class="row center" style="margin-bottom: 5px; margin-top: 0px;">
             <div class="col s12 ">
-                <label id="Kronos" class="sKronos center-align">00:00:00:00</label>
+                <label id="Kronos" class="sKronos center-align">00:00:00</label>
+            </div>
+        </div>
+        <div class="row center" >
+            <div class="col s12">
+                <div class="chip" style="width: 35%;">
+                    <span style="margin-right: 50px;">Hrs</span>
+                    <span>Min</span>
+                    <span style="margin-left: 50px;">Seg</span>
+                </div>
             </div>
         </div>
         <hr>
