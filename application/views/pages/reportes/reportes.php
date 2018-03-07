@@ -60,6 +60,22 @@
                             </a>
                         </center>
                     </div>
+                    <div class="col s3 m3">
+                        <center>
+                            <a href='<?php echo base_url("index.php/tipoRpt/Tipificaciones")?>'>
+                                <i class="material-icons icons-menu-rpt">phone_in_talk</i>
+                                <center><span class="titulo-menu-rpt">Tipificaciones</span></center>
+                            </a>
+                        </center>
+                    </div>
+                    <div class="col s3 m3">
+                        <center>
+                            <a href='<?php echo base_url("index.php/tipoRpt/Articulos")?>'>
+                                <i class="material-icons icons-menu-rpt">local_mall</i>
+                                <center><span class="titulo-menu-rpt">Articulos</span></center>
+                            </a>
+                        </center>
+                    </div>
                     <div style="display: none;" class="col s3 m3">
                         <center>
                             <a href='<?php echo base_url("index.php/tipoRpt/rptLlamadas")?>'>

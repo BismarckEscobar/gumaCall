@@ -542,10 +542,15 @@ table th {
  display: block!important; 
 }
 
+#tblArticulos1 .dataTables_wrapper .dataTables_filter {
+ display: block!important; 
+}
+
 #tblRegLllamadasPlanta1 .dataTables_wrapper .dataTables_filter {
  display: block!important; 
 }
-  #tbladdclientcamp .dataTables_wrapper .dataTables_filter {
+
+#tbladdclientcamp .dataTables_wrapper .dataTables_filter {
   display: block!important;
 }
 
@@ -674,7 +679,7 @@ table th {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px #aaa;
 }
-#rptCampaniaModal, #rptAgenteModal, #rptClienteModal, #rptLlamadasModal, #rptRgtLlamadas, #outCall {
+#rptCampaniaModal, #rptAgenteModal, #rptClienteModal, #rptLlamadasModal, #rptRgtLlamadas, #outCall, #rptTipificaciones, #rptArticulos {
   width: 80%;
   min-height: 85%;
 }

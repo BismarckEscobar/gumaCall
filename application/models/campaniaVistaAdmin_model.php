@@ -254,8 +254,15 @@ class campaniaVistaAdmin_model extends CI_Model {
 	}
 
 	public function actualizandoEstado($numCampania, $estado) {
+		$act='';
+		if ($estado==1) {
+			$act=1;
+		}else {
+			$act=0;
+		}
 		$data = array(
-			'Estado'=>$estado
+			'Estado'=>$estado,
+			'Activo'=>$act
 		);
 		$this->db->where('ID_Campannas', $numCampania);
 		$result=$this->db->update('campanna', $data);
@@ -356,8 +363,6 @@ class campaniaVistaAdmin_model extends CI_Model {
     }
 
     public function listandoArticulos() {
-        $i = 0;
-        $json = array();
         $query = $this->sqlsrv->fetchArray('SELECT * FROM iweb_articulos', SQLSRV_FETCH_ASSOC);
 
         if (count($query)>0) {

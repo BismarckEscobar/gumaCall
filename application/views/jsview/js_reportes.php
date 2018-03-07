@@ -51,7 +51,27 @@ $(document).ready(function() {
         }
     });
 
+    $("#tblArticulos").DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "lengthMenu": false,
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS"
+        }
+    });
+
     $("#tblRegLllamadas").DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "lengthMenu": false,
+        "language": {
+            "zeroRecords": "NO HAY RESULTADOS"
+        }
+    });
+
+    $("#tblTipificaciones").DataTable({
         "paging":   false,
         "ordering": false,
         "info":     false,
@@ -102,6 +122,12 @@ $(document).ready(function() {
         $('#filtroPorFechas').show();
         $('#generarRpts1').hide();
         $('#generarRpts2').show();
+    }else if (pathname.match(/Tipificaciones*/)) {
+        $('#reportes2').hide();
+        $('#filtroPorFechas').show();
+    }else if (pathname.match(/Articulos*/)) {
+        $('#reportes2').hide();
+        $('#filtroPorFechas').show();
     }
 
     $('#tblReportes').DataTable({
@@ -158,7 +184,7 @@ function cargaCampania() {
 
 $('#generarRpt').click(function() {
     var pathname = window.location.pathname;
-    var valor = $('#selectRpt').val();    
+    var valor = $('#selectRpt').val();
 
     if ($('#selectRpt').val()==null) {
         mensaje("Seleccione un valor para generar el reporte", "error");
@@ -183,6 +209,22 @@ $('#generarRpt').click(function() {
             generarReporte(valor, 4);
             $('#val').val(4);
             $("#rptLlamadasModal").openModal();
+        }else if (pathname.match(/Tipificaciones/)) {
+            limpiarControles(6);
+            $('#rptdesde1').text(moment($('#desde').val()).format('DD/MM/YYYY'));
+            $('#rpthasta1').text(moment($('#hasta').val()).format('DD/MM/YYYY'));
+            generarReporte(valor, 6);
+            $('#val').val(6);
+
+            $("#rptTipificaciones").openModal();
+        }else if (pathname.match(/Articulos/)) {
+            limpiarControles(7);
+            $('#rptdesde2').text(moment($('#desde').val()).format('DD/MM/YYYY'));
+            $('#rpthasta2').text(moment($('#hasta').val()).format('DD/MM/YYYY'));
+            generarReporte(valor, 7);
+            $('#val').val(7);
+
+            $("#rptArticulos").openModal();
         }
     }
 })
@@ -195,6 +237,8 @@ $('#generarRpt2').click(function() {
         identificador = $('#selectRpt2').val();
         generarReporte(identificador, 5);        
         $('#val').val(5);
+        $('#rptdesde').text(moment($('#desde').val()).format('DD/MM/YYYY'));
+        $('#rpthasta').text(moment($('#hasta').val()).format('DD/MM/YYYY'));
         $("#rptRgtLlamadas").openModal();
     }
 });
@@ -222,6 +266,10 @@ function generarReporte(identificador, tipoReporte) {
         cl = $('#cliente').val();
         dataReporte[0] = identificador +","+ tipoReporte +","+ d1 +","+ d2 + "," + nc + "," + cl;
     }else if (tipoReporte==5) {
+        dataReporte[0] = identificador +","+ tipoReporte +","+ d1 +","+ d2;
+    }else if (tipoReporte==6) {
+        dataReporte[0] = identificador +","+ tipoReporte +","+ d1 +","+ d2;
+    }else if (tipoReporte==7) {
         dataReporte[0] = identificador +","+ tipoReporte +","+ d1 +","+ d2;
     }
         
@@ -478,7 +526,62 @@ function generarReporte(identificador, tipoReporte) {
                             ]
                         });
                         $("#pgr").hide();                    
-                    };
+                    }else if (tipoReporte==6) {
+                        $('#tblTipificaciones').DataTable({              
+                            "destroy": true,
+                            "data": JSON.parse(data),
+                            "bFilter": true,
+                            "scrollCollapse": true,
+                            "info":    false,
+                            "lengthMenu": [[5,10,20,30,-1], [5,10,20,30,"Todo"]],
+                            "language": {
+                                "zeroRecords": "NO HAY RESULTADOS",
+                                "paginate": {
+                                    "first":      "Primera",
+                                    "last":       "Última ",
+                                    "next":       "Siguiente",
+                                    "previous":   "Anterior"          
+                                },
+                                "lengthMenu": "MOSTRAR _MENU_",
+                                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                                "search":     "BUSCAR"
+                            },
+                            columns: [                                
+                                { "data": "tip", },
+                                { "data": "CANT" }
+                            ]
+                        });
+                    }else if (tipoReporte==7) {
+                        $('#tblArticulos').DataTable({              
+                            "destroy": true,
+                            "data": JSON.parse(data),
+                            "bFilter": true,
+                            "scrollCollapse": true,
+                            "info":    false,
+                            "lengthMenu": [[10,20,30,-1], [10,20,30,"Todo"]],
+                            "language": {
+                                "zeroRecords": "NO HAY RESULTADOS",
+                                "paginate": {
+                                    "first":      "Primera",
+                                    "last":       "Última ",
+                                    "next":       "Siguiente",
+                                    "previous":   "Anterior"          
+                                },
+                                "lengthMenu": "MOSTRAR _MENU_",
+                                "emptyTable": "NO HAY DATOS DISPONIBLES",
+                                "search":     "BUSCAR"
+                            },
+                            columns: [                             
+                                { "data": "ARTICULO", },
+                                { "data": "DESCRIPCION" },
+                                { "data": "VENDIDO" }
+                            ],  
+                            columnDefs: [
+                                { "width": "20%", "targets": 0 },
+                                { "width": "25%", "targets": 2 }
+                            ]
+                        });
+                    };;
                 });                
             }else if (data.length===0) {
                 limpiarControles(tipoReporte);
@@ -515,6 +618,12 @@ function imprimirRpt() {
     }else if (tipoRpt==5) {
         id=$('#selectRpt2').val()
         window.open("../generarPDF?tipo=rptregllamadas&id="+id+"&f1="+d1+"&f2="+d2+" ", '_blank');
+    }else if (tipoRpt==6) {
+        id=$('#selectRpt').val()
+        window.open("../generarPDF?tipo=tipificaciones&id="+id+"&f1="+d1+"&f2="+d2+" ", '_blank');
+    }else if (tipoRpt==7) {
+        id=$('#selectRpt').val()
+        window.open("../generarPDF?tipo=articulos&id="+id+"&f1="+d1+"&f2="+d2+" ", '_blank');
     };
 }
 
@@ -557,6 +666,14 @@ function limpiarControles(identificador) {
     }else if (identificador==5) {
         $('#cantLlamadas').text(0);
         $('#tblRegLllamadas').DataTable()
+        .clear()
+        .draw();
+    }else if (identificador==6) {
+        $('#tblTipificaciones').DataTable()
+        .clear()
+        .draw();
+    }else if (identificador==7) {
+        $('#tblArticulos').DataTable()
         .clear()
         .draw();
     }
