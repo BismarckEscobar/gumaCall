@@ -413,6 +413,64 @@
 					</table><br>
 					";
 				}
+		}elseif ($tipoReporte=='tipificaciones') {
+			if ($data_reporte) {
+				echo 
+				"<br>
+				<div class='content-div'>
+					<span class='titulos'>REPORTE DE TIPIFICACIONES</span><br>
+					<span class='titulos'>".$campania."</span>			
+				</div>
+				<div class='content-div'>
+					<span class='titulo-var'>".$fechas."</span>
+				</div><br><br>
+				<table class='table-control'>
+					<thead>
+						<tr>
+							<th>TIPIFICACIÓN</th>
+							<th>CANTIDAD</th>
+						</tr>
+					</thead>
+					<tbody>";
+				foreach ($data_reporte as $key) {
+					echo"<tr>
+							<td><span>".$key['tip']."</span></td>
+							<td><span>".$key['CANT']."</span></td>
+						</tr>";
+				}
+				echo "</tbody>
+					</table>";
+				}
+		}elseif ($tipoReporte=='articulos') {
+			if ($data_reporte) {
+				echo 
+				"<br>
+				<div class='content-div'>
+					<span class='titulos'>REPORTE DE ARTICULOS</span><br>
+					<span class='titulos'>".$campania."</span>			
+				</div>
+				<div class='content-div'>
+					<span class='titulo-var'>".$fechas."</span>
+				</div><br><br>
+				<table class='table-control'>
+					<thead>
+						<tr>
+							<th>ARTICULO</th>
+							<th>DESCRIPCION</th>
+							<th>CANT. VECES VENDIDOS</th>
+						</tr>
+					</thead>
+					<tbody>";
+				foreach ($data_reporte as $key) {
+					echo"<tr>
+							<td><span>".$key['ARTICULO']."</span></td>
+							<td><span>".$key['DESCRIPCION']."</span></td>
+							<td><span>".$key['VENDIDO']."</span></td>
+						</tr>";
+				}
+				echo "</tbody>
+					</table>";
+				}
 		}
 		?>
 		

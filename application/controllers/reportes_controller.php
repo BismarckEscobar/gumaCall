@@ -68,6 +68,15 @@ class Reportes_controller extends CI_Controller {
             $tipo=5;
             $data_['tipoReporte'] = 'rpt_regLlamadas';
             $data_['fechas'] = 'Del '.date('d/m/Y', strtotime($d1)).' al '.date('d/m/Y', strtotime($d2));
+        }elseif ($tipo=='tipificaciones') {
+            $tipo=6;
+            $data_['tipoReporte'] = 'tipificaciones';
+            $data_['campania'] = $id;
+            $data_['fechas'] = 'Del '.date('d/m/Y', strtotime($d1)).' al '.date('d/m/Y', strtotime($d2));           
+        }elseif ($tipo=='articulos') {
+            $tipo=7;
+            $data_['tipoReporte'] = 'articulos';
+            $data_['campania'] = $id;          
         }
 
         $data_['data_reporte'] =  $this->reportes_model->generandoPDF($id, $tipo, $d1, $d2, $nc, $cl);

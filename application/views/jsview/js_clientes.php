@@ -24,7 +24,7 @@ $(document).ready(function() {
                 "first":      "Primera",
                 "last":       "Última ",
                 "next":       "Siguiente",
-                "previous":   "Anterior"                    
+                "previous":   "Anterior"
             },
             "lengthMenu": "MOSTRAR _MENU_",
             "emptyTable": "NO HAY DATOS DISPONIBLES",

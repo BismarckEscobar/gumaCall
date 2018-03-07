@@ -317,6 +317,11 @@
                 </div><br>
                 <div class="row center">
                     <span class="reporte-title-1">LLAMADAS POR CAMPAÑA</span><br><br>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <p class="mayuscula-bold">Apartir del: <span id="rptdesde"></span> hasta: <span id="rpthasta"></span></p>
+                        </div>
+                    </div>
                     <div class="progress" style="display:none;" id="pgr">
                         <div class="indeterminate"></div>
                     </div>
@@ -390,3 +395,82 @@
         </div>        
     </div>
 </div>
+<!--MODAL: REPORTE TIPIFICACIONES-->
+<div id="rptTipificaciones" class="modal">
+    <div class="modal-content"><br>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="noMargen Buscar row column">
+                    <div class="col offset-s2 s2 right">
+                        <a href="#" onclick="imprimirRpt()" class="modal-trigger"><i class="material-icons" style="color:#0d47a1; font-size: 30px">print</i></a>&nbsp;&nbsp;
+                        <a href="#" class="modal-action modal-close"><i class="material-icons" style="color:red; font-size: 30px">clear</i></a>
+                    </div>
+                </div><br>
+                <div class="row center">
+                    <span class="reporte-title-1">TIPIFICACIONES POR CAMPAÑA</span><br><br>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <p class="mayuscula-bold">Apartir del: <span id="rptdesde1"></span> hasta: <span id="rpthasta1"></span></p>
+                        </div>
+                    </div>
+                    <div class="progress" style="display:none;" id="pgr">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <div id="tblTipificaciones1">
+                        <table id="tblTipificaciones" class="TblData">
+                            <thead>
+                                <tr>
+                                    <th>TIPIFICACIÓN</th>
+                                    <th>CANTIDAD</th>
+                                </tr>
+                            </thead>
+                            <tbody class="center">
+                            </tbody>
+                        </table>                        
+                    </div>
+                </div><br><br><br>
+            </div>
+        </div>        
+    </div>
+</div>
+<!--MODAL: REPORTE DE ARTICULOS-->
+<div id="rptArticulos" class="modal">
+    <div class="modal-content"><br>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="noMargen Buscar row column">
+                    <div class="col offset-s2 s2 right">
+                        <a href="#" onclick="imprimirRpt()" class="modal-trigger"><i class="material-icons" style="color:#0d47a1; font-size: 30px">print</i></a>&nbsp;&nbsp;
+                        <a href="#" class="modal-action modal-close"><i class="material-icons" style="color:red; font-size: 30px">clear</i></a>
+                    </div>
+                </div><br>
+                <div class="row center">
+                    <span class="reporte-title-1">ARTICULOS POR CAMPAÑA</span><br><br>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <p class="mayuscula-bold">Apartir del: <span id="rptdesde2"></span> hasta: <span id="rpthasta2"></span></p>
+                        </div>
+                    </div>
+                    <div class="progress" style="display:none;" id="pgr">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <div id="tblArticulos1">
+                        <table id="tblArticulos" class="TblData">
+                            <thead>
+                                <tr>
+                                    <th>ARTICULO</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>CANT. VECES VENDIDO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="center">
+                            </tbody>
+                        </table>                        
+                    </div>
+                </div><br><br><br>
+            </div>
+        </div>        
+    </div>
+</div>
+
+

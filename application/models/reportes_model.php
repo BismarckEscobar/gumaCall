@@ -60,13 +60,39 @@ class Reportes_model extends CI_Model {
                 );                
             }
             return $temp;
+        }elseif ($tipoRpt=='Tipificaciones') {
+            $this->db->select('ID_Campannas');
+            $this->db->select('Nombre');
+            $this->db->where('Estado', 1);
+            $query_campanias = $this->db->get('campanna');
+
+            foreach ($query_campanias->result_array() as $key) {
+                $temp[] = array(
+                    'value' => $key['ID_Campannas'],
+                    'desc' => $key['ID_Campannas'].' - '.$key['Nombre']
+                );                
+            }
+            return $temp;
+        }elseif ($tipoRpt=='Articulos') {
+            $this->db->select('ID_Campannas');
+            $this->db->select('Nombre');
+            $this->db->where('Estado', 1);
+            $query_campanias = $this->db->get('campanna');
+
+            foreach ($query_campanias->result_array() as $key) {
+                $temp[] = array(
+                    'value' => $key['ID_Campannas'],
+                    'desc' => $key['ID_Campannas'].' - '.$key['Nombre']
+                );                
+            }
+            return $temp;
         } else {
             return false;
         }
     }
 
     public function generandoReporte($data) {
-        $array_final=array(); 
+        $array_final=array();
         $index=explode(",", $data[0]);
         $identificador=$index[0];
         $tipoRpt=$index[1];
@@ -75,7 +101,7 @@ class Reportes_model extends CI_Model {
         $nc=$index[4];
         $cl=$index[5];
 
-        if ($tipoRpt==1) { 
+        if ($tipoRpt==1) {
             $array_campania_info=$this->db->query("CALL sp_infoCampania('".$index[0]."')");
             $array_campania_info->next_result();
 
@@ -83,12 +109,12 @@ class Reportes_model extends CI_Model {
 
                 $this->db->where('ID_Campannas', $identificador);
                 $array_info_cliente = $this->db->get('view_clientescampaniadetalle');
-                               
+
                 $array_final[] = array(
                     'array_1' => $array_campania_info->result_array(),
                     'array_2' => $array_info_cliente->result_array()
                 );
-                echo json_encode($array_final);                
+                echo json_encode($array_final);
             }
 
         }elseif ($tipoRpt==2) {
@@ -155,6 +181,30 @@ class Reportes_model extends CI_Model {
                 'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($cantTotal)))
             );                     
             echo json_encode($data_final);
+        }elseif ($tipoRpt==6) {
+            $array_final=$this->db->query("CALL sp_infoTipificaciones('".$identificador."', '".$d1."', '".$d2."')");
+            $array_final->next_result();
+
+            echo json_encode($array_final->result_array());        
+        }elseif ($tipoRpt==7) {
+            
+            $articulos=$this->db->query("CALL sp_infoArticulos('".$identificador."', '".$d1."', '".$d2."')");
+            $articulos->next_result();
+
+            $array = explode(",", $articulos->result_array()[0]['ARTICULOS']);
+
+            foreach (array_count_values($array) as $valor => $cantidad) {
+                $nombreArt=$this->sqlsrv->fetchArray("SELECT ARTICULO AS ART, DESCRIPCION AS DES FROM iweb_articulos WHERE ARTICULO='".$valor."';", SQLSRV_FETCH_ASSOC);
+
+                $array_final[] = array(
+                    'ARTICULO' => $nombreArt[0]['ART'],
+                    'DESCRIPCION' => $nombreArt[0]['DES'],
+                    'VENDIDO' => $cantidad
+                );
+            }
+            echo json_encode($array_final);
+        }else {
+            echo false;
         }
     }
     
@@ -246,9 +296,6 @@ class Reportes_model extends CI_Model {
             $array_planta=$db_asterisk->query("SELECT * FROM vst_cdr WHERE ORIGEN LIKE '%".$identificador."%' AND FECHA BETWEEN '".$d1."' AND '".$d2."' AND TIPO = 'EXTERNO' AND ORIGEN IN (".$ext->result_array()[0]['EXT'].");");
             for ($i=0;$i<=count($array_planta->result_array());$i++) {
                 $cantTotal=$cantTotal+intval($array_planta->result_array()[$i]['duration']);
-                /*list($h, $m, $s) = explode(':', $array_planta->result_array()[$i]['DURACION']); 
-                $minutos = ($h * 3600) + ($m * 60) + $s;     
-                $this->cantTotal += $minutos;*/
             }
 
             $data_final[] = array(
@@ -257,6 +304,28 @@ class Reportes_model extends CI_Model {
                 'tiempoTotal' => date('H:i:s', strtotime($this->conversorSegundosHoras($cantTotal)))
             );                     
             return $data_final;
-        }
+        }elseif ($tipoRpt==6) {
+            
+            $array_final=$this->db->query("CALL sp_infoTipificaciones('".$identificador."', '".$d1."', '".$d2."')");
+            $array_final->next_result();
+            
+            return $array_final->result_array();
+        }elseif ($tipoRpt==7) {
+            $articulos=$this->db->query("CALL sp_infoArticulos('".$identificador."', '".$d1."', '".$d2."')");
+            $articulos->next_result();
+
+            $array = explode(",", $articulos->result_array()[0]['ARTICULOS']);
+
+            foreach (array_count_values($array) as $valor => $cantidad) {
+                $nombreArt=$this->sqlsrv->fetchArray("SELECT ARTICULO AS ART, DESCRIPCION AS DES FROM iweb_articulos WHERE ARTICULO='".$valor."';", SQLSRV_FETCH_ASSOC);
+
+                $array_final[] = array(
+                    'ARTICULO' => $nombreArt[0]['ART'],
+                    'DESCRIPCION' => $nombreArt[0]['DES'],
+                    'VENDIDO' => $cantidad
+                );
+            }
+            return $array_final;
+        };
     }
 }
